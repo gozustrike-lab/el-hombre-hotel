@@ -23162,3 +23162,644 @@ html.theme-light .hotel-deluxe-header .theme-toggle-btn {
     border-radius: 22px !important;
   }
 }
+
+/* ============================================================
+   EL HOMBRE - VISUAL OVERHAUL ELITE v2.1
+   Unified Theme System with Chromatic Fluidity & High Contrast
+   ============================================================ */
+
+/* GLOBAL SMOOTH TRANSITIONS FOR THEME SWITCHING */
+html.theme-light, html.theme-light *,
+html.theme-light *::before, html.theme-light *::after,
+html.theme-dark, html.theme-dark *,
+html.theme-dark *::before, html.theme-dark *::after {
+  transition: background-color 0.5s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease !important;
+}
+
+/* Preserve hero slide and animation transitions */
+img, video, canvas, svg, .hotel-reference-hero-slide,
+.hotel-reference-hero-thumb, .hotel-deluxe-hero-slide {
+  transition: none !important;
+}
+.hotel-reference-hero-slide {
+  transition: opacity 1200ms ease, transform 6200ms ease !important;
+}
+
+/* ============================================================
+   DARK THEME DEFAULT - Deep Coastal Night
+   ============================================================ */
+html.theme-dark body {
+  background: #0A1628 !important;
+  color: #f7f5ef !important;
+}
+html.theme-dark .hotel-deluxe-shell,
+html.theme-dark .page-shell {
+  background: #0A1628 !important;
+}
+
+/* Section Headings - Dark */
+html.theme-dark .hotel-deluxe-section-heading h2,
+html.theme-dark .hotel-home-amenity-heading h2,
+html.theme-dark .hotel-deluxe-rooms .hotel-deluxe-section-heading h2,
+html.theme-dark .hotel-deluxe-amenities .hotel-deluxe-section-heading h2,
+html.theme-dark .hotel-deluxe-testimonials .hotel-deluxe-section-heading h2,
+html.theme-dark .hotel-home-testimonial-heading h2,
+html.theme-dark .hotel-deluxe-experience-heading h2,
+html.theme-dark .hotel-tour-packages-heading h2,
+html.theme-dark .scene-chip {
+  color: #f7f5ef !important;
+}
+html.theme-dark .hotel-deluxe-section-heading p,
+html.theme-dark .hotel-home-amenity-heading p,
+html.theme-dark .hotel-deluxe-rooms .hotel-deluxe-section-heading p,
+html.theme-dark .hotel-deluxe-testimonials .hotel-deluxe-section-heading p,
+html.theme-dark .hotel-home-testimonial-heading p {
+  color: rgba(249,245,237,0.72) !important;
+}
+
+/* Rooms - Dark Glass Cards */
+html.theme-dark .hotel-deluxe-room-card {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 24px 54px rgba(0,0,0,0.24) !important;
+}
+html.theme-dark .hotel-deluxe-room-copy strong { color: #f7f5ef !important; }
+html.theme-dark .hotel-deluxe-room-copy p,
+html.theme-dark .hotel-deluxe-room-benefits li { color: rgba(249,245,237,0.68) !important; }
+html.theme-dark .hotel-deluxe-room-price b { color: #d4a574 !important; }
+html.theme-dark .hotel-deluxe-room-price span { color: rgba(249,245,237,0.6) !important; }
+
+/* Testimonials - Dark */
+html.theme-dark .hotel-deluxe-testimonials,
+html.theme-dark .hotel-home-testimonial-carousel-shell,
+html.theme-dark .hotel-home-testimonial-slide {
+  background: transparent !important;
+}
+html.theme-dark .hotel-home-testimonial-carousel-meta strong { color: #f7f5ef !important; }
+html.theme-dark .hotel-home-testimonial-carousel-meta span { color: rgba(249,245,237,0.65) !important; }
+html.theme-dark .hotel-home-testimonial-carousel-button {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+  color: #f7f5ef !important;
+}
+html.theme-dark .hotel-home-testimonial-carousel-button:hover { background: rgba(255,255,255,0.14) !important; }
+html.theme-dark .hotel-home-testimonial-content blockquote { color: rgba(249,245,237,0.82) !important; }
+html.theme-dark .hotel-home-testimonial-footer { color: rgba(249,245,237,0.6) !important; }
+html.theme-dark .hotel-home-testimonial-person strong { color: #f7f5ef !important; }
+html.theme-dark .hotel-home-testimonial-person p { color: rgba(249,245,237,0.6) !important; }
+html.theme-dark .hotel-home-testimonial-stars .is-filled { color: #d4a574 !important; }
+html.theme-dark .hotel-home-testimonial-stars span:not(.is-filled) { color: rgba(255,255,255,0.2) !important; }
+html.theme-dark .hotel-home-testimonial-dots button.is-active { background: #d4a574 !important; }
+html.theme-dark .hotel-home-testimonial-dots button:not(.is-active) { background: rgba(255,255,255,0.2) !important; }
+html.theme-dark .hotel-deluxe-testimonial-card {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  backdrop-filter: blur(12px) !important;
+}
+html.theme-dark .hotel-deluxe-testimonial-quote { color: rgba(249,245,237,0.82) !important; }
+html.theme-dark .hotel-deluxe-testimonial-name { color: #f7f5ef !important; }
+html.theme-dark .hotel-deluxe-testimonial-role { color: rgba(249,245,237,0.6) !important; }
+
+/* Amenities - Dark */
+html.theme-dark .hotel-home-amenity-item {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+html.theme-dark .hotel-home-amenity-copy strong { color: #f7f5ef !important; }
+html.theme-dark .hotel-home-amenity-copy p { color: rgba(249,245,237,0.65) !important; }
+html.theme-dark .hotel-deluxe-amenity-card {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+html.theme-dark .hotel-deluxe-amenity-card strong { color: #f7f5ef !important; }
+html.theme-dark .hotel-deluxe-amenity-card p { color: rgba(249,245,237,0.65) !important; }
+
+/* Footer - Dark */
+html.theme-dark .hotel-deluxe-footer {
+  background: rgba(0,0,0,0.3) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+html.theme-dark .hotel-deluxe-footer-brand strong,
+html.theme-dark .hotel-deluxe-footer-contact a { color: #f7f5ef !important; }
+html.theme-dark .hotel-deluxe-footer-brand p,
+html.theme-dark .hotel-deluxe-footer-copy p { color: rgba(249,245,237,0.6) !important; }
+html.theme-dark .hotel-deluxe-footer-contact a:hover { color: #d4a574 !important; }
+
+/* Experience Gallery - Dark */
+html.theme-dark .hotel-deluxe-experience-card {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+
+/* Location - Dark */
+html.theme-dark .location-block h2,
+html.theme-dark .location-block strong { color: #f7f5ef !important; }
+html.theme-dark .location-block p,
+html.theme-dark .location-block span { color: rgba(249,245,237,0.7) !important; }
+
+/* Payment & Social - Dark */
+html.theme-dark .hotel-payment-methods-section h2,
+html.theme-dark .hotel-social-section h2 { color: #f7f5ef !important; }
+
+/* Restaurant CTA - Dark */
+html.theme-dark .hotel-deluxe-restaurant-cta-full {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(184,115,51,0.3) !important;
+  color: #d4a574 !important;
+}
+html.theme-dark .hotel-deluxe-restaurant-cta-full:hover {
+  background: rgba(184,115,51,0.12) !important;
+  border-color: rgba(184,115,51,0.5) !important;
+}
+
+/* Tour Package Badge - Refined Gold */
+.hotel-tour-package-badge {
+  background: linear-gradient(135deg, #d4a574, #b87333) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Floating CTA - Dark */
+html.theme-dark .hotel-floating-cta {
+  background: rgba(10,22,40,0.92) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  backdrop-filter: blur(20px) !important;
+}
+html.theme-dark .scroll-top-btn {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #f7f5ef !important;
+}
+
+/* ============================================================
+   LIGHT THEME - Warm Sand Premium
+   ============================================================ */
+html.theme-light body {
+  background: #FDFBF7 !important;
+  color: #1a1a1a !important;
+}
+html.theme-light .hotel-deluxe-shell,
+html.theme-light .page-shell {
+  background: #FDFBF7 !important;
+}
+
+/* Hero - Light */
+html.theme-light .hotel-deluxe-hero-stage { background: #FDFBF7 !important; }
+html.theme-light .hotel-deluxe-hero-stage::before {
+  background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, transparent 22%, transparent 56%, rgba(0,0,0,0.04) 100%) !important;
+}
+html.theme-light .hotel-deluxe-hero-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 18%, rgba(0,0,0,0.15) 48%, rgba(0,0,0,0.5) 100%) !important;
+}
+html.theme-light .hotel-deluxe-hero-title span {
+  color: #fff !important; text-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+}
+html.theme-light .hotel-deluxe-hero-title strong {
+  color: #fff !important; text-shadow: 0 6px 28px rgba(0,0,0,0.25) !important;
+}
+html.theme-light .hotel-deluxe-hero-description {
+  color: rgba(255,255,255,0.92) !important; text-shadow: 0 4px 18px rgba(0,0,0,0.2) !important;
+}
+html.theme-light .hotel-deluxe-hero-kicker { color: rgba(255,255,255,0.82) !important; }
+html.theme-light .hotel-deluxe-hero-kicker::before {
+  background: linear-gradient(90deg, rgba(184,115,51,0.94), transparent) !important;
+}
+html.theme-light .hotel-deluxe-hero-chip {
+  border-color: rgba(184,115,51,0.4) !important;
+  background: rgba(184,115,51,0.15) !important;
+  color: #b87333 !important;
+}
+html.theme-light .hotel-deluxe-hero-note {
+  background: rgba(255,255,255,0.18) !important;
+  border-color: rgba(255,255,255,0.25) !important;
+}
+html.theme-light .hotel-deluxe-hero-note p { color: rgba(255,255,255,0.92) !important; }
+html.theme-light .hotel-deluxe-ghost-button {
+  background: rgba(255,255,255,0.18) !important;
+  border-color: rgba(255,255,255,0.35) !important;
+  color: #fff !important;
+}
+html.theme-light .hotel-deluxe-hero-atmo { opacity: 0.5 !important; }
+
+/* Booking Bar - Light */
+html.theme-light .hotel-deluxe-booking-shell {
+  background: rgba(255,255,255,0.82) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.06) !important;
+}
+html.theme-light .hotel-deluxe-booking-kicker { color: #b87333 !important; }
+html.theme-light .hotel-deluxe-booking-head p { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-booking-field-icon {
+  background: rgba(184,115,51,0.08) !important; color: #b87333 !important;
+}
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-field {
+  background: rgba(0,0,0,0.03) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-field:hover,
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-field:focus-within {
+  background: rgba(0,0,0,0.05) !important; border-color: rgba(184,115,51,0.3) !important;
+}
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-field span,
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-field label { color: #b87333 !important; }
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-input input,
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-input select { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-input input::placeholder,
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-input small { color: #9ca3af !important; }
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-summary {
+  background: rgba(0,0,0,0.03) !important; border-color: rgba(0,0,0,0.06) !important;
+}
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-summary span,
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-summary small { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-summary strong,
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-summary b { color: #1a1a1a !important; }
+
+/* Benefits - Light */
+html.theme-light .hotel-deluxe-benefit-card {
+  background: #fff !important;
+  border-color: rgba(0,0,0,0.06) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04) !important;
+}
+html.theme-light .hotel-deluxe-benefit-card strong { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-benefit-icon {
+  background: rgba(184,115,51,0.1) !important; color: #b87333 !important;
+}
+
+/* Section Headings - Light */
+html.theme-light .hotel-deluxe-section-heading h2,
+html.theme-light .hotel-home-amenity-heading h2,
+html.theme-light .hotel-deluxe-rooms .hotel-deluxe-section-heading h2,
+html.theme-light .hotel-deluxe-amenities .hotel-deluxe-section-heading h2,
+html.theme-light .hotel-deluxe-testimonials .hotel-deluxe-section-heading h2,
+html.theme-light .hotel-home-testimonial-heading h2,
+html.theme-light .hotel-deluxe-experience-heading h2,
+html.theme-light .hotel-tour-packages-heading h2 {
+  color: #1a1a1a !important;
+}
+html.theme-light .hotel-deluxe-section-heading p,
+html.theme-light .hotel-home-amenity-heading p,
+html.theme-light .hotel-deluxe-testimonials .hotel-deluxe-section-heading p,
+html.theme-light .hotel-home-testimonial-heading p { color: #5b6675 !important; }
+html.theme-light .scene-chip {
+  border-color: rgba(184,115,51,0.3) !important;
+  background: rgba(184,115,51,0.08) !important;
+  color: #b87333 !important;
+}
+
+/* Rooms - Light */
+html.theme-light .hotel-deluxe-room-card {
+  background: #fff !important;
+  border-color: rgba(0,0,0,0.06) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.05) !important;
+}
+html.theme-light .hotel-deluxe-room-copy strong { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-room-copy p,
+html.theme-light .hotel-deluxe-room-benefits li { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-room-price b { color: #b87333 !important; }
+html.theme-light .hotel-deluxe-room-price span { color: #9ca3af !important; }
+
+/* Restaurant - Light */
+html.theme-light .hotel-deluxe-restaurant-inner {
+  background: #fff !important;
+  border-color: rgba(0,0,0,0.06) !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.04) !important;
+}
+html.theme-light .hotel-deluxe-restaurant-chip {
+  border-color: rgba(184,115,51,0.3) !important;
+  background: rgba(184,115,51,0.08) !important;
+  color: #b87333 !important;
+}
+html.theme-light .hotel-deluxe-restaurant-title { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-restaurant-subtitle { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-restaurant-card {
+  background: #FDFBF7 !important;
+  border-color: rgba(0,0,0,0.06) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04) !important;
+}
+html.theme-light .hotel-deluxe-restaurant-card:hover { border-color: rgba(184,115,51,0.2) !important; }
+html.theme-light .hotel-deluxe-restaurant-card-price {
+  background: rgba(184,115,51,0.1) !important;
+  border-color: rgba(184,115,51,0.2) !important;
+  color: #b87333 !important;
+}
+html.theme-light .hotel-deluxe-restaurant-card-title { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-restaurant-card-desc { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-restaurant-add-btn {
+  border-color: rgba(184,115,51,0.25) !important;
+  background: rgba(184,115,51,0.06) !important;
+  color: #b87333 !important;
+}
+html.theme-light .hotel-deluxe-restaurant-add-btn:hover {
+  background: rgba(184,115,51,0.14) !important;
+  border-color: rgba(184,115,51,0.4) !important;
+}
+html.theme-light .hotel-deluxe-restaurant-cta-full {
+  background: rgba(184,115,51,0.08) !important;
+  border-color: rgba(184,115,51,0.25) !important;
+  color: #b87333 !important;
+}
+html.theme-light .hotel-deluxe-restaurant-cta-full:hover { background: rgba(184,115,51,0.16) !important; }
+
+/* Cart - Light */
+html.theme-light .hotel-deluxe-cart-fab {
+  background: linear-gradient(135deg, #b87333, #8B5E28) !important;
+  border-color: rgba(184,115,51,0.4) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 28px rgba(184,115,51,0.25) !important;
+}
+html.theme-light .hotel-deluxe-cart-panel {
+  background: #fff !important; border-color: rgba(0,0,0,0.08) !important;
+}
+html.theme-light .hotel-deluxe-cart-header h3 { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-cart-close {
+  border-color: rgba(0,0,0,0.1) !important;
+  background: rgba(0,0,0,0.04) !important;
+  color: #5b6675 !important;
+}
+html.theme-light .hotel-deluxe-cart-item-name { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-cart-item-subtotal { color: #b87333 !important; }
+html.theme-light .hotel-deluxe-cart-item-controls button {
+  border-color: rgba(0,0,0,0.1) !important;
+  background: rgba(0,0,0,0.04) !important;
+  color: #1a1a1a !important;
+}
+html.theme-light .hotel-deluxe-cart-item-controls span { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-cart-total span { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-cart-total strong { color: #b87333 !important; }
+
+/* Testimonials - Light */
+html.theme-light .hotel-home-testimonial-carousel-meta strong { color: #1a1a1a !important; }
+html.theme-light .hotel-home-testimonial-carousel-meta span { color: #5b6675 !important; }
+html.theme-light .hotel-home-testimonial-carousel-button {
+  background: rgba(0,0,0,0.04) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+  color: #1a1a1a !important;
+}
+html.theme-light .hotel-home-testimonial-carousel-button:hover { background: rgba(0,0,0,0.08) !important; }
+html.theme-light .hotel-home-testimonial-content blockquote { color: #3a3a3a !important; }
+html.theme-light .hotel-home-testimonial-person strong { color: #1a1a1a !important; }
+html.theme-light .hotel-home-testimonial-person p,
+html.theme-light .hotel-home-testimonial-footer span { color: #5b6675 !important; }
+html.theme-light .hotel-home-testimonial-stars .is-filled { color: #d4a574 !important; }
+html.theme-light .hotel-home-testimonial-stars span:not(.is-filled) { color: rgba(0,0,0,0.15) !important; }
+html.theme-light .hotel-home-testimonial-dots button.is-active { background: #b87333 !important; }
+html.theme-light .hotel-home-testimonial-dots button:not(.is-active) { background: rgba(0,0,0,0.15) !important; }
+html.theme-light .hotel-home-testimonial-media-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.02) 14%, rgba(0,0,0,0.46) 58%, rgba(0,0,0,0.82) 100%) !important;
+}
+html.theme-light .hotel-deluxe-testimonial-card {
+  background: #fff !important;
+  border-color: rgba(0,0,0,0.06) !important;
+}
+html.theme-light .hotel-deluxe-testimonial-name { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-testimonial-role { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-testimonial-quote { color: #3a3a3a !important; }
+
+/* Amenities - Light */
+html.theme-light .hotel-home-amenity-item {
+  background: #fff !important;
+  border-color: rgba(0,0,0,0.06) !important;
+}
+html.theme-light .hotel-home-amenity-copy strong { color: #1a1a1a !important; }
+html.theme-light .hotel-home-amenity-copy p { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-amenity-card {
+  background: #fff !important; border-color: rgba(0,0,0,0.06) !important;
+}
+html.theme-light .hotel-deluxe-amenity-card strong { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-amenity-card p { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-amenity-icon {
+  background: rgba(184,115,51,0.1) !important; color: #b87333 !important;
+}
+
+/* Experience - Light */
+html.theme-light .hotel-deluxe-experience-card {
+  background: #fff !important;
+  border-color: rgba(0,0,0,0.06) !important;
+}
+html.theme-light .hotel-deluxe-experience-copy strong { color: #fff !important; }
+html.theme-light .hotel-deluxe-experience-copy span { color: rgba(255,255,255,0.85) !important; }
+
+/* Footer - Light */
+html.theme-light .hotel-deluxe-footer {
+  background: rgba(0,0,0,0.04) !important;
+  border-color: rgba(0,0,0,0.06) !important;
+}
+html.theme-light .hotel-deluxe-footer-brand strong { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-footer-brand p,
+html.theme-light .hotel-deluxe-footer-copy p { color: #5b6675 !important; }
+html.theme-light .hotel-deluxe-footer-contact a { color: #1a1a1a !important; }
+html.theme-light .hotel-deluxe-footer-contact a:hover { color: #b87333 !important; }
+
+/* Location - Light */
+html.theme-light .location-block h2,
+html.theme-light .location-block strong { color: #1a1a1a !important; }
+html.theme-light .location-block p,
+html.theme-light .location-block span { color: #5b6675 !important; }
+
+/* Payment & Social - Light */
+html.theme-light .hotel-payment-methods-section h2,
+html.theme-light .hotel-social-section h2 { color: #1a1a1a !important; }
+
+/* Floating CTA - Light */
+html.theme-light .hotel-floating-cta {
+  background: rgba(255,255,255,0.92) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+  backdrop-filter: blur(20px) !important;
+}
+html.theme-light .scroll-top-btn {
+  background: rgba(0,0,0,0.05) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+  color: #1a1a1a !important;
+}
+
+/* Full Bleed Backgrounds - Theme Aware */
+html.theme-light .hotel-deluxe-rooms::before,
+html.theme-light .hotel-deluxe-experience::before,
+html.theme-light .hotel-deluxe-restaurant-section::before,
+html.theme-light .hotel-tour-packages-section::before,
+html.theme-light .hotel-deluxe-testimonials::before {
+  background: #FDFBF7 !important;
+}
+html.theme-dark .hotel-deluxe-rooms::before,
+html.theme-dark .hotel-deluxe-experience::before,
+html.theme-dark .hotel-deluxe-restaurant-section::before,
+html.theme-dark .hotel-tour-packages-section::before,
+html.theme-dark .hotel-deluxe-testimonials::before {
+  background: #0A1628 !important;
+}
+
+/* ============================================================
+   NAVBAR - Glassmorphism Premium (Both Themes)
+   ============================================================ */
+.eh-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 24px !important;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  z-index: 100 !important;
+}
+.eh-header--scrolled {
+  background: rgba(10,22,40,0.7) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+html.theme-light .eh-header--scrolled {
+  background: rgba(253,251,247,0.8) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+}
+.eh-header__brand {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+}
+.eh-header__logo {
+  height: 32px !important;
+  width: auto !important;
+  max-width: 180px !important;
+  object-fit: contain !important;
+}
+.eh-header__nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.eh-header__nav a {
+  padding: 6px 16px !important;
+  border-radius: 999px !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  color: rgba(255,255,255,0.82) !important;
+  text-decoration: none !important;
+}
+.eh-header__nav a:hover {
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+}
+html.theme-light .eh-header__nav a {
+  color: rgba(0,0,0,0.65) !important;
+}
+html.theme-light .eh-header__nav a:hover {
+  background: rgba(0,0,0,0.05) !important;
+  color: #1a1a1a !important;
+}
+.eh-header__actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  height: 100% !important;
+}
+.eh-header__whatsapp {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 999px !important;
+  background: rgba(37,211,102,0.15) !important;
+  color: #25D366 !important;
+  text-decoration: none !important;
+}
+.eh-header__whatsapp:hover { background: rgba(37,211,102,0.25) !important; }
+html.theme-light .eh-header__whatsapp {
+  background: rgba(37,211,102,0.1) !important;
+}
+.eh-header__locale {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  color: rgba(248,244,234,0.82) !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+}
+html.theme-light .eh-header__locale {
+  background: rgba(0,0,0,0.04) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+  color: rgba(0,0,0,0.65) !important;
+}
+.eh-header__cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 20px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #b87333, #8B5E28) !important;
+  border: none !important;
+  color: #fff !important;
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+.eh-header__cta:hover { filter: brightness(1.1) !important; }
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  width: 40px !important;
+  height: 22px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.06) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+}
+html.theme-light .theme-toggle-btn {
+  border-color: rgba(0,0,0,0.1) !important;
+  background: rgba(0,0,0,0.04) !important;
+}
+.theme-toggle-track {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 2px !important;
+}
+.theme-toggle-thumb {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 999px !important;
+  background: #d4a574 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.theme-toggle-thumb.is-dark { transform: translateX(18px) !important; }
+html.theme-light .theme-toggle-thumb { background: #b87333 !important; }
+
+/* Mobile Nav */
+@media (max-width: 860px) {
+  .eh-header { padding: 0 16px !important; height: 56px !important; }
+  .eh-header__logo { height: 26px !important; max-width: 130px !important; }
+  .eh-header__nav { display: none !important; }
+  .eh-header__actions { gap: 8px !important; }
+  .eh-header__locale { padding: 4px 10px !important; font-size: 0.78rem !important; }
+  .eh-header__cta { display: none !important; }
+}
+
