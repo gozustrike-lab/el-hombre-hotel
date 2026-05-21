@@ -1,0 +1,37 @@
+{
+    "name": "client-web-starter",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "node scripts/ensure-next-validator.mjs && next build",
+        "start": "next start",
+        "capture:reference": "node scripts/capture-reference-site.mjs",
+        "brief:extract": "node scripts/generate-website.mjs --extract-only",
+        "generate:website": "node scripts/generate-website.mjs",
+        "typecheck": "node -e \"try{require('fs').rmSync('tsconfig.tsbuildinfo',{force:true})}catch(e){}\" && node scripts/ensure-next-validator.mjs && npx tsc --noEmit",
+        "qa:project": "node scripts/qa-project.mjs",
+        "qa:content": "node scripts/qa-content.mjs",
+        "qa:visual": "node scripts/qa-visual.mjs",
+        "qa:template": "node scripts/qa-template.mjs",
+        "qa": "npm run typecheck && npm run qa:project && npm run qa:content && npm run qa:scorecards && npm run qa:template",
+        "qa:scorecards": "node scripts/qa-scorecards.mjs"
+    },
+    "dependencies": {
+        "cheerio": "^1.1.2",
+        "lucide-react": "^0.577.0",
+        "next": "16.1.6",
+        "playwright-core": "^1.53.0",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+        "yaml": "^2.8.2",
+        "zod": "^4.1.11"
+    },
+    "devDependencies": {
+        "@types/node": "^24.7.2",
+        "@types/react": "^19.2.2",
+        "@types/react-dom": "^19.2.2",
+        "playwright": "^1.58.2",
+        "typescript": "^5.9.3"
+    }
+}
