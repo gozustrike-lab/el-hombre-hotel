@@ -20728,138 +20728,134 @@ body {
   border-radius: 8px !important;
 }
 
-/* --- COLOR CONTRAST: Dark bg → light text, Light bg → dark text --- */
+/* ============================================================
+   THEME-AWARE COLOR SYSTEM: High contrast in both modes
+   ============================================================ */
 
-/* Restaurant section - ensure dark bg with light text */
-.hotel-deluxe-restaurant-inner {
+/* ──────────────────────────────────────────────
+   DARK MODE: Rich navy bg + warm cream text + gold accents
+   ────────────────────────────────────────────── */
+
+/* Restaurant section - dark mode */
+html.theme-dark .hotel-deluxe-restaurant-inner {
   background: linear-gradient(180deg, rgba(10, 16, 30, 0.88), rgba(10, 16, 30, 0.72)) !important;
   border-color: rgba(244, 235, 220, 0.12) !important;
 }
 
-.hotel-deluxe-restaurant-title {
+html.theme-dark .hotel-deluxe-restaurant-title {
   color: #f8f4ea !important;
 }
 
-.hotel-deluxe-restaurant-subtitle {
+html.theme-dark .hotel-deluxe-restaurant-subtitle {
   color: rgba(249, 245, 237, 0.78) !important;
 }
 
-.hotel-deluxe-restaurant-card {
+html.theme-dark .hotel-deluxe-restaurant-card {
   background: rgba(247, 243, 236, 0.06) !important;
   border-color: rgba(244, 235, 220, 0.12) !important;
 }
 
-.hotel-deluxe-restaurant-card-title {
+html.theme-dark .hotel-deluxe-restaurant-card-title {
   color: #f8f4ea !important;
 }
 
-.hotel-deluxe-restaurant-card-desc {
+html.theme-dark .hotel-deluxe-restaurant-card-desc {
   color: rgba(249, 245, 237, 0.68) !important;
 }
 
-.hotel-deluxe-restaurant-card-price {
+html.theme-dark .hotel-deluxe-restaurant-card-price {
   color: #d4a574 !important;
   border-color: rgba(184, 115, 51, 0.3) !important;
   background: rgba(184, 115, 51, 0.1) !important;
 }
 
-/* CTA buttons in restaurant */
-.hotel-deluxe-restaurant-add-btn {
+html.theme-dark .hotel-deluxe-restaurant-add-btn {
   color: #d4a574 !important;
   border-color: rgba(184, 115, 51, 0.3) !important;
   background: rgba(184, 115, 51, 0.08) !important;
 }
 
-.hotel-deluxe-restaurant-add-btn:hover {
+html.theme-dark .hotel-deluxe-restaurant-add-btn:hover {
   background: rgba(184, 115, 51, 0.18) !important;
   border-color: rgba(184, 115, 51, 0.45) !important;
   color: #f8f4ea !important;
 }
 
-/* Restaurant chip */
-.hotel-deluxe-restaurant-chip {
+html.theme-dark .hotel-deluxe-restaurant-chip {
   color: #d4a574 !important;
   border-color: rgba(184, 115, 51, 0.35) !important;
   background: rgba(184, 115, 51, 0.1) !important;
 }
 
-/* Benefits section - ensure contrast */
-.hotel-deluxe-benefit-card strong {
+/* Benefits section - dark mode */
+html.theme-dark .hotel-deluxe-benefit-card strong {
   color: #f8f4ea !important;
 }
 
-.hotel-deluxe-benefit-card {
+html.theme-dark .hotel-deluxe-benefit-card {
   background: rgba(247, 243, 236, 0.06) !important;
   border-color: rgba(244, 235, 220, 0.12) !important;
 }
 
-.hotel-deluxe-benefit-icon {
+html.theme-dark .hotel-deluxe-benefit-icon {
   color: #d4a574 !important;
 }
 
-/* Booking shell contrast */
-.hotel-deluxe-booking-shell .hotel-reference-booking-field {
+/* Booking shell - dark mode */
+html.theme-dark .hotel-deluxe-booking-shell .hotel-reference-booking-field {
   border-color: rgba(244, 235, 220, 0.16) !important;
 }
 
-.hotel-deluxe-booking-shell .hotel-reference-booking-field label,
-.hotel-deluxe-booking-shell .hotel-reference-booking-field span {
+html.theme-dark .hotel-deluxe-booking-shell .hotel-reference-booking-field label,
+html.theme-dark .hotel-deluxe-booking-shell .hotel-reference-booking-field span {
   color: rgba(231, 207, 149, 0.88) !important;
 }
 
-.hotel-deluxe-booking-shell .hotel-reference-booking-input input,
-.hotel-deluxe-booking-shell .hotel-reference-booking-input select {
+html.theme-dark .hotel-deluxe-booking-shell .hotel-reference-booking-input input,
+html.theme-dark .hotel-deluxe-booking-shell .hotel-reference-booking-input select {
   color: #ffffff !important;
 }
 
-.hotel-deluxe-booking-kicker {
+html.theme-dark .hotel-deluxe-booking-kicker {
   color: #d4a574 !important;
 }
 
-/* Cart panel contrast */
-.hotel-deluxe-cart-panel {
+/* Cart panel - dark mode */
+html.theme-dark .hotel-deluxe-cart-panel {
   background: linear-gradient(180deg, #141a24, #10151e) !important;
   border-color: rgba(244, 235, 220, 0.14) !important;
 }
 
-.hotel-deluxe-cart-header h3 {
+html.theme-dark .hotel-deluxe-cart-header h3 {
   color: #f8f4ea !important;
 }
 
-.hotel-deluxe-cart-item-name {
+html.theme-dark .hotel-deluxe-cart-item-name {
   color: #f8f4ea !important;
 }
 
-.hotel-deluxe-cart-item-subtotal {
+html.theme-dark .hotel-deluxe-cart-item-subtotal {
   color: #d4a574 !important;
 }
 
-.hotel-deluxe-cart-total span {
+html.theme-dark .hotel-deluxe-cart-total span {
   color: rgba(249, 245, 237, 0.78) !important;
 }
 
-.hotel-deluxe-cart-total strong {
+html.theme-dark .hotel-deluxe-cart-total strong {
   color: #d4a574 !important;
 }
 
-/* Nav items contrast */
-.hotel-deluxe-nav a {
+/* Nav items - dark mode */
+html.theme-dark .hotel-deluxe-nav a {
   color: rgba(248, 244, 234, 0.85) !important;
 }
 
-.hotel-deluxe-nav a:hover {
+html.theme-dark .hotel-deluxe-nav a:hover {
   color: #ffffff !important;
 }
 
-/* Header CTA contrast */
-.hotel-deluxe-header-cta {
-  background:
-    linear-gradient(135deg, #1A3A5C 0%, #0A1628 54%, #081220 100%) !important;
-  border-color: rgba(227, 214, 181, 0.2) !important;
-  color: #fefbf5 !important;
-}
-
-/* Hero text contrast */
+/* Hero text - ALWAYS white (over image overlay, both themes) */
 .hotel-deluxe-hero-title span {
   color: #f6f0e6 !important;
   text-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
@@ -20887,91 +20883,277 @@ body {
   }
 }
 
-/* Footer contrast */
-.hotel-deluxe-footer-title {
-  color: #f8f4ea !important;
-}
-
-/* ============================================================
-   v2 OVERRIDE: Navbar ultra-compact, contraste total
-   ============================================================ */
-
-/* --- NAVBAR ULTRA-COMPACT (py-2 = 8px) --- */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-header,
-.hotel-deluxe-header {
-  padding: 8px 24px !important;
-  border-radius: 0 0 20px 20px !important;
-}
-
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-header.is-scrolled,
-.hotel-deluxe-header.is-scrolled {
-  top: 8px !important;
-  padding-block: 8px !important;
-}
-
-/* Logo size: h-12 w-12 = 48px strict */
-.page-shell.mode-reference-clone-hotel .hotel-reference-brand-logo,
-.hotel-reference-brand-logo {
-  width: 48px !important;
-  height: 48px !important;
-  max-width: 48px !important;
-  max-height: 48px !important;
-  object-fit: contain !important;
-}
-
-/* Brand mark circle: h-12 w-12 */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-brand-mark,
-.hotel-deluxe-brand-mark {
-  width: 48px !important;
-  height: 48px !important;
-  min-width: 48px !important;
-  min-height: 48px !important;
-}
-
-/* Navbar vertical alignment items-center */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-header,
-.page-shell.mode-reference-clone-hotel .hotel-reference-header {
-  align-items: center !important;
-}
-
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-nav,
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-header-actions {
-  align-items: center !important;
-}
-
-/* --- SECTION HEADINGS: white on dark --- */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading h2,
-.page-shell.mode-reference-clone-hotel .hotel-home-amenity-heading h2,
-.page-shell.mode-reference-clone-hotel .hotel-home-location-heading h2,
-.page-shell.mode-reference-clone-hotel .hotel-reference-section-heading h2,
-.page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy h2 {
+/* Section headings - dark mode */
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading h2,
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-home-amenity-heading h2,
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-home-location-heading h2,
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-reference-section-heading h2,
+html.theme-dark .page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy h2 {
   color: #ffffff !important;
 }
 
-/* Section heading subtitle: light readable */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading p,
-.page-shell.mode-reference-clone-hotel .hotel-home-location-copy p,
-.page-shell.mode-reference-clone-hotel .hotel-home-location-details p,
-.page-shell.mode-reference-clone-hotel .hotel-reference-section-heading p,
-.page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy p {
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading p,
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-home-location-copy p,
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-home-location-details p,
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-reference-section-heading p,
+html.theme-dark .page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy p {
   color: rgba(255, 255, 255, 0.72) !important;
 }
 
-/* --- BENEFIT / AMENITY CARDS: white text on dark bg --- */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-card strong {
+/* Benefits - dark mode */
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-card strong {
   color: #ffffff !important;
 }
 
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-card p {
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-card p {
   color: rgba(255, 255, 255, 0.68) !important;
 }
 
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-icon {
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-icon {
   background: rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
 }
 
-/* --- LOCATION CARD (light bg): dark text for contrast --- */
+/* Amenities - dark mode */
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-copy strong {
+  color: #ffffff !important;
+}
+
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-copy p {
+  color: rgba(255, 255, 255, 0.68) !important;
+}
+
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-icon {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+/* Testimonials - dark mode */
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card blockquote,
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card strong {
+  color: #ffffff !important;
+}
+
+/* FAQ - dark mode */
+html.theme-dark .page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy h2 {
+  color: #ffffff !important;
+}
+
+html.theme-dark .page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* Booking CTA - dark mode */
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-booking-cta-shell .scene-chip {
+  color: #f0d9a2 !important;
+}
+
+/* Footer title - dark mode */
+html.theme-dark .hotel-deluxe-footer-title {
+  color: #f8f4ea !important;
+}
+
+/* ──────────────────────────────────────────────
+   LIGHT MODE: Warm cream bg + dark text + gold accents
+   ────────────────────────────────────────────── */
+
+/* Restaurant section - light mode: WHITE cards, dark text */
+html.theme-light .hotel-deluxe-restaurant-inner {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-title {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-subtitle {
+  color: rgba(26, 26, 46, 0.65) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-card:hover {
+  border-color: rgba(184, 115, 51, 0.2) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-card-title {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-card-desc {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-card-price {
+  color: #b87333 !important;
+  border-color: rgba(184, 115, 51, 0.2) !important;
+  background: rgba(184, 115, 51, 0.08) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-add-btn {
+  color: #b87333 !important;
+  border-color: rgba(184, 115, 51, 0.25) !important;
+  background: rgba(184, 115, 51, 0.06) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-add-btn:hover {
+  background: rgba(184, 115, 51, 0.15) !important;
+  border-color: rgba(184, 115, 51, 0.4) !important;
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-chip {
+  color: #b87333 !important;
+  border-color: rgba(184, 115, 51, 0.25) !important;
+  background: rgba(184, 115, 51, 0.08) !important;
+}
+
+/* Benefits section - light mode */
+html.theme-light .hotel-deluxe-benefit-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.theme-light .hotel-deluxe-benefit-card strong {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-deluxe-benefit-card p {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+html.theme-light .hotel-deluxe-benefit-icon {
+  color: #b87333 !important;
+  background: rgba(184, 115, 51, 0.1) !important;
+}
+
+/* Section headings - light mode */
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading h2,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-home-amenity-heading h2,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-home-location-heading h2,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-reference-section-heading h2,
+html.theme-light .page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading p,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-home-location-copy p,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-home-location-details p,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-reference-section-heading p,
+html.theme-light .page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+/* Amenities - light mode */
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-copy strong {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-copy p {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-icon {
+  background: rgba(184, 115, 51, 0.1) !important;
+  color: #b87333 !important;
+}
+
+/* Testimonials - light mode */
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card blockquote,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card strong {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* FAQ - light mode */
+html.theme-light .page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+/* Footer title - light mode */
+html.theme-light .hotel-deluxe-footer-title {
+  color: #1a1a2e !important;
+}
+
+/* Booking shell - light mode */
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-field {
+  border-color: rgba(26, 26, 46, 0.1) !important;
+}
+
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-field label,
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-field span {
+  color: rgba(26, 26, 46, 0.7) !important;
+}
+
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-input input,
+html.theme-light .hotel-deluxe-booking-shell .hotel-reference-booking-input select {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-deluxe-booking-kicker {
+  color: #b87333 !important;
+}
+
+/* Cart panel - light mode */
+html.theme-light .hotel-deluxe-cart-panel {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+}
+
+html.theme-light .hotel-deluxe-cart-header h3 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-deluxe-cart-item-name {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-deluxe-cart-item-subtotal {
+  color: #b87333 !important;
+}
+
+html.theme-light .hotel-deluxe-cart-total span {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+html.theme-light .hotel-deluxe-cart-total strong {
+  color: #b87333 !important;
+}
+
+/* Nav items - light mode */
+html.theme-light .hotel-deluxe-nav a {
+  color: rgba(26, 26, 46, 0.75) !important;
+}
+
+html.theme-light .hotel-deluxe-nav a:hover {
+  color: #1a1a2e !important;
+}
+
+/* Location - both modes (always light card) */
 .page-shell.mode-reference-clone-hotel .scene-location,
 .hotel-deluxe-shell .scene-location {
   background: linear-gradient(180deg, #fffdf8, #faf7f1) !important;
@@ -20993,68 +21175,713 @@ body {
   color: #0f172a !important;
 }
 
-/* --- AMENITY STRIP ITEMS: white text on dark --- */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-copy strong {
+/* Booking CTA - light mode */
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-booking-cta-shell .scene-chip {
+  color: #b87333 !important;
+}
+
+/* Room gallery cards - dark mode */
+html.theme-dark .hotel-room-gallery-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.theme-dark .hotel-room-gallery-card-title-mobile {
+  color: #f8f4ea !important;
+}
+
+html.theme-dark .hotel-room-gallery-word-mark b {
+  color: #d4a574 !important;
+}
+
+html.theme-dark .hotel-room-gallery-details {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+html.theme-dark .hotel-room-gallery-details-copy strong,
+html.theme-dark .hotel-room-gallery-details-copy h3 {
+  color: #f8f4ea !important;
+}
+
+html.theme-dark .hotel-room-gallery-details-copy p {
+  color: rgba(249, 245, 237, 0.65) !important;
+}
+
+html.theme-dark .hotel-room-gallery-feature-list li {
+  color: rgba(249, 245, 237, 0.6) !important;
+}
+
+html.theme-dark .hotel-room-gallery-price-block span {
+  color: rgba(249, 245, 237, 0.6) !important;
+}
+
+html.theme-dark .hotel-room-gallery-price-block strong {
+  color: #d4a574 !important;
+}
+
+html.theme-dark .hotel-room-gallery-cta,
+html.theme-dark .primary-button.hotel-room-gallery-cta {
+  background: linear-gradient(135deg, #b87333, #a0612a) !important;
+  color: #ffffff !important;
+  border-color: rgba(184, 115, 51, 0.3) !important;
+}
+
+/* Room gallery cards - light mode */
+html.theme-light .hotel-room-gallery-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.theme-light .hotel-room-gallery-card-title-mobile {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-room-gallery-word-mark b {
+  color: #b87333 !important;
+}
+
+html.theme-light .hotel-room-gallery-details {
+  background: rgba(244, 241, 234, 0.4) !important;
+}
+
+html.theme-light .hotel-room-gallery-details-copy strong,
+html.theme-light .hotel-room-gallery-details-copy h3 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-room-gallery-details-copy p {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+html.theme-light .hotel-room-gallery-feature-list li {
+  color: rgba(26, 26, 46, 0.5) !important;
+}
+
+html.theme-light .hotel-room-gallery-price-block span {
+  color: rgba(26, 26, 46, 0.5) !important;
+}
+
+html.theme-light .hotel-room-gallery-price-block strong {
+  color: #b87333 !important;
+}
+
+html.theme-light .hotel-room-gallery-cta,
+html.theme-light .primary-button.hotel-room-gallery-cta {
+  background: linear-gradient(135deg, #1A3A5C, #0A1628) !important;
+  color: #ffffff !important;
+  border-color: rgba(10, 22, 40, 0.2) !important;
+}
+
+/* Room gallery section headings - theme aware */
+html.theme-dark .hotel-room-gallery-section-heading h2 {
   color: #ffffff !important;
 }
 
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-copy p {
-  color: rgba(255, 255, 255, 0.68) !important;
-}
-
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-icon {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-}
-
-/* --- TESTIMONIAL CARDS: white text --- */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card blockquote,
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card p {
-  color: rgba(255, 255, 255, 0.82) !important;
-}
-
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card strong {
-  color: #ffffff !important;
-}
-
-/* --- BOOKING CTA: ensure contrast --- */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-booking-cta-shell .scene-chip {
-  color: #f0d9a2 !important;
-}
-
-/* --- FAQ section: white headings --- */
-.page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy h2 {
-  color: #ffffff !important;
-}
-
-.page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy p {
+html.theme-dark .hotel-room-gallery-section-heading p {
   color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html.theme-light .hotel-room-gallery-section-heading h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-room-gallery-section-heading p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+/* Tour packages - dark mode */
+html.theme-dark .hotel-tour-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.theme-dark .hotel-tour-section-heading h2 {
+  color: #ffffff !important;
+}
+
+html.theme-dark .hotel-tour-section-heading p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html.theme-dark .hotel-tour-card h3 {
+  color: #f8f4ea !important;
+}
+
+html.theme-dark .hotel-tour-card p {
+  color: rgba(249, 245, 237, 0.65) !important;
+}
+
+html.theme-dark .hotel-tour-card-price {
+  color: #d4a574 !important;
+}
+
+/* Tour packages - light mode */
+html.theme-light .hotel-tour-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.theme-light .hotel-tour-section-heading h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-tour-section-heading p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+html.theme-light .hotel-tour-card h3 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-tour-card p {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+html.theme-light .hotel-tour-card-price {
+  color: #b87333 !important;
+}
+
+/* Floating CTA - dark mode */
+html.theme-dark .hotel-reference-mobile-float-word span {
+  color: #f4f7fb !important;
+}
+
+html.theme-dark .hotel-reference-mobile-float-button {
+  background: linear-gradient(180deg, rgba(30, 72, 138, 0.98), rgba(20, 48, 96, 0.98)) !important;
+  border-color: rgba(147, 183, 255, 0.28) !important;
+}
+
+html.theme-dark .hotel-reference-mobile-float-label {
+  color: #f4f7fb !important;
+}
+
+html.theme-dark .hotel-reference-mobile-float-note {
+  color: rgba(244, 247, 251, 0.65) !important;
+}
+
+/* Floating CTA - light mode */
+html.theme-light .hotel-reference-mobile-float-word span {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-reference-mobile-float-button {
+  background: linear-gradient(135deg, #b87333, #a0612a) !important;
+  border-color: rgba(184, 115, 51, 0.3) !important;
+}
+
+html.theme-light .hotel-reference-mobile-float-label {
+  color: #ffffff !important;
+}
+
+html.theme-light .hotel-reference-mobile-float-note {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Social section - theme aware */
+html.theme-dark .hotel-social-kicker {
+  color: #d4a574 !important;
+}
+
+html.theme-dark .hotel-social-link {
+  color: rgba(248, 244, 234, 0.8) !important;
+}
+
+html.theme-light .hotel-social-kicker {
+  color: #b87333 !important;
+}
+
+html.theme-light .hotel-social-link {
+  color: rgba(26, 26, 46, 0.75) !important;
+}
+
+/* Payment methods section - theme aware */
+html.theme-dark .hotel-payment-methods-section h2 {
+  color: #ffffff !important;
+}
+
+html.theme-dark .hotel-payment-methods-section p {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+html.theme-light .hotel-payment-methods-section h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-payment-methods-section p {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+/* Experience gallery - theme aware */
+html.theme-dark .hotel-deluxe-experience .hotel-deluxe-section-heading h2 {
+  color: #ffffff !important;
+}
+
+html.theme-dark .hotel-deluxe-experience .hotel-deluxe-section-heading p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html.theme-light .hotel-deluxe-experience .hotel-deluxe-section-heading h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-deluxe-experience .hotel-deluxe-section-heading p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+/* Mobile menu drawer - theme aware */
+html.theme-dark .hotel-mobile-menu-drawer {
+  background: rgba(10, 22, 40, 0.97) !important;
+}
+
+html.theme-dark .hotel-mobile-menu-drawer-nav a {
+  color: rgba(248, 244, 234, 0.85) !important;
+}
+
+html.theme-dark .hotel-mobile-menu-drawer-nav a:hover,
+html.theme-dark .hotel-mobile-menu-drawer-nav a.is-active {
+  color: #ffffff !important;
+}
+
+html.theme-dark .hotel-mobile-menu-drawer-cta {
+  background: linear-gradient(135deg, #b87333, #a0612a) !important;
+  color: #ffffff !important;
+}
+
+html.theme-light .hotel-mobile-menu-drawer {
+  background: rgba(244, 241, 234, 0.97) !important;
+}
+
+html.theme-light .hotel-mobile-menu-drawer-nav a {
+  color: rgba(26, 26, 46, 0.8) !important;
+}
+
+html.theme-light .hotel-mobile-menu-drawer-nav a:hover,
+html.theme-light .hotel-mobile-menu-drawer-nav a.is-active {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-mobile-menu-drawer-cta {
+  background: linear-gradient(135deg, #1A3A5C, #0A1628) !important;
+  color: #ffffff !important;
+}
+
+html.theme-light .hotel-mobile-menu-drawer-close {
+  color: #1a1a2e !important;
+}
+
+html.theme-dark .hotel-mobile-menu-drawer-close {
+  color: #f8f4ea !important;
+}
+
+html.theme-light .hotel-mobile-menu-drawer-locale {
+  color: #1a1a2e !important;
+  border-color: rgba(26, 26, 46, 0.1) !important;
+}
+
+html.theme-dark .hotel-mobile-menu-drawer-locale {
+  color: #f8f4ea !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ──────────────────────────────────────────────
+   SUBPAGE THEME OVERRIDES (restaurante, experiencias, etc.)
+   ────────────────────────────────────────────── */
+
+/* Subpage story/rail/modal copy - dark mode */
+html.theme-dark .hotel-reference-story-copy h2,
+html.theme-dark .hotel-reference-modal-content h3,
+html.theme-dark .hotel-reference-map-card h2 {
+  color: #ffffff !important;
+}
+
+html.theme-dark .hotel-reference-story-copy p,
+html.theme-dark .hotel-reference-rail-copy p,
+html.theme-dark .hotel-reference-modal-content p,
+html.theme-dark .hotel-reference-map-card p {
+  color: rgba(249, 245, 237, 0.7) !important;
+}
+
+html.theme-dark .hotel-reference-story-copy strong,
+html.theme-dark .hotel-reference-rail-copy strong,
+html.theme-dark .hotel-reference-modal-content strong {
+  color: #f8f4ea !important;
+}
+
+/* Subpage story/rail/modal copy - light mode */
+html.theme-light .hotel-reference-story-copy h2,
+html.theme-light .hotel-reference-modal-content h3,
+html.theme-light .hotel-reference-map-card h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-reference-story-copy p,
+html.theme-light .hotel-reference-rail-copy p,
+html.theme-light .hotel-reference-modal-content p,
+html.theme-light .hotel-reference-map-card p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+html.theme-light .hotel-reference-story-copy strong,
+html.theme-light .hotel-reference-rail-copy strong,
+html.theme-light .hotel-reference-modal-content strong {
+  color: #1a1a2e !important;
+}
+
+/* Subpage section headings - theme aware */
+html.theme-dark .hotel-reference-section-heading h2 {
+  color: #ffffff !important;
+}
+
+html.theme-dark .hotel-reference-section-heading p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html.theme-light .hotel-reference-section-heading h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-reference-section-heading p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+/* Subpage scene-chip - theme aware */
+html.theme-dark .scene-chip {
+  color: #d4a574 !important;
+  border-color: rgba(184, 115, 51, 0.35) !important;
+}
+
+html.theme-light .scene-chip {
+  color: #b87333 !important;
+  border-color: rgba(184, 115, 51, 0.25) !important;
+}
+
+/* Subpage cards (related grid) - theme aware */
+html.theme-dark .hotel-reference-room-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.theme-dark .hotel-reference-room-card strong {
+  color: #f8f4ea !important;
+}
+
+html.theme-dark .hotel-reference-room-card p {
+  color: rgba(249, 245, 237, 0.65) !important;
+}
+
+html.theme-light .hotel-reference-room-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.theme-light .hotel-reference-room-card strong {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-reference-room-card p {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+/* Subpage modal cards - theme aware */
+html.theme-dark .hotel-reference-modal-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.theme-dark .hotel-reference-modal-summary strong {
+  color: #f8f4ea !important;
+}
+
+html.theme-dark .hotel-reference-modal-summary span {
+  color: rgba(249, 245, 237, 0.65) !important;
+}
+
+html.theme-dark .hotel-reference-modal-panel {
+  background: rgba(10, 22, 40, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.theme-light .hotel-reference-modal-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.theme-light .hotel-reference-modal-summary strong {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-reference-modal-summary span {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+html.theme-light .hotel-reference-modal-panel {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+}
+
+/* Subpage hero overlay - theme aware */
+html.theme-dark .hotel-reference-hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(10, 22, 40, 0.4) 0%, transparent 30%),
+    linear-gradient(90deg, rgba(10, 22, 41, 0.3), transparent 40%, rgba(10, 22, 41, 0.3)) !important;
+}
+
+html.theme-light .hotel-reference-hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(244, 241, 234, 0.3) 0%, transparent 30%),
+    linear-gradient(90deg, rgba(244, 241, 234, 0.15), transparent 40%, rgba(244, 241, 234, 0.15)) !important;
+}
+
+/* Subpage metrics - theme aware */
+html.theme-dark .hotel-reference-hero-metric {
+  color: #f8f4ea !important;
+}
+
+html.theme-dark .hotel-reference-hero-metric strong {
+  color: #ffffff !important;
+}
+
+html.theme-light .hotel-reference-hero-metric {
+  color: rgba(26, 26, 46, 0.7) !important;
+}
+
+html.theme-light .hotel-reference-hero-metric strong {
+  color: #1a1a2e !important;
+}
+
+/* Subpage rail cards - theme aware */
+html.theme-dark .hotel-reference-rail-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.theme-light .hotel-reference-rail-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Subpage footer - theme aware */
+html.theme-dark .hotel-reference-footer {
+  color: #f8f4ea !important;
+}
+
+html.theme-dark .hotel-reference-footer strong {
+  color: #ffffff !important;
+}
+
+html.theme-dark .hotel-reference-footer p {
+  color: rgba(249, 245, 237, 0.65) !important;
+}
+
+html.theme-dark .hotel-reference-footer-links a {
+  color: rgba(249, 245, 237, 0.7) !important;
+}
+
+html.theme-dark .hotel-reference-footer-links a.is-active,
+html.theme-dark .hotel-reference-footer-links a:hover {
+  color: #ffffff !important;
+}
+
+html.theme-light .hotel-reference-footer {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-reference-footer strong {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-reference-footer p {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+html.theme-light .hotel-reference-footer-links a {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+html.theme-light .hotel-reference-footer-links a.is-active,
+html.theme-light .hotel-reference-footer-links a:hover {
+  color: #1a1a2e !important;
+}
+
+/* Subpage map card - theme aware */
+html.theme-dark .hotel-reference-map-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.theme-dark .hotel-reference-facts-grid article span {
+  color: rgba(249, 245, 237, 0.6) !important;
+}
+
+html.theme-dark .hotel-reference-facts-grid article strong {
+  color: #f8f4ea !important;
+}
+
+html.theme-light .hotel-reference-map-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.theme-light .hotel-reference-facts-grid article span {
+  color: rgba(26, 26, 46, 0.5) !important;
+}
+
+html.theme-light .hotel-reference-facts-grid article strong {
+  color: #1a1a2e !important;
+}
+
+/* Subpage hero kicker and copy - always white (over image) */
+.hotel-reference-kicker {
+  color: #f8f4ea !important;
+}
+
+.hotel-reference-hero-copy h1 {
+  color: #ffffff !important;
+}
+
+.hotel-reference-hero-copy p {
+  color: rgba(249, 245, 237, 0.88) !important;
+}
+
+/* Subpage header nav - theme aware */
+html.theme-dark .hotel-reference-nav a {
+  color: rgba(248, 244, 234, 0.85) !important;
+}
+
+html.theme-dark .hotel-reference-nav a:hover,
+html.theme-dark .hotel-reference-nav a.is-active {
+  color: #ffffff !important;
+}
+
+html.theme-light .hotel-reference-nav a {
+  color: rgba(26, 26, 46, 0.75) !important;
+}
+
+html.theme-light .hotel-reference-nav a:hover,
+html.theme-light .hotel-reference-nav a.is-active {
+  color: #1a1a2e !important;
+}
+
+/* Subpage header CTA - theme aware */
+html.theme-dark .hotel-reference-header-cta {
+  background: linear-gradient(135deg, #b87333, #a0612a) !important;
+  color: #ffffff !important;
+  border-color: rgba(184, 115, 51, 0.3) !important;
+}
+
+html.theme-light .hotel-reference-header-cta {
+  background: linear-gradient(135deg, #1A3A5C, #0A1628) !important;
+  color: #ffffff !important;
+  border-color: rgba(10, 22, 40, 0.2) !important;
+}
+
+/* Subpage locale button - theme aware */
+html.theme-dark .hotel-reference-header-locale {
+  color: #f8f4ea !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.theme-light .hotel-reference-header-locale {
+  color: #1a1a2e !important;
+  border-color: rgba(26, 26, 46, 0.1) !important;
+}
+
+/* Subpage gallery map cards - theme aware */
+html.theme-dark .hotel-reference-map-gallery-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.theme-dark .hotel-reference-map-gallery-copy strong {
+  color: #f8f4ea !important;
+}
+
+html.theme-dark .hotel-reference-map-gallery-copy span {
+  color: rgba(249, 245, 237, 0.65) !important;
+}
+
+html.theme-light .hotel-reference-map-gallery-card {
+  background: #ffffff !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+}
+
+html.theme-light .hotel-reference-map-gallery-copy strong {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-reference-map-gallery-copy span {
+  color: rgba(26, 26, 46, 0.55) !important;
+}
+
+/* Subpage FAQ accordion - theme aware */
+html.theme-dark .hotel-reference-faq-section .hotel-reference-section-heading h2 {
+  color: #ffffff !important;
+}
+
+html.theme-dark .hotel-reference-faq-section .hotel-reference-section-heading p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html.theme-light .hotel-reference-faq-section .hotel-reference-section-heading h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .hotel-reference-faq-section .hotel-reference-section-heading p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+/* Subpage contact form - theme aware */
+html.theme-dark .scene-contact-form h2 {
+  color: #ffffff !important;
+}
+
+html.theme-dark .scene-contact-form p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html.theme-light .scene-contact-form h2 {
+  color: #1a1a2e !important;
+}
+
+html.theme-light .scene-contact-form p {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+/* Primary/Secondary buttons - theme aware */
+html.theme-dark .primary-button {
+  background: linear-gradient(135deg, #b87333, #a0612a) !important;
+  color: #ffffff !important;
+  border-color: rgba(184, 115, 51, 0.3) !important;
+}
+
+html.theme-dark .secondary-button {
+  border-color: rgba(184, 115, 51, 0.24) !important;
+  color: #f8f4ea !important;
+  background: rgba(10, 20, 38, 0.72) !important;
+}
+
+html.theme-light .primary-button {
+  background: linear-gradient(135deg, #1A3A5C, #0A1628) !important;
+  color: #ffffff !important;
+  border-color: rgba(10, 22, 40, 0.2) !important;
+}
+
+html.theme-light .secondary-button {
+  border-color: rgba(10, 22, 40, 0.15) !important;
+  color: #1a1a2e !important;
+  background: rgba(255, 255, 255, 0.8) !important;
 }
 
 /* --- RESPONSIVE NAVBAR --- */
 @media (max-width: 860px) {
-  .page-shell.mode-reference-clone-hotel .hotel-deluxe-header,
-  .hotel-deluxe-header {
-    padding: 6px 14px 8px !important;
-  }
-
-  .page-shell.mode-reference-clone-hotel .hotel-reference-brand-logo,
-  .hotel-reference-brand-logo {
-    width: 40px !important;
-    height: 40px !important;
-    max-width: 40px !important;
-    max-height: 40px !important;
-  }
-
   .page-shell.mode-reference-clone-hotel .hotel-reference-mobile-menu[open] .hotel-reference-mobile-panel {
     top: 52px !important;
-  }
-}
-
-@media (max-width: 560px) {
-  .page-shell.mode-reference-clone-hotel .hotel-deluxe-header,
-  .hotel-deluxe-header {
-    padding: 5px 10px 6px !important;
   }
 }
 

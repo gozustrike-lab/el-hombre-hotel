@@ -27,9 +27,7 @@ function applyTheme(theme: ThemeMode) {
     shell.classList.add(theme === "light" ? "theme-light" : "theme-dark");
   }
   
-  // Set body styles as fallback
-  document.body.style.background = theme === "light" ? "#f5f3ee" : "#0A1628";
-  document.body.style.color = theme === "light" ? "#111827" : "#f7f5ef";
+  // Body styles handled by CSS theme classes — no inline overrides
 }
 
 type ThemeModeToggleProps = {
