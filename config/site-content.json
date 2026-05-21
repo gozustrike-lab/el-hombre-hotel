@@ -1,55 +1,55 @@
 {
   "brand": {
-    "name": "Vuelo 78 Hotel Tarapoto",
-    "headline": "Somos un hotel 3 estrellas, lider gracias a nuestros clientes y usuarios.",
-    "description": "Descansa cerca del aeropuerto con habitaciones comodas, piscina y desayuno incluido.",
-    "subheadline": "Habitaciones comodas, piscina y atencion las 24 horas.",
+    "name": "Hospedaje Restaurante El Hombre",
+    "headline": "Descansa frente al mar y corre la ola izquierda más larga del mundo",
+    "description": "Hospedaje frente al mar en Puerto Malabrigo, con restaurante de mariscos frescos y acceso directo a la mejor ola izquierda del Perú.",
+    "subheadline": "Surf, mariscos frescos y la mejor ola izquierda de Sudamérica.",
     "primaryCtaLabel": "Reservar",
-    "primaryCtaHref": "https://api.whatsapp.com/send/?phone=51941714132&text=Hola%20%F0%9F%91%8B%0A%0ADeseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20*Vuelo%2078%20Hotel*.%0A%E2%9C%A8%20Agradecer%C3%A9%20informaci%C3%B3n%20sobre%20disponibilidad%2C%20tarifas%20y%20detalles%20del%20hotel.%0A%0AMuchas%20gracias.%20Quedo%20atento(a)%20a%20su%20respuesta.&type=phone_number&app_absent=0",
+    "primaryCtaHref": "https://api.whatsapp.com/send/?phone=51949090421&text=Hola%20%F0%9F%91%8B%0A%0ADeseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20*Hospedaje%20Restaurante%20El%20Hombre*%20en%20Puerto%20Malabrigo.%0A%E2%9C%A8%20Agradecer%C3%A9%20informaci%C3%B3n%20sobre%20disponibilidad%2C%20tarifas%20y%20detalles%20del%20hospedaje.%0A%0AMuchas%20gracias.%20Quedo%20atento(a)%20a%20su%20respuesta.&type=phone_number&app_absent=0",
     "secondaryCtaLabel": "Ver habitaciones",
     "secondaryCtaHref": "#habitaciones",
-    "heroTag": "HOTEL EN TARAPOTO",
-    "heroImageSrc": "/assets/hero/hero-main.webp",
+    "heroTag": "PUERTO MALABRIGO, LA LIBERTAD",
+    "heroImageSrc": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80",
     "heroImagePosition": {
       "x": 50,
       "y": 50
     }
   },
   "narrative": {
-    "title": "Reserva directa y descanso sereno",
-    "body": "Habitaciones, servicios y una experiencia clara para reservar con mas confianza.",
-    "goal": "Generar reservas directas por WhatsApp y consultas de disponibilidad"
+    "title": "Reserva directa y descanso frente al mar",
+    "body": "Habitaciones con vista al océano, restaurante de mariscos frescos y la mejor experiencia de surf en la costa norte del Perú.",
+    "goal": "Generar reservas directas por WhatsApp y pedidos del restaurante"
   },
   "theme": {
-    "mode": "Light",
+    "mode": "Dark",
     "visualStyle": "premium",
     "layoutMode": "block",
-    "shellMode": "framed-seamless",
-    "textAlign": "center",
+    "shellMode": "full-bleed",
+    "textAlign": "left",
     "buttonShape": "rounded",
     "starterKit": "hotel",
-    "accentColor": "#010afe",
-    "accentAltColor": "#010afe"
+    "accentColor": "#B87333",
+    "accentAltColor": "#1A3A5C"
   },
   "uiText": {
-    "heroLabel": "Hotel y descanso",
+    "heroLabel": "Hospedaje frente al mar",
     "supportLabel": "Habitaciones destacadas",
-    "proofLabel": "Clientes reales",
-    "storyChip": "Habitacion principal",
-    "storyTitle": "Elige tu habitacion ideal",
-    "testimonialsChip": "Resenas verificadas",
-    "testimonialsTitle": "Lo que dicen nuestros huespedes",
+    "proofLabel": "Viajeros reales",
+    "storyChip": "Habitación principal",
+    "storyTitle": "Elige tu habitación frente al mar",
+    "testimonialsChip": "Reseñas verificadas",
+    "testimonialsTitle": "Lo que dicen nuestros huéspedes",
     "faqChip": "Preguntas frecuentes",
     "faqTitle": "Antes de reservar"
   },
   "stats": [
     {
       "label": "Destino",
-      "value": "Tarapoto"
+      "value": "Puerto Malabrigo"
     },
     {
-      "label": "Recepcion",
-      "value": "24 horas"
+      "label": "Ubicación",
+      "value": "Frente al mar"
     },
     {
       "label": "Reserva",
@@ -58,45 +58,45 @@
   ],
   "services": [
     {
-      "title": "Suite principal con vista natural",
-      "description": "Habitacion amplia con cama comoda, buena iluminacion y un ambiente tranquilo para descansar mejor.",
-      "imageSrc": "/assets/uploads/hotel-deluxe-wide.jpg",
+      "title": "Habitaciones con vista al mar",
+      "description": "Despierta con el sonido de las olas y una vista frontal al océano desde tu habitación. El descanso perfecto antes y después de surfear.",
+      "imageSrc": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
       "imagePosition": {
         "x": 50,
         "y": 44
       }
     },
     {
-      "title": "Habitacion superior doble",
-      "description": "Una opcion comoda para pareja o viaje de trabajo, con espacio funcional y descanso asegurado.",
-      "imageSrc": "/assets/uploads/hotel-deluxe-pool.jpg",
+      "title": "Restaurante de mariscos frescos",
+      "description": "Ceviche, jalea y platos de mar preparados con pescado del día. Una experiencia gastronómica frente al mar que no olvidarás.",
+      "imageSrc": "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?w=800&q=80",
       "imagePosition": {
         "x": 50,
         "y": 60
       }
     },
     {
-      "title": "Estadia ejecutiva flexible",
-      "description": "Ideal para una estancia corta, una llegada practica o una noche de descanso antes de continuar el viaje.",
-      "imageSrc": "/assets/uploads/2-bde02c45-853a-4132-a874-d6b663687cde.jfif",
+      "title": "Surf en la ola izquierda más larga",
+      "description": "Puerto Malabrigo es hogar de una de las olas izquierdas más largas del mundo. Olas consistentes, viento favorable y aguas perfectas todo el año.",
+      "imageSrc": "https://images.unsplash.com/photo-1502680390548-bdbac40b3029?w=800&q=80",
       "imagePosition": {
         "x": 50,
         "y": 48
       }
     },
     {
-      "title": "Galeria y experiencia del hotel",
-      "description": "Espacios del hotel para conocer la piscina, las areas comunes y el ambiente de la estadia.",
-      "imageSrc": "/assets/uploads/hotel-e958a5dd-c4f1-4619-b0cd-7449eb4b6695.webp",
+      "title": "Ambiente relajado y familiar",
+      "description": "Un espacio donde surfistas, viajeros y familias encuentran calma, buena comida y la mejor energía de la costa peruana.",
+      "imageSrc": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80",
       "imagePosition": {
         "x": 54,
         "y": 40
       }
     },
     {
-      "title": "Reserva directa y asistencia",
-      "description": "Canal directo para consultar disponibilidad, fechas y tipo de habitacion por WhatsApp.",
-      "imageSrc": "/assets/uploads/hotel-deluxe-wide.jpg",
+      "title": "Reserva directa y asistencia personalizada",
+      "description": "Comunícate directamente con nosotros por WhatsApp para coordinar tu estadía, pedir del restaurante o consultar sobre las condiciones del mar.",
+      "imageSrc": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
       "imagePosition": {
         "x": 50,
         "y": 56
@@ -104,143 +104,154 @@
     }
   ],
   "highlights": [
-    "Habitaciones limpias y comodas para descanso o viaje corto.",
-    "Recepcion disponible para ayudarte durante la llegada.",
-    "Reserva directa por WhatsApp con respuesta rapida.",
-    "Ubicacion practica cerca del aeropuerto y accesos principales.",
-    "Ambiente tranquilo para descansar con mas confianza."
+    "Habitaciones frente al mar con vista panorámica al océano.",
+    "Restaurante de mariscos frescos con pescado del día.",
+    "Acceso directo a la ola izquierda más larga del Perú.",
+    "Alquiler de tablas de surf y guardianía de equipos.",
+    "Reserva directa por WhatsApp con respuesta rápida.",
+    "Estacionamiento privado y zona para tablas de surf.",
+    "Ambiente familiar y acogedor frente a la playa."
   ],
   "testimonials": [
     {
-      "name": "Daniela Rojas",
-      "role": "Tarapoto, San Martin",
-      "quote": "Gracias a todo el equipo de Vuelo 78 Hotel por una estadia tan comoda. La llegada fue rapida, la habitacion estuvo impecable y descansamos con total tranquilidad.",
-      "avatarSrc": "/assets/gallery/Opiniones reales/opinion-real-01.jpg",
-      "location": "Escapada de fin de semana",
-      "segment": "Atencion cercana y descanso real",
+      "name": "Carlos Mendoza",
+      "role": "Lima, Perú",
+      "quote": "El mejor spot de surf del Perú con un hospedaje de primera. La habitación tenía vista al mar y cada mañana era un placer despertar con el sonido de las olas. El ceviche del restaurante es espectacular.",
+      "avatarSrc": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+      "location": "Viaje de surf",
+      "segment": "Olas perfectas y buena comida",
       "rating": 5
     },
     {
-      "name": "Mariana Torres",
-      "role": "Lima Metropolitana",
-      "quote": "Viajamos por trabajo y salimos muy satisfechos. La ubicacion nos ayudo bastante, el personal fue muy amable y la reserva directa por WhatsApp hizo todo mas facil.",
-      "avatarSrc": "/assets/gallery/Opiniones reales/opinion-real-02.jpg",
-      "location": "Viaje corporativo",
-      "segment": "Reserva clara y servicio agil",
-      "rating": 5
-    },
-    {
-      "name": "Rocio Pinedo",
-      "role": "Iquitos, Loreto",
-      "quote": "Lo que mas agradecemos fue el ambiente sereno del hotel. La piscina, las areas comunes y la limpieza constante hicieron que nuestra estancia fuera realmente placentera.",
-      "avatarSrc": "/assets/gallery/Opiniones reales/opinion-real-03.jpg",
-      "location": "Viaje de descanso",
-      "segment": "Ambiente tranquilo y muy limpio",
-      "rating": 5
-    },
-    {
-      "name": "Camila Saavedra",
-      "role": "Moyobamba, San Martin",
-      "quote": "Nos encanto despertar con buena vista, tomar un cafe con calma y sentirnos bien atendidos desde el primer momento. Gracias por hacernos sentir tan bien recibidos.",
-      "avatarSrc": "/assets/gallery/Opiniones reales/opinion-real-04.jpg",
-      "location": "Estadia romantica",
-      "segment": "Confort, vista y buena atencion",
-      "rating": 4
-    },
-    {
-      "name": "Fiorella Vargas",
-      "role": "Pucallpa, Ucayali",
-      "quote": "Elegimos el hotel para una fecha especial y fue una muy buena decision. Las instalaciones se ven cuidadas, el descanso fue excelente y el trato del personal fue impecable.",
-      "avatarSrc": "/assets/gallery/Opiniones reales/opinion-real-05.jpg",
-      "location": "Celebracion especial",
-      "segment": "Instalaciones cuidadas y servicio amable",
-      "rating": 5
-    },
-    {
-      "name": "Lucero Delgado",
-      "role": "Chiclayo, Lambayeque",
-      "quote": "Quedamos agradecidos con la experiencia completa. El hotel transmite orden, seguridad y una atencion muy cordial que se nota en cada detalle de la estancia.",
-      "avatarSrc": "/assets/gallery/Opiniones reales/opinion-real-06.jpg",
+      "name": "María Fernanda López",
+      "role": "Trujillo, La Libertad",
+      "quote": "Fuimos en familia y la pasamos increíble. Las habitaciones son cómodas, el personal muy amable y la comida del restaurante es fresquísima. Los niños disfrutaron mucho la playa.",
+      "avatarSrc": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
       "location": "Viaje familiar",
-      "segment": "Seguridad, orden y calidez",
+      "segment": "Familiar y acogedor",
+      "rating": 5
+    },
+    {
+      "name": "Diego Ramírez",
+      "role": "Chiclayo, Lambayeque",
+      "quote": "Como surfista, Puerto Malabrigo es un paraíso. La izquierda es increíble y tener el hospedaje justo frente al mar es una ventaja enorme. La jalea marina del restaurante es de otro nivel.",
+      "avatarSrc": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
+      "location": "Viaje de surf",
+      "segment": "Surf de clase mundial",
+      "rating": 5
+    },
+    {
+      "name": "Ana Lucía Torres",
+      "role": "Arequipa, Perú",
+      "quote": "Un lugar mágico. La tranquilidad de Puerto Malabrigo combinada con la comodidad del hospedaje lo hace perfecto. El menú ejecutivo del restaurante es económico y delicioso.",
+      "avatarSrc": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
+      "location": "Escapada de fin de semana",
+      "segment": "Tranquilidad y sabor",
+      "rating": 5
+    },
+    {
+      "name": "Sebastián Castro",
+      "role": "Cusco, Perú",
+      "quote": "Llegué sin saber surfear y me ayudaron con todo. Alquilé una tabla, me dieron tips y las olas fueron perfectas para aprender. La atención del hospedaje es de primera.",
+      "avatarSrc": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
+      "location": "Aprendizaje de surf",
+      "segment": "Atención y paciencia",
+      "rating": 5
+    },
+    {
+      "name": "Luciana Paredes",
+      "role": "Quito, Ecuador",
+      "quote": "Viajé desde Ecuador específicamente por la ola de Malabrigo y no me arrepiento. El hospedaje tiene todo lo necesario, el restaurante es excelente y las personas son muy cálidas.",
+      "avatarSrc": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80",
+      "location": "Viaje internacional de surf",
+      "segment": "Destino surf internacional",
       "rating": 5
     }
   ],
   "faqs": [
     {
-      "question": "¿Que debe clonarse de la web de referencia?",
-      "answer": "Solo layout, composicion, patrones interactivos y jerarquia visual. Nunca marca, logos, textos ni imagenes reales."
+      "question": "¿Cómo llego a Puerto Malabrigo?",
+      "answer": "Puerto Malabrigo se encuentra en la provincia de Pacasmayo, La Libertad. Puedes llegar en auto desde Trujillo (aprox. 2 horas) o desde Chiclayo (aprox. 1.5 horas). También hay servicios de transporte desde ambas ciudades."
     },
     {
-      "question": "¿Se deben conservar las tabs detectadas?",
-      "answer": "Si. Deben replicarse las tabs con labels nuevas y contenido real del nuevo cliente."
+      "question": "¿Cuál es la mejor época para surfear en Malabrigo?",
+      "answer": "Puerto Malabrigo tiene olas consistentes todo el año gracias a los vientos del sur. Sin embargo, la mejor época es entre abril y noviembre cuando las olas del sur generan la izquierda más larga y perfecta."
     },
     {
-      "question": "¿El popup o modal debe mantenerse?",
-      "answer": "Si, pero con nuevo copy, nuevos triggers y sin copiar ningun asset del sitio original."
+      "question": "¿El restaurante está abierto todo el día?",
+      "answer": "El restaurante sirve desayuno, almuerzo y cena. El menú ejecutivo diario está disponible de lunes a sábado en horario de almuerzo. Recomendamos reservar para grupos grandes."
+    },
+    {
+      "question": "¿Puedo alquilar una tabla de surf?",
+      "answer": "Sí, ofrecemos alquiler de tablas de surf de diferentes tallas. También contamos con zona de guardianía para que puedas guardar tu equipo de forma segura durante tu estadía."
+    },
+    {
+      "question": "¿Cómo hago una reserva?",
+      "answer": "Puedes reservar directamente por WhatsApp al +51 949 090 421. Indícanos tus fechas, número de huéspedes y tipo de habitación. Te confirmaremos disponibilidad y tarifa de inmediato."
+    },
+    {
+      "question": "¿Hay estacionamiento disponible?",
+      "answer": "Sí, contamos con estacionamiento privado gratuito para nuestros huéspedes. También hay zona designada para guardar tablas de surf de forma segura."
     }
   ],
   "pages": [
     "Hotel",
-    "Ofertas",
-    "Experiencias",
     "Habitaciones",
-    "Servicios",
     "Restaurante",
-    "Eventos",
-    "Galeria",
-    "Mapa"
+    "Surf",
+    "Galería",
+    "Ubicación"
   ],
   "products": [],
   "galleryKeywords": [
-    "Vuelo 78 Hotel Tarapoto",
-    "Hoteleria",
-    "Hotel en Tarapoto con habitaciones comodas, reserva directa y experiencia premium",
-    "Suite principal con vista natural",
-    "Habitacion superior doble",
-    "Estadia ejecutiva flexible"
+    "Hospedaje Restaurante El Hombre",
+    "Puerto Malabrigo",
+    "Hotelería en Puerto Malabrigo",
+    "Surf en la ola izquierda",
+    "Restaurante de mariscos",
+    "Habitaciones frente al mar"
   ],
   "galleryItems": [
     {
-      "title": "Suite principal con vista natural",
-      "subtitle": "Vuelo 78 Hotel Tarapoto",
-      "imageSrc": "/assets/uploads/hotel-e958a5dd-c4f1-4619-b0cd-7449eb4b6695.webp",
+      "title": "Vista frontal al océano",
+      "subtitle": "Hospedaje El Hombre - Puerto Malabrigo",
+      "imageSrc": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
       "imagePosition": {
         "x": 50,
         "y": 48
       }
     },
     {
-      "title": "Habitacion superior doble",
-      "subtitle": "Reserva directa y estancia premium",
-      "imageSrc": "/assets/uploads/hotel-deluxe-wide.jpg",
+      "title": "Olas de Puerto Malabrigo",
+      "subtitle": "La ola izquierda más larga del Perú",
+      "imageSrc": "https://images.unsplash.com/photo-1502680390548-bdbac40b3029?w=800&q=80",
       "imagePosition": {
         "x": 50,
         "y": 44
       }
     },
     {
-      "title": "Estadia ejecutiva flexible",
-      "subtitle": "Vistas y calma tropical",
-      "imageSrc": "/assets/uploads/hotel-deluxe-pool.jpg",
+      "title": "Restaurante frente al mar",
+      "subtitle": "Mariscos frescos y cocina peruana",
+      "imageSrc": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
       "imagePosition": {
         "x": 50,
         "y": 58
       }
     },
     {
-      "title": "Galeria y experiencia del hotel",
-      "subtitle": "Habitaciones y descanso inmediato",
-      "imageSrc": "/assets/uploads/2-bde02c45-853a-4132-a874-d6b663687cde.jfif",
+      "title": "Habitación con vista al mar",
+      "subtitle": "Descanso frente al océano",
+      "imageSrc": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
       "imagePosition": {
         "x": 50,
         "y": 48
       }
     },
     {
-      "title": "Reserva directa y asistencia",
-      "subtitle": "Asistencia rapida por WhatsApp",
-      "imageSrc": "/assets/uploads/hotel-deluxe-wide.jpg",
+      "title": "Atardecer en Puerto Malabrigo",
+      "subtitle": "Momentos inolvidables en la costa",
+      "imageSrc": "https://images.unsplash.com/photo-1502933691298-84fc14542831?w=800&q=80",
       "imagePosition": {
         "x": 50,
         "y": 56
@@ -248,18 +259,18 @@
     }
   ],
   "contact": {
-    "title": "Confirma tu fecha y recibe ayuda para reservar",
-    "description": "Comparte tus fechas, tipo de habitacion y numero de huespedes. El equipo te responde con disponibilidad y tarifa directa por WhatsApp.",
-    "whatsappNumber": "+51 941 714 132",
+    "title": "Reserva tu estadía o realiza tu pedido",
+    "description": "Escríbenos por WhatsApp para consultar disponibilidad de habitaciones o hacer tu pedido del restaurante. Te responderemos de inmediato.",
+    "whatsappNumber": "+51 949 090 421",
     "email": ""
   },
   "bookingWidget": {
     "preset": "hotel",
-    "title": "Reserva directa y asistencia rapida",
-    "description": "Coordina disponibilidad, tipo de habitacion y llegada desde una barra simple pensada para reservar sin pasos innecesarios.",
+    "title": "Reserva directa en Puerto Malabrigo",
+    "description": "Selecciona tu habitación, fechas y número de huéspedes. Al confirmar, se abrirá WhatsApp con el resumen de tu reserva.",
     "adminLabel": "Equipo de reservas",
-    "adminRole": "Reservas y atencion",
-    "adminStatus": "En linea para responder rapido",
+    "adminRole": "Reservas y atención",
+    "adminStatus": "En línea para responder rápido",
     "actionVerb": "reservar",
     "triggerChatLabel": "Consultar ahora",
     "triggerChatHint": "Disponibilidad y tarifas",
@@ -268,18 +279,18 @@
     "tabChatLabel": "Chat",
     "tabActionLabel": "Reserva",
     "chatCtaLabel": "Hablar con reservas",
-    "chatCtaHint": "Confirma habitacion y llegada",
+    "chatCtaHint": "Confirma habitación y llegada",
     "directWhatsappLabel": "WhatsApp",
     "directWhatsappHint": "Tarifas y detalles",
     "bookingCtaLabel": "Reservar",
-    "summaryLabel": "Codigo promocional",
+    "summaryLabel": "Código promocional",
     "summaryText": "Opcional",
     "formNameLabel": "Nombre",
-    "formNamePlaceholder": "Como te llamas?",
+    "formNamePlaceholder": "¿Cómo te llamas?",
     "scheduleLabel": "Entrada",
     "schedulePlaceholder": "Flexible",
     "scheduleInputType": "date",
-    "quantityLabel": "Huespedes",
+    "quantityLabel": "Huéspedes",
     "quantityOptions": [
       "1",
       "2",
@@ -288,82 +299,46 @@
       "5+"
     ],
     "notesLabel": "Solicitud especial",
-    "notesPlaceholder": "Cama extra, early check-in, desayuno, traslado...",
-    "selectionTitle": "Habitacion",
-    "detailLabel": "Habitacion",
+    "notesPlaceholder": "Tabla de surf, early check-in, dieta especial...",
+    "selectionTitle": "Habitación",
+    "detailLabel": "Habitación",
     "priceLabel": "Tarifa",
     "timelineLabel": "Salida",
     "options": [
       {
-        "id": "suite-principal",
-        "label": "Suite principal",
-        "roomType": "Suite principal",
-        "price": "S/ 249",
+        "id": "habitacion-simple",
+        "label": "Habitación Simple (Unitaria)",
+        "roomType": "Habitación Simple (Unitaria)",
+        "price": "S/ 80",
         "rateLabel": "por noche",
         "stayLabel": "1 noche",
-        "summary": "Habitacion amplia, cama comoda y una opcion ideal para descansar con tranquilidad.",
+        "summary": "Ideal para viajeros solitarios y surfistas. Cama individual, WiFi, baño privado y vista al jardín.",
         "perks": [
-          "Desayuno",
           "WiFi",
-          "Aire acondicionado",
+          "Baño privado",
+          "Vista al jardín",
           "Reserva directa"
         ],
         "emoji": "🛏️",
-        "badge": "Principal",
+        "badge": "Unitaria",
         "highlighted": true
       },
       {
-        "id": "habitacion-superior",
-        "label": "Habitacion superior",
-        "roomType": "Habitacion superior",
-        "price": "S/ 289",
+        "id": "habitacion-doble-surf",
+        "label": "Habitación Doble Surf Premium",
+        "roomType": "Habitación Doble Surf Premium",
+        "price": "S/ 140",
         "rateLabel": "por noche",
         "stayLabel": "1 noche",
-        "summary": "Pensada para viajes de pareja o trabajo, con comodidad y atencion directa del hotel.",
+        "summary": "Cama matrimonial con vista frontal al mar, WiFi, baño privado y zona para tablas de surf.",
         "perks": [
           "WiFi",
-          "Bano privado",
-          "Atencion rapida",
-          "Late check-out sujeto"
+          "Vista al mar",
+          "Zona de surf",
+          "Baño privado"
         ],
-        "emoji": "🛎️",
-        "badge": "Superior",
-        "highlighted": false
-      },
-      {
-        "id": "escapada-corta",
-        "label": "Estadia flexible",
-        "roomType": "Estadia flexible",
-        "price": "S/ 179",
-        "rateLabel": "por estadia",
-        "stayLabel": "6 horas",
-        "summary": "Opcion corta para descansar, esperar un vuelo o pasar unas horas con mayor comodidad.",
-        "perks": [
-          "WiFi",
-          "Ingreso agil",
-          "Toallas",
-          "Atencion directa"
-        ],
-        "emoji": "☀️",
-        "badge": "Flexible",
-        "highlighted": false
-      },
-      {
-        "id": "suite-familiar",
-        "label": "Suite familiar",
-        "roomType": "Suite familiar",
-        "price": "S/ 349",
-        "rateLabel": "por noche",
-        "stayLabel": "2 noches",
-        "summary": "Mayor amplitud para familia o grupos pequenos con una reserva directa y facil de coordinar.",
-        "perks": [
-          "Desayuno",
-          "WiFi",
-          "Late check-out sujeto",
-          "Atencion prioritaria"
-        ],
-        "emoji": "✨",
-        "badge": "Familiar",
+        "emoji": "🏄",
+        "badge": "Surf Premium",
         "highlighted": false
       }
     ]
@@ -384,14 +359,16 @@
     "items": []
   },
   "location": {
-    "address": "Jr. Jorge Chavez 1793, Barrio Huayco",
-    "city": "Tarapoto, San Martin, Peru",
-    "hours": "Recepcion 24 horas y a una cuadra del aeropuerto",
-    "mapsEmbedUrl": "https://www.google.com/maps?q=Jiron%20Jorge%20Chavez%201793%2C%20Tarapoto%2C%20Peru&output=embed",
-    "mapsLink": "https://www.google.com/maps?q=Jiron%20Jorge%20Chavez%201793%2C%20Tarapoto%2C%20Peru"
+    "address": "Puerto Malabrigo, Pacasmayo, La Libertad",
+    "city": "Puerto Malabrigo, La Libertad, Perú",
+    "hours": "Recepción y restaurante abiertos todos los días",
+    "mapsEmbedUrl": "https://www.google.com/maps?q=Puerto+Malabrigo+La+Libertad+Peru&output=embed",
+    "mapsLink": "https://www.google.com/maps?q=Puerto+Malabrigo+La+Libertad+Peru"
   },
   "visibility": {
     "highlights": [
+      true,
+      true,
       true,
       true,
       true,
@@ -417,9 +394,14 @@
       true,
       true,
       true,
+      true,
+      true,
       true
     ],
     "faqs": [
+      true,
+      true,
+      true,
       true,
       true,
       true

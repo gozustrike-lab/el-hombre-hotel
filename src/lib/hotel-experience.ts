@@ -2,9 +2,9 @@ import type { SiteContent } from "@/types/site";
 
 export type HotelLocale = "es" | "en";
 
-export const HOTEL_LOCALE_STORAGE_KEY = "vuelo78hotel-locale";
-export const HOTEL_WHATSAPP_PHONE_DISPLAY = "+51 941 714 132";
-export const HOTEL_WHATSAPP_PHONE_DIGITS = "51941714132";
+export const HOTEL_LOCALE_STORAGE_KEY = "elhombre-locale";
+export const HOTEL_WHATSAPP_PHONE_DISPLAY = "+51 949 090 421";
+export const HOTEL_WHATSAPP_PHONE_DIGITS = "51949090421";
 const HOTEL_WHATSAPP_BASE_URL = "https://api.whatsapp.com/send/";
 
 type HotelUiCopy = {
@@ -330,8 +330,8 @@ export function getHotelUi(locale: HotelLocale): HotelUiCopy {
       sectionLinks: [
         { label: "Experience", href: "#experiencia" },
         { label: "Rooms", href: "#habitaciones" },
-        { label: "Tour packages", href: "#paquetes-turisticos" },
-        { label: "Services", href: "#servicios" },
+        { label: "Restaurant", href: "#restaurante" },
+        { label: "Surf", href: "#paquetes-turisticos" },
         { label: "Location", href: "#ubicacion" },
       ],
       header: {
@@ -350,15 +350,15 @@ export function getHotelUi(locale: HotelLocale): HotelUiCopy {
         bookingKicker: "Direct booking",
         bookingDescription: "Check availability and get a direct reply from the hotel.",
         benefits: [
-          "Breakfast included",
+          "Ocean view",
           "Free WiFi",
-          "Pool",
-          "Air conditioning",
-          "Work area",
-          "Private parking",
-          "Dining room",
+          "Seafood restaurant",
+          "Surfboard rental",
+          "Parking",
           "Restobar",
-          "24h reception",
+          "Board storage",
+          "Personalized service",
+          "Beach access",
         ],
       },
       experience: {
@@ -482,8 +482,8 @@ export function getHotelUi(locale: HotelLocale): HotelUiCopy {
     sectionLinks: [
       { label: "Experiencia", href: "#experiencia" },
       { label: "Habitaciones", href: "#habitaciones" },
-      { label: "Paquetes Tur\u00edsticos", href: "#paquetes-turisticos" },
-      { label: "Servicios", href: "#servicios" },
+      { label: "Restaurante", href: "#restaurante" },
+      { label: "Surf", href: "#paquetes-turisticos" },
       { label: "Ubicación", href: "#ubicacion" },
     ],
     header: {
@@ -502,15 +502,15 @@ export function getHotelUi(locale: HotelLocale): HotelUiCopy {
       bookingKicker: "Reserva directa",
       bookingDescription: "Consulta disponibilidad y recibe respuesta directa del hotel.",
       benefits: [
-        "Desayuno incluido",
+        "Vista al mar",
         "WiFi gratis",
-        "Piscina",
-        "Aire acondicionado",
-        "Zona de trabajo",
-        "Estacionamiento privado",
-        "Comedor",
-        "Restobar",
-        "Recepción 24 h",
+        "Restaurante de mariscos",
+        "Alquiler de tablas de surf",
+        "Estacionamiento",
+        "Restobar frente al mar",
+        "Alquiler de tablas",
+        "Guardianía",
+        "Atención personalizada",
       ],
     },
     experience: {
@@ -658,7 +658,7 @@ export function localizeHotelContent(content: SiteContent, locale: HotelLocale):
       subheadline: "Comfortable rooms, pool and 24-hour assistance.",
       primaryCtaLabel: "Reserve",
       secondaryCtaLabel: "View rooms",
-      heroTag: "HOTEL IN TARAPOTO",
+      heroTag: "HOTEL IN PUERTO MALABRIGO",
     },
     narrative: {
       title: "Direct booking and calm rest",
@@ -678,8 +678,8 @@ export function localizeHotelContent(content: SiteContent, locale: HotelLocale):
       faqTitle: "Before you book",
     },
     stats: [
-      { label: "Destination", value: "Tarapoto" },
-      { label: "Reception", value: "24 hours" },
+      { label: "Destination", value: "Puerto Malabrigo" },
+      { label: "Location", value: "Oceanfront" },
       { label: "Booking", value: "Direct" },
     ],
     services: [
@@ -747,7 +747,7 @@ export function localizeHotelContent(content: SiteContent, locale: HotelLocale):
       {
         ...withPhone.galleryItems?.[0],
         title: "Main suite with natural view",
-        subtitle: "Vuelo 78 Hotel Tarapoto",
+        subtitle: "Hospedaje Restaurante El Hombre",
       },
       {
         ...withPhone.galleryItems?.[1],
@@ -855,9 +855,9 @@ export function localizeHotelContent(content: SiteContent, locale: HotelLocale):
       : withPhone.bookingWidget,
     location: {
       ...withPhone.location,
-      address: withPhone.location?.address || "Tarapoto, Peru",
-      city: "Tarapoto, San Martin, Peru",
-      hours: "24-hour reception and one block from the airport",
+      address: withPhone.location?.address || "Puerto Malabrigo, Peru",
+      city: "Puerto Malabrigo, La Libertad, Peru",
+      hours: "Reception and restaurant open daily",
     },
   };
 }
@@ -876,7 +876,7 @@ export function buildHotelWhatsAppHref({
   nights = 0,
   notes,
 }: HotelWhatsappParams) {
-  const resolvedHotelName = `*${hotelName.trim() || "Vuelo 78 Hotel"}*`;
+  const resolvedHotelName = `*${hotelName.trim() || "Hospedaje Restaurante El Hombre"}*`;
   const cleanLines =
     locale === "en"
       ? [
@@ -969,7 +969,7 @@ export function buildProfessionalHotelWhatsAppHref({
   nights = 0,
   notes,
 }: HotelWhatsappParams) {
-  const resolvedHotelName = `*${hotelName.trim() || "Vuelo 78 Hotel"}*`;
+  const resolvedHotelName = `*${hotelName.trim() || "Hospedaje Restaurante El Hombre"}*`;
   const wave = "\u{1F44B}";
   const sparkle = "\u2728";
   const hotel = "\u{1F3E8}";
@@ -1050,7 +1050,7 @@ export function buildHotelWhatsAppHrefV2({
   nights = 0,
   notes,
 }: HotelWhatsappParams) {
-  const resolvedHotelName = `*${hotelName.trim() || "Vuelo 78 Hotel"}*`;
+  const resolvedHotelName = `*${hotelName.trim() || "Hospedaje Restaurante El Hombre"}*`;
   const wave = "\u{1F44B}";
   const sparkle = "\u2728";
   const hotel = "\u{1F3E8}";

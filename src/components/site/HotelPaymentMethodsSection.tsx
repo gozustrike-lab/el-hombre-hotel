@@ -42,7 +42,7 @@ export function HotelPaymentMethodsSection({ locale }: HotelPaymentMethodsSectio
             <strong>{copy.rucLabel}:</strong> 20601633966
           </p>
           <p>
-            <strong>{copy.legalNameLabel}:</strong> Rio hotels Tarapoto S.A.C
+            <strong>{copy.legalNameLabel}:</strong> Hospedaje Restaurante El Hombre E.I.R.L.
           </p>
           <div className="hotel-payment-bank-logo-wrap" aria-label="BCP">
             <Image

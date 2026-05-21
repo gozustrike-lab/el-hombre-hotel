@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-const LOGO_WIDTH = 128;
-const LOGO_HEIGHT = 62;
+const LOGO_WIDTH = 110;
+const LOGO_HEIGHT = 54;
 
 type HotelBrandLogoProps = {
   className?: string;
@@ -13,19 +13,19 @@ type HotelBrandLogoProps = {
 export function HotelBrandLogo({
   className,
   priority = false,
-  sizes = "(max-width: 860px) 108px, 128px",
+  sizes = "(max-width: 860px) 80px, 110px",
   width = LOGO_WIDTH,
 }: HotelBrandLogoProps) {
   const height = Math.round((width * LOGO_HEIGHT) / LOGO_WIDTH);
 
   return (
     <Image
-      alt="Vuelo 78 Hotel"
+      alt="Hospedaje Restaurante El Hombre"
       className={className}
       height={height}
       priority={priority}
       sizes={sizes}
-      src="/assets/branding/logo-vuelo78.png"
+      src="/assets/branding/el-hombre-logo.png"
       width={width}
     />
   );

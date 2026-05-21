@@ -59,6 +59,10 @@ function toPublicAssetPath(...parts: string[]) {
   return `/${parts.map((part) => encodeURIComponent(part)).join("/")}`;
 }
 
+function isExternalUrl(source: string): boolean {
+  return source.startsWith("http://") || source.startsWith("https://");
+}
+
 function localize(locale: HotelLocale, value: CurationLocaleValue) {
   const selected = locale === "en" ? value.en : normalizeHotelSpanishText(value.es);
   return selected;
@@ -75,6 +79,17 @@ export function getHotelRoomGallery(locale: HotelLocale): HotelRoomGalleryEntry[
     slug: room.slug,
     slides: room.selected.map((slide, index) => {
       const sequence = String(index + 1).padStart(2, "0");
+
+      if (isExternalUrl(slide.source)) {
+        return {
+          alt: localize(locale, slide.alt),
+          id: `${room.slug}-${sequence}`,
+          jpgSrc: slide.source,
+          role: slide.role,
+          webpSrc: slide.source,
+        };
+      }
+
       return {
         alt: localize(locale, slide.alt),
         id: `${room.slug}-${sequence}`,

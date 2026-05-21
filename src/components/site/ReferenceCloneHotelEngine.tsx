@@ -11,6 +11,7 @@ import { HotelPremiumHero } from "./HotelPremiumHero";
 import { HotelPremiumTestimonials } from "./HotelPremiumTestimonials";
 import { HotelPaymentMethodsSection } from "./HotelPaymentMethodsSection";
 import { HotelReferenceSubpage } from "./HotelReferenceSubpage";
+import { HotelRestaurantSection } from "./HotelRestaurantSection";
 import { HotelRoomGallerySection } from "./HotelRoomGallerySection";
 import { HotelSocialLinksSection } from "./HotelSocialLinksSection";
 import { HotelTourPackagesSection } from "./HotelTourPackagesSection";
@@ -179,14 +180,14 @@ export function ReferenceCloneHotelEngine({
     }),
   }));
   const benefitIcons: Array<"breakfast" | "wifi" | "pool" | "air" | "workspace" | "parking" | "dining" | "restobar" | "reception"> = [
-    "breakfast",
+    "dining",
     "wifi",
     "pool",
     "air",
     "workspace",
     "parking",
-    "dining",
     "restobar",
+    "dining",
     "reception",
   ];
   const benefits = ui.hero.benefits.map((label, index) => ({
@@ -243,7 +244,7 @@ export function ReferenceCloneHotelEngine({
         <HotelPremiumHeader
           bookingCtaLabel={bookingCtaLabel}
           brandName={displayBrandName}
-          brandTag={localizedContent.brand.heroTag || t(locale, "Hotel en Tarapoto", "Hotel in Tarapoto")}
+          brandTag={localizedContent.brand.heroTag || t(locale, "PUERTO MALABRIGO, LA LIBERTAD", "PUERTO MALABRIGO, LA LIBERTAD")}
           locale={locale}
           onLocaleToggle={() => setLocale((current) => toggleHotelLocale(current))}
           pages={pages}
@@ -257,8 +258,8 @@ export function ReferenceCloneHotelEngine({
           brandName={displayBrandName}
           contactPhone={contactPhone}
           detailsHref={detailsHref}
-          heroHeadline={localizedContent.brand.headline || t(locale, "Bienvenido a Vuelo 78 Hotel", "Welcome to Vuelo 78 Hotel")}
-          heroTag={localizedContent.brand.heroTag || t(locale, "Hotel en Tarapoto", "Hotel in Tarapoto")}
+          heroHeadline={localizedContent.brand.headline || t(locale, "Descansa frente al mar en Puerto Malabrigo", "Rest by the sea in Puerto Malabrigo")}
+          heroTag={localizedContent.brand.heroTag || t(locale, "PUERTO MALABRIGO, LA LIBERTAD", "PUERTO MALABRIGO, LA LIBERTAD")}
           locale={locale}
           reservationHref={heroReservationHref}
           slides={heroSlides}
@@ -285,6 +286,8 @@ export function ReferenceCloneHotelEngine({
         />
 
         <HotelTourPackagesSection hotelName={displayBrandName} locale={locale} />
+
+        <HotelRestaurantSection locale={locale} />
 
         {testimonials.length ? (
           <HotelPremiumTestimonials
@@ -326,7 +329,7 @@ export function ReferenceCloneHotelEngine({
         <HotelPaymentMethodsSection locale={locale} />
 
         <HotelPremiumFooter
-          address={localizedContent.location?.address || "Tarapoto, Peru"}
+          address={localizedContent.location?.address || "Puerto Malabrigo, La Libertad, Perú"}
           brandName={displayBrandName}
           city={localizedContent.location?.city}
           email={localizedContent.contact.email}
@@ -352,15 +355,15 @@ export function ReferenceCloneHotelEngine({
 
 function buildAmenities(content: SiteContent) {
   const baseItems = [
-    { title: "Desayuno incluido", icon: "breakfast", description: "Empieza la manana con mas comodidad antes de salir por la ciudad." },
-    { title: "WiFi gratis", icon: "wifi", description: "Conexion estable para descansar, trabajar o coordinar tu viaje." },
-    { title: "Piscina", icon: "pool", description: "Un espacio de descanso que acompana la experiencia del hotel." },
-    { title: "Aire acondicionado", icon: "air", description: "Confort termico para descansar mejor en cualquier horario." },
-    { title: "Zona de trabajo", icon: "workspace", description: "Un punto comodo para revisar pendientes o planificar el dia." },
-    { title: "Estacionamiento privado", icon: "parking", description: "Acceso seguro para dejar tu vehiculo durante toda tu estancia." },
-    { title: "Comedor", icon: "dining", description: "Espacio practico para disfrutar cada comida dentro del hotel." },
-    { title: "Restobar", icon: "restobar", description: "Bebidas y momentos de pausa con una atmosfera mas relajada." },
-    { title: "Recepcion 24h", icon: "reception", description: "Asistencia continua para llegadas, consultas y apoyo en cualquier momento." },
+    { title: "Vista al mar", icon: "dining", description: "Despierta con el sonido del océano y la mejor vista panorámica a la playa." },
+    { title: "WiFi gratis", icon: "wifi", description: "Conexión estable para descansar, coordinar tu viaje o compartir momentos." },
+    { title: "Restaurante de mariscos", icon: "dining", description: "Ceviche, jalea y platos regionales preparados con pescado fresco del día." },
+    { title: "Alquiler de tablas de surf", icon: "pool", description: "Tablas disponibles para todos los niveles. Acceso directo a la mejor ola izquierda." },
+    { title: "Estacionamiento", icon: "parking", description: "Área segura para dejar tu vehículo durante toda tu estadía." },
+    { title: "Restobar", icon: "restobar", description: "Bebidas y comida frente al mar con una atmósfera relajada." },
+    { title: "Guardianía", icon: "workspace", description: "Zona segura para guardar tus tablas de surf y equipo durante tu estadía." },
+    { title: "Zona para tablas", icon: "air", description: "Espacio designado para preparar y guardar tus tablas de surf." },
+    { title: "Atención personalizada", icon: "reception", description: "Servicio directo y atención cálida para hacer de tu estadía una experiencia única." },
   ];
 
   return baseItems.map((item, index) => ({
@@ -429,45 +432,41 @@ function buildHeroSlides(
 
 function buildCuratedHeroSlides(content: SiteContent): HotelHeroSlide[] {
   const fallbackDescription = content.brand.description;
+  const beachImage1 = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80";
+  const beachImage2 = "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1920&q=80";
+  const beachImage3 = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=80";
+  const beachImage4 = "https://images.unsplash.com/photo-1468413253725-0d5181091126?w=1920&q=80";
 
   return [
     {
-      title: "Lobby principal",
-      subtitle: "Llegada serena con una lectura limpia del hotel",
-      imageSrc: "/assets/hero/hero-premium-1.webp",
-      fallbackSrc: "/assets/hero/hero-premium-1.jpg",
-      mobileImageSrc: "/assets/hero/hero-premium-1-mobile.webp",
-      mobileFallbackSrc: "/assets/hero/hero-premium-1-mobile.jpg",
+      title: "Playa de Puerto Malabrigo",
+      subtitle: "Frente al mar con vista panorámica al océano",
+      imageSrc: beachImage1,
+      mobileImageSrc: beachImage1,
       imagePosition: { x: 52, y: 50 },
       mobileImagePosition: { x: 56, y: 44 },
     },
     {
-      title: "Habitacion principal",
-      subtitle: "Descanso comodo con una lectura clara del espacio",
-      imageSrc: "/assets/hero/hero-premium-2.webp",
-      fallbackSrc: "/assets/hero/hero-premium-2.jpg",
-      mobileImageSrc: "/assets/hero/hero-premium-2-mobile.webp",
-      mobileFallbackSrc: "/assets/hero/hero-premium-2-mobile.jpg",
+      title: "Surf en Puerto Malabrigo",
+      subtitle: "La ola izquierda más larga del Perú",
+      imageSrc: beachImage2,
+      mobileImageSrc: beachImage2,
       imagePosition: { x: 56, y: 48 },
       mobileImagePosition: { x: 68, y: 48 },
     },
     {
-      title: "Piscina",
-      subtitle: "Un momento de pausa con color y frescura",
-      imageSrc: "/assets/hero/hero-premium-3.webp",
-      fallbackSrc: "/assets/hero/hero-premium-3.jpg",
-      mobileImageSrc: "/assets/hero/hero-premium-3-mobile.webp",
-      mobileFallbackSrc: "/assets/hero/hero-premium-3-mobile.jpg",
+      title: "Atardecer tropical",
+      subtitle: "Momentos inolvidables frente al mar",
+      imageSrc: beachImage3,
+      mobileImageSrc: beachImage3,
       imagePosition: { x: 38, y: 42 },
       mobileImagePosition: { x: 50, y: 42 },
     },
     {
       title: content.brand.name,
       subtitle: fallbackDescription,
-      imageSrc: "/assets/hero/hero-premium-4.webp",
-      fallbackSrc: "/assets/hero/hero-premium-4.jpg",
-      mobileImageSrc: "/assets/hero/hero-premium-4-mobile.webp",
-      mobileFallbackSrc: "/assets/hero/hero-premium-4-mobile.jpg",
+      imageSrc: beachImage4,
+      mobileImageSrc: beachImage4,
       imagePosition: { x: 56, y: 44 },
       mobileImagePosition: { x: 68, y: 42 },
     },
@@ -475,7 +474,7 @@ function buildCuratedHeroSlides(content: SiteContent): HotelHeroSlide[] {
 }
 
 function getDisplayBrandName(value: string) {
-  return value.replace(/\s+Tarapoto$/i, "").trim() || value;
+  return value.replace(/\s+Puerto Malabrigo.*$/i, "").trim() || value;
 }
 
 function normalizeHotelPhone(value?: string) {
