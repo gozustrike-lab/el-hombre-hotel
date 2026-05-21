@@ -17171,7 +17171,7 @@ body {
 
 .page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading h2,
 .page-shell.mode-reference-clone-hotel .hotel-home-location-heading h2 {
-  color: #3a2d20;
+  color: #ffffff;
   letter-spacing: -0.03em;
 }
 
@@ -17179,7 +17179,7 @@ body {
 .page-shell.mode-reference-clone-hotel .hotel-home-location-copy p,
 .page-shell.mode-reference-clone-hotel .hotel-home-location-details p,
 .page-shell.mode-reference-clone-hotel .hotel-home-location-details a {
-  color: rgba(77, 64, 49, 0.8);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .page-shell.mode-reference-clone-hotel .hotel-home-hero {
@@ -20890,5 +20890,171 @@ body {
 /* Footer contrast */
 .hotel-deluxe-footer-title {
   color: #f8f4ea !important;
+}
+
+/* ============================================================
+   v2 OVERRIDE: Navbar ultra-compact, contraste total
+   ============================================================ */
+
+/* --- NAVBAR ULTRA-COMPACT (py-2 = 8px) --- */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-header,
+.hotel-deluxe-header {
+  padding: 8px 24px !important;
+  border-radius: 0 0 20px 20px !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-header.is-scrolled,
+.hotel-deluxe-header.is-scrolled {
+  top: 8px !important;
+  padding-block: 8px !important;
+}
+
+/* Logo size: h-12 w-12 = 48px strict */
+.page-shell.mode-reference-clone-hotel .hotel-reference-brand-logo,
+.hotel-reference-brand-logo {
+  width: 48px !important;
+  height: 48px !important;
+  max-width: 48px !important;
+  max-height: 48px !important;
+  object-fit: contain !important;
+}
+
+/* Brand mark circle: h-12 w-12 */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-brand-mark,
+.hotel-deluxe-brand-mark {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+}
+
+/* Navbar vertical alignment items-center */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-header,
+.page-shell.mode-reference-clone-hotel .hotel-reference-header {
+  align-items: center !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-nav,
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-header-actions {
+  align-items: center !important;
+}
+
+/* --- SECTION HEADINGS: white on dark --- */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading h2,
+.page-shell.mode-reference-clone-hotel .hotel-home-amenity-heading h2,
+.page-shell.mode-reference-clone-hotel .hotel-home-location-heading h2,
+.page-shell.mode-reference-clone-hotel .hotel-reference-section-heading h2,
+.page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy h2 {
+  color: #ffffff !important;
+}
+
+/* Section heading subtitle: light readable */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading p,
+.page-shell.mode-reference-clone-hotel .hotel-home-location-copy p,
+.page-shell.mode-reference-clone-hotel .hotel-home-location-details p,
+.page-shell.mode-reference-clone-hotel .hotel-reference-section-heading p,
+.page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* --- BENEFIT / AMENITY CARDS: white text on dark bg --- */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-card strong {
+  color: #ffffff !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-card p {
+  color: rgba(255, 255, 255, 0.68) !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-icon {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+/* --- LOCATION CARD (light bg): dark text for contrast --- */
+.page-shell.mode-reference-clone-hotel .scene-location,
+.hotel-deluxe-shell .scene-location {
+  background: linear-gradient(180deg, #fffdf8, #faf7f1) !important;
+}
+
+.page-shell.mode-reference-clone-hotel .location-heading h2,
+.hotel-deluxe-shell .location-heading h2 {
+  color: #0f172a !important;
+}
+
+.page-shell.mode-reference-clone-hotel .location-heading p,
+.page-shell.mode-reference-clone-hotel .location-row p,
+.page-shell.mode-reference-clone-hotel .location-row a {
+  color: #334155 !important;
+}
+
+.page-shell.mode-reference-clone-hotel .location-row strong,
+.page-shell.mode-reference-clone-hotel .location-photo-copy strong {
+  color: #0f172a !important;
+}
+
+/* --- AMENITY STRIP ITEMS: white text on dark --- */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-copy strong {
+  color: #ffffff !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-copy p {
+  color: rgba(255, 255, 255, 0.68) !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-amenity-icon {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+/* --- TESTIMONIAL CARDS: white text --- */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card blockquote,
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card strong {
+  color: #ffffff !important;
+}
+
+/* --- BOOKING CTA: ensure contrast --- */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-booking-cta-shell .scene-chip {
+  color: #f0d9a2 !important;
+}
+
+/* --- FAQ section: white headings --- */
+.page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy h2 {
+  color: #ffffff !important;
+}
+
+.page-shell.mode-reference-clone-hotel .scene-landing-faq .section-copy p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* --- RESPONSIVE NAVBAR --- */
+@media (max-width: 860px) {
+  .page-shell.mode-reference-clone-hotel .hotel-deluxe-header,
+  .hotel-deluxe-header {
+    padding: 6px 14px 8px !important;
+  }
+
+  .page-shell.mode-reference-clone-hotel .hotel-reference-brand-logo,
+  .hotel-reference-brand-logo {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+  }
+
+  .page-shell.mode-reference-clone-hotel .hotel-reference-mobile-menu[open] .hotel-reference-mobile-panel {
+    top: 52px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-shell.mode-reference-clone-hotel .hotel-deluxe-header,
+  .hotel-deluxe-header {
+    padding: 5px 10px 6px !important;
+  }
 }
 
