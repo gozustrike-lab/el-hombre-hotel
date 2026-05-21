@@ -208,6 +208,12 @@ export function HotelTourPackagesSection({ locale, hotelName }: HotelTourPackage
           text-transform: capitalize;
         }
 
+        .hotel-tour-package-badge::before,
+        .hotel-tour-package-badge::after {
+          display: none !important;
+          content: none !important;
+        }
+
         .hotel-tour-package-overlay {
           position: relative;
           z-index: 1;
@@ -304,13 +310,20 @@ export function HotelTourPackagesSection({ locale, hotelName }: HotelTourPackage
           min-height: 36px;
           padding: 0 20px;
           border-radius: 10px;
-          background: linear-gradient(180deg, #ffea38 0%, #f7d80f 100%);
-          color: #0f172a;
-          font-size: 1rem;
-          font-weight: 800;
-          letter-spacing: 0.01em;
+          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.35);
+          color: #f8fafc;
+          font-size: 0.88rem;
+          font-weight: 700;
+          letter-spacing: 0.02em;
           text-transform: uppercase;
           text-decoration: none;
+          transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .hotel-tour-package-more:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.5);
         }
 
         .hotel-tour-package-price {
@@ -365,6 +378,63 @@ export function HotelTourPackagesSection({ locale, hotelName }: HotelTourPackage
 
           .hotel-tour-package-overlay {
             padding: 16px 14px 14px;
+          }
+        }
+
+        /* Full Bleed Packages on Mobile */
+        @media (max-width: 680px) {
+          .hotel-tour-packages-section {
+            padding-inline: 0 !important;
+            margin-inline: -16px;
+            width: calc(100% + 32px) !important;
+            max-width: calc(100% + 32px) !important;
+          }
+
+          .hotel-tour-package-card {
+            overflow: hidden;
+          }
+
+          .hotel-tour-package-media {
+            border-radius: 0 !important;
+            min-height: 260px;
+          }
+
+          .hotel-tour-package-badge {
+            border-radius: 0 0 12px 0 !important;
+            top: 0 !important;
+            left: 0 !important;
+            min-width: 100px;
+            padding: 5px 12px;
+            font-size: 0.78rem;
+          }
+
+          .hotel-tour-package-overlay {
+            padding: 16px;
+          }
+
+          .hotel-tour-package-overlay h3 {
+            font-size: 1rem !important;
+            line-height: 1.15 !important;
+          }
+
+          .hotel-tour-package-footer {
+            padding-top: 8px;
+            margin-top: 4px;
+          }
+
+          .hotel-tour-package-actions {
+            gap: 8px;
+          }
+
+          .hotel-tour-package-more {
+            padding: 0 14px;
+            min-height: 32px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+          }
+
+          .hotel-tour-package-price {
+            font-size: 1.1rem !important;
           }
         }
       `}</style>

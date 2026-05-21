@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { HotelPageSlug } from "@/lib/hotel-pages";
 import { HotelMobileMenu } from "./HotelMobileMenu";
 import { HotelBrandLogo } from "./HotelBrandLogo";
+import { ThemeModeToggle } from "./ThemeModeToggle";
 import type { HotelLocale } from "@/lib/hotel-experience";
 import { getHotelUi, t } from "@/lib/hotel-experience";
 
@@ -69,6 +70,7 @@ export function HotelPremiumHeader({
       </nav>
 
       <div className="hotel-deluxe-header-actions">
+        <ThemeModeToggle />
         <div className="hotel-deluxe-mobile-quick-actions">
           <a
             aria-label={ui.header.mobileWhatsapp}

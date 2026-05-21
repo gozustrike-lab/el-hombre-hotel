@@ -235,6 +235,53 @@ export function HotelRoomGallerySection({
             right: 20px;
           }
         }
+
+        /* Full Bleed Rooms on Mobile */
+        @media (max-width: 680px) {
+          .hotel-room-gallery-section {
+            padding-inline: 0 !important;
+            margin-inline: -16px;
+            padding-block: 16px 0;
+          }
+
+          .hotel-room-gallery-card {
+            border-radius: 0 !important;
+            overflow: hidden;
+          }
+
+          .hotel-room-gallery-card-head {
+            padding-inline: 16px !important;
+            padding-block: 14px !important;
+          }
+
+          .hotel-room-gallery-card-body {
+            padding: 0 !important;
+          }
+
+          .hotel-room-gallery-details {
+            padding: 16px !important;
+            border-radius: 0 !important;
+          }
+
+          .hotel-room-gallery-details-copy {
+            padding: 0 !important;
+          }
+
+          .hotel-room-gallery-footer {
+            padding-inline: 16px !important;
+            padding-block: 12px !important;
+            margin: 0 !important;
+          }
+
+          .hotel-room-gallery-feature-list {
+            padding-inline: 16px !important;
+          }
+
+          .hotel-room-gallery-cta-mobile {
+            margin: 0 !important;
+            width: 100% !important;
+          }
+        }
       `}</style>
     </section>
   );
