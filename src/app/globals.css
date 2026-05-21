@@ -21471,3 +21471,362 @@ body {
 .hotel-deluxe-shell.theme-light .theme-toggle-track {
   background: linear-gradient(135deg, #e8ecf1, #d1d5db);
 }
+
+/* ============================================================
+   THEME LIGHT/DARK - FULL SITE COVERAGE
+   ============================================================ */
+
+/* Light theme body/html background */
+html.theme-light,
+html.theme-light body {
+  background: #f5f3ee !important;
+  color: #111827 !important;
+}
+
+html.theme-dark,
+html.theme-dark body {
+  background: #0A1628 !important;
+  color: #f7f5ef !important;
+}
+
+/* Hotel deluxe shell theme backgrounds */
+html.theme-light .page-shell,
+html.theme-light .page-shell .hotel-deluxe-shell {
+  background: #f5f3ee;
+  color: #111827;
+}
+
+html.theme-dark .page-shell,
+html.theme-dark .page-shell .hotel-deluxe-shell {
+  background: #0A1628;
+  color: #f7f5ef;
+}
+
+/* Light theme overrides for hardcoded dark sections */
+html.theme-light .hotel-deluxe-room-card {
+  background: linear-gradient(180deg, #ffffff, #faf7f1);
+  border-color: rgba(23, 63, 123, 0.08);
+  color: #111827;
+}
+
+html.theme-light .hotel-deluxe-room-card strong,
+html.theme-light .hotel-deluxe-room-card p,
+html.theme-light .hotel-deluxe-room-copy {
+  color: #111827;
+}
+
+/* Dark theme card backgrounds (keep as is but ensure visibility) */
+html.theme-dark .hotel-deluxe-room-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border-color: rgba(255,255,255,0.06);
+  color: #f7f5ef;
+}
+
+/* Experience section theme */
+html.theme-light .hotel-experience-carousel-tabs button {
+  color: rgba(17,24,39,0.65);
+  border-color: rgba(17,24,39,0.1);
+}
+
+html.theme-light .hotel-experience-carousel-tabs button.is-active {
+  color: #b87333;
+  border-color: rgba(184,115,51,0.3);
+  background: rgba(184,115,51,0.08);
+}
+
+/* Restaurant section theme */
+html.theme-light .hotel-deluxe-restaurant-inner .hotel-deluxe-restaurant-title {
+  color: #111827;
+}
+
+html.theme-light .hotel-deluxe-restaurant-inner .hotel-deluxe-restaurant-subtitle {
+  color: rgba(17,24,39,0.65);
+}
+
+/* Tour packages theme */
+html.theme-light .hotel-deluxe-section-heading h2,
+html.theme-light .hotel-deluxe-section-heading p {
+  color: #111827;
+}
+
+/* Footer theme */
+html.theme-light .hotel-deluxe-footer {
+  background: rgba(0,0,0,0.03);
+  color: #111827;
+}
+
+html.theme-dark .hotel-deluxe-footer {
+  background: rgba(0,0,0,0.2);
+  color: #f7f5ef;
+}
+
+/* Section headings light theme */
+html.theme-light .scene-chip {
+  color: #b87333;
+  border-color: rgba(184,115,51,0.25);
+}
+
+html.theme-light .hotel-deluxe-section-heading .scene-chip {
+  color: #b87333;
+}
+
+/* Tour packages light theme */
+html.theme-light .hotel-tour-card,
+html.theme-light .hotel-tour-card * {
+  color: #111827;
+}
+
+html.theme-light .hotel-tour-card-price {
+  color: #b87333 !important;
+}
+
+/* Header theme - ensure text is visible in both modes */
+html.theme-light .hotel-deluxe-header {
+  background: rgba(245, 243, 238, 0.95) !important;
+  color: #111827 !important;
+  border-bottom-color: rgba(17,24,39,0.08) !important;
+  box-shadow: 0 1px 12px rgba(0,0,0,0.06) !important;
+}
+
+html.theme-light .hotel-deluxe-header *,
+html.theme-light .hotel-deluxe-header a,
+html.theme-light .hotel-deluxe-header button,
+html.theme-light .hotel-deluxe-header .hotel-deluxe-nav a {
+  color: #111827 !important;
+}
+
+html.theme-dark .hotel-deluxe-header {
+  background: rgba(10, 22, 40, 0.95) !important;
+  color: #f7f5ef !important;
+}
+
+html.theme-dark .hotel-deluxe-header *,
+html.theme-dark .hotel-deluxe-header a,
+html.theme-dark .hotel-deluxe-header button {
+  color: #f7f5ef !important;
+}
+
+/* ============================================================
+   NAVBAR - MINIMAL HEIGHT & HORIZONTAL LOGO
+   ============================================================ */
+
+/* Make header thinner */
+.hotel-deluxe-header {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+/* Logo sizing - horizontal format */
+.hotel-reference-brand-logo {
+  width: 140px !important;
+  height: auto !important;
+  max-height: 32px !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 860px) {
+  .hotel-reference-brand-logo {
+    width: 120px !important;
+    max-height: 28px !important;
+  }
+  
+  .hotel-deluxe-header {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+}
+
+/* Header items center vertically */
+.hotel-deluxe-header {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.hotel-reference-brand {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.hotel-deluxe-header-actions {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* ============================================================
+   FULL BLEED MOBILE - ROOMS, EXPERIENCES, RESTAURANT
+   ============================================================ */
+
+@media (max-width: 860px) {
+  /* Remove shell padding that creates margins on mobile */
+  .page-shell.mode-reference-clone-hotel .hotel-deluxe-shell {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Room cards full bleed on mobile */
+  .hotel-deluxe-room-card {
+    border-radius: 0 !important;
+    overflow: hidden;
+  }
+  
+  .hotel-deluxe-room-grid {
+    gap: 0 !important;
+  }
+  
+  /* Room media full bleed */
+  .hotel-deluxe-room-media {
+    width: 100% !important;
+    border-radius: 0 !important;
+  }
+  
+  /* Add internal padding to room body text only */
+  .hotel-deluxe-room-body {
+    padding: 18px 20px !important;
+  }
+  
+  /* Section heading gets side padding on mobile */
+  .hotel-deluxe-section-heading {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* Experience section full bleed on mobile */
+  .hotel-deluxe-experience .hotel-experience-carousel-shell {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .hotel-experience-carousel-tabs {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  .hotel-experience-carousel-toolbar {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* Restaurant section full bleed on mobile */
+  .hotel-deluxe-restaurant-section .hotel-deluxe-restaurant-inner {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .hotel-deluxe-restaurant-header {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  .hotel-deluxe-restaurant-grid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    gap: 0 !important;
+  }
+  
+  .hotel-deluxe-restaurant-card {
+    border-radius: 0 !important;
+    overflow: hidden;
+  }
+  
+  .hotel-deluxe-restaurant-card-body {
+    padding: 18px 20px !important;
+  }
+  
+  .hotel-deluxe-restaurant-cta-wrapper {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* Tour packages section full bleed on mobile */
+  .hotel-tour-packages-section,
+  .hotel-tour-grid {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+  }
+  
+  .hotel-tour-card {
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .hotel-tour-card-body {
+    padding: 18px 20px !important;
+  }
+  
+  .hotel-tour-section-heading {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* Testimonials full bleed on mobile */
+  .hotel-deluxe-testimonials .hotel-deluxe-section-heading {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  .hotel-deluxe-testimonial-grid {
+    gap: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .hotel-deluxe-testimonial-card {
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .hotel-deluxe-testimonial-body {
+    padding: 18px 20px !important;
+  }
+  
+  /* Footer full bleed on mobile */
+  .hotel-deluxe-footer {
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .hotel-deluxe-footer-inner {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* Amenities section - internal padding only */
+  .hotel-deluxe-amenities .hotel-deluxe-section-heading {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* Room gallery section full bleed on mobile */
+  .hotel-room-gallery-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  
+  .hotel-room-gallery-section .hotel-deluxe-section-heading {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* Desktop: restore rounded corners and padding */
+@media (min-width: 861px) {
+  .page-shell.mode-reference-clone-hotel .hotel-deluxe-shell {
+    width: min(1280px, calc(100% - 40px)) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 auto !important;
+  }
+  
+  .hotel-deluxe-room-card {
+    border-radius: 32px !important;
+  }
+  
+  .hotel-deluxe-restaurant-card {
+    border-radius: 22px !important;
+  }
+}

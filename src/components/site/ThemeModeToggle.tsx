@@ -9,14 +9,26 @@ const STORAGE_KEY = "el-hombre-theme-mode";
 function applyTheme(theme: ThemeMode) {
   if (typeof document === "undefined") return;
   
+  // Set data attribute for CSS targeting
+  document.documentElement.dataset.themeMode = theme;
+  
+  // Toggle class on html element for global CSS
+  document.documentElement.classList.remove("theme-light", "theme-dark");
+  document.documentElement.classList.add(theme === "light" ? "theme-light" : "theme-dark");
+  
+  // Also toggle on body
+  document.body.classList.remove("theme-light", "theme-dark");
+  document.body.classList.add(theme === "light" ? "theme-light" : "theme-dark");
+  
+  // Toggle class on shell
   const shell = document.querySelector(".hotel-deluxe-shell") || document.querySelector(".page-shell");
   if (shell) {
     shell.classList.remove("theme-light", "theme-dark");
     shell.classList.add(theme === "light" ? "theme-light" : "theme-dark");
   }
   
-  document.documentElement.dataset.themeMode = theme;
-  document.body.style.background = theme === "light" ? "#f0f2f5" : "#0A1628";
+  // Set body styles as fallback
+  document.body.style.background = theme === "light" ? "#f5f3ee" : "#0A1628";
   document.body.style.color = theme === "light" ? "#111827" : "#f7f5ef";
 }
 

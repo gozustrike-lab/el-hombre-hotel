@@ -30,7 +30,7 @@ export default function RootLayout({
   const jsonLd = buildJsonLdScript(profile, content);
 
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
