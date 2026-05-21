@@ -21473,14 +21473,19 @@ body {
 }
 
 /* ============================================================
-   THEME LIGHT/DARK - FULL SITE COVERAGE
+   V3: IMMERSIVE THEME + CLEAN NAVBAR + FULL BLEED
    ============================================================ */
 
-/* Light theme body/html background */
+/* --- 1. GLOBAL THEME FLUIDITY --- */
+html,
+html body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
 html.theme-light,
 html.theme-light body {
-  background: #f5f3ee !important;
-  color: #111827 !important;
+  background: #f4f1ea !important;
+  color: #1a1a2e !important;
 }
 
 html.theme-dark,
@@ -21489,256 +21494,641 @@ html.theme-dark body {
   color: #f7f5ef !important;
 }
 
-/* Hotel deluxe shell theme backgrounds */
+/* Shell background - seamless with body */
 html.theme-light .page-shell,
 html.theme-light .page-shell .hotel-deluxe-shell {
-  background: #f5f3ee;
-  color: #111827;
+  background: transparent;
 }
 
 html.theme-dark .page-shell,
 html.theme-dark .page-shell .hotel-deluxe-shell {
-  background: #0A1628;
-  color: #f7f5ef;
+  background: transparent;
 }
 
-/* Light theme overrides for hardcoded dark sections */
+/* Shell decorative glow */
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-shell::before {
+  background:
+    linear-gradient(180deg, rgba(255, 247, 234, 0.5), transparent 70%),
+    radial-gradient(circle at top center, rgba(255, 247, 234, 0.3), transparent 50%);
+}
+
+html.theme-dark .page-shell.mode-reference-clone-hotel .hotel-deluxe-shell::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.48), transparent 78%),
+    radial-gradient(circle at top center, rgba(255, 247, 234, 0.72), transparent 58%);
+}
+
+/* --- 2. ROOM CARDS THEME --- */
 html.theme-light .hotel-deluxe-room-card {
   background: linear-gradient(180deg, #ffffff, #faf7f1);
-  border-color: rgba(23, 63, 123, 0.08);
-  color: #111827;
+  border-color: rgba(180, 160, 120, 0.12);
+  box-shadow: 0 16px 40px rgba(100, 80, 40, 0.07);
 }
 
 html.theme-light .hotel-deluxe-room-card strong,
 html.theme-light .hotel-deluxe-room-card p,
-html.theme-light .hotel-deluxe-room-copy {
-  color: #111827;
+html.theme-light .hotel-deluxe-room-copy,
+html.theme-light .hotel-deluxe-room-copy li,
+html.theme-light .hotel-deluxe-room-footer span {
+  color: #1a1a2e;
 }
 
-/* Dark theme card backgrounds (keep as is but ensure visibility) */
+html.theme-light .hotel-deluxe-room-cta {
+  background: linear-gradient(135deg, #b87333, #a0612a) !important;
+  border-color: rgba(184, 115, 51, 0.3) !important;
+  color: #fff !important;
+}
+
 html.theme-dark .hotel-deluxe-room-card {
   background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
   border-color: rgba(255,255,255,0.06);
-  color: #f7f5ef;
+  box-shadow: 0 24px 54px rgba(24, 39, 67, 0.08);
 }
 
-/* Experience section theme */
+/* --- 3. EXPERIENCE SECTION THEME --- */
 html.theme-light .hotel-experience-carousel-tabs button {
-  color: rgba(17,24,39,0.65);
-  border-color: rgba(17,24,39,0.1);
+  color: rgba(26, 26, 46, 0.6);
+  border-color: rgba(26, 26, 46, 0.1);
 }
 
 html.theme-light .hotel-experience-carousel-tabs button.is-active {
   color: #b87333;
-  border-color: rgba(184,115,51,0.3);
-  background: rgba(184,115,51,0.08);
+  border-color: rgba(184, 115, 51, 0.3);
+  background: rgba(184, 115, 51, 0.08);
 }
 
-/* Restaurant section theme */
-html.theme-light .hotel-deluxe-restaurant-inner .hotel-deluxe-restaurant-title {
-  color: #111827;
+html.theme-light .hotel-experience-carousel-meta strong,
+html.theme-light .hotel-experience-carousel-meta span {
+  color: #1a1a2e;
 }
 
-html.theme-light .hotel-deluxe-restaurant-inner .hotel-deluxe-restaurant-subtitle {
-  color: rgba(17,24,39,0.65);
+html.theme-light .hotel-experience-carousel-button {
+  border-color: rgba(26, 26, 46, 0.12);
+  color: #1a1a2e;
 }
 
-/* Tour packages theme */
-html.theme-light .hotel-deluxe-section-heading h2,
+/* --- 4. RESTAURANT SECTION THEME --- */
+html.theme-light .hotel-deluxe-restaurant-title,
+html.theme-light .hotel-deluxe-restaurant-chip {
+  color: #1a1a2e;
+}
+
+html.theme-light .hotel-deluxe-restaurant-chip {
+  border-color: rgba(184, 115, 51, 0.25);
+  color: #b87333;
+}
+
+html.theme-light .hotel-deluxe-restaurant-subtitle {
+  color: rgba(26, 26, 46, 0.6);
+}
+
+html.theme-light .hotel-deluxe-restaurant-card {
+  background: #fff;
+  border-color: rgba(180, 160, 120, 0.12);
+}
+
+html.theme-light .hotel-deluxe-restaurant-card-title {
+  color: #1a1a2e;
+}
+
+html.theme-light .hotel-deluxe-restaurant-card-desc {
+  color: rgba(26, 26, 46, 0.55);
+}
+
+html.theme-light .hotel-deluxe-restaurant-card-price {
+  color: #b87333;
+  background: rgba(184, 115, 51, 0.08);
+  border-color: rgba(184, 115, 51, 0.2);
+}
+
+html.theme-light .hotel-deluxe-restaurant-add-btn {
+  color: #b87333;
+  border-color: rgba(184, 115, 51, 0.25);
+  background: rgba(184, 115, 51, 0.06);
+}
+
+/* --- 5. SECTION HEADINGS THEME --- */
+html.theme-light .hotel-deluxe-section-heading h2 {
+  color: #1a1a2e;
+}
+
 html.theme-light .hotel-deluxe-section-heading p {
-  color: #111827;
+  color: rgba(26, 26, 46, 0.6);
 }
 
-/* Footer theme */
-html.theme-light .hotel-deluxe-footer {
-  background: rgba(0,0,0,0.03);
-  color: #111827;
-}
-
-html.theme-dark .hotel-deluxe-footer {
-  background: rgba(0,0,0,0.2);
-  color: #f7f5ef;
-}
-
-/* Section headings light theme */
 html.theme-light .scene-chip {
   color: #b87333;
-  border-color: rgba(184,115,51,0.25);
+  border-color: rgba(184, 115, 51, 0.25);
 }
 
-html.theme-light .hotel-deluxe-section-heading .scene-chip {
-  color: #b87333;
+/* --- 6. TOUR PACKAGES THEME --- */
+html.theme-light .hotel-tour-card {
+  background: #fff;
+  border-color: rgba(180, 160, 120, 0.12);
+  color: #1a1a2e;
 }
 
-/* Tour packages light theme */
-html.theme-light .hotel-tour-card,
 html.theme-light .hotel-tour-card * {
-  color: #111827;
+  color: inherit;
+}
+
+html.theme-light .hotel-tour-card strong,
+html.theme-light .hotel-tour-card h3,
+html.theme-light .hotel-tour-card p {
+  color: #1a1a2e;
 }
 
 html.theme-light .hotel-tour-card-price {
   color: #b87333 !important;
 }
 
-/* Header theme - ensure text is visible in both modes */
-html.theme-light .hotel-deluxe-header {
-  background: rgba(245, 243, 238, 0.95) !important;
-  color: #111827 !important;
-  border-bottom-color: rgba(17,24,39,0.08) !important;
-  box-shadow: 0 1px 12px rgba(0,0,0,0.06) !important;
+html.theme-light .hotel-tour-card-cta {
+  background: transparent !important;
+  border-color: rgba(184, 115, 51, 0.3) !important;
+  color: #b87333 !important;
 }
 
-html.theme-light .hotel-deluxe-header *,
-html.theme-light .hotel-deluxe-header a,
-html.theme-light .hotel-deluxe-header button,
-html.theme-light .hotel-deluxe-header .hotel-deluxe-nav a {
-  color: #111827 !important;
+/* --- 7. TESTIMONIALS THEME --- */
+html.theme-light .hotel-deluxe-testimonial-card {
+  background: #fff;
+  border-color: rgba(180, 160, 120, 0.1);
 }
 
-html.theme-dark .hotel-deluxe-header {
-  background: rgba(10, 22, 40, 0.95) !important;
-  color: #f7f5ef !important;
+html.theme-light .hotel-deluxe-testimonial-body p,
+html.theme-light .hotel-deluxe-testimonial-body strong {
+  color: #1a1a2e;
 }
 
-html.theme-dark .hotel-deluxe-header *,
-html.theme-dark .hotel-deluxe-header a,
-html.theme-dark .hotel-deluxe-header button {
-  color: #f7f5ef !important;
+/* --- 8. FOOTER THEME --- */
+html.theme-light .hotel-deluxe-footer {
+  background: rgba(0,0,0,0.03);
+  color: #1a1a2e;
+}
+
+html.theme-light .hotel-deluxe-footer * {
+  color: inherit;
+}
+
+html.theme-light .hotel-deluxe-footer a {
+  color: rgba(26, 26, 46, 0.7);
+}
+
+/* --- 9. AMENITIES THEME --- */
+html.theme-light .hotel-deluxe-amenity-item {
+  background: #fff;
+  border-color: rgba(180, 160, 120, 0.1);
+}
+
+html.theme-light .hotel-deluxe-amenity-item strong,
+html.theme-light .hotel-deluxe-amenity-item p {
+  color: #1a1a2e;
+}
+
+/* --- 10. LOCATION THEME --- */
+html.theme-light .hotel-home-location .hotel-deluxe-section-heading h2,
+html.theme-light .hotel-home-location .hotel-deluxe-section-heading p {
+  color: #1a1a2e;
+}
+
+/* --- 11. PAYMENT METHODS THEME --- */
+html.theme-light .hotel-payment-methods-section {
+  color: #1a1a2e;
 }
 
 /* ============================================================
-   NAVBAR - MINIMAL HEIGHT & HORIZONTAL LOGO
+   CLEAN NAVBAR - V3 REWRITE
    ============================================================ */
 
-/* Make header thinner */
+/* Base header - always flush top, clean flex */
+.eh-header,
 .hotel-deluxe-header {
-  padding-top: 6px !important;
-  padding-bottom: 6px !important;
+  position: fixed;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 64px !important;
+  margin: 0 !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  z-index: 200 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid transparent !important;
+  transform: none !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  color: #f8f4ea;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
 }
 
-/* Logo sizing - horizontal format */
+/* Scrolled state - glassmorphism */
+.eh-header--scrolled,
+.hotel-deluxe-header.is-scrolled {
+  top: 0 !important;
+}
+
+html.theme-dark .eh-header--scrolled,
+html.theme-dark .hotel-deluxe-header.is-scrolled {
+  background: rgba(10, 22, 40, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+  color: #f7f5ef;
+}
+
+html.theme-light .eh-header--scrolled,
+html.theme-light .hotel-deluxe-header.is-scrolled {
+  background: rgba(244, 241, 234, 0.92) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06) !important;
+  color: #1a1a2e;
+}
+
+/* Non-scrolled: ensure visible over hero */
+html.theme-dark .eh-header,
+html.theme-dark .hotel-deluxe-header {
+  background: linear-gradient(180deg, rgba(10, 22, 40, 0.6) 0%, transparent 100%) !important;
+  color: #f8f4ea;
+}
+
+html.theme-light .eh-header,
+html.theme-light .hotel-deluxe-header {
+  background: linear-gradient(180deg, rgba(244, 241, 234, 0.7) 0%, transparent 100%) !important;
+  color: #1a1a2e;
+}
+
+/* All header descendants inherit color */
+html.theme-dark .eh-header *,
+html.theme-dark .eh-header a,
+html.theme-dark .eh-header button,
+html.theme-dark .eh-header span,
+html.theme-dark .hotel-deluxe-header *,
+html.theme-dark .hotel-deluxe-header a,
+html.theme-dark .hotel-deluxe-header button {
+  color: #f8f4ea;
+}
+
+html.theme-light .eh-header *,
+html.theme-light .eh-header a,
+html.theme-light .eh-header button,
+html.theme-light .eh-header span,
+html.theme-light .hotel-deluxe-header *,
+html.theme-light .hotel-deluxe-header a,
+html.theme-light .hotel-deluxe-header button {
+  color: #1a1a2e;
+}
+
+/* Brand logo block - LEFT */
+.eh-header__brand,
+.hotel-reference-brand,
+.hotel-reference-brand--official {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-shrink: 0 !important;
+  width: auto !important;
+}
+
+.eh-header__logo,
 .hotel-reference-brand-logo {
-  width: 140px !important;
+  display: block !important;
+  width: 160px !important;
   height: auto !important;
-  max-height: 32px !important;
+  max-height: 36px !important;
   object-fit: contain !important;
 }
 
+/* Nav block - CENTER (desktop) */
+.eh-header__nav,
+.hotel-deluxe-nav {
+  display: none !important;
+}
+
+@media (min-width: 861px) {
+  .eh-header__nav,
+  .hotel-deluxe-nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-self: center !important;
+    gap: 10px !important;
+  }
+
+  .eh-header__nav a,
+  .hotel-deluxe-nav a {
+    font-size: 0.88rem;
+    font-weight: 500;
+    opacity: 0.8;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .eh-header__nav a:hover,
+  .hotel-deluxe-nav a:hover {
+    opacity: 1;
+  }
+}
+
+/* Actions block - RIGHT */
+.eh-header__actions,
+.hotel-deluxe-header-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+  width: auto !important;
+  height: 100% !important;
+}
+
+/* WhatsApp icon */
+.eh-header__whatsapp,
+.hotel-deluxe-mobile-whatsapp {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(184, 115, 51, 0.2) !important;
+  background: rgba(184, 115, 51, 0.08) !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+.eh-header__whatsapp:hover,
+.hotel-deluxe-mobile-whatsapp:hover {
+  background: rgba(184, 115, 51, 0.18) !important;
+  border-color: rgba(184, 115, 51, 0.35) !important;
+}
+
+/* Locale toggle */
+.eh-header__locale,
+.hotel-deluxe-header-locale {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: transparent !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease;
+  letter-spacing: 0.04em;
+  white-space: nowrap !important;
+}
+
+html.theme-light .eh-header__locale,
+html.theme-light .hotel-deluxe-header-locale {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Desktop CTA button */
+.eh-header__cta,
+.hotel-deluxe-header-cta {
+  display: none !important;
+}
+
+@media (min-width: 861px) {
+  .eh-header__cta,
+  .hotel-deluxe-header-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 8px 20px !important;
+    border-radius: 999px !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    transition: all 0.25s ease;
+  }
+
+  html.theme-dark .eh-header__cta,
+  html.theme-dark .hotel-deluxe-header-cta {
+    background: linear-gradient(135deg, #b87333, #964b1c) !important;
+    border: 1px solid rgba(184, 115, 51, 0.3) !important;
+    color: #fff !important;
+    box-shadow: 0 8px 24px rgba(184, 115, 51, 0.25) !important;
+  }
+
+  html.theme-dark .eh-header__cta:hover,
+  html.theme-dark .hotel-deluxe-header-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px rgba(184, 115, 51, 0.35) !important;
+  }
+
+  html.theme-light .eh-header__cta,
+  html.theme-light .hotel-deluxe-header-cta {
+    background: linear-gradient(135deg, #1A3A5C, #0A1628) !important;
+    border: 1px solid rgba(10, 22, 40, 0.2) !important;
+    color: #fff !important;
+    box-shadow: 0 8px 24px rgba(10, 22, 40, 0.2) !important;
+  }
+
+  html.theme-light .eh-header__cta:hover,
+  html.theme-light .hotel-deluxe-header-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px rgba(10, 22, 40, 0.3) !important;
+  }
+}
+
+/* Mobile hamburger */
+.hotel-mobile-menu-trigger {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  gap: 4px !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+html.theme-light .hotel-mobile-menu-trigger {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  background: rgba(0, 0, 0, 0.03) !important;
+}
+
+.hotel-mobile-menu-trigger-line {
+  display: block !important;
+  width: 18px !important;
+  height: 2px !important;
+  border-radius: 1px !important;
+  background: currentColor !important;
+}
+
+/* Theme toggle in header */
+.eh-header .theme-toggle-btn,
+.hotel-deluxe-header .theme-toggle-btn {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: transparent !important;
+}
+
+html.theme-light .eh-header .theme-toggle-btn,
+html.theme-light .hotel-deluxe-header .theme-toggle-btn {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Remove old decorative elements */
+.hotel-deluxe-header::before,
+.hotel-deluxe-header::after {
+  display: none !important;
+}
+
+/* Mobile size adjustments */
 @media (max-width: 860px) {
+  .eh-header,
+  .hotel-deluxe-header {
+    height: 56px !important;
+    padding: 0 14px !important;
+    gap: 0 !important;
+  }
+
+  .eh-header__logo,
   .hotel-reference-brand-logo {
     width: 120px !important;
     max-height: 28px !important;
   }
-  
-  .hotel-deluxe-header {
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+
+  .eh-header__actions,
+  .hotel-deluxe-header-actions {
+    gap: 8px !important;
+  }
+
+  .eh-header__whatsapp,
+  .hotel-deluxe-mobile-whatsapp {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .eh-header__whatsapp svg,
+  .hotel-deluxe-mobile-whatsapp-icon svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .eh-header__locale,
+  .hotel-deluxe-header-locale {
+    padding: 3px 8px !important;
+    font-size: 0.68rem !important;
   }
 }
 
-/* Header items center vertically */
-.hotel-deluxe-header {
-  display: flex !important;
-  align-items: center !important;
-}
+/* Desktop size adjustments */
+@media (min-width: 861px) {
+  .eh-header,
+  .hotel-deluxe-header {
+    height: 68px !important;
+    padding: 0 32px !important;
+  }
 
-.hotel-reference-brand {
-  display: flex !important;
-  align-items: center !important;
-}
-
-.hotel-deluxe-header-actions {
-  display: flex !important;
-  align-items: center !important;
+  .eh-header__logo,
+  .hotel-reference-brand-logo {
+    width: 180px !important;
+    max-height: 38px !important;
+  }
 }
 
 /* ============================================================
-   FULL BLEED MOBILE - ROOMS, EXPERIENCES, RESTAURANT
+   FULL BLEED MOBILE - ALL SECTIONS
    ============================================================ */
 
 @media (max-width: 860px) {
-  /* Remove shell padding that creates margins on mobile */
+  /* Remove shell padding on mobile */
   .page-shell.mode-reference-clone-hotel .hotel-deluxe-shell {
     padding-left: 0 !important;
     padding-right: 0 !important;
     width: 100% !important;
   }
-  
-  /* Room cards full bleed on mobile */
-  .hotel-deluxe-room-card {
-    border-radius: 0 !important;
-    overflow: hidden;
-  }
-  
-  .hotel-deluxe-room-grid {
-    gap: 0 !important;
-  }
-  
-  /* Room media full bleed */
-  .hotel-deluxe-room-media {
-    width: 100% !important;
-    border-radius: 0 !important;
-  }
-  
-  /* Add internal padding to room body text only */
-  .hotel-deluxe-room-body {
-    padding: 18px 20px !important;
-  }
-  
-  /* Section heading gets side padding on mobile */
+
+  /* Text-only padding for headings */
   .hotel-deluxe-section-heading {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
-  /* Experience section full bleed on mobile */
+
+  /* Room cards - edge to edge */
+  .hotel-deluxe-room-card {
+    border-radius: 0 !important;
+    overflow: hidden;
+  }
+
+  .hotel-deluxe-room-grid {
+    gap: 0 !important;
+  }
+
+  .hotel-deluxe-room-media {
+    width: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  .hotel-deluxe-room-body {
+    padding: 18px 20px !important;
+  }
+
+  /* Experience carousel */
   .hotel-deluxe-experience .hotel-experience-carousel-shell {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
-  
+
   .hotel-experience-carousel-tabs {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
+
   .hotel-experience-carousel-toolbar {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
-  /* Restaurant section full bleed on mobile */
+
+  /* Restaurant */
   .hotel-deluxe-restaurant-section .hotel-deluxe-restaurant-inner {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
-  
+
   .hotel-deluxe-restaurant-header {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
+
   .hotel-deluxe-restaurant-grid {
     padding-left: 0 !important;
     padding-right: 0 !important;
     gap: 0 !important;
   }
-  
+
   .hotel-deluxe-restaurant-card {
     border-radius: 0 !important;
     overflow: hidden;
   }
-  
+
   .hotel-deluxe-restaurant-card-body {
     padding: 18px 20px !important;
   }
-  
+
   .hotel-deluxe-restaurant-cta-wrapper {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
-  /* Tour packages section full bleed on mobile */
+
+  /* Tour packages */
   .hotel-tour-packages-section,
   .hotel-tour-grid {
     margin-left: 0 !important;
@@ -21747,85 +22137,200 @@ html.theme-dark .hotel-deluxe-header button {
     padding-right: 0 !important;
     width: 100% !important;
   }
-  
+
   .hotel-tour-card {
     border-radius: 0 !important;
     margin: 0 !important;
   }
-  
+
   .hotel-tour-card-body {
     padding: 18px 20px !important;
   }
-  
+
   .hotel-tour-section-heading {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
-  /* Testimonials full bleed on mobile */
+
+  /* Testimonials */
   .hotel-deluxe-testimonials .hotel-deluxe-section-heading {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
+
   .hotel-deluxe-testimonial-grid {
     gap: 0 !important;
     padding: 0 !important;
   }
-  
+
   .hotel-deluxe-testimonial-card {
     border-radius: 0 !important;
     margin: 0 !important;
   }
-  
+
   .hotel-deluxe-testimonial-body {
     padding: 18px 20px !important;
   }
-  
-  /* Footer full bleed on mobile */
+
+  /* Footer */
   .hotel-deluxe-footer {
     border-radius: 0 !important;
     margin: 0 !important;
   }
-  
+
   .hotel-deluxe-footer-inner {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
-  /* Amenities section - internal padding only */
+
+  /* Amenities */
   .hotel-deluxe-amenities .hotel-deluxe-section-heading {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
-  /* Room gallery section full bleed on mobile */
+
+  /* Room gallery */
   .hotel-room-gallery-section {
     padding-left: 0 !important;
     padding-right: 0 !important;
     margin: 0 !important;
     width: 100% !important;
   }
-  
+
   .hotel-room-gallery-section .hotel-deluxe-section-heading {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Payment & Social sections */
+  .hotel-payment-methods-section,
+  .hotel-social-section {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
 }
 
-/* Desktop: restore rounded corners and padding */
+/* ============================================================
+   FULL BLEED DESKTOP - NO WHITE SIDE STRIPS
+   ============================================================ */
 @media (min-width: 861px) {
   .page-shell.mode-reference-clone-hotel .hotel-deluxe-shell {
-    width: min(1280px, calc(100% - 40px)) !important;
+    width: min(1440px, 100%) !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     margin: 0 auto !important;
   }
-  
+
+  /* Room section - full background width */
+  .hotel-deluxe-rooms {
+    position: relative;
+  }
+
+  .hotel-deluxe-rooms::before {
+    content: "";
+    position: absolute;
+    inset: 0 -9999px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  html.theme-light .hotel-deluxe-rooms::before {
+    background: #f4f1ea;
+  }
+
+  html.theme-dark .hotel-deluxe-rooms::before {
+    background: #0A1628;
+  }
+
+  /* Experience section - full bleed */
+  .hotel-deluxe-experience {
+    position: relative;
+  }
+
+  .hotel-deluxe-experience::before {
+    content: "";
+    position: absolute;
+    inset: 0 -9999px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  html.theme-light .hotel-deluxe-experience::before {
+    background: #f4f1ea;
+  }
+
+  html.theme-dark .hotel-deluxe-experience::before {
+    background: #0A1628;
+  }
+
+  /* Restaurant section - full bleed */
+  .hotel-deluxe-restaurant-section {
+    position: relative;
+  }
+
+  .hotel-deluxe-restaurant-section::before {
+    content: "";
+    position: absolute;
+    inset: 0 -9999px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  html.theme-light .hotel-deluxe-restaurant-section::before {
+    background: #f4f1ea;
+  }
+
+  html.theme-dark .hotel-deluxe-restaurant-section::before {
+    background: #0A1628;
+  }
+
+  /* Tour packages - full bleed */
+  .hotel-tour-packages-section {
+    position: relative;
+  }
+
+  .hotel-tour-packages-section::before {
+    content: "";
+    position: absolute;
+    inset: 0 -9999px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  html.theme-light .hotel-tour-packages-section::before {
+    background: #f4f1ea;
+  }
+
+  html.theme-dark .hotel-tour-packages-section::before {
+    background: #0A1628;
+  }
+
+  /* Testimonials - full bleed */
+  .hotel-deluxe-testimonials {
+    position: relative;
+  }
+
+  .hotel-deluxe-testimonials::before {
+    content: "";
+    position: absolute;
+    inset: 0 -9999px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  html.theme-light .hotel-deluxe-testimonials::before {
+    background: #f4f1ea;
+  }
+
+  html.theme-dark .hotel-deluxe-testimonials::before {
+    background: #0A1628;
+  }
+
+  /* Restore rounded cards on desktop */
   .hotel-deluxe-room-card {
     border-radius: 32px !important;
   }
-  
+
   .hotel-deluxe-restaurant-card {
     border-radius: 22px !important;
   }
