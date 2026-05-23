@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import type { HotelLocale } from "@/lib/hotel-experience";
 import { t } from "@/lib/hotel-experience";
+import { useLightbox, type LightboxImage } from "./ProLightbox";
 
 type MenuItem = {
   id: string;
@@ -50,6 +51,12 @@ const MENU_ITEMS: MenuItem[] = [
 export function HotelRestaurantSection({ locale = "es" }: HotelRestaurantSectionProps) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { open: openLightbox } = useLightbox();
+
+  const lightboxImages = useMemo<LightboxImage[]>(
+    () => MENU_ITEMS.map((item) => ({ src: item.imageSrc, alt: item.name })),
+    [],
+  );
 
   const totalItems = cart.reduce((sum, ci) => sum + ci.quantity, 0);
   const totalPrice = cart.reduce((sum, ci) => sum + ci.item.price * ci.quantity, 0);
@@ -139,9 +146,9 @@ export function HotelRestaurantSection({ locale = "es" }: HotelRestaurantSection
         </div>
 
         <div className="hotel-deluxe-restaurant-grid">
-          {MENU_ITEMS.map((item) => (
+          {MENU_ITEMS.map((item, idx) => (
             <div key={item.id} className="hotel-deluxe-restaurant-card">
-              <div className="hotel-deluxe-restaurant-card-image">
+              <div className="hotel-deluxe-restaurant-card-image" onClick={() => openLightbox(lightboxImages, idx)} style={{ cursor: "zoom-in" }}>
                 <img src={item.imageSrc} alt={item.name} loading="lazy" />
               </div>
               <div className="hotel-deluxe-restaurant-card-body">

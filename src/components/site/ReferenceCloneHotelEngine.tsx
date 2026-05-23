@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { ClientProfile, SiteContent } from "@/types/site";
+import { LightboxProvider } from "./ProLightbox";
 import { HotelFloatingCta } from "./HotelFloatingCta";
 import { HotelPremiumAmenities } from "./HotelPremiumAmenities";
 import { HotelPremiumExperienceGallery } from "./HotelPremiumExperienceGallery";
@@ -240,6 +241,7 @@ export function ReferenceCloneHotelEngine({
 
   return (
     <>
+      <LightboxProvider>
       <div className="hotel-deluxe-shell">
         <HotelPremiumHeader
           bookingCtaLabel={bookingCtaLabel}
@@ -349,6 +351,7 @@ export function ReferenceCloneHotelEngine({
         onSelectedRoomChange={focusRoomFromWidget}
         selectedRoomId={selectedBookingRoomId}
       />
+      </LightboxProvider>
     </>
   );
 }

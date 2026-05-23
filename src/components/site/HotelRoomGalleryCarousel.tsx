@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import type { HotelLocale } from "@/lib/hotel-experience";
 import type { HotelRoomGallerySlide } from "@/lib/hotel-room-gallery";
+import { useLightbox, type LightboxImage } from "./ProLightbox";
 
 type HotelRoomGalleryCarouselProps = {
   locale: HotelLocale;
@@ -17,6 +18,12 @@ export function HotelRoomGalleryCarousel({ locale, roomTitle, slides }: HotelRoo
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchCurrentX, setTouchCurrentX] = useState<number | null>(null);
   const slideCount = slides.length;
+  const { open: openLightbox } = useLightbox();
+
+  const lightboxImages = useMemo<LightboxImage[]>(
+    () => slides.map((s) => ({ src: s.webpSrc, alt: s.alt })),
+    [slides],
+  );
 
   const labels = useMemo(
     () => ({
@@ -118,7 +125,7 @@ export function HotelRoomGalleryCarousel({ locale, roomTitle, slides }: HotelRoo
         <div className="hotel-room-carousel-track" style={{ transform: `translate3d(-${activeIndex * 100}%, 0, 0)` }}>
           {slides.map((slide, index) => (
             <figure className="hotel-room-carousel-slide" key={slide.id}>
-              <div className="hotel-room-carousel-media">
+              <div className="hotel-room-carousel-media" onClick={() => openLightbox(lightboxImages, index)} style={{ cursor: "zoom-in" }}>
                 {visibleIndexes.has(index) ? (
                   <Image
                     alt={slide.alt}

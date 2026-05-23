@@ -23733,3 +23733,510 @@ html.theme-light .theme-toggle-thumb { background: #b87333 !important; }
   .eh-header__cta { display: none !important; }
 }
 
+
+/* ============================================================
+   PRO LIGHTBOX - Ultra Premium (v1.0)
+   Zoom, Swipe, Autoplay, Pinch, Thumbnails, Keyboard
+   ============================================================ */
+
+.pro-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  animation: proLightboxIn 0.3s ease;
+}
+
+@keyframes proLightboxIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Image Container */
+.pro-lightbox-image-container {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.pro-lightbox-image {
+  object-fit: contain;
+  will-change: transform;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Top Bar */
+.pro-lightbox-topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.pro-lightbox-topbar.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pro-lightbox-counter {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.pro-lightbox-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Buttons */
+.pro-lightbox-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  color: rgba(255,255,255,0.85);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.pro-lightbox-btn:hover {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+
+.pro-lightbox-close {
+  width: 44px;
+  height: 44px;
+  background: rgba(255,70,70,0.15);
+  border-color: rgba(255,70,70,0.3);
+  color: rgba(255,120,120,0.9);
+}
+.pro-lightbox-close:hover {
+  background: rgba(255,70,70,0.3);
+  color: #fff;
+}
+
+/* Arrows */
+.pro-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.pro-lightbox-arrow.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.pro-lightbox-arrow:hover {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+  transform: translateY(-50%) scale(1.08);
+}
+.pro-lightbox-arrow--left { left: 16px; }
+.pro-lightbox-arrow--right { right: 16px; }
+
+@media (max-width: 768px) {
+  .pro-lightbox-arrow { width: 44px; height: 44px; }
+  .pro-lightbox-arrow--left { left: 10px; }
+  .pro-lightbox-arrow--right { right: 10px; }
+}
+
+/* Bottom Bar */
+.pro-lightbox-bottombar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px 18px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.pro-lightbox-bottombar.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Thumbnail Strip */
+.pro-lightbox-thumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 4px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.pro-lightbox-thumbs::-webkit-scrollbar { display: none; }
+
+.pro-lightbox-thumb {
+  flex: 0 0 56px;
+  height: 56px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+  opacity: 0.5;
+}
+.pro-lightbox-thumb:hover {
+  opacity: 0.8;
+  border-color: rgba(255,255,255,0.3);
+}
+.pro-lightbox-thumb.is-active {
+  opacity: 1;
+  border-color: #d4a574;
+  box-shadow: 0 0 12px rgba(212,165,116,0.4);
+}
+.pro-lightbox-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .pro-lightbox-thumb { flex: 0 0 44px; height: 44px; border-radius: 8px; }
+}
+
+/* Zoom Controls */
+.pro-lightbox-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pro-lightbox-zoom-label {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.78rem;
+  font-weight: 500;
+  min-width: 40px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keyboard Hints */
+.pro-lightbox-hints {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.68rem;
+}
+.pro-lightbox-hints kbd {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  font-family: inherit;
+  font-size: 0.65rem;
+  margin: 0 1px;
+}
+
+@media (max-width: 768px) {
+  .pro-lightbox-hints { display: none; }
+}
+
+/* ============================================================
+   FULL BLEED IMMERSIVE - Remove rigid containers
+   ============================================================ */
+
+/* Shell: full width, no max-width constraint */
+html.theme-dark .hotel-deluxe-shell,
+html.theme-light .hotel-deluxe-shell {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Sections: full bleed edge-to-edge */
+.hotel-deluxe-section,
+.hotel-deluxe-rooms,
+.hotel-deluxe-experience,
+.hotel-deluxe-restaurant-section,
+.hotel-tour-packages-section,
+.hotel-deluxe-testimonials,
+.hotel-deluxe-amenities,
+.scene {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-inline: 0 !important;
+  padding-inline: clamp(16px, 4vw, 48px) !important;
+  border-radius: 0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+}
+
+/* Section inner content: subtle max-width for readability */
+.hotel-deluxe-section-heading,
+.hotel-deluxe-restaurant-inner,
+.hotel-deluxe-experience-heading,
+.hotel-tour-packages-heading,
+.hotel-home-testimonial-heading,
+.hotel-deluxe-rooms .hotel-deluxe-section-heading,
+.hotel-deluxe-amenities .hotel-deluxe-section-heading,
+.hotel-deluxe-testimonials .hotel-deluxe-section-heading {
+  max-width: 1400px !important;
+  margin-inline: auto !important;
+}
+
+/* Restaurant Full Bleed Immersive */
+.hotel-deluxe-restaurant-section {
+  padding-block: clamp(32px, 6vw, 80px) !important;
+}
+.hotel-deluxe-restaurant-inner {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+.hotel-deluxe-restaurant-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: clamp(16px, 2.5vw, 28px) !important;
+  max-width: 1400px !important;
+  margin-inline: auto !important;
+}
+@media (max-width: 900px) {
+  .hotel-deluxe-restaurant-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 600px) {
+  .hotel-deluxe-restaurant-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .hotel-deluxe-restaurant-card {
+    border-radius: 20px !important;
+    overflow: hidden !important;
+  }
+}
+
+/* Restaurant card images: aspect ratio + lightbox cursor */
+.hotel-deluxe-restaurant-card-image {
+  position: relative !important;
+  aspect-ratio: 4 / 3 !important;
+  overflow: hidden !important;
+  border-radius: 16px 16px 0 0 !important;
+}
+.hotel-deluxe-restaurant-card-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  cursor: zoom-in !important;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.hotel-deluxe-restaurant-card:hover .hotel-deluxe-restaurant-card-image img {
+  transform: scale(1.05) !important;
+}
+
+/* Restaurant CTA: full width */
+.hotel-deluxe-restaurant-cta-wrapper {
+  max-width: 1400px !important;
+  margin-inline: auto !important;
+  margin-top: clamp(28px, 4vw, 48px) !important;
+}
+
+/* Tour Packages: full bleed on all screens */
+.hotel-tour-packages-section {
+  padding-inline: 0 !important;
+}
+.hotel-tour-packages-grid {
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  gap: 0 !important;
+}
+.hotel-tour-package-media {
+  border-radius: 0 !important;
+  min-height: clamp(280px, 38vw, 400px) !important;
+}
+.hotel-tour-package-card {
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+.hotel-tour-package-media img {
+  cursor: zoom-in !important;
+  transition: transform 0.6s ease !important;
+}
+.hotel-tour-package-media:hover img {
+  transform: scale(1.06) !important;
+}
+
+/* Room cards: more immersive, less boxy */
+.hotel-deluxe-room-card {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+.hotel-deluxe-room-card img,
+.hotel-room-carousel-image {
+  cursor: zoom-in !important;
+  transition: transform 0.5s ease !important;
+}
+.hotel-deluxe-room-card:hover img,
+.hotel-room-carousel-media:hover .hotel-room-carousel-image {
+  transform: scale(1.04) !important;
+}
+
+/* Experience gallery: full width */
+.hotel-experience-carousel-shell {
+  max-width: 100% !important;
+  border-radius: 0 !important;
+}
+.hotel-experience-carousel-image {
+  cursor: zoom-in !important;
+  transition: transform 0.5s ease !important;
+}
+.hotel-experience-carousel-media:hover .hotel-experience-carousel-image {
+  transform: scale(1.04) !important;
+}
+
+/* Testimonial cards: softer, no hard borders */
+html.theme-light .hotel-deluxe-testimonial-card,
+html.theme-light .hotel-home-testimonial-slide {
+  border: none !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04) !important;
+}
+html.theme-dark .hotel-deluxe-testimonial-card,
+html.theme-dark .hotel-home-testimonial-slide {
+  border: none !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2) !important;
+}
+
+/* Room Gallery Section: full bleed */
+.hotel-room-gallery-section {
+  max-width: 100% !important;
+  padding-inline: clamp(16px, 4vw, 48px) !important;
+}
+.hotel-room-gallery-section .hotel-room-gallery-grid {
+  max-width: 100% !important;
+}
+
+/* Location: full bleed */
+.location-block {
+  max-width: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* Footer: full bleed */
+.hotel-deluxe-footer {
+  border-radius: 0 !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Remove all scene border-radius for immersive feel */
+.hotel-deluxe-experience,
+.hotel-deluxe-amenities {
+  border-radius: 0 !important;
+}
+
+/* Luxury spacing between sections */
+.hotel-deluxe-shell {
+  gap: 0 !important;
+}
+.hotel-deluxe-section,
+.scene {
+  padding-top: clamp(40px, 7vw, 88px) !important;
+  padding-bottom: clamp(40px, 7vw, 88px) !important;
+}
+
+/* Premium room card grid */
+.hotel-deluxe-rooms .hotel-deluxe-section-content {
+  max-width: 1400px !important;
+  margin-inline: auto !important;
+}
+
+/* Mobile drawer lightbox integration */
+.hotel-mobile-menu-drawer {
+  max-height: 100vh !important;
+  border-radius: 20px 20px 0 0 !important;
+}
+
+/* ── Clickable image overlay hint ── */
+.hotel-deluxe-restaurant-card-image::after,
+.hotel-tour-package-media::after,
+.hotel-experience-carousel-media::after,
+.hotel-room-carousel-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: rgba(0,0,0,0.25);
+  pointer-events: none;
+  z-index: 2;
+}
+.hotel-deluxe-restaurant-card-image:hover::after,
+.hotel-tour-package-media:hover::after,
+.hotel-experience-carousel-media:hover::after,
+.hotel-room-carousel-media:hover::after {
+  opacity: 1;
+}
+
+/* Smooth hover on all image containers */
+.hotel-deluxe-restaurant-card-image,
+.hotel-tour-package-media,
+.hotel-experience-carousel-media,
+.hotel-room-carousel-media {
+  position: relative !important;
+  overflow: hidden !important;
+}

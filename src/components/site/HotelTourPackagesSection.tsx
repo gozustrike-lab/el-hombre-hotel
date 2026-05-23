@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { renderBalancedSectionTitle } from "./headline-balance";
 import { HOTEL_WHATSAPP_PHONE_DIGITS, type HotelLocale } from "@/lib/hotel-experience";
 import { HotelTourPackageDetailModal } from "./HotelTourPackageDetailModal";
+import { useLightbox, type LightboxImage } from "./ProLightbox";
 
 type HotelTourPackagesSectionProps = {
   locale: HotelLocale;
@@ -51,6 +52,15 @@ export function HotelTourPackagesSection({ locale, hotelName }: HotelTourPackage
         };
   const packages = getTourPackages(copy.location, copy.badgeLabels);
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
+  const { open: openLightbox } = useLightbox();
+
+  const lightboxImages = useMemo<LightboxImage[]>(
+    () => packages.map((pkg) => ({
+      src: pkg.coverImageSrc || "",
+      alt: pkg.title,
+    })),
+    [packages],
+  );
   const [brokenCoverImages, setBrokenCoverImages] = useState<Record<string, boolean>>({});
   const activePackage = packages.find((item) => item.slug === activeSlug) || null;
 
@@ -77,7 +87,7 @@ export function HotelTourPackagesSection({ locale, hotelName }: HotelTourPackage
 
           return (
             <article className="hotel-tour-package-card" key={`${item.title}-${index + 1}`}>
-              <div className="hotel-tour-package-media">
+              <div className="hotel-tour-package-media" onClick={() => openLightbox(lightboxImages, index)} style={{ cursor: "zoom-in" }}>
                 <Image
                   alt={item.title}
                   className="hotel-tour-package-image"

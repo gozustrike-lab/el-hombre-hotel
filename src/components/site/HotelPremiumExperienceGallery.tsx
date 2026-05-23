@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { renderBalancedSectionTitle } from "./headline-balance";
 import { getHotelUi, type HotelLocale } from "@/lib/hotel-experience";
 import type { HotelExperienceGalleryItem } from "@/lib/hotel-experience-gallery";
+import { useLightbox, type LightboxImage } from "./ProLightbox";
 
 type HotelPremiumExperienceGalleryProps = {
   items: HotelExperienceGalleryItem[];
@@ -34,6 +35,12 @@ export function HotelPremiumExperienceGallery({ items, locale }: HotelPremiumExp
   const [isDragging, setIsDragging] = useState(false);
   const [step, setStep] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const { open: openLightbox } = useLightbox();
+
+  const lightboxImages = useMemo<LightboxImage[]>(
+    () => items.map((item) => ({ src: item.src, alt: item.alt })),
+    [items],
+  );
 
   const labels = useMemo(
     () => ({
@@ -337,7 +344,7 @@ export function HotelPremiumExperienceGallery({ items, locale }: HotelPremiumExp
                   data-experience-slide
                   key={`${currentGroup.areaKey}-${item.id}`}
                 >
-                  <div className="hotel-experience-carousel-media">
+                  <div className="hotel-experience-carousel-media" onClick={() => openLightbox(lightboxImages, items.indexOf(item))} style={{ cursor: "zoom-in" }}>
                     <Image
                       alt={item.alt}
                       className="hotel-experience-carousel-image"
