@@ -135,6 +135,7 @@ export function HotelPremiumTestimonials({ items, locale, subtitle, title }: Hot
                 </div>
 
                 <div className="hotel-home-testimonial-content">
+                  <span className="hotel-home-testimonial-quote-glyph" aria-hidden="true">&ldquo;</span>
                   <div className="hotel-home-testimonial-stars" aria-label={`${item.rating} ${ui.testimonials.starsLabel}`}>
                     {Array.from({ length: 5 }, (_, starIndex) => (
                       <span className={starIndex < Math.round(item.rating) ? "is-filled" : ""} key={`${item.name}-${starIndex}`}>

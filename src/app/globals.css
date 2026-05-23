@@ -24472,3 +24472,302 @@ html.theme-light .eh-header__nav a::after {
 .hotel-social-section a:hover {
   transform: translateY(-4px) scale(1.05) !important;
 }
+
+/* === v4.0 IMMERSIVE FLUID DESIGN === */
+
+/* A. Kill ALL card borders and backgrounds across sections */
+
+/* Restaurant: kill card containers */
+.hotel-deluxe-restaurant-inner {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  padding-block: clamp(48px, 6vw, 80px) !important;
+  padding-inline: clamp(16px, 3vw, 24px) !important;
+}
+
+.hotel-deluxe-restaurant-card {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.hotel-deluxe-restaurant-card-image {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.hotel-deluxe-restaurant-card:hover {
+  transform: none !important;
+  border-color: transparent !important;
+}
+
+/* B. Kill room card containers */
+.hotel-deluxe-room-card {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+/* C. Kill tour package card wrappers */
+.hotel-tour-package-card {
+  overflow: visible !important;
+}
+
+/* D. Testimonials floating quotes */
+.hotel-home-testimonial-slide {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.hotel-home-testimonial-content {
+  position: relative;
+}
+
+.hotel-home-testimonial-quote-glyph {
+  position: absolute;
+  top: -48px;
+  left: -16px;
+  font-size: clamp(140px, 14vw, 220px);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+.theme-light .hotel-home-testimonial-quote-glyph {
+  color: rgba(184, 115, 51, 0.05);
+}
+
+.theme-dark .hotel-home-testimonial-quote-glyph {
+  color: rgba(212, 165, 116, 0.07);
+}
+
+.hotel-home-testimonial-content blockquote {
+  position: relative;
+  z-index: 1;
+}
+
+/* Light mode quote */
+.theme-light .hotel-home-testimonial-content::before {
+  color: rgba(184, 115, 51, 0.06);
+}
+
+/* Dark mode quote */
+.theme-dark .hotel-home-testimonial-content::before {
+  color: rgba(212, 165, 116, 0.1);
+}
+
+/* E. Fluid chromatic sections - ensure all .scene sections have transparent/continuous backgrounds */
+.scene,
+.hotel-deluxe-section {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.scene::before,
+.scene::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Remove any card-like panels */
+.hotel-home-testimonial-media-panel {
+  border: none !important;
+  border-radius: 16px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* F. Light mode specific overrides for immersive feel */
+.theme-light .hotel-deluxe-restaurant-section {
+  background: transparent !important;
+}
+
+.theme-light .hotel-deluxe-restaurant-card-body {
+  padding: 16px 0 !important;
+}
+
+.theme-light .hotel-deluxe-restaurant-card-title {
+  color: #1a1a1a !important;
+}
+
+.theme-light .hotel-deluxe-restaurant-card-desc {
+  color: rgba(40, 40, 40, 0.7) !important;
+}
+
+.theme-light .hotel-deluxe-restaurant-card-price {
+  background: rgba(184, 115, 51, 0.08) !important;
+  border-color: rgba(184, 115, 51, 0.2) !important;
+  color: #b87333 !important;
+}
+
+.theme-light .hotel-deluxe-restaurant-add-btn {
+  background: rgba(184, 115, 51, 0.06) !important;
+  border-color: rgba(184, 115, 51, 0.2) !important;
+  color: #b87333 !important;
+}
+
+.theme-light .hotel-deluxe-restaurant-chip {
+  background: rgba(184, 115, 51, 0.06) !important;
+  border-color: rgba(184, 115, 51, 0.2) !important;
+  color: #b87333 !important;
+}
+
+.theme-light .hotel-deluxe-restaurant-title {
+  color: #111 !important;
+}
+
+.theme-light .hotel-deluxe-restaurant-subtitle {
+  color: rgba(40, 40, 40, 0.65) !important;
+}
+
+.theme-light .hotel-deluxe-room-body strong {
+  color: #111 !important;
+}
+
+.theme-light .hotel-deluxe-room-body p {
+  color: rgba(40, 40, 40, 0.7) !important;
+}
+
+.theme-light .hotel-home-testimonial-content blockquote {
+  color: rgba(40, 40, 40, 0.8) !important;
+}
+
+.theme-light .hotel-home-testimonial-footer strong {
+  color: #111 !important;
+}
+
+.theme-light .hotel-home-testimonial-footer p,
+.theme-light .hotel-home-testimonial-footer span {
+  color: rgba(40, 40, 40, 0.6) !important;
+}
+
+.theme-light .hotel-deluxe-section-heading h2 {
+  color: #111 !important;
+}
+
+.theme-light .hotel-deluxe-section-heading p {
+  color: rgba(40, 40, 40, 0.6) !important;
+}
+
+.theme-light .scene-chip {
+  background: rgba(184, 115, 51, 0.06) !important;
+  border-color: rgba(184, 115, 51, 0.15) !important;
+  color: #b87333 !important;
+}
+
+/* G. Dark mode immersive - ensure continuous dark bg */
+.theme-dark .hotel-deluxe-restaurant-section {
+  background: transparent !important;
+}
+
+.theme-dark .hotel-deluxe-restaurant-card-title {
+  color: #f8f4ea !important;
+}
+
+.theme-dark .hotel-deluxe-restaurant-card-desc {
+  color: rgba(249, 245, 237, 0.6) !important;
+}
+
+.theme-dark .hotel-home-testimonial-content blockquote {
+  color: rgba(249, 245, 237, 0.8) !important;
+}
+
+.theme-dark .hotel-home-testimonial-footer strong {
+  color: #f8f4ea !important;
+}
+
+.theme-dark .hotel-home-testimonial-footer p,
+.theme-dark .hotel-home-testimonial-footer span {
+  color: rgba(249, 245, 237, 0.55) !important;
+}
+
+.theme-dark .hotel-deluxe-section-heading h2 {
+  color: #f8f4ea !important;
+}
+
+.theme-dark .hotel-deluxe-section-heading p {
+  color: rgba(249, 245, 237, 0.6) !important;
+}
+
+.theme-dark .scene-chip {
+  background: rgba(184, 115, 51, 0.1) !important;
+  border-color: rgba(184, 115, 51, 0.25) !important;
+  color: #d4a574 !important;
+}
+
+/* H. Smooth transitions for theme switching */
+.hotel-deluxe-restaurant-card,
+.hotel-deluxe-restaurant-inner,
+.hotel-deluxe-room-card,
+.hotel-home-testimonial-slide,
+.hotel-deluxe-restaurant-card-title,
+.hotel-deluxe-restaurant-card-desc,
+.hotel-deluxe-section-heading h2,
+.hotel-deluxe-section-heading p,
+.hotel-home-testimonial-content blockquote,
+.hotel-home-testimonial-footer strong,
+.hotel-home-testimonial-footer p,
+.hotel-home-testimonial-footer span,
+.scene-chip,
+.hotel-deluxe-restaurant-chip,
+.hotel-deluxe-restaurant-title,
+.hotel-deluxe-restaurant-subtitle,
+.hotel-deluxe-restaurant-card-price,
+.hotel-deluxe-restaurant-add-btn,
+.hotel-deluxe-room-body strong,
+.hotel-deluxe-room-body p {
+  transition: color 0.5s ease-in-out, background 0.5s ease-in-out, border-color 0.5s ease-in-out !important;
+}
+
+/* I. Restaurant grid more generous spacing */
+.hotel-deluxe-restaurant-grid {
+  gap: clamp(24px, 4vw, 48px) !important;
+}
+
+.hotel-deluxe-restaurant-grid .hotel-deluxe-restaurant-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .hotel-deluxe-restaurant-grid .hotel-deluxe-restaurant-card {
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .hotel-deluxe-restaurant-grid .hotel-deluxe-restaurant-card:nth-child(even) {
+    grid-template-columns: 1fr 280px;
+  }
+
+  .hotel-deluxe-restaurant-grid .hotel-deluxe-restaurant-card:nth-child(even) .hotel-deluxe-restaurant-card-image {
+    order: 2;
+  }
+}
+
+/* J. Section spacing for fluid flow */
+.hotel-deluxe-restaurant-section,
+.hotel-tour-packages-section,
+.hotel-deluxe-rooms,
+.hotel-deluxe-testimonials,
+.hotel-deluxe-amenities {
+  padding-block: clamp(48px, 7vw, 96px) !important;
+}
+
+.hotel-deluxe-restaurant-cta-wrapper {
+  margin-top: clamp(32px, 4vw, 56px) !important;
+}
