@@ -7,6 +7,7 @@ import { HotelBookingBar } from "./HotelBookingBar";
 import { HotelHeroShowcase } from "./HotelHeroShowcase";
 import type { HotelLocale } from "@/lib/hotel-experience";
 import { getHotelUi } from "@/lib/hotel-experience";
+import { ScrollReveal, StaggerChildren, StaggerItem, ScaleIn, Sparkles, AuroraBg } from "./MagicEffects";
 
 type HeroBenefit = {
   icon: "air" | "breakfast" | "dining" | "parking" | "pool" | "reception" | "restobar" | "wifi" | "workspace";
@@ -46,55 +47,71 @@ export function HotelPremiumHero({
         <HotelHeroShowcase slides={slides} />
         <div className="hotel-deluxe-hero-overlay hotel-home-hero-overlay" aria-hidden="true" />
         <div className="hotel-deluxe-hero-atmo hotel-home-hero-atmo" aria-hidden="true" />
+        <AuroraBg colors={["#d4a57433", "#b8733322", "#0A162844", "#1a3a5c33"]} speed={8} />
 
         <div className="hotel-deluxe-hero-inner hotel-home-hero-layout hotel-home-hero-layout-centered">
           <div className="hotel-deluxe-hero-content hotel-home-hero-copy hotel-home-hero-copy-centered">
-            <span className="scene-chip hotel-deluxe-hero-chip">{heroTag}</span>
-            <span className="hotel-deluxe-hero-kicker">{ui.hero.directKicker}</span>
+            <ScrollReveal delay={0.3}>
+              <span className="scene-chip hotel-deluxe-hero-chip" style={{ position: "relative", display: "inline-flex" }}>
+                {heroTag}
+                <Sparkles color="#d4a574" count={3} />
+              </span>
+            </ScrollReveal>
+            <ScrollReveal delay={0.5}>
+              <span className="hotel-deluxe-hero-kicker">{ui.hero.directKicker}</span>
+            </ScrollReveal>
 
-            <div className="hotel-home-hero-copyblock">
-              <p className="hotel-home-hero-brand">{brandName}</p>
-              <h1 className="hotel-deluxe-hero-title hotel-home-hero-title">
-                <strong>{heroHeadline}</strong>
-              </h1>
-            </div>
-
-            <div className="hotel-deluxe-hero-actions hotel-home-hero-actions">
-              <a className="primary-button hotel-deluxe-whatsapp-button hotel-home-hero-primary" href={reservationHref}>
-                {ui.hero.primaryCta}
-              </a>
-              <a className="secondary-button hotel-deluxe-ghost-button" href={detailsHref}>
-                {ui.hero.secondaryCta}
-              </a>
-            </div>
-
-            <div className="hotel-deluxe-booking-shell hotel-home-reservation-card hotel-home-reservation-card-inline">
-              <div className="hotel-deluxe-booking-head hotel-home-reservation-head">
-                <span className="hotel-deluxe-booking-kicker">{ui.hero.bookingKicker}</span>
-                <p>{ui.hero.bookingDescription}</p>
+            <ScrollReveal delay={0.7}>
+              <div className="hotel-home-hero-copyblock">
+                <p className="hotel-home-hero-brand">{brandName}</p>
+                <h1 className="hotel-deluxe-hero-title hotel-home-hero-title">
+                  <strong>{heroHeadline}</strong>
+                </h1>
               </div>
-              <HotelBookingBar
-                bookingWidget={bookingWidget}
-                brandName={brandName}
-                contactPhone={contactPhone}
-                locale={locale}
-                whatsappIntent="hero"
-              />
-            </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={1.0}>
+              <div className="hotel-deluxe-hero-actions hotel-home-hero-actions">
+                <a className="primary-button hotel-deluxe-whatsapp-button hotel-home-hero-primary" href={reservationHref}>
+                  {ui.hero.primaryCta}
+                </a>
+                <a className="secondary-button hotel-deluxe-ghost-button" href={detailsHref}>
+                  {ui.hero.secondaryCta}
+                </a>
+              </div>
+            </ScrollReveal>
+
+            <ScaleIn delay={1.3}>
+              <div className="hotel-deluxe-booking-shell hotel-home-reservation-card hotel-home-reservation-card-inline">
+                <div className="hotel-deluxe-booking-head hotel-home-reservation-head">
+                  <span className="hotel-deluxe-booking-kicker">{ui.hero.bookingKicker}</span>
+                  <p>{ui.hero.bookingDescription}</p>
+                </div>
+                <HotelBookingBar
+                  bookingWidget={bookingWidget}
+                  brandName={brandName}
+                  contactPhone={contactPhone}
+                  locale={locale}
+                  whatsappIntent="hero"
+                />
+              </div>
+            </ScaleIn>
           </div>
         </div>
       </div>
 
-      <div className="hotel-home-benefits-strip" aria-label={locale === "en" ? "Main hotel benefits" : "Beneficios principales del hotel"}>
+      <StaggerChildren className="hotel-home-benefits-strip" staggerDelay={0.06}>
         {benefits.map((benefit) => (
-          <article className="hotel-home-benefit-item" key={benefit.label}>
-            <span className="hotel-home-benefit-icon" aria-hidden="true">
-              <HeroBenefitIcon kind={benefit.icon} />
-            </span>
-            <strong>{benefit.label}</strong>
-          </article>
+          <StaggerItem key={benefit.label}>
+            <article className="hotel-home-benefit-item">
+              <span className="hotel-home-benefit-icon" aria-hidden="true">
+                <HeroBenefitIcon kind={benefit.icon} />
+              </span>
+              <strong>{benefit.label}</strong>
+            </article>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerChildren>
 
       <style jsx global>{`
         .page-shell.mode-reference-clone-hotel .hotel-deluxe-hero-stage .hotel-reference-hero-slide {

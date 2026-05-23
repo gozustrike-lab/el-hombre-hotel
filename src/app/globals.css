@@ -24240,3 +24240,235 @@ html.theme-dark .hotel-home-testimonial-slide {
   position: relative !important;
   overflow: hidden !important;
 }
+
+/* ============================================================
+   MAGIC EFFECTS - Motion Animations Enhancement
+   ============================================================ */
+
+/* Scroll reveal base - elements animate when they enter viewport */
+.hotel-deluxe-section-heading,
+.hotel-tour-packages-heading,
+.hotel-home-testimonial-heading,
+.hotel-deluxe-experience-heading,
+.hotel-deluxe-restaurant-header,
+.hotel-deluxe-restaurant-grid .hotel-deluxe-restaurant-card,
+.hotel-deluxe-rooms .hotel-deluxe-room-card,
+.hotel-tour-packages-grid .hotel-tour-package-card,
+.hotel-deluxe-testimonial-card,
+.hotel-home-testimonial-slide,
+.hotel-home-amenity-item,
+.hotel-deluxe-amenity-card,
+.hotel-deluxe-experience-card,
+.hotel-experience-carousel-slide,
+.hotel-deluxe-benefit-card,
+.hotel-deluxe-footer,
+.location-block {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Smooth section fade-in using animation */
+@keyframes magicFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes magicFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes magicScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes magicShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes magicFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes magicPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes magicGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(212,165,116,0.2); }
+  50% { box-shadow: 0 0 40px rgba(212,165,116,0.4); }
+}
+
+/* Floating subtle animation for cards */
+.hotel-deluxe-room-card,
+.hotel-deluxe-experience-card {
+  animation: magicFloat 6s ease-in-out infinite !important;
+}
+.hotel-deluxe-room-card:nth-child(2),
+.hotel-deluxe-experience-card:nth-child(2) {
+  animation-delay: 1s !important;
+}
+.hotel-deluxe-room-card:nth-child(3),
+.hotel-deluxe-experience-card:nth-child(3) {
+  animation-delay: 2s !important;
+}
+
+/* Benefit strip shimmer */
+.hotel-home-benefit-item {
+  animation: magicPulse 3s ease-in-out infinite !important;
+}
+.hotel-home-benefit-item:nth-child(2) { animation-delay: 0.3s !important; }
+.hotel-home-benefit-item:nth-child(3) { animation-delay: 0.6s !important; }
+.hotel-home-benefit-item:nth-child(4) { animation-delay: 0.9s !important; }
+.hotel-home-benefit-item:nth-child(5) { animation-delay: 1.2s !important; }
+
+/* Shimmer effect on CTA buttons */
+.eh-header__cta,
+.hotel-deluxe-restaurant-cta-full,
+.hotel-deluxe-cart-whatsapp-btn,
+.hotel-home-hero-primary {
+  background-size: 200% 100% !important;
+  animation: magicShimmer 3s ease-in-out infinite !important;
+}
+
+/* Glow on WhatsApp FAB */
+.hotel-deluxe-cart-fab {
+  animation: magicGlow 2s ease-in-out infinite !important;
+}
+
+/* Parallax subtle on hero background */
+.hotel-reference-hero-slide-media {
+  will-change: transform !important;
+}
+
+/* Smooth entrance for section headings */
+.hotel-deluxe-section-heading,
+.hotel-tour-packages-heading,
+.hotel-deluxe-experience-heading,
+.hotel-deluxe-restaurant-header {
+  animation: magicFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+
+/* Experience carousel - smooth entrance */
+.hotel-experience-carousel-shell {
+  animation: magicFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+  animation-delay: 0.1s !important;
+}
+
+/* Tour packages - staggered entrance */
+.hotel-tour-package-card:nth-child(1) { animation: magicFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0s !important; }
+.hotel-tour-package-card:nth-child(2) { animation: magicFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.1s !important; }
+.hotel-tour-package-card:nth-child(3) { animation: magicFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.2s !important; }
+.hotel-tour-package-card:nth-child(4) { animation: magicFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.3s !important; }
+.hotel-tour-package-card:nth-child(5) { animation: magicFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.4s !important; }
+.hotel-tour-package-card:nth-child(6) { animation: magicFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.5s !important; }
+
+/* Restaurant cards - staggered */
+.hotel-deluxe-restaurant-card:nth-child(1) { animation: magicScaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0s !important; }
+.hotel-deluxe-restaurant-card:nth-child(2) { animation: magicScaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.15s !important; }
+.hotel-deluxe-restaurant-card:nth-child(3) { animation: magicScaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.3s !important; }
+
+/* Testimonial cards - slide in */
+.hotel-deluxe-testimonial-card,
+.hotel-home-testimonial-slide {
+  animation: magicFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+
+/* Room cards - elegant entrance */
+.hotel-deluxe-room-card {
+  animation: magicScaleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+.hotel-deluxe-room-card:nth-child(2) { animation-delay: 0.12s !important; }
+.hotel-deluxe-room-card:nth-child(3) { animation-delay: 0.24s !important; }
+
+/* Amenity items - staggered */
+.hotel-home-amenity-item:nth-child(1) { animation: magicFadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0s !important; }
+.hotel-home-amenity-item:nth-child(2) { animation: magicFadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.08s !important; }
+.hotel-home-amenity-item:nth-child(3) { animation: magicFadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.16s !important; }
+.hotel-home-amenity-item:nth-child(4) { animation: magicFadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important; animation-delay: 0.24s !important; }
+
+/* Footer smooth entrance */
+.hotel-deluxe-footer {
+  animation: magicFadeIn 1s ease both !important;
+}
+
+/* Location block entrance */
+.location-block {
+  animation: magicFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+
+/* Nav links hover effect */
+.eh-header__nav a {
+  position: relative !important;
+  overflow: hidden !important;
+}
+.eh-header__nav a::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: 4px !important;
+  left: 50% !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, #d4a574, #b87333) !important;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  transform: translateX(-50%) !important;
+  border-radius: 2px !important;
+}
+.eh-header__nav a:hover::after {
+  width: 60% !important;
+}
+html.theme-light .eh-header__nav a::after {
+  background: linear-gradient(90deg, #b87333, #8B5E28) !important;
+}
+
+/* Image hover ripple effect */
+.hotel-deluxe-restaurant-card-image::before,
+.hotel-tour-package-media::before,
+.hotel-experience-carousel-media::before,
+.hotel-room-carousel-media::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%), rgba(212,165,116,0.15) 0%, transparent 60%) !important;
+  opacity: 0 !important;
+  transition: opacity 0.4s ease !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+}
+.hotel-deluxe-restaurant-card-image:hover::before,
+.hotel-tour-package-media:hover::before,
+.hotel-experience-carousel-media:hover::before,
+.hotel-room-carousel-media:hover::before {
+  opacity: 1 !important;
+}
+
+/* Price badge pulse */
+.hotel-deluxe-restaurant-card-price {
+  animation: magicPulse 4s ease-in-out infinite !important;
+}
+
+/* Social links hover */
+.hotel-social-section a {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.hotel-social-section a:hover {
+  transform: translateY(-4px) scale(1.05) !important;
+}
