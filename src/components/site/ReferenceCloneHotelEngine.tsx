@@ -255,7 +255,6 @@ export function ReferenceCloneHotelEngine({
         />
 
         <HotelPremiumHero
-          benefits={benefits}
           bookingWidget={bookingWidget}
           brandName={displayBrandName}
           contactPhone={contactPhone}

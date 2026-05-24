@@ -1,13 +1,13 @@
 "use client";
 
-import { Clock3, Coffee, GlassWater, Monitor, Snowflake, SquareParking, UtensilsCrossed, Waves, Wifi } from "lucide-react";
+import { Coffee, Snowflake, SquareParking, UtensilsCrossed, Waves, Wifi, Monitor, GlassWater, Clock3 } from "lucide-react";
 import type { SiteContent } from "@/types/site";
 import type { HotelHeroSlide } from "./HotelHeroShowcase";
 import { HotelBookingBar } from "./HotelBookingBar";
 import { HotelHeroShowcase } from "./HotelHeroShowcase";
 import type { HotelLocale } from "@/lib/hotel-experience";
 import { getHotelUi } from "@/lib/hotel-experience";
-import { ScrollReveal, ScaleIn, Sparkles } from "./MagicEffects";
+import { ScrollReveal, Sparkles } from "./MagicEffects";
 
 type HeroBenefit = {
   icon: "air" | "breakfast" | "dining" | "parking" | "pool" | "reception" | "restobar" | "wifi" | "workspace";
@@ -15,7 +15,7 @@ type HeroBenefit = {
 };
 
 type HotelPremiumHeroProps = {
-  benefits: HeroBenefit[];
+  benefits?: HeroBenefit[];
   bookingWidget: NonNullable<SiteContent["bookingWidget"]>;
   brandName: string;
   contactPhone: string;
@@ -41,85 +41,53 @@ export function HotelPremiumHero({
   const ui = getHotelUi(locale);
 
   return (
-    <section className="hotel-deluxe-hero-shell hotel-home-hero" id="inicio">
-      <div className="hotel-deluxe-hero-stage hotel-home-hero-stage">
+    <section className="hero-fullbleed-section" id="inicio">
+      <div className="hero-fullbleed-stage">
         <HotelHeroShowcase slides={slides} />
-        {/* Subtle uniform overlay — no heavy gradients */}
-        <div className="hotel-deluxe-hero-overlay hotel-home-hero-overlay" aria-hidden="true" />
+        <div className="hero-fullbleed-overlay" aria-hidden="true" />
+      </div>
 
-        <div className="hotel-deluxe-hero-inner hotel-home-hero-layout hotel-home-hero-layout-centered">
-          <div className="hotel-deluxe-hero-content hotel-home-hero-copy hotel-home-hero-copy-centered">
-            <ScrollReveal delay={0.3}>
-              <span className="scene-chip hotel-deluxe-hero-chip" style={{ position: "relative", display: "inline-flex" }}>
-                {heroTag}
-                <Sparkles color="#d4a574" count={3} />
-              </span>
-            </ScrollReveal>
-            <ScrollReveal delay={0.5}>
-              <span className="hotel-deluxe-hero-kicker">{ui.hero.directKicker}</span>
-            </ScrollReveal>
+      <div className="hero-fullbleed-content">
+        <ScrollReveal delay={0.3}>
+          <span className="hero-fullbleed-chip">
+            {heroTag}
+            <Sparkles color="#d4a574" count={3} />
+          </span>
+        </ScrollReveal>
 
-            <ScrollReveal delay={0.7}>
-              <div className="hotel-home-hero-copyblock">
-                <p className="hotel-home-hero-brand">{brandName}</p>
-                <h1 className="hotel-deluxe-hero-title hotel-home-hero-title">
-                  <strong>{heroHeadline}</strong>
-                </h1>
-              </div>
-            </ScrollReveal>
+        <ScrollReveal delay={0.5}>
+          <span className="hero-fullbleed-kicker">{ui.hero.directKicker}</span>
+        </ScrollReveal>
 
-            <ScrollReveal delay={1.0}>
-              <div className="hotel-deluxe-hero-actions hotel-home-hero-actions">
-                <a className="primary-button hotel-deluxe-whatsapp-button hotel-home-hero-primary" href={reservationHref}>
-                  {ui.hero.primaryCta}
-                </a>
-                <a className="secondary-button hotel-deluxe-ghost-button" href={detailsHref}>
-                  {ui.hero.secondaryCta}
-                </a>
-              </div>
-            </ScrollReveal>
-
-            <ScaleIn delay={1.3}>
-              <div className="hotel-deluxe-booking-shell hotel-home-reservation-card hotel-home-reservation-card-inline">
-                <div className="hotel-deluxe-booking-head hotel-home-reservation-head">
-                  <span className="hotel-deluxe-booking-kicker">{ui.hero.bookingKicker}</span>
-                  <p>{ui.hero.bookingDescription}</p>
-                </div>
-                <HotelBookingBar
-                  bookingWidget={bookingWidget}
-                  brandName={brandName}
-                  contactPhone={contactPhone}
-                  locale={locale}
-                  whatsappIntent="hero"
-                />
-              </div>
-            </ScaleIn>
+        <ScrollReveal delay={0.7}>
+          <div className="hero-fullbleed-textblock">
+            <p className="hero-fullbleed-brand">{brandName}</p>
+            <h1 className="hero-fullbleed-title">{heroHeadline}</h1>
           </div>
-        </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={1.0}>
+          <div className="hero-fullbleed-actions">
+            <a className="hero-cta-primary" href={reservationHref}>
+              {ui.hero.primaryCta}
+            </a>
+            <a className="hero-cta-secondary" href={detailsHref}>
+              {ui.hero.secondaryCta}
+            </a>
+          </div>
+        </ScrollReveal>
+      </div>
+
+      <div className="hero-booking-float">
+        <HotelBookingBar
+          bookingWidget={bookingWidget}
+          brandName={brandName}
+          contactPhone={contactPhone}
+          hideNotes
+          locale={locale}
+          whatsappIntent="hero"
+        />
       </div>
     </section>
   );
-}
-
-function HeroBenefitIcon({ kind }: { kind: HeroBenefit["icon"] }) {
-  switch (kind) {
-    case "breakfast":
-      return <Coffee size={16} strokeWidth={1.8} />;
-    case "wifi":
-      return <Wifi size={16} strokeWidth={1.8} />;
-    case "pool":
-      return <Waves size={16} strokeWidth={1.8} />;
-    case "air":
-      return <Snowflake size={16} strokeWidth={1.8} />;
-    case "workspace":
-      return <Monitor size={16} strokeWidth={1.8} />;
-    case "parking":
-      return <SquareParking size={16} strokeWidth={1.8} />;
-    case "dining":
-      return <UtensilsCrossed size={16} strokeWidth={1.8} />;
-    case "restobar":
-      return <GlassWater size={16} strokeWidth={1.8} />;
-    default:
-      return <Clock3 size={16} strokeWidth={1.8} />;
-  }
 }
