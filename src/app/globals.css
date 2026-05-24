@@ -24773,11 +24773,11 @@ html.theme-light .eh-header__nav a::after {
 }
 
 /* ============================================================
-   V4.0 — ULTRA-IMMERSIVE HERO & FLOATING NAVBAR
-   Full Bleed · Zero Gradients · Transparent Navbar
+   V4.1 — ULTRA-IMMERSIVE HERO & HORIZONTAL BOOKING BAR
+   True Full Bleed · Horizontal Bar · Transparent Navbar
    ============================================================ */
 
-/* ── HERO: 100% Full Bleed — Zero Margins ── */
+/* ── BREAK PARENT CONTAINERS: page-shell & hotel-deluxe-shell ── */
 .page-shell.mode-reference-clone-hotel .hotel-deluxe-hero-shell,
 .page-shell .hotel-deluxe-hero-shell,
 .hotel-deluxe-hero-shell {
@@ -24828,7 +24828,7 @@ html.theme-light .eh-header__nav a::after {
   background: transparent !important;
 }
 
-/* ── HERO OVERLAY: Subtle uniform dark veil (replaces heavy gradients) ── */
+/* ── HERO OVERLAY: Subtle uniform dark veil ── */
 .page-shell.mode-reference-clone-hotel .hotel-home-hero-overlay,
 .page-shell.mode-reference-clone-hotel .hotel-deluxe-hero-overlay,
 .hotel-deluxe-hero-overlay,
@@ -24852,7 +24852,14 @@ html.theme-light .eh-header__nav a::after {
   background: transparent !important;
 }
 
-/* ── HERO INNER: Full height centered layout ── */
+/* ── AURORA BG: Kill decorative effects on hero ── */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-hero-stage .aurora-bg,
+.hotel-deluxe-hero-stage .aurora-bg,
+.hotel-home-hero-stage .aurora-bg {
+  display: none !important;
+}
+
+/* ── HERO INNER: Full height centered, text breathes freely ── */
 .page-shell.mode-reference-clone-hotel .hotel-home-hero-layout,
 .page-shell.mode-reference-clone-hotel .hotel-home-hero-layout-centered,
 .page-shell.mode-reference-clone-hotel .hotel-deluxe-hero-inner,
@@ -24872,14 +24879,8 @@ html.theme-light .eh-header__nav a::after {
   justify-content: center !important;
   text-align: center !important;
   gap: 20px !important;
-}
-
-/* Top padding for navbar clearance */
-.hotel-deluxe-hero-inner,
-.hotel-home-hero-layout,
-.hotel-home-hero-layout-centered {
   padding-top: 80px !important;
-  padding-bottom: 120px !important;
+  padding-bottom: 160px !important;
   box-sizing: border-box !important;
 }
 
@@ -24909,7 +24910,7 @@ html.theme-light .eh-header__nav a::after {
   gap: 12px !important;
 }
 
-/* ── HERO TITLE — no text shadow, pure white ── */
+/* ── HERO TITLE — pure white, no shadow ── */
 .page-shell.mode-reference-clone-hotel .hotel-home-hero-title strong,
 .hotel-home-hero-title strong,
 .hotel-deluxe-hero-title strong {
@@ -24948,99 +24949,16 @@ html.theme-light .eh-header__nav a::after {
   flex-wrap: wrap !important;
 }
 
-/* ── BOOKING SHELL: Futuristic floating block at bottom ── */
-.page-shell.mode-reference-clone-hotel .hotel-home-reservation-card-inline,
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-booking-shell,
-.hotel-deluxe-booking-shell,
-.hotel-home-reservation-card-inline {
-  position: fixed !important;
-  bottom: 24px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 50 !important;
-  width: min(92%, 580px) !important;
-  margin: 0 !important;
-  padding: 16px 20px !important;
-  border-radius: 20px !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  background: rgba(10, 22, 40, 0.72) !important;
-  backdrop-filter: blur(20px) saturate(1.4) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
-  box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset !important;
-  color: #f0ece4 !important;
-}
-
-/* Booking shell head */
-.page-shell.mode-reference-clone-hotel .hotel-home-reservation-head,
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-booking-head,
-.hotel-deluxe-booking-head,
-.hotel-home-reservation-head {
-  display: none !important;
-}
-
-/* Booking bar inner */
-.hotel-deluxe-booking-shell .hotel-reference-booking-bar {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 10px !important;
-}
-
-/* Booking fields — glass style */
-.hotel-deluxe-booking-shell .hotel-reference-booking-field {
-  border-radius: 14px !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-  color: #f0ece4 !important;
-}
-
-.hotel-deluxe-booking-shell .hotel-reference-booking-field:hover,
-.hotel-deluxe-booking-shell .hotel-reference-booking-field:focus-within {
-  border-color: rgba(212, 165, 116, 0.4) !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-}
-
-.hotel-deluxe-booking-shell .hotel-reference-booking-field span,
-.hotel-deluxe-booking-shell .hotel-reference-booking-field label {
-  color: rgba(255, 248, 234, 0.65) !important;
-}
-
-.hotel-deluxe-booking-shell .hotel-reference-booking-input input,
-.hotel-deluxe-booking-shell .hotel-reference-booking-input select {
-  color: #fff !important;
-  background: transparent !important;
-}
-
-.hotel-deluxe-booking-shell .hotel-reference-booking-input input::placeholder,
-.hotel-deluxe-booking-shell .hotel-reference-booking-input small {
-  color: rgba(255, 248, 234, 0.45) !important;
-}
-
-.hotel-deluxe-booking-shell .hotel-reference-booking-button {
-  border-radius: 14px !important;
-  background: linear-gradient(135deg, #b87333, #8B5E28) !important;
-  border: none !important;
-  color: #fff !important;
-  font-weight: 600 !important;
-  box-shadow: 0 8px 24px rgba(184, 115, 51, 0.3) !important;
-}
-
-/* Hide booking from flow (since it's now fixed) */
-.hotel-home-hero-copy .hotel-deluxe-booking-shell,
-.hotel-home-hero-copy .hotel-home-reservation-card-inline {
-  position: fixed !important;
-}
-
-/* ── BENEFITS STRIP: Hidden in hero (moved to floating booking) ── */
+/* ── BENEFITS STRIP: Hidden ── */
 .page-shell.mode-reference-clone-hotel .hotel-home-benefits-strip,
 .hotel-home-benefits-strip {
   display: none !important;
 }
 
-/* ── HERO SLIDES: Full bleed images ── */
+/* ── HERO SLIDES: Full bleed images — cover all edges ── */
 .hotel-deluxe-hero-stage .hotel-reference-hero-slides,
 .hotel-deluxe-hero-stage .hotel-reference-hero-slide {
+  position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
@@ -25052,18 +24970,170 @@ html.theme-light .eh-header__nav a::after {
 }
 
 .hotel-deluxe-hero-stage .hotel-reference-hero-slide img,
-.hotel-deluxe-hero-stage .hotel-reference-hero-slide-media {
+.hotel-deluxe-hero-stage .hotel-reference-hero-slide-media,
+.hotel-deluxe-hero-stage .hotel-reference-hero-slide-picture {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
+  object-position: center center !important;
   border-radius: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
+  display: block !important;
 }
 
-/* Kill thumbs (floating booking replaces them) */
+/* Kill thumbs */
 .hotel-deluxe-hero-stage .hotel-reference-hero-thumbs {
   display: none !important;
+}
+
+/* ── BOOKING SHELL: HORIZONTAL BAR — absolute inside hero ── */
+.page-shell.mode-reference-clone-hotel .hotel-home-reservation-card-inline,
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-booking-shell,
+.hotel-deluxe-booking-shell,
+.hotel-home-reservation-card-inline {
+  position: absolute !important;
+  bottom: 40px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 20 !important;
+  width: min(96%, 1100px) !important;
+  max-width: 1100px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(10, 22, 40, 0.4) !important;
+  backdrop-filter: blur(24px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  color: #f0ece4 !important;
+}
+
+/* Booking shell head — hidden */
+.page-shell.mode-reference-clone-hotel .hotel-home-reservation-head,
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-booking-head,
+.hotel-deluxe-booking-head,
+.hotel-home-reservation-head {
+  display: none !important;
+}
+
+/* ── BOOKING BAR: HORIZONTAL LAYOUT (PC/Tablet) ── */
+.hotel-deluxe-booking-shell .hotel-reference-booking-bar {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  width: 100% !important;
+  padding: 10px 16px !important;
+  height: auto !important;
+}
+
+/* ── BOOKING FIELDS: Compact horizontal cells ── */
+.hotel-deluxe-booking-shell .hotel-reference-booking-field,
+.hotel-deluxe-booking-shell .hotel-reference-booking-input {
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #f0ece4 !important;
+  padding: 6px 10px !important;
+  margin: 0 !important;
+}
+
+.hotel-deluxe-booking-shell .hotel-reference-booking-field:hover,
+.hotel-deluxe-booking-shell .hotel-reference-booking-field:focus-within {
+  border-color: rgba(212, 165, 116, 0.4) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.hotel-deluxe-booking-shell .hotel-reference-booking-field span,
+.hotel-deluxe-booking-shell .hotel-deluxe-booking-label-row span {
+  color: rgba(255, 248, 234, 0.55) !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+}
+
+.hotel-deluxe-booking-shell .hotel-deluxe-booking-label-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 4px !important;
+  margin-bottom: 2px !important;
+}
+
+.hotel-deluxe-booking-shell .hotel-deluxe-booking-field-icon {
+  color: rgba(212, 165, 116, 0.7) !important;
+}
+
+.hotel-deluxe-booking-shell .hotel-deluxe-booking-field-icon svg {
+  width: 13px !important;
+  height: 13px !important;
+}
+
+.hotel-deluxe-booking-shell .hotel-reference-booking-input input,
+.hotel-deluxe-booking-shell .hotel-reference-booking-input select {
+  color: #fff !important;
+  background: transparent !important;
+  font-size: 0.82rem !important;
+  padding: 2px 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  outline: none !important;
+  width: 100% !important;
+}
+
+.hotel-deluxe-booking-shell .hotel-reference-booking-input input::placeholder,
+.hotel-deluxe-booking-shell .hotel-reference-booking-input small {
+  color: rgba(255, 248, 234, 0.45) !important;
+  font-size: 0.72rem !important;
+}
+
+/* Hide notes field in horizontal bar */
+.hotel-deluxe-booking-shell .hotel-home-booking-field-notes,
+.hotel-deluxe-booking-shell .hotel-reference-booking-field.hotel-home-booking-field-notes {
+  display: none !important;
+}
+
+/* ── BOOKING BUTTON: Inline at end of row ── */
+.hotel-deluxe-booking-shell .hotel-reference-booking-button {
+  flex: 0 0 auto !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #b87333, #8B5E28) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  padding: 10px 20px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 16px rgba(184, 115, 51, 0.3) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  height: 100% !important;
+  min-height: 36px !important;
+}
+
+.hotel-deluxe-booking-shell .hotel-reference-booking-button svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* ── BOOKING SUMMARY: Hide (too much info for horizontal bar) ── */
+.hotel-deluxe-booking-shell .hotel-reference-booking-summary,
+.hotel-deluxe-booking-shell .hotel-home-booking-summary {
+  display: none !important;
+}
+
+/* ── Hide booking from hero copy flow ── */
+.hotel-home-hero-copy .hotel-deluxe-booking-shell,
+.hotel-home-hero-copy .hotel-home-reservation-card-inline {
+  position: absolute !important;
 }
 
 /* ── NAVBAR: Fully Transparent, Floating over Hero ── */
@@ -25097,7 +25167,7 @@ html.theme-light .eh-header__nav a::after {
     box-shadow 0.4s ease !important;
 }
 
-/* Non-scrolled state: PURE transparent over hero — all text WHITE */
+/* Non-scrolled state: PURE transparent — all text WHITE */
 html.theme-dark .eh-header,
 html.theme-light .eh-header,
 .eh-header,
@@ -25110,7 +25180,7 @@ html.theme-light .eh-header,
   color: #ffffff !important;
 }
 
-/* ALL navbar descendants: WHITE when not scrolled (floating over hero image) */
+/* ALL navbar descendants: WHITE when not scrolled */
 html.theme-dark .eh-header *,
 html.theme-dark .eh-header a,
 html.theme-dark .eh-header button,
@@ -25126,7 +25196,6 @@ html.theme-light .eh-header span,
   color: #ffffff !important;
 }
 
-/* Nav links: white with subtle shadow for contrast */
 .eh-header__nav a,
 .page-shell .eh-header__nav a {
   color: rgba(255, 255, 255, 0.88) !important;
@@ -25141,45 +25210,33 @@ html.theme-light .eh-header span,
   background: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Logo: white glow for visibility */
 .eh-header__logo {
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.4)) !important;
 }
 
-/* WhatsApp icon: white when transparent */
 .eh-header__whatsapp {
   color: #ffffff !important;
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
 }
-.eh-header__whatsapp:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-}
-.eh-header__whatsapp svg {
-  color: #ffffff !important;
-}
+.eh-header__whatsapp:hover { background: rgba(255, 255, 255, 0.2) !important; }
+.eh-header__whatsapp svg { color: #ffffff !important; }
 
-/* Locale toggle: white when transparent */
 .eh-header__locale {
   color: rgba(255, 255, 255, 0.85) !important;
   background: rgba(255, 255, 255, 0.08) !important;
   border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-/* CTA button: keep golden but ensure visibility */
-.eh-header__cta {
-  color: #ffffff !important;
-  text-shadow: none !important;
-}
+.eh-header__cta { color: #ffffff !important; text-shadow: none !important; }
 
-/* Theme toggle: white when transparent */
 .eh-header .theme-toggle-btn,
 .hotel-deluxe-header .theme-toggle-btn {
   border-color: rgba(255, 255, 255, 0.15) !important;
   background: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* ── SCROLLED STATE: Glass morphism kicks in ── */
+/* ── SCROLLED STATE: Glass morphism ── */
 html.theme-dark .eh-header--scrolled {
   background: rgba(10, 22, 40, 0.85) !important;
   backdrop-filter: blur(18px) saturate(1.3) !important;
@@ -25207,9 +25264,7 @@ html.theme-dark .eh-header--scrolled .eh-header__nav a:hover {
   color: #ffffff !important;
 }
 
-html.theme-dark .eh-header--scrolled .eh-header__logo {
-  filter: none !important;
-}
+html.theme-dark .eh-header--scrolled .eh-header__logo { filter: none !important; }
 
 html.theme-light .eh-header--scrolled {
   background: rgba(253, 251, 247, 0.88) !important;
@@ -25238,9 +25293,7 @@ html.theme-light .eh-header--scrolled .eh-header__nav a:hover {
   color: #1a1a2e !important;
 }
 
-html.theme-light .eh-header--scrolled .eh-header__logo {
-  filter: none !important;
-}
+html.theme-light .eh-header--scrolled .eh-header__logo { filter: none !important; }
 
 html.theme-light .eh-header--scrolled .eh-header__whatsapp {
   color: #25D366 !important;
@@ -25259,11 +25312,10 @@ html.theme-light .eh-header--scrolled .theme-toggle-btn {
   background: rgba(0, 0, 0, 0.04) !important;
 }
 
-/* ── AURORA BG: Kill decorative effects on hero ── */
-.page-shell.mode-reference-clone-hotel .hotel-deluxe-hero-stage .aurora-bg,
-.hotel-deluxe-hero-stage .aurora-bg,
-.hotel-home-hero-stage .aurora-bg {
-  display: none !important;
+/* ── KILL ALL INLINE GRADIENT STYLES FROM JSX ── */
+.page-shell.mode-reference-clone-hotel .hotel-home-hero-overlay[style*="gradient"],
+.hotel-home-hero-overlay[style*="gradient"] {
+  background: rgba(0, 0, 0, 0.25) !important;
 }
 
 /* ── MOBILE RESPONSIVE ── */
@@ -25275,14 +25327,14 @@ html.theme-light .eh-header--scrolled .theme-toggle-btn {
   .hotel-home-hero-layout,
   .hotel-home-hero-layout-centered {
     padding-top: 72px !important;
-    padding-bottom: 140px !important;
+    padding-bottom: 180px !important;
     gap: 14px !important;
   }
 
   .page-shell.mode-reference-clone-hotel .hotel-home-hero-title strong,
   .hotel-home-hero-title strong,
   .hotel-deluxe-hero-title strong {
-    font-size: clamp(2rem, 7.5vw, 3.2rem) !important;
+    font-size: clamp(1.8rem, 7.5vw, 2.8rem) !important;
   }
 
   .page-shell.mode-reference-clone-hotel .hotel-home-hero-actions,
@@ -25301,16 +25353,47 @@ html.theme-light .eh-header--scrolled .theme-toggle-btn {
     justify-content: center !important;
   }
 
-  /* Booking shell: mobile full-width */
+  /* ── BOOKING BAR: Mobile — compact vertical, no giant block ── */
   .hotel-deluxe-booking-shell,
   .hotel-home-reservation-card-inline {
-    width: calc(100% - 24px) !important;
-    bottom: 12px !important;
-    border-radius: 16px !important;
-    padding: 12px 14px !important;
+    width: calc(100% - 32px) !important;
+    max-width: 100% !important;
+    bottom: 16px !important;
+    border-radius: 14px !important;
+    padding: 0 !important;
   }
 
-  /* Header: mobile adjustments */
+  .hotel-deluxe-booking-shell .hotel-reference-booking-bar {
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 10px 12px !important;
+  }
+
+  .hotel-deluxe-booking-shell .hotel-reference-booking-field,
+  .hotel-deluxe-booking-shell .hotel-reference-booking-input {
+    flex: 1 1 calc(50% - 4px) !important;
+    min-width: 0 !important;
+    padding: 4px 8px !important;
+  }
+
+  .hotel-deluxe-booking-shell .hotel-reference-booking-field span,
+  .hotel-deluxe-booking-shell .hotel-deluxe-booking-label-row span {
+    font-size: 0.6rem !important;
+  }
+
+  .hotel-deluxe-booking-shell .hotel-reference-booking-input input,
+  .hotel-deluxe-booking-shell .hotel-reference-booking-input select {
+    font-size: 0.78rem !important;
+  }
+
+  .hotel-deluxe-booking-shell .hotel-reference-booking-button {
+    flex: 1 1 100% !important;
+    padding: 8px 16px !important;
+    justify-content: center !important;
+    min-height: 32px !important;
+  }
+
   .eh-header {
     height: 56px !important;
     padding: 0 16px !important;
@@ -25322,13 +25405,6 @@ html.theme-light .eh-header--scrolled .theme-toggle-btn {
   }
 }
 
-/* ── KILL ALL INLINE GRADIENT STYLES FROM JSX ── */
-.page-shell.mode-reference-clone-hotel .hotel-home-hero-overlay[style*="gradient"],
-.hotel-home-hero-overlay[style*="gradient"] {
-  background: rgba(0, 0, 0, 0.25) !important;
-}
-
-/* Kill any remaining rounded corners on hero stage from responsive overrides */
 @media (max-width: 860px) {
   .page-shell.mode-reference-clone-hotel .hotel-deluxe-hero-stage,
   .hotel-deluxe-hero-stage {
