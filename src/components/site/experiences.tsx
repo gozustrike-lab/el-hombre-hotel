@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { experiences } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
+import { sendExperienceWA } from '@/lib/whatsapp';
+import { Phone } from 'lucide-react';
 
 export function Experiences() {
   return (
@@ -36,7 +38,7 @@ export function Experiences() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="relative group rounded-2xl overflow-hidden aspect-[3/4] cursor-pointer"
+            className="relative group rounded-2xl overflow-hidden aspect-[3/4]"
           >
             {/* Image */}
             <img
@@ -60,9 +62,18 @@ export function Experiences() {
               <h3 className="text-white text-lg font-serif font-medium mb-2 leading-tight">
                 {exp.title}
               </h3>
-              <p className="text-white/70 text-sm leading-relaxed line-clamp-2">
+              <p className="text-white/70 text-sm leading-relaxed line-clamp-2 mb-4">
                 {exp.description}
               </p>
+
+              {/* WhatsApp CTA */}
+              <button
+                onClick={() => sendExperienceWA(exp.title)}
+                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg px-4 py-2.5 text-xs font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_16px_rgba(249,115,22,0.3)]"
+              >
+                <Phone className="h-3.5 w-3.5" />
+                Consultar
+              </button>
             </div>
           </motion.div>
         ))}

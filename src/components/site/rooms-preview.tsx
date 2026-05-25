@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { rooms, HOTEL_LOCATION } from '@/lib/data';
+import { rooms } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
-import { X, Phone, BedDouble, Bath, Coffee, Wifi, Users } from 'lucide-react';
+import { X, Phone } from 'lucide-react';
+import { sendRoomDirectWA } from '@/lib/whatsapp';
 
 function RoomLightbox({
   room,
@@ -17,9 +18,13 @@ function RoomLightbox({
 }) {
   if (!open) return null;
 
-  const whatsappMsg = encodeURIComponent(
-    `Hola, quiero reservar la ${room.name} (${room.price}/noche) en El Hombre — Puerto Chicama.`
-  );
+  const handleReserve = (e: React.MouseEvent) => {
+    e.preventDefault();
+    sendRoomDirectWA({
+      roomName: room.name,
+      price: room.price.replace('S/. ', ''),
+    });
+  };
 
   return (
     <AnimatePresence>
@@ -99,18 +104,13 @@ function RoomLightbox({
               </div>
 
               {/* CTA */}
-              <a
-                href={`https://wa.me/${HOTEL_LOCATION.whatsapp}?text=${whatsappMsg}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl h-12 text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                style={{
-                  boxShadow: '0 4px 24px -4px rgba(249, 115, 22, 0.4)',
-                }}
+              <button
+                onClick={handleReserve}
+                className="w-full flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl h-12 text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_24px_rgba(249,115,22,0.4)]"
               >
                 <Phone className="h-4 w-4" />
                 Reservar por WhatsApp
-              </a>
+              </button>
             </div>
           </motion.div>
         </motion.div>

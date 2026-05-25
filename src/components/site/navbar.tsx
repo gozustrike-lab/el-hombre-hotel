@@ -7,6 +7,7 @@ import { ThemeToggle } from '@/components/site/theme-toggle';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HOTEL_LOCATION } from '@/lib/data';
+import { sendGeneralWA } from '@/lib/whatsapp';
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
@@ -35,6 +36,12 @@ const linkVariants = {
 };
 
 function MobileMenuOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const handleReserveClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onClose();
+    sendGeneralWA();
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -128,11 +135,8 @@ function MobileMenuOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                   className="px-6 pb-8 space-y-4"
                 >
                   {/* CTA Button */}
-                  <Link
-                    href={`https://wa.me/${HOTEL_LOCATION.whatsapp}?text=Hola,%20quiero%20reservar%20en%20El%20Hombre`}
-                    onClick={onClose}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={handleReserveClick}
                     className="group flex items-center justify-center gap-2.5 w-full h-12 rounded-xl text-white font-semibold text-[15px] tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                     style={{
                       background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
@@ -141,7 +145,7 @@ function MobileMenuOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                   >
                     <Phone className="h-4 w-4" />
                     Reservar Ahora
-                  </Link>
+                  </button>
 
                   {/* WhatsApp direct */}
                   <a
@@ -184,6 +188,11 @@ export function Navbar() {
       document.body.style.overflow = '';
     };
   }, [mobileOpen]);
+
+  const handleDesktopReserve = (e: React.MouseEvent) => {
+    e.preventDefault();
+    sendGeneralWA();
+  };
 
   return (
     <header
@@ -235,19 +244,17 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <ThemeToggle />
 
-          <Link
-            href={`https://wa.me/${HOTEL_LOCATION.whatsapp}?text=Hola,%20quiero%20reservar%20en%20El%20Hombre`}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={handleDesktopReserve}
             className={cn(
-              'hidden md:inline-flex items-center gap-2 text-white rounded-xl px-5 h-10 text-sm font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]',
+              'hidden md:inline-flex items-center gap-2 text-white rounded-xl px-5 h-10 text-sm font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] cursor-pointer',
               scrolled
                 ? 'bg-orange-500 hover:bg-orange-600 shadow-md shadow-orange-500/20'
                 : 'bg-orange-500/90 hover:bg-orange-500 backdrop-blur-md shadow-lg shadow-orange-500/30'
             )}
           >
             Reservar
-          </Link>
+          </button>
 
           {/* Mobile hamburger */}
           <button

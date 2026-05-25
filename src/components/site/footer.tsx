@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Instagram, Facebook, Music, MapPin, Phone, Mail } from 'lucide-react';
+import { Instagram, Facebook, Music, MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 import { HOTEL_LOCATION, HOTEL_DESCRIPTION } from '@/lib/data';
+import { sendGeneralWA } from '@/lib/whatsapp';
 
 export function Footer() {
   return (
@@ -74,8 +75,17 @@ export function Footer() {
               </div>
             </div>
 
+            {/* WhatsApp CTA */}
+            <button
+              onClick={() => sendGeneralWA()}
+              className="mt-5 w-full flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl h-11 text-sm font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_16px_rgba(249,115,22,0.3)]"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp Directo
+            </button>
+
             {/* Social icons */}
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-3 mt-5">
               <a
                 href="#"
                 aria-label="Instagram"

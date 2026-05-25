@@ -1,18 +1,63 @@
 'use client';
 
+import { useState, useMemo } from 'react';
 import { Search, Phone } from 'lucide-react';
-import { HOTEL_LOCATION } from '@/lib/data';
+import { sendBookingWA } from '@/lib/whatsapp';
+
+const roomOptions = [
+  { value: '', label: 'Tipo de habitación', name: '', pricePerNight: 0 },
+  { value: 'individual', label: 'Individual — S/. 68/noche', name: 'Habitación Individual', pricePerNight: 68 },
+  { value: 'doble', label: 'Doble 2 Camas — S/. 120/noche', name: 'Habitación Doble — 2 Camas', pricePerNight: 120 },
+  { value: 'doble-aseo', label: 'Doble Aseo Compartido — S/. 140/noche', name: 'Habitación Doble con Aseo Compartido', pricePerNight: 140 },
+  { value: 'doble-dobles', label: 'Doble Camas Dobles — S/. 140/noche', name: 'Habitación Doble — 2 Camas Dobles', pricePerNight: 140 },
+  { value: 'deluxe', label: 'Deluxe Vista al Mar — S/. 119/noche', name: 'Habitación Deluxe — Vista al Mar', pricePerNight: 119 },
+  { value: 'triple', label: 'Triple Básica — S/. 150/noche', name: 'Habitación Triple Básica', pricePerNight: 150 },
+];
 
 export function BookingBar() {
-  const roomOptions = [
-    { value: '', label: 'Tipo de habitación' },
-    { value: 'individual', label: 'Individual — S/. 68/noche' },
-    { value: 'doble', label: 'Doble 2 Camas — S/. 120/noche' },
-    { value: 'doble-aseo', label: 'Doble Aseo Compartido — S/. 140/noche' },
-    { value: 'doble-dobles', label: 'Doble Camas Dobles — S/. 140/noche' },
-    { value: 'deluxe', label: 'Deluxe Vista al Mar — S/. 119/noche' },
-    { value: 'triple', label: 'Triple Básica — S/. 150/noche' },
-  ];
+  const [room, setRoom] = useState('');
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
+  const [guests, setGuests] = useState('1');
+
+  /* Calculate nights & total dynamically */
+  const { nights, total } = useMemo(() => {
+    const selectedRoom = roomOptions.find((r) => r.value === room);
+    if (!selectedRoom || !checkIn || !checkOut) return { nights: 0, total: 0 };
+
+    const start = new Date(checkIn);
+    const end = new Date(checkOut);
+    const diffMs = end.getTime() - start.getTime();
+    const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+    if (diffDays <= 0) return { nights: 0, total: 0 };
+
+    return {
+      nights: diffDays,
+      total: diffDays * selectedRoom.pricePerNight,
+    };
+  }, [room, checkIn, checkOut]);
+
+  const selectedRoom = roomOptions.find((r) => r.value === room);
+
+  const formatForDisplay = (dateStr: string) => {
+    if (!dateStr) return '';
+    const d = new Date(dateStr + 'T12:00:00');
+    return d.toLocaleDateString('es-PE', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+  };
+
+  const handleReserve = () => {
+    if (!selectedRoom || !checkIn || !checkOut || nights <= 0) return;
+
+    sendBookingWA({
+      roomName: selectedRoom.name,
+      checkIn: formatForDisplay(checkIn),
+      checkOut: formatForDisplay(checkOut),
+      guests: parseInt(guests, 10),
+      nights,
+      total: total.toFixed(0),
+    });
+  };
 
   return (
     <div className="w-full max-w-5xl mx-auto">
@@ -23,7 +68,11 @@ export function BookingBar() {
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
               Habitación
             </label>
-            <select className="w-full bg-transparent text-white text-sm py-2 rounded-lg appearance-none cursor-pointer focus:outline-none">
+            <select
+              value={room}
+              onChange={(e) => setRoom(e.target.value)}
+              className="w-full bg-transparent text-white text-sm py-2 rounded-lg appearance-none cursor-pointer focus:outline-none"
+            >
               {roomOptions.map((opt) => (
                 <option key={opt.value} value={opt.value} className="bg-slate-900 text-white">
                   {opt.label}
@@ -40,6 +89,9 @@ export function BookingBar() {
             </label>
             <input
               type="date"
+              value={checkIn}
+              min={new Date().toISOString().split('T')[0]}
+              onChange={(e) => setCheckIn(e.target.value)}
               className="w-full bg-transparent text-white text-sm py-2 rounded-lg focus:outline-none [color-scheme:dark]"
             />
           </div>
@@ -52,6 +104,9 @@ export function BookingBar() {
             </label>
             <input
               type="date"
+              value={checkOut}
+              min={checkIn || new Date().toISOString().split('T')[0]}
+              onChange={(e) => setCheckOut(e.target.value)}
               className="w-full bg-transparent text-white text-sm py-2 rounded-lg focus:outline-none [color-scheme:dark]"
             />
           </div>
@@ -62,7 +117,11 @@ export function BookingBar() {
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
               Huéspedes
             </label>
-            <select className="w-full bg-transparent text-white text-sm py-2 rounded-lg appearance-none cursor-pointer focus:outline-none">
+            <select
+              value={guests}
+              onChange={(e) => setGuests(e.target.value)}
+              className="w-full bg-transparent text-white text-sm py-2 rounded-lg appearance-none cursor-pointer focus:outline-none"
+            >
               {[1, 2, 3, 4].map((n) => (
                 <option key={n} value={n} className="bg-slate-900 text-white">
                   {n} {n === 1 ? 'huésped' : 'huéspedes'}
@@ -73,15 +132,14 @@ export function BookingBar() {
 
           <div className="w-px h-8 bg-white/10 shrink-0" />
 
-          <a
-            href={`https://wa.me/${HOTEL_LOCATION.whatsapp}?text=Hola,%20quiero%20reservar%20habitación%20en%20El%20Hombre`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 shrink-0 ml-2 hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_20px_rgba(249,115,22,0.35)]"
+          <button
+            onClick={handleReserve}
+            disabled={!selectedRoom || !checkIn || !checkOut || nights <= 0}
+            className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-500/40 disabled:cursor-not-allowed text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 shrink-0 ml-2 hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_20px_rgba(249,115,22,0.35)]"
           >
             <Search className="h-4 w-4" />
-            Buscar
-          </a>
+            {nights > 0 ? `Reservar · S/. ${total.toFixed(0)}` : 'Buscar'}
+          </button>
         </div>
 
         {/* Mobile layout */}
@@ -90,11 +148,17 @@ export function BookingBar() {
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
               Habitación
             </label>
-            <select className="w-full bg-transparent text-white text-sm rounded-lg appearance-none cursor-pointer focus:outline-none">
+            <select
+              value={room}
+              onChange={(e) => setRoom(e.target.value)}
+              className="w-full bg-transparent text-white text-sm rounded-lg appearance-none cursor-pointer focus:outline-none"
+            >
               <option value="" className="bg-slate-900 text-white">Tipo</option>
-              <option value="individual" className="bg-slate-900 text-white">Individual</option>
-              <option value="doble" className="bg-slate-900 text-white">Doble 2 Camas</option>
-              <option value="deluxe" className="bg-slate-900 text-white">Deluxe Vista</option>
+              {roomOptions.filter(r => r.value).map((opt) => (
+                <option key={opt.value} value={opt.value} className="bg-slate-900 text-white">
+                  {opt.name}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -102,7 +166,11 @@ export function BookingBar() {
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
               Huéspedes
             </label>
-            <select className="w-full bg-transparent text-white text-sm rounded-lg appearance-none cursor-pointer focus:outline-none">
+            <select
+              value={guests}
+              onChange={(e) => setGuests(e.target.value)}
+              className="w-full bg-transparent text-white text-sm rounded-lg appearance-none cursor-pointer focus:outline-none"
+            >
               {[1, 2, 3, 4].map((n) => (
                 <option key={n} value={n} className="bg-slate-900 text-white">
                   {n} {n === 1 ? 'huésped' : 'huéspedes'}
@@ -117,6 +185,9 @@ export function BookingBar() {
             </label>
             <input
               type="date"
+              value={checkIn}
+              min={new Date().toISOString().split('T')[0]}
+              onChange={(e) => setCheckIn(e.target.value)}
               className="w-full bg-transparent text-white text-sm rounded-lg focus:outline-none [color-scheme:dark]"
             />
           </div>
@@ -127,19 +198,21 @@ export function BookingBar() {
             </label>
             <input
               type="date"
+              value={checkOut}
+              min={checkIn || new Date().toISOString().split('T')[0]}
+              onChange={(e) => setCheckOut(e.target.value)}
               className="w-full bg-transparent text-white text-sm rounded-lg focus:outline-none [color-scheme:dark]"
             />
           </div>
 
-          <a
-            href={`https://wa.me/${HOTEL_LOCATION.whatsapp}?text=Hola,%20quiero%20reservar%20habitación%20en%20El%20Hombre`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="col-span-2 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-[0_4px_20px_rgba(249,115,22,0.35)]"
+          <button
+            onClick={handleReserve}
+            disabled={!selectedRoom || !checkIn || !checkOut || nights <= 0}
+            className="col-span-2 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-500/40 disabled:cursor-not-allowed text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-[0_4px_20px_rgba(249,115,22,0.35)]"
           >
             <Phone className="h-4 w-4" />
-            Reservar por WhatsApp
-          </a>
+            {nights > 0 ? `Reservar · S/. ${total.toFixed(0)}` : 'Reservar por WhatsApp'}
+          </button>
         </div>
       </div>
     </div>

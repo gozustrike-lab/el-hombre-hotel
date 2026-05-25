@@ -1,10 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ShoppingCart, Trash2, MessageCircle } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { HOTEL_LOCATION } from '@/lib/data';
+import { sendRestaurantWA } from '@/lib/whatsapp';
 
 export interface CartItem {
   name: string;
@@ -37,28 +36,12 @@ export function CartFloat({ items, onUpdate }: CartFloatProps) {
   };
 
   const handleWhatsAppOrder = () => {
-    /* Build the formatted message lines */
-    const lines = items.map((item) => {
-      const unitPrice = parseFloat(item.price.replace(/S\/\./, '').trim()).toFixed(0);
-      return `- ${item.quantity}x ${item.name} (S/. ${unitPrice})`;
-    });
-
-    const message = [
-      `¡Hola Restaurante El Hombre! 🌊 Deseo realizar el siguiente pedido:`,
-      ``,
-      `📝 DETALLE DEL PEDIDO:`,
-      ...lines,
-      ``,
-      `💰 TOTAL A PAGAR: S/. ${totalPrice.toFixed(0)}`,
-      ``,
-      `¡Quedo atento para confirmar la preparación de mi comida! 🤙`,
-    ].join('%0A');
-
-    window.open(
-      `https://wa.me/${HOTEL_LOCATION.whatsapp}?text=${message}`,
-      '_blank',
-      'noopener,noreferrer'
-    );
+    const cartPayload = items.map((item) => ({
+      name: item.name,
+      quantity: item.quantity,
+      unitPrice: parseFloat(item.price.replace(/S\/\./, '').trim()).toFixed(0),
+    }));
+    sendRestaurantWA(cartPayload, totalPrice.toFixed(0));
   };
 
   return (
@@ -193,7 +176,7 @@ export function CartFloat({ items, onUpdate }: CartFloatProps) {
             </div>
 
             <p className="text-slate-400 dark:text-slate-600 text-xs mb-5 leading-relaxed">
-              Se abrirá WhatsApp con tu pedido listo para enviar.
+              Se abrirá WhatsApp con tu pedido listo para enviar al restaurante.
             </p>
 
             <button
