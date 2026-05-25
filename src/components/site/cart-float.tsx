@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, ShoppingCart, X, Trash2 } from 'lucide-react';
+import { Plus, Minus, ShoppingCart, Trash2, MessageCircle } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
+import { HOTEL_LOCATION } from '@/lib/data';
 
 export interface CartItem {
   name: string;
@@ -36,6 +36,31 @@ export function CartFloat({ items, onUpdate }: CartFloatProps) {
     onUpdate(newItems);
   };
 
+  const handleWhatsAppOrder = () => {
+    /* Build the formatted message lines */
+    const lines = items.map((item) => {
+      const unitPrice = parseFloat(item.price.replace(/S\/\./, '').trim()).toFixed(0);
+      return `- ${item.quantity}x ${item.name} (S/. ${unitPrice})`;
+    });
+
+    const message = [
+      `¡Hola Restaurante El Hombre! 🌊 Deseo realizar el siguiente pedido:`,
+      ``,
+      `📝 DETALLE DEL PEDIDO:`,
+      ...lines,
+      ``,
+      `💰 TOTAL A PAGAR: S/. ${totalPrice.toFixed(0)}`,
+      ``,
+      `¡Quedo atento para confirmar la preparación de mi comida! 🤙`,
+    ].join('%0A');
+
+    window.open(
+      `https://wa.me/${HOTEL_LOCATION.whatsapp}?text=${message}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -59,90 +84,125 @@ export function CartFloat({ items, onUpdate }: CartFloatProps) {
 
       <SheetContent
         side="right"
-        className="w-full sm:max-w-md bg-[#FDFBF7] dark:bg-slate-950"
+        className="w-full sm:max-w-md bg-[#FDFBF7] dark:bg-slate-950 p-0"
       >
-        <SheetHeader>
-          <SheetTitle className="text-xl font-serif text-slate-900 dark:text-white">
-            Tu Pedido
-          </SheetTitle>
+        {/* Premium header with breathing room */}
+        <SheetHeader className="px-6 pt-8 pb-2 sm:px-8 sm:pt-10">
+          <div className="flex items-center justify-between">
+            <SheetTitle className="text-2xl font-serif text-slate-900 dark:text-white tracking-wide">
+              Tu Pedido
+            </SheetTitle>
+            <span className="text-xs text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1">
+              {totalItems} {totalItems === 1 ? 'item' : 'items'}
+            </span>
+          </div>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            Revisa tu selección antes de ordenar
+          </p>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto py-4">
+        {/* Items list with generous spacing */}
+        <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-4">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-64 text-center">
-              <ShoppingCart className="h-12 w-12 text-slate-300 dark:text-slate-700 mb-4" />
-              <p className="text-slate-500 dark:text-slate-400 text-sm">
+              <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800/50 flex items-center justify-center mb-5">
+                <ShoppingCart className="h-8 w-8 text-slate-300 dark:text-slate-600" />
+              </div>
+              <p className="text-slate-600 dark:text-slate-300 text-sm font-medium">
                 Tu carrito está vacío
               </p>
-              <p className="text-slate-400 dark:text-slate-600 text-xs mt-1">
-                Agrega platos del menú
+              <p className="text-slate-400 dark:text-slate-600 text-xs mt-2 leading-relaxed">
+                Agrega platos desde nuestra carta<br />para preparar tu pedido
               </p>
             </div>
           ) : (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
               <AnimatePresence>
-                {items.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <p className="text-slate-900 dark:text-white text-sm font-medium truncate">
-                        {item.name}
-                      </p>
-                      <p className="text-orange-500 text-sm font-semibold">
-                        {item.price}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => updateQuantity(index, -1)}
-                        className="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-                      >
-                        <Minus className="h-3 w-3" />
-                      </button>
-                      <span className="text-sm font-medium text-slate-900 dark:text-white w-5 text-center">
-                        {item.quantity}
-                      </span>
-                      <button
-                        onClick={() => updateQuantity(index, 1)}
-                        className="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-                      >
-                        <Plus className="h-3 w-3" />
-                      </button>
-                    </div>
-
-                    <button
-                      onClick={() => removeItem(index)}
-                      className="w-7 h-7 rounded-full flex items-center justify-center text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
+                {items.map((item, index) => {
+                  const itemTotal = parseFloat(item.price.replace(/S\/\./, '').trim()) * item.quantity;
+                  return (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20, height: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex items-center gap-4 py-5 border-b border-black/[0.06] dark:border-white/[0.06] last:border-b-0"
                     >
-                      <Trash2 className="h-3.5 w-3.5" />
-                    </button>
-                  </motion.div>
-                ))}
+                      {/* Item info */}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-slate-900 dark:text-white text-sm font-medium leading-snug">
+                          {item.name}
+                        </p>
+                        <p className="text-orange-500 text-sm font-semibold mt-1">
+                          {item.price}
+                        </p>
+                      </div>
+
+                      {/* Quantity controls */}
+                      <div className="flex items-center gap-2.5 shrink-0">
+                        <button
+                          onClick={() => updateQuantity(index, -1)}
+                          className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors active:scale-90"
+                        >
+                          <Minus className="h-3.5 w-3.5" />
+                        </button>
+                        <span className="text-sm font-semibold text-slate-900 dark:text-white w-6 text-center">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() => updateQuantity(index, 1)}
+                          className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors active:scale-90"
+                        >
+                          <Plus className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+
+                      {/* Item subtotal */}
+                      <div className="text-right shrink-0 min-w-[56px]">
+                        <p className="text-slate-900 dark:text-white text-sm font-semibold">
+                          S/. {itemTotal.toFixed(0)}
+                        </p>
+                      </div>
+
+                      {/* Delete */}
+                      <button
+                        onClick={() => removeItem(index)}
+                        className="w-8 h-8 rounded-full flex items-center justify-center text-slate-300 dark:text-slate-600 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-all duration-300 shrink-0 active:scale-90"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </motion.div>
+                  );
+                })}
               </AnimatePresence>
             </div>
           )}
         </div>
 
+        {/* Total + CTA footer with premium spacing */}
         {items.length > 0 && (
-          <div className="border-t border-black/5 dark:border-white/10 pt-4">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-slate-600 dark:text-slate-400 text-sm">
+          <div className="border-t border-black/5 dark:border-white/10 px-6 py-6 sm:px-8 sm:py-8">
+            <div className="flex items-center justify-between mb-5">
+              <span className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">
                 Total
               </span>
-              <span className="text-slate-900 dark:text-white text-xl font-semibold">
+              <span className="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">
                 S/. {totalPrice.toFixed(0)}
               </span>
             </div>
-            <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-xl h-12 text-base">
-              Pedir Ahora
-            </Button>
+
+            <p className="text-slate-400 dark:text-slate-600 text-xs mb-5 leading-relaxed">
+              Se abrirá WhatsApp con tu pedido listo para enviar.
+            </p>
+
+            <button
+              onClick={handleWhatsAppOrder}
+              className="w-full flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl h-12 text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_20px_rgba(249,115,22,0.35)]"
+            >
+              <MessageCircle className="h-5 w-5" />
+              Pedir por WhatsApp
+            </button>
           </div>
         )}
       </SheetContent>
