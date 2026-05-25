@@ -37,7 +37,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLd }}
         />
       </head>
-      <body className={`${sans.variable} ${serif.variable}`}>
+      <body className={`${sans.variable} ${serif.variable} w-full min-h-screen m-0 p-0 overflow-x-hidden relative`}>
         <AnimationsProvider>{children}</AnimationsProvider>
       </body>
     </html>
