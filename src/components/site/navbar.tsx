@@ -190,23 +190,23 @@ export function Navbar() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 h-[72px] md:h-16 transition-all duration-500',
         scrolled
-          ? 'backdrop-blur-xl bg-[#FDFBF7]/80 dark:bg-slate-950/80 border-b border-black/5 dark:border-white/10 shadow-sm'
+          ? 'backdrop-blur-xl bg-[#FDFBF7]/80 dark:bg-slate-950/80 border-b border-black/5 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.35)]'
           : 'bg-transparent'
       )}
     >
       <nav className="w-full h-full px-5 md:px-8 flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo — bigger on both mobile and desktop */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
           <img
             src="/assets/branding/logo-horizontal-el-hombre.webp"
             alt="El Hombre"
             className={cn(
-              'h-9 md:h-8 w-auto max-w-[160px] md:max-w-none object-contain transition-all duration-500',
+              'h-12 md:h-11 w-auto max-w-[200px] md:max-w-[240px] object-contain transition-all duration-500',
               scrolled ? 'opacity-100' : 'brightness-0 invert dark:brightness-0 dark:invert'
             )}
           />
           {!scrolled && (
-            <span className="hidden md:block text-white font-serif text-xl tracking-wide drop-shadow-lg">
+            <span className="hidden md:block text-white font-serif text-xl tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
               El Hombre
             </span>
           )}
@@ -222,7 +222,7 @@ export function Navbar() {
                 'text-sm font-medium transition-all duration-300 hover:text-orange-500 relative group',
                 scrolled
                   ? 'text-slate-900 dark:text-white'
-                  : 'text-white drop-shadow-md'
+                  : 'text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]'
               )}
             >
               {link.label}

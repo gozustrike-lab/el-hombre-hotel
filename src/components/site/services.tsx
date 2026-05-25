@@ -77,8 +77,8 @@ export function Services() {
     <section id="servicios" className="w-full py-24 md:py-32">
       {/* Centered container */}
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8">
-        {/* Section heading */}
-        <div className="mb-14">
+        {/* Section heading — centered on desktop */}
+        <div className="mb-14 md:text-center">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +102,7 @@ export function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-slate-500 dark:text-slate-400 text-base mt-4 max-w-2xl leading-relaxed"
+            className="text-slate-500 dark:text-slate-400 text-base mt-4 max-w-2xl leading-relaxed md:mx-auto"
           >
             Servicios verificados que hacen de tu estancia una experiencia completa. Frente a la Playa de Puerto Chicama, con todo lo que un viajero necesita.
           </motion.p>

@@ -16,7 +16,7 @@ export function BookingBar() {
 
   return (
     <div className="w-full max-w-5xl mx-auto">
-      <div className="backdrop-blur-2xl bg-white/15 dark:bg-slate-900/40 rounded-2xl border border-white/20 p-3 md:p-4">
+      <div className="backdrop-blur-2xl bg-white/15 dark:bg-slate-900/40 rounded-2xl border border-white/10 p-3 md:p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] shadow-white/[0.03] ring-1 ring-inset ring-white/[0.08]">
         {/* Desktop layout */}
         <div className="hidden md:flex items-center gap-0">
           <div className="flex-1 min-w-[160px] px-3">
@@ -32,7 +32,7 @@ export function BookingBar() {
             </select>
           </div>
 
-          <div className="w-px h-8 bg-white/20 shrink-0" />
+          <div className="w-px h-8 bg-white/10 shrink-0" />
 
           <div className="flex-1 min-w-[160px] px-3">
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
@@ -44,7 +44,7 @@ export function BookingBar() {
             />
           </div>
 
-          <div className="w-px h-8 bg-white/20 shrink-0" />
+          <div className="w-px h-8 bg-white/10 shrink-0" />
 
           <div className="flex-1 min-w-[160px] px-3">
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
@@ -56,7 +56,7 @@ export function BookingBar() {
             />
           </div>
 
-          <div className="w-px h-8 bg-white/20 shrink-0" />
+          <div className="w-px h-8 bg-white/10 shrink-0" />
 
           <div className="flex-1 min-w-[160px] px-3">
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
@@ -71,13 +71,13 @@ export function BookingBar() {
             </select>
           </div>
 
-          <div className="w-px h-8 bg-white/20 shrink-0" />
+          <div className="w-px h-8 bg-white/10 shrink-0" />
 
           <a
             href={`https://wa.me/${HOTEL_LOCATION.whatsapp}?text=Hola,%20quiero%20reservar%20habitación%20en%20El%20Hombre`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 shrink-0 ml-2 hover:scale-[1.02] active:scale-[0.98]"
+            className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 shrink-0 ml-2 hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_20px_rgba(249,115,22,0.35)]"
           >
             <Search className="h-4 w-4" />
             Buscar
@@ -86,7 +86,7 @@ export function BookingBar() {
 
         {/* Mobile layout */}
         <div className="md:hidden grid grid-cols-2 gap-3">
-          <div className="bg-white/10 rounded-xl px-3 py-2">
+          <div className="bg-white/10 rounded-xl px-3 py-2 ring-1 ring-inset ring-white/[0.06]">
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
               Habitación
             </label>
@@ -98,7 +98,7 @@ export function BookingBar() {
             </select>
           </div>
 
-          <div className="bg-white/10 rounded-xl px-3 py-2">
+          <div className="bg-white/10 rounded-xl px-3 py-2 ring-1 ring-inset ring-white/[0.06]">
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
               Huéspedes
             </label>
@@ -111,7 +111,7 @@ export function BookingBar() {
             </select>
           </div>
 
-          <div className="bg-white/10 rounded-xl px-3 py-2">
+          <div className="bg-white/10 rounded-xl px-3 py-2 ring-1 ring-inset ring-white/[0.06]">
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
               Entrada
             </label>
@@ -121,7 +121,7 @@ export function BookingBar() {
             />
           </div>
 
-          <div className="bg-white/10 rounded-xl px-3 py-2">
+          <div className="bg-white/10 rounded-xl px-3 py-2 ring-1 ring-inset ring-white/[0.06]">
             <label className="block text-white/60 text-xs uppercase tracking-wider mb-1">
               Salida
             </label>
@@ -135,7 +135,7 @@ export function BookingBar() {
             href={`https://wa.me/${HOTEL_LOCATION.whatsapp}?text=Hola,%20quiero%20reservar%20habitación%20en%20El%20Hombre`}
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-2 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300"
+            className="col-span-2 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-[0_4px_20px_rgba(249,115,22,0.35)]"
           >
             <Phone className="h-4 w-4" />
             Reservar por WhatsApp
