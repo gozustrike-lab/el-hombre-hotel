@@ -1,6 +1,7 @@
 import { Navbar } from '@/components/site/navbar';
 import { Hero } from '@/components/site/hero';
 import { RoomsPreview } from '@/components/site/rooms-preview';
+import { Services } from '@/components/site/services';
 import { RestaurantPreview } from '@/components/site/restaurant-preview';
 import { Experiences } from '@/components/site/experiences';
 import { Testimonials } from '@/components/site/testimonials';
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <RoomsPreview />
+      <Services />
       <RestaurantPreview />
       <Experiences />
       <Testimonials />

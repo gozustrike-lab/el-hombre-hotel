@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Instagram, Facebook, Music, MapPin, Phone, Mail } from 'lucide-react';
-import { HOTEL_LOCATION } from '@/lib/data';
+import { HOTEL_LOCATION, HOTEL_DESCRIPTION } from '@/lib/data';
 
 export function Footer() {
   return (
@@ -15,9 +15,7 @@ export function Footer() {
               Hospedaje Restaurante El Hombre
             </h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-sm">
-              Frente a la ola izquierda más larga del mundo en Puerto Chicama,
-              La Libertad, Perú. Hospedaje cómodo, gastronomía peruana de
-              altura y la mejor experiencia surf de tu vida.
+              {HOTEL_DESCRIPTION}
             </p>
           </div>
 

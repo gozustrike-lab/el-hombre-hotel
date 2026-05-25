@@ -38,15 +38,139 @@ export interface Room {
   features: string[];
 }
 
+export interface ServiceItem {
+  icon: string;
+  label: string;
+  paid?: boolean;
+}
+
+export interface ServiceCategory {
+  title: string;
+  icon: string;
+  items: ServiceItem[];
+}
+
+/* ─── HOTEL IDENTITY ─────────────────────────────────────────── */
+
+export const HOTEL_NAME = "Hospedaje Restaurante El Hombre";
+
 export const HOTEL_LOCATION = {
   city: "Puerto Chicama",
   province: "La Libertad",
   country: "Perú",
-  address: "Calle Arica 803, Puerto Malabrigo (Puerto Chicama), La Libertad, Perú",
+  address: "Arica 803, Puerto Malabrigo (Puerto Chicama), La Libertad, Perú",
   phone: "+51 949 090 421",
   whatsapp: "51949090421",
   email: "info@elhombreperu.com",
 };
+
+export const HOTEL_SCORE = {
+  value: 9.2,
+  label: "Fantástico",
+  reviews: 74,
+  subLabel: "Basado en opiniones reales",
+  beachRating: 9.2,
+  beachLabel: "Playa",
+};
+
+export const HOTEL_DESCRIPTION =
+  "Ofrece zona de playa privada, salón de uso común, terraza panorámica frente al mar y restaurante en Malabrigo. Dispone de bar, cocina compartida, mostrador de información turística y cambio de moneda. A pocos pasos de la Playa de Puerto Chicama.";
+
+export const HOTEL_POLICIES = {
+  checkIn: "14:00",
+  checkOut: "12:00",
+  languages: ["Español"],
+  smoking: "Prohibido fumar en todo el alojamiento",
+  parking: "No hay parking — aparcamiento público gratuito en las cercanías",
+};
+
+/* ─── SERVICES & AMENITIES (Booking.com verified) ──────────────── */
+
+export const services: ServiceCategory[] = [
+  {
+    title: "Más Populares",
+    icon: "Star",
+    items: [
+      { icon: "Plane", label: "Traslado aeropuerto", paid: true },
+      { icon: "Wifi", label: "WiFi gratis" },
+      { icon: "Umbrella", label: "Frente a la playa" },
+      { icon: "UtensilsCrossed", label: "Restaurante a la carta" },
+      { icon: "Wine", label: "Bar" },
+      { icon: "Palmtree", label: "Zona privada de playa" },
+      { icon: "Coffee", label: "Desayuno incluido" },
+    ],
+  },
+  {
+    title: "Exteriores & Actividades",
+    icon: "Sun",
+    items: [
+      { icon: "Sun", label: "Terraza / solárium con vista panorámica 180°" },
+      { icon: "Waves", label: "Zona de playa privada" },
+      { icon: "MountainSnow", label: "Acceso directo para surfistas" },
+      { icon: "TreePalm", label: "Jardín" },
+      { icon: "Armchair", label: "Terraza / patio" },
+    ],
+  },
+  {
+    title: "Recepción",
+    icon: "ConciergeBell",
+    items: [
+      { icon: "Lock", label: "Registro de entrada/salida privado" },
+      { icon: "Zap", label: "Registro exprés" },
+      { icon: "MapPin", label: "Información turística de Puerto Chicama" },
+      { icon: "CircleDollarSign", label: "Cambio de moneda" },
+    ],
+  },
+  {
+    title: "Instalaciones",
+    icon: "Building",
+    items: [
+      { icon: "Tv", label: "Zona TV / salón de uso compartido" },
+      { icon: "CookingPot", label: "Cocina compartida" },
+      { icon: "Shirt", label: "Servicio de lavandería" },
+      { icon: "Wind", label: "Servicio de limpieza en seco" },
+      { icon: "Package", label: "Almuerzos para llevar" },
+    ],
+  },
+  {
+    title: "Seguridad",
+    icon: "ShieldCheck",
+    items: [
+      { icon: "Camera", label: "Cámaras de seguridad exteriores" },
+      { icon: "FireExtinguisher", label: "Extintores" },
+      { icon: "Shield", label: "Seguridad 24 horas" },
+      { icon: "Lock", label: "Candado en la habitación" },
+      { icon: "Safe", label: "Caja fuerte en la habitación" },
+    ],
+  },
+  {
+    title: "Baño",
+    icon: "Bath",
+    items: [
+      { icon: "ShowerHead", label: "Ducha" },
+      { icon: "Bath", label: "Bañera" },
+      { icon: "Ruler", label: "Papel higiénico" },
+      { icon: "CircleDot", label: "WC" },
+    ],
+  },
+];
+
+/* ─── ROOM AMENITIES (Booking.com verified) ───────────────────── */
+
+export const roomAmenities = [
+  "Vistas al mar",
+  "Ventilador",
+  "Ventilador de techo",
+  "Calefacción",
+  "Cama de matrimonio",
+  "Cama individual",
+  "Cama grande (+2 plazas)",
+  "Toallas",
+  "Ropa de cama",
+  "Mosquitera",
+];
+
+/* ─── FEATURED DISHES ──────────────────────────────────────────── */
 
 export const featuredDishes: FeaturedDish[] = [
   {
@@ -80,6 +204,8 @@ export const featuredDishes: FeaturedDish[] = [
     category: "Ejecutivo",
   },
 ];
+
+/* ─── FULL MENU ────────────────────────────────────────────────── */
 
 export const fullMenu: Record<string, MenuItem[]> = {
   Entradas: [
@@ -167,7 +293,7 @@ export const fullMenu: Record<string, MenuItem[]> = {
     {
       name: "Pisco Sour",
       description:
-        "El cóctel bandera del Perú. Pisco quebranta, limón, jarabe de goma y clara de huevo.",
+        "El cóctil bandera del Perú. Pisco quebranta, limón, jarabe de goma y clara de huevo.",
       price: "S/. 18",
     },
     {
@@ -200,7 +326,18 @@ export const fullMenu: Record<string, MenuItem[]> = {
   ],
 };
 
+/* ─── TESTIMONIALS ─────────────────────────────────────────────── */
+
 export const testimonials: Testimonial[] = [
+  {
+    id: 0,
+    name: "Julio",
+    location: "México",
+    avatar: "JU",
+    rating: 10,
+    text: "Excelente lugar y servicio. Luis y su hermana te hacen sentir en casa.",
+    platform: "Booking.com",
+  },
   {
     id: 1,
     name: "Diego Alvarado",
@@ -246,16 +383,9 @@ export const testimonials: Testimonial[] = [
     text: "Fuimos en familia y fue perfecto. Las habitaciones limpias, el personal muy atento y la comida deliciosa. Los niños disfrutaron la playa y nosotros la tranquilidad.",
     platform: "Booking.com",
   },
-  {
-    id: 6,
-    name: "Mateo Ruiz",
-    location: "Trujillo, Perú",
-    avatar: "MR",
-    rating: 4,
-    text: "Muy buena relación calidad-precio. La ubicación es insuperable para los surfistas y el restaurante sorprende con platos de altura. Recomendado.",
-    platform: "TripAdvisor",
-  },
 ];
+
+/* ─── EXPERIENCES ──────────────────────────────────────────────── */
 
 export const experiences: Experience[] = [
   {
@@ -292,23 +422,25 @@ export const experiences: Experience[] = [
   },
 ];
 
+/* ─── ROOMS ────────────────────────────────────────────────────── */
+
 export const rooms: Room[] = [
   {
     name: "Habitación Simple",
     description:
-      "Habitación cómoda con cama individual, baño privado, agua caliente, ventilador y WiFi gratis. Ideal para viajeros en solitario.",
+      "Habitación cómoda con cama individual o doble, baño privado con ducha y bañera, agua caliente, ventilador de techo, WiFi gratis, toallas y ropa de cama. Ideal para viajeros en solitario.",
     price: "S/. 80",
     image:
       "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80",
-    features: ["WiFi", "Agua Caliente", "TV", "Baño Privado"],
+    features: ["WiFi Gratis", "Agua Caliente", "TV", "Baño Privado", "Vista al Mar"],
   },
   {
     name: "Habitación Doble Surf Premium",
     description:
-      "Habitación amplia con cama doble o twin, vista al mar, balcón privado con hamaca, minibar y amenities premium. La mejor opción para surfistas.",
+      "Habitación amplia con cama doble o twin, vistas al mar, balcón privado, ventilador, mosquitera, calefacción, caja fuerte, toallas y amenities premium. La mejor opción para surfistas.",
     price: "S/. 140",
     image:
       "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80",
-    features: ["Vista al Mar", "Balcón + Hamaca", "Minibar", "A/C"],
+    features: ["Vista al Mar", "Balcón", "Calefacción", "Caja Fuerte", "A/C"],
   },
 ];
