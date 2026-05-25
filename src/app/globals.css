@@ -573,7 +573,7 @@
   }
 
   .hotel-deluxe-header {
-    background: linear-gradient(180deg, rgba(6, 7, 8, 0.58), rgba(6, 7, 8, 0.08));
+    background: transparent;
     border-color: transparent;
     backdrop-filter: none;
   }
@@ -22580,16 +22580,16 @@ html.theme-light .hotel-deluxe-header.is-scrolled {
   color: #1a1a2e;
 }
 
-/* Non-scrolled: ensure visible over hero */
+/* Non-scrolled: 100% transparent so hero sky/clouds extend to screen edge */
 html.theme-dark .eh-header,
 html.theme-dark .hotel-deluxe-header {
-  background: linear-gradient(180deg, rgba(10, 22, 40, 0.6) 0%, transparent 100%) !important;
+  background: transparent !important;
   color: #f8f4ea;
 }
 
 html.theme-light .eh-header,
 html.theme-light .hotel-deluxe-header {
-  background: linear-gradient(180deg, rgba(244, 241, 234, 0.7) 0%, transparent 100%) !important;
+  background: transparent !important;
   color: #1a1a2e;
 }
 
@@ -24773,8 +24773,8 @@ html.theme-light .eh-header__nav a::after {
 }
 
 /* ============================================================
-   V5.0 — HERO REBUILT: Full Bleed + Horizontal Booking + Clean Layout
-   New class names · No overlaps · Professional structure
+   V6.0 — HERO PRO REBUILD: Full Bleed + Booking Bar + Clean Nav
+   Mathematically correct Flex · No collapses · Professional
    ============================================================ */
 
 /* ── SECTION: Breaks out of all parent containers ── */
@@ -24996,141 +24996,201 @@ html.theme-light .eh-header__nav a::after {
   color: #ffffff !important;
 }
 
-/* ── BOOKING FLOAT: Horizontal bar at bottom ── */
+/* ═══════════════════════════════════════════════════════════
+   BOOKING BAR — V6.0 SURGICAL FIX
+   Horizontal Flex · No collapses · Mathematically correct
+   ═══════════════════════════════════════════════════════════ */
+
+/* Float container — glassmorphism bar */
 .hero-booking-float {
   position: absolute !important;
   bottom: 28px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   z-index: 20 !important;
-  width: min(96%, 1080px) !important;
-  border-radius: 16px !important;
+  width: min(96%, 1100px) !important;
+  border-radius: 20px !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  background: rgba(10, 22, 40, 0.5) !important;
-  backdrop-filter: blur(24px) saturate(1.3) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(1.3) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
-  overflow: hidden !important;
+  background: rgba(2, 10, 23, 0.4) !important;
+  backdrop-filter: blur(20px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3) !important;
+  overflow: visible !important;
+  padding: 6px !important;
 }
 
-/* Booking bar inside float — horizontal row */
+/* Booking form — clean horizontal flex, no wrap */
 .hero-booking-float .hotel-reference-booking-bar {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
-  align-items: stretch !important;
-  gap: 6px !important;
+  align-items: center !important;
+  gap: 0 !important;
   width: 100% !important;
-  padding: 8px 12px !important;
+  height: 72px !important;
+  padding: 0 !important;
   margin: 0 !important;
+  border: none !important;
+  border-radius: 14px !important;
+  background: rgba(15, 23, 42, 0.55) !important;
+  box-shadow: none !important;
+  overflow: visible !important;
 }
 
-/* Booking fields — compact cells */
+/* Each booking field — explicit min-width prevents collapse */
 .hero-booking-float .hotel-reference-booking-field,
 .hero-booking-float .hotel-reference-booking-input {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
   flex: 1 1 0% !important;
-  min-width: 0 !important;
-  border-radius: 10px !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: rgba(255, 255, 255, 0.06) !important;
-  color: #f0ece4 !important;
-  padding: 6px 10px !important;
+  min-width: 140px !important;
+  height: 100% !important;
+  padding: 8px 14px !important;
   margin: 0 !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #f0ece4 !important;
   cursor: pointer !important;
-  transition: all 0.2s ease !important;
+  transition: background 0.2s ease !important;
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* Last field before button: no right border */
+.hero-booking-float .hotel-reference-booking-field:nth-last-of-type(1),
+.hero-booking-float .hotel-reference-booking-input:nth-last-of-type(1) {
+  border-right: none !important;
 }
 
 .hero-booking-float .hotel-reference-booking-field:hover,
-.hero-booking-float .hotel-reference-booking-field:focus-within {
-  border-color: rgba(212, 165, 116, 0.35) !important;
-  background: rgba(255, 255, 255, 0.1) !important;
+.hero-booking-float .hotel-reference-booking-field:focus-within,
+.hero-booking-float .hotel-reference-booking-input:hover,
+.hero-booking-float .hotel-reference-booking-input:focus-within {
+  background: rgba(255, 255, 255, 0.06) !important;
 }
 
-/* Label row — compact */
+/* Label row — properly spaced */
 .hero-booking-float .hotel-deluxe-booking-label-row {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  gap: 2px !important;
-  margin-bottom: 1px !important;
+  gap: 6px !important;
+  margin-bottom: 2px !important;
 }
 
 .hero-booking-float .hotel-deluxe-booking-label-row span {
-  color: rgba(255, 248, 234, 0.5) !important;
-  font-size: 0.6rem !important;
+  color: rgba(255, 248, 234, 0.55) !important;
+  font-size: 0.65rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
+  letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .hero-booking-float .hotel-deluxe-booking-field-icon {
-  color: rgba(212, 165, 116, 0.6) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 6px !important;
+  background: rgba(184, 115, 51, 0.12) !important;
+  color: rgba(212, 165, 116, 0.7) !important;
+  flex-shrink: 0 !important;
 }
 
 .hero-booking-float .hotel-deluxe-booking-field-icon svg {
-  width: 12px !important;
-  height: 12px !important;
+  width: 13px !important;
+  height: 13px !important;
 }
 
-/* Input/Select — compact */
+/* Input/Select inside fields */
 .hero-booking-float .hotel-reference-booking-input input,
 .hero-booking-float .hotel-reference-booking-input select {
-  color: #fff !important;
+  color: #ffffff !important;
   background: transparent !important;
-  font-size: 0.78rem !important;
-  padding: 1px 0 !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  padding: 0 !important;
   margin: 0 !important;
   border: none !important;
   outline: none !important;
   width: 100% !important;
   cursor: pointer !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+.hero-booking-float .hotel-reference-booking-input select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 .hero-booking-float .hotel-reference-booking-input input::placeholder {
   color: rgba(255, 248, 234, 0.4) !important;
-  font-size: 0.72rem !important;
+  font-size: 0.75rem !important;
 }
 
-/* Summary — hide */
+/* Date picker icon fix */
+.hero-booking-float .hotel-reference-booking-input input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6 !important;
+  filter: invert(0.9) !important;
+  cursor: pointer !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Summary — hide inside hero float */
 .hero-booking-float .hotel-reference-booking-summary {
   display: none !important;
 }
 
-/* Submit button — end of row */
+/* Submit button — independent, fixed width, right-aligned */
 .hero-booking-float .hotel-reference-booking-button {
   flex: 0 0 auto !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 6px !important;
-  padding: 0 22px !important;
-  border-radius: 10px !important;
-  background: linear-gradient(135deg, #b87333, #8B5E28) !important;
+  gap: 8px !important;
+  min-width: 130px !important;
+  height: 48px !important;
+  margin: 0 4px 0 10px !important;
+  padding: 0 20px !important;
+  border-radius: 12px !important;
+  background: #ea580c !important;
   border: none !important;
-  color: #fff !important;
-  font-size: 0.8rem !important;
+  color: #ffffff !important;
+  font-size: 0.85rem !important;
   font-weight: 600 !important;
   white-space: nowrap !important;
-  box-shadow: 0 4px 16px rgba(184, 115, 51, 0.3) !important;
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.35) !important;
   cursor: pointer !important;
-  align-self: stretch !important;
-  transition: all 0.2s ease !important;
+  transition: all 0.25s ease !important;
+  align-self: center !important;
 }
 
 .hero-booking-float .hotel-reference-booking-button:hover {
-  filter: brightness(1.1) !important;
+  background: #f97316 !important;
+  filter: brightness(1.08) !important;
   transform: translateY(-1px) !important;
+  box-shadow: 0 6px 24px rgba(234, 88, 12, 0.45) !important;
 }
 
 .hero-booking-float .hotel-reference-booking-button svg {
-  width: 15px !important;
-  height: 15px !important;
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0 !important;
 }
 
-/* ── MOBILE RESPONSIVE ── */
-@media (max-width: 860px) {
+/* ── MOBILE RESPONSIVE (< 768px = md breakpoint) ── */
+@media (max-width: 768px) {
   .hero-fullbleed-content {
-    padding: 72px 20px 170px !important;
+    padding: 72px 20px 190px !important;
     gap: 14px !important;
   }
 
@@ -25146,38 +25206,72 @@ html.theme-light .eh-header__nav a::after {
 
   .hero-cta-primary,
   .hero-cta-secondary {
-    width: min(85%, 320px) !important;
+    width: min(92%, 340px) !important;
     justify-content: center !important;
     padding: 12px 24px !important;
     font-size: 0.85rem !important;
   }
 
-  /* Booking bar: mobile compact */
+  /* Booking bar: mobile vertical card */
   .hero-booking-float {
-    width: calc(100% - 24px) !important;
-    bottom: 12px !important;
-    border-radius: 14px !important;
+    position: absolute !important;
+    width: 92% !important;
+    max-width: 420px !important;
+    bottom: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-radius: 18px !important;
+    padding: 10px !important;
   }
 
   .hero-booking-float .hotel-reference-booking-bar {
-    flex-wrap: wrap !important;
-    gap: 5px !important;
-    padding: 8px 10px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+    height: auto !important;
+    padding: 4px !important;
   }
 
   .hero-booking-float .hotel-reference-booking-field,
   .hero-booking-float .hotel-reference-booking-input {
-    flex: 1 1 calc(50% - 4px) !important;
-    padding: 5px 8px !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 10px 12px !important;
+    border-right: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
   }
 
   .hero-booking-float .hotel-reference-booking-button {
-    flex: 1 1 100% !important;
-    padding: 8px 16px !important;
+    grid-column: 1 / -1 !important;
+    min-width: unset !important;
+    width: 100% !important;
+    height: 44px !important;
+    margin: 2px 0 0 0 !important;
+    border-radius: 10px !important;
   }
 }
 
-/* ── KILL OLD HERO CLASSES (backward compat) ── */
+/* ── NAVBAR: 100% transparent when NOT scrolled ── */
+.hero-fullbleed-section ~ .eh-header,
+.eh-header:not(.eh-header--scrolled) {
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Remove dark gradient on mobile header when not scrolled */
+@media (max-width: 860px) {
+  .eh-header:not(.eh-header--scrolled) {
+    background: transparent !important;
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* ── KILL OLD HERO CLASSES (backward compat — empty rules) ── */
 .hotel-deluxe-hero-shell,
 .hotel-home-hero,
 .hotel-deluxe-hero-stage,
@@ -25210,5 +25304,5 @@ html.theme-light .eh-header__nav a::after {
 .hotel-deluxe-ghost-button,
 .hotel-home-benefits-strip,
 .hotel-home-benefit-item {
-  /* All styling now handled by new V5.0 classes above */
+  /* All styling now handled by new V6.0 classes above */
 }
