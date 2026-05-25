@@ -188,20 +188,20 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-500',
+        'fixed top-0 left-0 right-0 z-50 h-[72px] md:h-16 transition-all duration-500',
         scrolled
           ? 'backdrop-blur-xl bg-[#FDFBF7]/80 dark:bg-slate-950/80 border-b border-black/5 dark:border-white/10 shadow-sm'
           : 'bg-transparent'
       )}
     >
-      <nav className="w-full h-full px-4 md:px-8 flex items-center justify-between">
+      <nav className="w-full h-full px-5 md:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
           <img
             src="/assets/branding/logo-horizontal-el-hombre.webp"
             alt="El Hombre"
             className={cn(
-              'h-8 transition-all duration-500',
+              'h-9 md:h-8 w-auto max-w-[160px] md:max-w-none object-contain transition-all duration-500',
               scrolled ? 'opacity-100' : 'brightness-0 invert dark:brightness-0 dark:invert'
             )}
           />
@@ -253,7 +253,7 @@ export function Navbar() {
           <button
             onClick={() => setMobileOpen(true)}
             className={cn(
-              'md:hidden w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-300 active:scale-90',
+              'md:hidden w-11 h-11 flex items-center justify-center rounded-lg transition-all duration-300 active:scale-90',
               scrolled
                 ? 'text-slate-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/5'
                 : 'text-white hover:bg-white/10'

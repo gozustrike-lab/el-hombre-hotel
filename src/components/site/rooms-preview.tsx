@@ -31,7 +31,7 @@ export function RoomsPreview() {
       </div>
 
       {/* Rooms grid */}
-      <div className="px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="px-0 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {rooms.map((room, index) => (
           <motion.div
             key={room.name}
@@ -39,7 +39,7 @@ export function RoomsPreview() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: index * 0.15 }}
-            className="relative group rounded-2xl overflow-hidden aspect-[4/3]"
+            className="relative group rounded-none md:rounded-2xl overflow-hidden aspect-[4/3]"
           >
             {/* Image */}
             <img
@@ -52,7 +52,7 @@ export function RoomsPreview() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
             {/* Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-6">
+            <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 md:p-6">
               <div className="flex items-end justify-between mb-3">
                 <h3 className="text-white text-xl font-serif font-medium">
                   {room.name}
