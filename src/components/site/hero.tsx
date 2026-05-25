@@ -18,7 +18,7 @@ export function Hero() {
       />
 
       {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pb-32">
@@ -37,7 +37,7 @@ export function Hero() {
             <span className="text-white/70 text-xs font-medium uppercase tracking-wider">
               {HOTEL_SCORE.label}
             </span>
-            <span className="hidden sm:inline-flex text-white/40 text-[10px]">
+            <span className="inline-flex text-white/40 text-[10px]">
               · {HOTEL_SCORE.reviews} opiniones
             </span>
           </div>
@@ -50,7 +50,7 @@ export function Hero() {
           className="flex items-center gap-2 mb-4"
         >
           <Waves className="h-4 w-4 text-orange-400" />
-          <span className="text-orange-400 text-sm md:text-base uppercase tracking-[0.3em] font-medium drop-shadow-lg">
+          <span className="text-orange-400 text-xs md:text-sm uppercase tracking-[0.2em] font-medium drop-shadow-lg">
             Puerto Chicama, La Libertad, Perú
           </span>
         </motion.div>
@@ -59,7 +59,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light leading-tight drop-shadow-2xl max-w-4xl"
+          className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-light leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] max-w-4xl"
         >
           Hospedaje Restaurante
           <br />
@@ -70,7 +70,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-white/85 text-base md:text-lg max-w-xl mt-6 leading-relaxed drop-shadow-lg"
+          className="text-white/90 text-sm sm:text-base md:text-lg max-w-xl mt-5 leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]"
         >
           Frente a la ola izquierda más larga del mundo.
           <br />

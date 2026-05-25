@@ -120,9 +120,9 @@ export function Services() {
               key={cat.title}
               variants={itemVariants}
               className={`
-                ${catIdx === 0 ? 'px-0' : 'px-0'}
+                px-5
                 md:px-0
-                py-6
+                py-8
                 ${catIdx > 0 ? 'border-t border-black/5 dark:border-white/[0.06]' : ''}
               `}
             >
@@ -137,11 +137,11 @@ export function Services() {
               </div>
 
               {/* Items */}
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-3">
                 {cat.items.map((item) => (
                   <div
                     key={item.label}
-                    className="flex items-start gap-3 group"
+                    className="flex items-start gap-3.5 group py-0.5"
                   >
                     <ServiceIcon
                       name={item.icon}

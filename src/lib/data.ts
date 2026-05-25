@@ -334,7 +334,7 @@ export const testimonials: Testimonial[] = [
     name: "Julio",
     location: "México",
     avatar: "JU",
-    rating: 10,
+    rating: 5,
     text: "Excelente lugar y servicio. Luis y su hermana te hacen sentir en casa.",
     platform: "Booking.com",
   },
