@@ -1,44 +1,47 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
-import { getClientProfile, getSiteContent } from "@/lib/site-config";
-import { buildSiteMetadata, buildJsonLdScript } from "@/lib/seo";
-import { AnimationsProvider } from "@/components/site/AnimationsProvider";
+import { Inter } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
-const sans = Manrope({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-inter",
 });
 
-const serif = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-serif",
-});
-
-export async function generateMetadata(): Promise<Metadata> {
-  const profile = getClientProfile();
-  const content = getSiteContent();
-  return buildSiteMetadata(profile, content);
-}
+export const metadata: Metadata = {
+  title: "Hospedaje Restaurante El Hombre | Puerto López, Manabí",
+  description:
+    "Hospedaje y restaurante frente al mar en Puerto López, Manabí, Ecuador. Habitaciones cómodas, gastronomía local y experiencias únicas.",
+  keywords: [
+    "Puerto López",
+    "hospedaje",
+    "restaurante",
+    "Ecuador",
+    "Manabí",
+    "playa",
+    "hotel",
+  ],
+  openGraph: {
+    title: "Hospedaje Restaurante El Hombre | Puerto López, Manabí",
+    description:
+      "Hospedaje y restaurante frente al mar en Puerto López, Manabí, Ecuador.",
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
-  const profile = getClientProfile();
-  const content = getSiteContent();
-  const jsonLd = buildJsonLdScript(profile, content);
-
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="es" suppressHydrationWarning>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLd }}
-        />
-      </head>
-      <body className={`${sans.variable} ${serif.variable} w-full min-h-screen m-0 p-0 overflow-x-hidden relative`}>
-        <AnimationsProvider>{children}</AnimationsProvider>
+    <html lang="es" suppressHydrationWarning className={inter.variable}>
+      <body className="font-sans antialiased w-full min-h-screen m-0 p-0 overflow-x-hidden bg-background text-foreground transition-colors duration-500">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

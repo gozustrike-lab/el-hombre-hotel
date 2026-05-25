@@ -1,11 +1,21 @@
-import { SiteRenderer } from "@/components/site/SiteRenderer";
-import { getClientProfile, getSiteContent } from "@/lib/site-config";
-
-export const dynamic = "force-dynamic";
+import { Navbar } from '@/components/site/navbar';
+import { Hero } from '@/components/site/hero';
+import { RoomsPreview } from '@/components/site/rooms-preview';
+import { RestaurantPreview } from '@/components/site/restaurant-preview';
+import { Experiences } from '@/components/site/experiences';
+import { Testimonials } from '@/components/site/testimonials';
+import { Footer } from '@/components/site/footer';
 
 export default function HomePage() {
-  const profile = getClientProfile();
-  const content = getSiteContent();
-
-  return <SiteRenderer content={content} pageSlug="hotel" profile={profile} />;
+  return (
+    <main className="w-full m-0 p-0 overflow-x-hidden">
+      <Navbar />
+      <Hero />
+      <RoomsPreview />
+      <RestaurantPreview />
+      <Experiences />
+      <Testimonials />
+      <Footer />
+    </main>
+  );
 }
