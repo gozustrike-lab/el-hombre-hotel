@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { Menu, X, ChevronRight, Phone } from 'lucide-react';
+import { X, Phone, MapPin, Mail } from 'lucide-react';
 import { ThemeToggle } from '@/components/site/theme-toggle';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -17,27 +17,10 @@ const navLinks = [
   { href: '/#contacto', label: 'Contacto' },
 ];
 
-const linkVariants = {
-  hidden: { opacity: 0, x: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: 0.15 + i * 0.07,
-      duration: 0.4,
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
-    },
-  }),
-  exit: {
-    opacity: 0,
-    x: 20,
-    transition: { duration: 0.2 },
-  },
-};
+/* ─── Mobile Menu — Complete rewrite ──────────────────────────── */
 
-function MobileMenuOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const handleReserveClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const handleReserve = () => {
     onClose();
     sendGeneralWA();
   };
@@ -45,125 +28,145 @@ function MobileMenuOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: () =
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.35 }}
-          className="fixed inset-0 z-[60] md:hidden"
-        >
-          {/* Backdrop with blur */}
+        <>
+          {/* ── BACKDROP: covers entire viewport, blocks interaction ── */}
           <motion.div
+            key="mobile-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm md:hidden"
             onClick={onClose}
+            aria-hidden="true"
           />
 
-          {/* Panel */}
+          {/* ── PANEL: opaque sidebar, no bleed-through ── */}
           <motion.div
+            key="mobile-panel"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{
               type: 'spring',
-              damping: 30,
-              stiffness: 300,
+              damping: 32,
+              stiffness: 320,
               mass: 0.8,
             }}
-            className="absolute top-0 right-0 bottom-0 w-[85vw] max-w-[380px] h-screen z-[70] flex flex-col"
+            className="fixed top-0 right-0 bottom-0 z-[70] w-[85vw] max-w-[360px] md:hidden
+              flex flex-col justify-between
+              bg-slate-950 border-l border-white/[0.08]
+              shadow-[-8px_0_40px_rgba(0,0,0,0.5)]"
           >
-            <div className="flex-1 bg-slate-950/70 backdrop-blur-2xl border-l border-white/[0.08] shadow-2xl shadow-black/40 flex flex-col">
-              {/* Header */}
-              <div className="flex items-center justify-between px-6 pt-6 pb-4">
+            {/* ═══ BLOQUE SUPERIOR — Header ═══ */}
+            <div className="shrink-0">
+              <div className="flex items-center justify-between px-6 pt-7 pb-5">
                 <div>
-                  <p className="text-white/40 text-[10px] uppercase tracking-[0.3em] font-medium">
+                  <p className="text-white/35 text-[10px] uppercase tracking-[0.3em] font-medium">
                     Menú
                   </p>
-                  <p className="text-white/90 font-serif text-xl tracking-wide mt-0.5">
+                  <p className="text-white font-serif text-xl tracking-wide mt-1">
                     El Hombre
                   </p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 active:scale-90"
+                  className="w-10 h-10 rounded-full bg-white/[0.06] border border-white/[0.08]
+                    flex items-center justify-center
+                    text-white/60 hover:text-white hover:bg-white/[0.1] hover:border-white/[0.15]
+                    transition-all duration-300 active:scale-90"
                   aria-label="Cerrar menú"
                 >
                   <X className="h-[18px] w-[18px]" />
                 </button>
               </div>
+              <div className="mx-6 h-px bg-white/[0.06]" />
+            </div>
 
-              {/* Thin divider */}
-              <div className="mx-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-              {/* Nav links with staggered animation */}
-              <nav className="flex-1 flex flex-col justify-center px-6 py-8 gap-1">
-                <AnimatePresence>
-                  {navLinks.map((link, i) => (
-                    <motion.div
-                      key={link.href}
-                      custom={i}
-                      variants={linkVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="exit"
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={onClose}
-                        className="group flex items-center justify-between py-3.5 px-2 -mx-2 rounded-lg transition-all duration-300 hover:bg-white/[0.04]"
-                      >
-                        <span className="text-white/85 text-lg font-medium tracking-wide group-hover:text-white transition-colors duration-300">
-                          {link.label}
-                        </span>
-                        <ChevronRight className="h-4 w-4 text-white/0 group-hover:text-orange-400 transition-all duration-300 group-hover:translate-x-0.5" />
-                      </Link>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </nav>
-
-              {/* Bottom section */}
-              <AnimatePresence>
+            {/* ═══ BLOQUE CENTRAL — Nav Links ═══ */}
+            <nav className="flex-1 flex flex-col justify-center px-6 py-6 gap-1">
+              {navLinks.map((link, i) => (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: 0.5, duration: 0.4 }}
-                  className="px-6 pb-8 space-y-4"
+                  key={link.href}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    delay: 0.12 + i * 0.06,
+                    duration: 0.35,
+                    ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+                  }}
                 >
-                  {/* CTA Button */}
-                  <button
-                    onClick={handleReserveClick}
-                    className="group flex items-center justify-center gap-2.5 w-full h-12 rounded-xl text-white font-semibold text-[15px] tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                    style={{
-                      background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
-                      boxShadow: '0 4px 24px -4px rgba(249, 115, 22, 0.4)',
-                    }}
+                  <Link
+                    href={link.href}
+                    onClick={onClose}
+                    className="flex items-center justify-between py-3.5 px-3 -mx-3 rounded-xl
+                      text-white/85 text-lg font-medium tracking-wide
+                      hover:text-white hover:bg-white/[0.04]
+                      active:bg-white/[0.07]
+                      transition-all duration-200"
                   >
-                    <Phone className="h-4 w-4" />
-                    Reservar Ahora
-                  </button>
+                    {link.label}
+                    <span className="text-white/0 group-hover:text-orange-400 text-sm transition-colors duration-200">
+                      →
+                    </span>
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
 
-                  {/* WhatsApp direct */}
+            {/* ═══ BLOQUE INFERIOR — Contact + CTA ═══ */}
+            <div className="shrink-0 px-6 pb-8">
+              {/* Divider */}
+              <div className="mb-6 h-px bg-white/[0.06]" />
+
+              {/* Contact info */}
+              <div className="flex flex-col gap-3 mb-6">
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-orange-400/80" />
+                  <span className="text-white/50 text-xs leading-relaxed">
+                    {HOTEL_LOCATION.address}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="h-4 w-4 shrink-0 text-orange-400/80" />
                   <a
                     href={`tel:${HOTEL_LOCATION.phone}`}
-                    className="flex items-center justify-center gap-2 text-white/40 text-xs tracking-wider hover:text-white/70 transition-colors"
+                    className="text-white/50 text-xs hover:text-white/80 transition-colors"
                   >
-                    <Phone className="h-3 w-3" />
                     {HOTEL_LOCATION.phone}
                   </a>
-                </motion.div>
-              </AnimatePresence>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="h-4 w-4 shrink-0 text-orange-400/80" />
+                  <span className="text-white/50 text-xs">
+                    {HOTEL_LOCATION.email}
+                  </span>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <button
+                onClick={handleReserve}
+                className="flex items-center justify-center gap-2.5 w-full h-12 rounded-xl
+                  text-white font-semibold text-[15px] tracking-wide
+                  transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
+                  boxShadow: '0 4px 24px -4px rgba(249, 115, 22, 0.4)',
+                }}
+              >
+                <Phone className="h-4 w-4" />
+                Reservar Ahora
+              </button>
             </div>
           </motion.div>
-        </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
 }
+
+/* ─── Navbar ───────────────────────────────────────────────────── */
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -204,7 +207,7 @@ export function Navbar() {
       )}
     >
       <nav className="w-full h-full px-5 md:px-8 flex items-center justify-between">
-        {/* Logo — bigger on both mobile and desktop */}
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
           <img
             src="/assets/branding/logo-horizontal-el-hombre.webp"
@@ -282,7 +285,7 @@ export function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      <MobileMenuOverlay isOpen={mobileOpen} onClose={closeMobile} />
+      <MobileMenu isOpen={mobileOpen} onClose={closeMobile} />
     </header>
   );
 }
