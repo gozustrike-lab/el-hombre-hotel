@@ -1,26 +1,42 @@
 /**
  * Centralized WhatsApp redirect utility
  * All CTA messages flow through this single module.
- * Number: +51 949 090 421 → wa.me/51949090421
+ * Number: +51 949 090 421 -> wa.me/51949090421
  *
- * CRITICAL: Every message MUST use native \n line breaks
- * and be wrapped in encodeURIComponent() before URL concatenation.
- * This ensures correct emoji rendering on WhatsApp Web (PC) and mobile.
+ * CRITICAL: All emojis use Unicode escape sequences (\u{XXXX})
+ * instead of literal characters to guarantee correct encoding
+ * regardless of file encoding, git transfer, or build system.
+ * encodeURIComponent() handles the final URL encoding.
  */
 
 import { HOTEL_LOCATION } from '@/lib/data';
 
 const WHATSAPP_NUMBER = '51949090421';
 
+/* ─── Emoji constants (Unicode escape sequences) ──────────────── */
+
+const E = {
+  wave:    '\u{1F30A}',  // 🌊
+  spark:   '\u2728',     // ✨
+  shrimp:  '\u{1F990}',  // 🦐
+  call:    '\u{1F919}',  // 🤙
+  surf:    '\u{1F3C4}',  // 🏄
+  surfZwj: '\u200D',     // ZWJ
+  male:    '\u2642}',    // ♂
+  maleVs16: '\uFE0F',   // variation selector
+  hotel:   '\u{1F3E8}',  // 🏨
+  cal:     '\u{1F4C5}',  // 📅
+  moon:    '\u{1F319}',  // 🌙
+  people:  '\u{1F465}',  // 👥
+  money:   '\u{1F4B0}',  // 💰
+  memo:    '\u{1F4DD}',  // 📝
+  fish:    '\u{1F41F}',  // 🐟
+  surfFull: '\u{1F3C4}\u200D\u2642\uFE0F', // 🏄‍♂️
+};
+
 /* ─── Core: build URL with proper encoding ─────────────────────── */
 
 function buildWhatsAppURL(rawMessage: string): string {
-  // encodeURIComponent handles:
-  // - Emojis (UTF-8 → percent-encoded, e.g. 🌊 → %F0%9F%8C%8A)
-  // - Newlines (\n → %0A)
-  // - Asterisks for bold (* → %2A)
-  // - Underscores for italics (_ → %5F)
-  // This is the ONLY encoding step. No manual %0A, no raw concatenation.
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(rawMessage)}`;
 }
 
@@ -43,7 +59,19 @@ export interface BookingPayload {
 }
 
 export function sendBookingWA(payload: BookingPayload) {
-  const message = `¡Hola Hospedaje El Hombre! 🌊✨\n\nDeseo realizar una *reserva* para mi estancia en Puerto Malabrigo:\n\n🏨 *Habitación:* ${payload.roomName}\n📅 *Check-in:* ${payload.checkIn}\n📅 *Check-out:* ${payload.checkOut}\n🌙 *Noches:* ${payload.nights}\n👥 *Huéspedes:* ${payload.guests}\n\n💰 *Total Estimado:* S/. ${payload.total}\n\n¡Quedo atento para coordinar el depósito del 50% y confirmar mi estadía! 🤙🏄‍♂️`;
+  const g = E.wave + E.spark;
+  const s = E.call + E.surfFull;
+
+  const message =
+    `Hola Hospedaje El Hombre! ${g}\n\n` +
+    `Deseo realizar una *reserva* para mi estancia en Puerto Malabrigo:\n\n` +
+    `${E.hotel} *Habitacion:* ${payload.roomName}\n` +
+    `${E.cal} *Check-in:* ${payload.checkIn}\n` +
+    `${E.cal} *Check-out:* ${payload.checkOut}\n` +
+    `${E.moon} *Noches:* ${payload.nights}\n` +
+    `${E.people} *Huespedes:* ${payload.guests}\n\n` +
+    `${E.money} *Total Estimado:* S/. ${payload.total}\n\n` +
+    `Quedo atento para coordinar el deposito del 50% y confirmar mi estadia! ${s}`;
 
   openWhatsApp(message);
 }
@@ -59,11 +87,19 @@ export interface CartItemPayload {
 }
 
 export function sendRestaurantWA(items: CartItemPayload[], total: string) {
+  const g = E.wave + E.shrimp;
+  const s = E.call + E.fish;
+
   const itemLines = items
-    .map((i) => `  ${i.quantity}x _${i.name}_ — S/. ${i.unitPrice}`)
+    .map((i) => `  ${i.quantity}x _${i.name}_ - S/. ${i.unitPrice}`)
     .join('\n');
 
-  const message = `¡Hola Restaurante El Hombre! 🌊🦐\n\nDeseo realizar un *pedido* de comida desde su carta digital:\n\n📝 *DETALLE DEL PEDIDO:*\n${itemLines}\n\n💰 *TOTAL A PAGAR:* S/. ${total}\n\n¡Quedo atento para confirmar el tiempo de preparación y pasar por mi pedido! 🤙🐟`;
+  const message =
+    `Hola Restaurante El Hombre! ${g}\n\n` +
+    `Deseo realizar un *pedido* de comida desde su carta digital:\n\n` +
+    `${E.memo} *DETALLE DEL PEDIDO:*\n${itemLines}\n\n` +
+    `${E.money} *TOTAL A PAGAR:* S/. ${total}\n\n` +
+    `Quedo atento para confirmar el tiempo de preparacion y pasar por mi pedido! ${s}`;
 
   openWhatsApp(message);
 }
@@ -73,7 +109,13 @@ export function sendRestaurantWA(items: CartItemPayload[], total: string) {
    ═══════════════════════════════════════════════════════════════════ */
 
 export function sendGeneralWA() {
-  const message = `¡Hola Equipo de El Hombre Puerto Malabrigo! 🌊🏄‍♂️\n\nVisité su sitio web y me gustaría recibir *información personalizada* sobre sus servicios, disponibilidad de habitaciones o clases de surf.\n\n¡Muchas gracias, quedo atento! 🤙✨`;
+  const g = E.wave + E.surfFull;
+  const s = E.call + E.spark;
+
+  const message =
+    `Hola Equipo de El Hombre Puerto Malabrigo! ${g}\n\n` +
+    `Visite su sitio web y me gustaria recibir *informacion personalizada* sobre sus servicios, disponibilidad de habitaciones o clases de surf.\n\n` +
+    `Muchas gracias, quedo atento! ${s}`;
 
   openWhatsApp(message);
 }
@@ -88,7 +130,14 @@ export interface RoomDirectPayload {
 }
 
 export function sendRoomDirectWA(payload: RoomDirectPayload) {
-  const message = `¡Hola Hospedaje El Hombre! 🌊✨\n\nMe interesa la *${payload.roomName}* (${payload.price}/noche) en Puerto Chicama.\n\n¿Podrían confirmarme disponibilidad y tarifas para las fechas que tengo en mente?\n\n¡Quedo atento, gracias! 🤙🏄‍♂️`;
+  const g = E.wave + E.spark;
+  const s = E.call + E.surfFull;
+
+  const message =
+    `Hola Hospedaje El Hombre! ${g}\n\n` +
+    `Me interesa la *${payload.roomName}* (${payload.price}/noche) en Puerto Chicama.\n\n` +
+    `Podrian confirmarme disponibilidad y tarifas para las fechas que tengo en mente?\n\n` +
+    `Quedo atento, gracias! ${s}`;
 
   openWhatsApp(message);
 }
@@ -98,7 +147,14 @@ export function sendRoomDirectWA(payload: RoomDirectPayload) {
    ═══════════════════════════════════════════════════════════════════ */
 
 export function sendExperienceWA(experienceName: string) {
-  const message = `¡Hola Equipo de El Hombre! 🌊✨\n\nMe interesa la experiencia _*${experienceName}*_ que vi en su sitio web.\n\n¿Podrían darme más información sobre disponibilidad, precios y cómo reservar?\n\n¡Muchas gracias, quedo atento! 🤙🏄‍♂️`;
+  const g = E.wave + E.spark;
+  const s = E.call + E.surfFull;
+
+  const message =
+    `Hola Equipo de El Hombre! ${g}\n\n` +
+    `Me interesa la experiencia _*${experienceName}*_ que vi en su sitio web.\n\n` +
+    `Podrian darme mas informacion sobre disponibilidad, precios y como reservar?\n\n` +
+    `Muchas gracias, quedo atento! ${s}`;
 
   openWhatsApp(message);
 }
