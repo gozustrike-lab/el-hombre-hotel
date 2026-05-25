@@ -350,6 +350,7 @@ export function ReferenceCloneHotelEngine({
       </LightboxProvider>
     </>
   );
+}
 
 function buildAmenities(content: SiteContent) {
   const baseItems = [
