@@ -55,7 +55,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             }}
             className="fixed top-0 right-0 bottom-0 z-[70] w-[85vw] max-w-[360px] md:hidden
               flex flex-col justify-between
-              bg-slate-950 border-l border-white/[0.08]
+              bg-[#0f172a] dark:bg-[#1e293b] border-l border-white/[0.12]
               shadow-[-8px_0_40px_rgba(0,0,0,0.5)]"
           >
             {/* ═══ BLOQUE SUPERIOR — Header ═══ */}
@@ -80,7 +80,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                   <X className="h-[18px] w-[18px]" />
                 </button>
               </div>
-              <div className="mx-6 h-px bg-white/[0.06]" />
+              <div className="mx-6 h-px bg-white/[0.1]" />
             </div>
 
             {/* ═══ BLOQUE CENTRAL — Nav Links ═══ */}
@@ -100,9 +100,9 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                     href={link.href}
                     onClick={onClose}
                     className="flex items-center justify-between py-3.5 px-3 -mx-3 rounded-xl
-                      text-white/85 text-lg font-medium tracking-wide
-                      hover:text-white hover:bg-white/[0.04]
-                      active:bg-white/[0.07]
+                      text-white/90 text-[17px] font-medium tracking-wide
+                      hover:text-white hover:bg-white/[0.06]
+                      active:bg-white/[0.09]
                       transition-all duration-200"
                   >
                     {link.label}
@@ -117,18 +117,18 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             {/* ═══ BLOQUE INFERIOR — Contact + CTA ═══ */}
             <div className="shrink-0 px-6 pb-8">
               {/* Divider */}
-              <div className="mb-6 h-px bg-white/[0.06]" />
+              <div className="mb-6 h-px bg-white/[0.1]" />
 
               {/* Contact info */}
               <div className="flex flex-col gap-3 mb-6">
                 <div className="flex items-start gap-3">
-                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-orange-400/80" />
+                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-orange-400" />
                   <span className="text-white/50 text-xs leading-relaxed">
                     {HOTEL_LOCATION.address}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone className="h-4 w-4 shrink-0 text-orange-400/80" />
+                  <Phone className="h-4 w-4 shrink-0 text-orange-400" />
                   <a
                     href={`tel:${HOTEL_LOCATION.phone}`}
                     className="text-white/50 text-xs hover:text-white/80 transition-colors"
@@ -137,7 +137,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 shrink-0 text-orange-400/80" />
+                  <Mail className="h-4 w-4 shrink-0 text-orange-400" />
                   <span className="text-white/50 text-xs">
                     {HOTEL_LOCATION.email}
                   </span>
