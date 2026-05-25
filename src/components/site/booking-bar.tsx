@@ -1,11 +1,18 @@
 'use client';
 
-import { Search } from 'lucide-react';
+import { Search, Phone } from 'lucide-react';
+import { HOTEL_LOCATION } from '@/lib/data';
 
 export function BookingBar() {
+  const roomOptions = [
+    { value: '', label: 'Tipo de habitación' },
+    { value: 'simple', label: 'Simple — S/. 80/noche' },
+    { value: 'doble', label: 'Doble Surf Premium — S/. 140/noche' },
+  ];
+
   return (
     <div className="w-full max-w-5xl mx-auto">
-      <div className="backdrop-blur-2xl bg-white/20 dark:bg-slate-900/40 rounded-2xl border border-white/20 p-3 md:p-4">
+      <div className="backdrop-blur-2xl bg-white/15 dark:bg-slate-900/40 rounded-2xl border border-white/20 p-3 md:p-4">
         {/* Desktop layout */}
         <div className="hidden md:flex items-center gap-0">
           <div className="flex-1 min-w-[160px] px-3">
@@ -13,10 +20,11 @@ export function BookingBar() {
               Habitación
             </label>
             <select className="w-full bg-transparent text-white text-sm py-2 rounded-lg appearance-none cursor-pointer focus:outline-none">
-              <option value="" className="bg-slate-900 text-white">Tipo de habitación</option>
-              <option value="estandar" className="bg-slate-900 text-white">Estándar — $35</option>
-              <option value="deluxe" className="bg-slate-900 text-white">Deluxe — $55</option>
-              <option value="suite" className="bg-slate-900 text-white">Suite Familiar — $75</option>
+              {roomOptions.map((opt) => (
+                <option key={opt.value} value={opt.value} className="bg-slate-900 text-white">
+                  {opt.label}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -51,21 +59,25 @@ export function BookingBar() {
               Huéspedes
             </label>
             <select className="w-full bg-transparent text-white text-sm py-2 rounded-lg appearance-none cursor-pointer focus:outline-none">
-              <option value="1" className="bg-slate-900 text-white">1 huésped</option>
-              <option value="2" className="bg-slate-900 text-white">2 huéspedes</option>
-              <option value="3" className="bg-slate-900 text-white">3 huéspedes</option>
-              <option value="4" className="bg-slate-900 text-white">4 huéspedes</option>
-              <option value="5" className="bg-slate-900 text-white">5 huéspedes</option>
-              <option value="6" className="bg-slate-900 text-white">6 huéspedes</option>
+              {[1, 2, 3, 4].map((n) => (
+                <option key={n} value={n} className="bg-slate-900 text-white">
+                  {n} {n === 1 ? 'huésped' : 'huéspedes'}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className="w-px h-8 bg-white/20 shrink-0" />
 
-          <button className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-medium transition-colors shrink-0 ml-2">
+          <a
+            href={`https://wa.me/${HOTEL_LOCATION.whatsapp}?text=Hola,%20quiero%20reservar%20habitación%20en%20El%20Hombre`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 shrink-0 ml-2 hover:scale-[1.02] active:scale-[0.98]"
+          >
             <Search className="h-4 w-4" />
             Buscar
-          </button>
+          </a>
         </div>
 
         {/* Mobile layout */}
@@ -76,9 +88,8 @@ export function BookingBar() {
             </label>
             <select className="w-full bg-transparent text-white text-sm rounded-lg appearance-none cursor-pointer focus:outline-none">
               <option value="" className="bg-slate-900 text-white">Tipo</option>
-              <option value="estandar" className="bg-slate-900 text-white">Estándar</option>
-              <option value="deluxe" className="bg-slate-900 text-white">Deluxe</option>
-              <option value="suite" className="bg-slate-900 text-white">Suite</option>
+              <option value="simple" className="bg-slate-900 text-white">Simple</option>
+              <option value="doble" className="bg-slate-900 text-white">Doble Premium</option>
             </select>
           </div>
 
@@ -87,7 +98,7 @@ export function BookingBar() {
               Huéspedes
             </label>
             <select className="w-full bg-transparent text-white text-sm rounded-lg appearance-none cursor-pointer focus:outline-none">
-              {[1, 2, 3, 4, 5, 6].map((n) => (
+              {[1, 2, 3, 4].map((n) => (
                 <option key={n} value={n} className="bg-slate-900 text-white">
                   {n} {n === 1 ? 'huésped' : 'huéspedes'}
                 </option>
@@ -115,10 +126,15 @@ export function BookingBar() {
             />
           </div>
 
-          <button className="col-span-2 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-medium transition-colors">
-            <Search className="h-4 w-4" />
-            Buscar Disponibilidad
-          </button>
+          <a
+            href={`https://wa.me/${HOTEL_LOCATION.whatsapp}?text=Hola,%20quiero%20reservar%20habitación%20en%20El%20Hombre`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="col-span-2 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300"
+          >
+            <Phone className="h-4 w-4" />
+            Reservar por WhatsApp
+          </a>
         </div>
       </div>
     </div>

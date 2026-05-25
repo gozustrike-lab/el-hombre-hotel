@@ -20,7 +20,7 @@ interface CartFloatProps {
 export function CartFloat({ items, onUpdate }: CartFloatProps) {
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce(
-    (sum, item) => sum + parseFloat(item.price.replace('$', '')) * item.quantity,
+    (sum, item) => sum + parseFloat(item.price.replace(/S\/\./, '').trim()) * item.quantity,
     0
   );
 
@@ -137,7 +137,7 @@ export function CartFloat({ items, onUpdate }: CartFloatProps) {
                 Total
               </span>
               <span className="text-slate-900 dark:text-white text-xl font-semibold">
-                ${totalPrice.toFixed(2)}
+                S/. {totalPrice.toFixed(0)}
               </span>
             </div>
             <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-xl h-12 text-base">

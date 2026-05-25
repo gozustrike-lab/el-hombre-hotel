@@ -91,7 +91,7 @@ export default function RestaurantePage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/70 text-sm md:text-base mt-3 max-w-md"
           >
-            Ingredientes frescos del Pacífico ecuatoriano, preparados con tradición y pasión.
+            Ingredientes frescos del Pacífico peruano, preparados con tradición y pasión.
           </motion.p>
         </div>
       </section>

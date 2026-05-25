@@ -9,22 +9,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Hospedaje Restaurante El Hombre | Puerto López, Manabí",
+  title: "Hospedaje Restaurante El Hombre | Puerto Chicama, La Libertad, Perú",
   description:
-    "Hospedaje y restaurante frente al mar en Puerto López, Manabí, Ecuador. Habitaciones cómodas, gastronomía local y experiencias únicas.",
+    "Hospedaje y restaurante frente a la ola izquierda más larga del mundo en Puerto Chicama, La Libertad, Perú. Habitaciones cómodas, gastronomía peruana y experiencias de surf únicas. Capacidad total: 17 personas.",
   keywords: [
-    "Puerto López",
+    "Puerto Chicama",
     "hospedaje",
     "restaurante",
-    "Ecuador",
-    "Manabí",
-    "playa",
+    "Perú",
+    "La Libertad",
+    "surf",
+    "ola izquierda",
     "hotel",
+    "Puerto Malabrigo",
   ],
   openGraph: {
-    title: "Hospedaje Restaurante El Hombre | Puerto López, Manabí",
+    title: "Hospedaje Restaurante El Hombre | Puerto Chicama, La Libertad, Perú",
     description:
-      "Hospedaje y restaurante frente al mar en Puerto López, Manabí, Ecuador.",
+      "Hospedaje y restaurante frente a la ola izquierda más larga del mundo en Puerto Chicama, Perú.",
     type: "website",
   },
 };

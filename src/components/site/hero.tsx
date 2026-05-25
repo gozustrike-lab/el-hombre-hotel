@@ -2,33 +2,36 @@
 
 import { BookingBar } from '@/components/site/booking-bar';
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Waves } from 'lucide-react';
 
 export function Hero() {
   return (
     <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image — Puerto Chicama beach */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            'url(https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=80)',
+            'url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80)',
         }}
       />
 
       {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pb-32">
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-white/80 text-sm md:text-base uppercase tracking-[0.3em] mb-4 drop-shadow-lg"
+          className="flex items-center gap-2 mb-4"
         >
-          Puerto López, Manabí, Ecuador
-        </motion.p>
+          <Waves className="h-4 w-4 text-orange-400" />
+          <span className="text-orange-400 text-sm md:text-base uppercase tracking-[0.3em] font-medium drop-shadow-lg">
+            Puerto Chicama, La Libertad, Perú
+          </span>
+        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -47,9 +50,9 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-white/85 text-base md:text-lg max-w-xl mt-6 leading-relaxed drop-shadow-lg"
         >
-          Frente al mar. Gastronomía local. Experiencias inolvidables.
+          Frente a la ola izquierda más larga del mundo.
           <br />
-          Tu refugio costero en el corazón de Manabí.
+          Gastronomía peruana. Experiencias inolvidables.
         </motion.p>
 
         <motion.a

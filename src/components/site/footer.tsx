@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Instagram, Facebook, Music } from 'lucide-react';
+import { Instagram, Facebook, Music, MapPin, Phone, Mail } from 'lucide-react';
+import { HOTEL_LOCATION } from '@/lib/data';
 
 export function Footer() {
   return (
@@ -14,9 +15,9 @@ export function Footer() {
               Hospedaje Restaurante El Hombre
             </h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-sm">
-              Frente al mar en Puerto López, Manabí. Ofrecemos hospedaje cómodo
-              y gastronomía local con los mejores ingredientes del Pacífico
-              ecuatoriano.
+              Frente a la ola izquierda más larga del mundo en Puerto Chicama,
+              La Libertad, Perú. Hospedaje cómodo, gastronomía peruana de
+              altura y la mejor experiencia surf de tu vida.
             </p>
           </div>
 
@@ -25,7 +26,7 @@ export function Footer() {
             <h3 className="text-slate-900 dark:text-white text-lg font-serif font-medium mb-4">
               Enlaces
             </h3>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2.5">
               {[
                 { href: '/', label: 'Inicio' },
                 { href: '/#habitaciones', label: 'Habitaciones' },
@@ -36,8 +37,9 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-slate-600 dark:text-slate-400 text-sm hover:text-orange-500 dark:hover:text-orange-500 transition-colors"
+                  className="text-slate-600 dark:text-slate-400 text-sm hover:text-orange-500 dark:hover:text-orange-500 transition-colors inline-flex items-center gap-1.5 group"
                 >
+                  <span className="w-0 h-px bg-orange-500 transition-all duration-300 group-hover:w-3" />
                   {link.label}
                 </Link>
               ))}
@@ -49,35 +51,53 @@ export function Footer() {
             <h3 className="text-slate-900 dark:text-white text-lg font-serif font-medium mb-4">
               Contacto
             </h3>
-            <div className="flex flex-col gap-2 text-sm text-slate-600 dark:text-slate-400">
-              <p>Puerto López, Manabí, Ecuador</p>
-              <p>Playa Machalilla, frente al malecón</p>
-              <p className="mt-2">+593 5 123 4567</p>
-              <p>info@elhombre.ec</p>
+            <div className="flex flex-col gap-3 text-sm text-slate-600 dark:text-slate-400">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-orange-500" />
+                <span>{HOTEL_LOCATION.address}</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Phone className="h-4 w-4 shrink-0 text-orange-500" />
+                <a
+                  href={`tel:${HOTEL_LOCATION.phone}`}
+                  className="hover:text-orange-500 transition-colors"
+                >
+                  {HOTEL_LOCATION.phone}
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="h-4 w-4 shrink-0 text-orange-500" />
+                <a
+                  href={`mailto:${HOTEL_LOCATION.email}`}
+                  className="hover:text-orange-500 transition-colors"
+                >
+                  {HOTEL_LOCATION.email}
+                </a>
+              </div>
             </div>
 
             {/* Social icons */}
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-3 mt-6">
               <a
                 href="#"
                 aria-label="Instagram"
-                className="text-slate-500 dark:text-slate-500 hover:text-orange-500 dark:hover:text-orange-500 transition-colors"
+                className="w-9 h-9 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-500 hover:text-orange-500 hover:bg-orange-500/10 transition-all duration-300"
               >
-                <Instagram className="h-5 w-5" />
+                <Instagram className="h-4 w-4" />
               </a>
               <a
                 href="#"
                 aria-label="Facebook"
-                className="text-slate-500 dark:text-slate-500 hover:text-orange-500 dark:hover:text-orange-500 transition-colors"
+                className="w-9 h-9 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-500 hover:text-orange-500 hover:bg-orange-500/10 transition-all duration-300"
               >
-                <Facebook className="h-5 w-5" />
+                <Facebook className="h-4 w-4" />
               </a>
               <a
                 href="#"
                 aria-label="TikTok"
-                className="text-slate-500 dark:text-slate-500 hover:text-orange-500 dark:hover:text-orange-500 transition-colors"
+                className="w-9 h-9 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-500 hover:text-orange-500 hover:bg-orange-500/10 transition-all duration-300"
               >
-                <Music className="h-5 w-5" />
+                <Music className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -86,7 +106,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-16 pt-6 border-t border-black/5 dark:border-white/10">
           <p className="text-slate-500 dark:text-slate-600 text-xs text-center">
-            © {new Date().getFullYear()} Hospedaje Restaurante El Hombre. Todos los derechos reservados.
+            © {new Date().getFullYear()} Hospedaje Restaurante El Hombre — Puerto Chicama, La Libertad, Perú. Todos los derechos reservados.
           </p>
         </div>
       </div>
