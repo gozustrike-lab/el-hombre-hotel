@@ -6,8 +6,12 @@ import { HOTEL_LOCATION } from '@/lib/data';
 export function BookingBar() {
   const roomOptions = [
     { value: '', label: 'Tipo de habitación' },
-    { value: 'simple', label: 'Simple — S/. 80/noche' },
-    { value: 'doble', label: 'Doble Surf Premium — S/. 140/noche' },
+    { value: 'individual', label: 'Individual — S/. 68/noche' },
+    { value: 'doble', label: 'Doble 2 Camas — S/. 120/noche' },
+    { value: 'doble-aseo', label: 'Doble Aseo Compartido — S/. 140/noche' },
+    { value: 'doble-dobles', label: 'Doble Camas Dobles — S/. 140/noche' },
+    { value: 'deluxe', label: 'Deluxe Vista al Mar — S/. 119/noche' },
+    { value: 'triple', label: 'Triple Básica — S/. 150/noche' },
   ];
 
   return (
@@ -88,8 +92,9 @@ export function BookingBar() {
             </label>
             <select className="w-full bg-transparent text-white text-sm rounded-lg appearance-none cursor-pointer focus:outline-none">
               <option value="" className="bg-slate-900 text-white">Tipo</option>
-              <option value="simple" className="bg-slate-900 text-white">Simple</option>
-              <option value="doble" className="bg-slate-900 text-white">Doble Premium</option>
+              <option value="individual" className="bg-slate-900 text-white">Individual</option>
+              <option value="doble" className="bg-slate-900 text-white">Doble 2 Camas</option>
+              <option value="deluxe" className="bg-slate-900 text-white">Deluxe Vista</option>
             </select>
           </div>
 

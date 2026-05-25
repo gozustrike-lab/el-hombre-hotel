@@ -7,7 +7,7 @@ import { HOTEL_LOCATION, HOTEL_DESCRIPTION } from '@/lib/data';
 export function Footer() {
   return (
     <footer id="contacto" className="w-full border-t border-black/5 dark:border-white/10">
-      <div className="px-6 md:px-12 lg:px-20 py-16 md:py-20">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
           {/* About */}
           <div>

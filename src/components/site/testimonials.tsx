@@ -7,7 +7,7 @@ import { testimonials } from '@/lib/data';
 export function Testimonials() {
   return (
     <section className="w-full py-24 md:py-32">
-      <div className="px-6 md:px-12 lg:px-20">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8">
         {/* Section heading */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -30,7 +30,7 @@ export function Testimonials() {
       </div>
 
       {/* Desktop grid */}
-      <div className="hidden md:grid px-6 md:px-12 lg:px-20 grid-cols-2 gap-x-12 gap-y-16">
+      <div className="hidden md:grid w-full max-w-6xl mx-auto px-5 md:px-8 grid-cols-2 gap-x-12 gap-y-16">
         {testimonials.map((t, index) => (
           <motion.div
             key={t.id}
@@ -83,7 +83,7 @@ export function Testimonials() {
       </div>
 
       {/* Mobile horizontal scroll */}
-      <div className="md:hidden px-6 overflow-x-auto pb-4 -mx-6 px-6">
+      <div className="md:hidden overflow-x-auto pb-4 px-5">
         <div className="flex gap-6" style={{ minWidth: 'min-content' }}>
           {testimonials.map((t) => (
             <div

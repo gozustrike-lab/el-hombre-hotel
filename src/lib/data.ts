@@ -422,25 +422,61 @@ export const experiences: Experience[] = [
   },
 ];
 
-/* ─── ROOMS ────────────────────────────────────────────────────── */
+/* ─── ROOMS (Booking.com verified — Dec 2026 prices) ────────────── */
 
 export const rooms: Room[] = [
   {
-    name: "Habitación Simple",
+    name: "Habitación Individual",
     description:
-      "Habitación cómoda con cama individual o doble, baño privado con ducha y bañera, agua caliente, ventilador de techo, WiFi gratis, toallas y ropa de cama. Ideal para viajeros en solitario.",
-    price: "S/. 80",
+      "Cama individual con vistas al mar, baño compartido con ducha, WC, toallas y papel higiénico. WiFi gratis y desayuno incluido. Ideal para viajeros en solitario.",
+    price: "S/. 68",
     image:
       "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80",
-    features: ["WiFi Gratis", "Agua Caliente", "TV", "Baño Privado", "Vista al Mar"],
+    features: ["WiFi Gratis", "Desayuno Incluido", "Vista al Mar", "Baño Compartido"],
   },
   {
-    name: "Habitación Doble Surf Premium",
+    name: "Habitación Doble — 2 Camas",
     description:
-      "Habitación amplia con cama doble o twin, vistas al mar, balcón privado, ventilador, mosquitera, calefacción, caja fuerte, toallas y amenities premium. La mejor opción para surfistas.",
+      "Dos camas individuales, baño privado con bañera, WiFi gratis y desayuno incluido. Cancelación gratuita y pago en el alojamiento.",
+    price: "S/. 120",
+    image:
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80",
+    features: ["WiFi Gratis", "Desayuno", "Baño Privado", "2 Camas Individuales"],
+  },
+  {
+    name: "Habitación Doble con Aseo Compartido",
+    description:
+      "Dos camas individuales, baño compartido con bañera, ducha y WC. WiFi gratis, desayuno incluido y papel higiénico. Cancelación gratuita.",
     price: "S/. 140",
     image:
       "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80",
-    features: ["Vista al Mar", "Balcón", "Calefacción", "Caja Fuerte", "A/C"],
+    features: ["WiFi Gratis", "Desayuno", "Baño Compartido", "2 Camas Individuales"],
+  },
+  {
+    name: "Habitación Doble — 2 Camas Dobles",
+    description:
+      "Dos camas individuales grandes, baño privado con bañera, WiFi gratis y desayuno incluido. Cancelación gratuita y pago en el alojamiento.",
+    price: "S/. 140",
+    image:
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80",
+    features: ["WiFi Gratis", "Desayuno", "Baño Privado", "Camas Dobles"],
+  },
+  {
+    name: "Habitación Deluxe — Vista al Mar",
+    description:
+      "Cama doble grande con vistas al mar, baño privado, WiFi gratis y desayuno incluido. La mejor experiencia frente a Puerto Chicama.",
+    price: "S/. 119",
+    image:
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80",
+    features: ["WiFi Gratis", "Desayuno", "Vista al Mar", "Cama Doble Grande"],
+  },
+  {
+    name: "Habitación Triple Básica",
+    description:
+      "Tres camas individuales, baño compartido, WiFi gratis y desayuno incluido. Perfecta para grupos o familias pequeñas.",
+    price: "S/. 150",
+    image:
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80",
+    features: ["WiFi Gratis", "Desayuno", "3 Camas", "Baño Compartido"],
   },
 ];

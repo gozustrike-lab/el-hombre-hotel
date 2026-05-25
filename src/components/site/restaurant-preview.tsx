@@ -7,7 +7,7 @@ import { featuredDishes } from '@/lib/data';
 export function RestaurantPreview() {
   return (
     <section id="restaurante" className="w-full py-24 md:py-32">
-      <div className="px-6 md:px-12 lg:px-20">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8">
         {/* Section heading */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -40,7 +40,7 @@ export function RestaurantPreview() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className={`w-full px-6 md:px-12 lg:px-20 py-12 lg:py-20 ${
+            className={`w-full max-w-6xl mx-auto px-5 md:px-8 py-12 lg:py-20 ${
               index > 0 ? 'border-t border-black/5 dark:border-white/5' : ''
             }`}
           >
@@ -81,7 +81,7 @@ export function RestaurantPreview() {
       })}
 
       {/* View full menu link */}
-      <div className="px-6 md:px-12 lg:px-20 pt-8 pb-4">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 pt-8 pb-4">
         <Link
           href="/restaurante"
           className="inline-flex items-center gap-2 text-slate-900 dark:text-white text-lg font-medium group hover:text-orange-500 dark:hover:text-orange-500 transition-colors duration-300"

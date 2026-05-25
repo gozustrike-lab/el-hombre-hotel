@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 export function Experiences() {
   return (
     <section id="experiencias" className="w-full py-24 md:py-32">
-      <div className="px-6 md:px-12 lg:px-20 mb-16">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 mb-16">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -28,7 +28,7 @@ export function Experiences() {
         </motion.h2>
       </div>
 
-      <div className="px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {experiences.map((exp, index) => (
           <motion.div
             key={exp.title}
