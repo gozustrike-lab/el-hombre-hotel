@@ -26646,3 +26646,486 @@ html.theme-light .eh-header__nav a::after {
     -webkit-backdrop-filter: none !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NUCLEAR v7.0 — FULL BLEED IMMERSIVE RECONSTRUCTION
+   Elimina todos los containers restrictivos, fuerza 100% width
+   Contraste absoluto, diseño flotante, sin cards rígidas
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. KILL RESTRICTIVE SHELLS — FORCE 100% FULL BLEED ── */
+.page-shell.mode-reference-clone-hotel {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-shell {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+.page-shell.mode-reference-clone-hotel::before,
+.page-shell.mode-reference-clone-hotel::after,
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-shell::before,
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-shell::after {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+}
+
+/* ── 2. UNIFIED CONTINUOUS BACKGROUND — NO CARDS, NO BOXES ── */
+.page-shell.mode-reference-clone-hotel.theme-dark,
+html.theme-dark .page-shell.mode-reference-clone-hotel {
+  --page-bg: #07090d !important;
+  --text: #f7f5ef !important;
+  --surface-contrast: #f7f5ef !important;
+  color: #f7f5ef !important;
+}
+
+.page-shell.mode-reference-clone-hotel.theme-dark::before {
+  background: #07090d !important;
+}
+
+.page-shell.mode-reference-clone-hotel.theme-dark::after {
+  display: none !important;
+}
+
+.page-shell.mode-reference-clone-hotel.theme-light,
+html.theme-light .page-shell.mode-reference-clone-hotel {
+  --page-bg: #FDFBF7 !important;
+  --text: #0f172a !important;
+  --surface-contrast: #0f172a !important;
+  color: #0f172a !important;
+}
+
+.page-shell.mode-reference-clone-hotel.theme-light::before {
+  background: #FDFBF7 !important;
+}
+
+.page-shell.mode-reference-clone-hotel.theme-light::after {
+  display: none !important;
+}
+
+/* ── 3. ALL SECTIONS: FULL WIDTH, NO CARDS, CONTINUOUS FLOW ── */
+.page-shell.mode-reference-clone-hotel .scene,
+.page-shell.mode-reference-clone-hotel .contact-panel {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 48px) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.page-shell.mode-reference-clone-hotel .scene::before,
+.page-shell.mode-reference-clone-hotel .scene::after,
+.page-shell.mode-reference-clone-hotel .contact-panel::before,
+.page-shell.mode-reference-clone-hotel .contact-panel::after {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+}
+
+/* ── 4. SECTION HEADINGS: HIGH CONTRAST ── */
+.page-shell.mode-reference-clone-hotel .hotel-reference-section-heading h2,
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading h2 {
+  color: #f7f5ef !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-reference-section-heading h2,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading h2 {
+  color: #0f172a !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-reference-section-heading p,
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading p {
+  color: rgba(247,245,239,0.65) !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-reference-section-heading p,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-section-heading p {
+  color: rgba(15,23,42,0.55) !important;
+}
+
+.page-shell.mode-reference-clone-hotel .scene-chip {
+  color: #d4a574 !important;
+  border-color: rgba(184,115,51,0.3) !important;
+  background: rgba(184,115,51,0.08) !important;
+}
+
+/* ── 5. ROOM GALLERY: FLOATING DESIGN, NO CARDS ── */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-room-card,
+.page-shell.mode-reference-clone-hotel .hotel-reference-room-card {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  overflow: visible !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-room-card:hover {
+  transform: none !important;
+}
+
+/* ── 6. TESTIMONIALS: FLOATING DESIGN ── */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card blockquote,
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card p {
+  color: rgba(247,245,239,0.8) !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card blockquote,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-testimonial-card p {
+  color: rgba(15,23,42,0.75) !important;
+}
+
+/* ── 7. AMENITIES: FLOATING, NO CARDS ── */
+.page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-card {
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 16px !important;
+  background: rgba(255,255,255,0.03) !important;
+  backdrop-filter: none !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-deluxe-benefit-card {
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  background: rgba(0,0,0,0.02) !important;
+}
+
+/* ── 8. RESTAURANT: FLOATING, NO CONTAINER BOX ── */
+.hotel-deluxe-restaurant-inner {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 48px) !important;
+}
+
+.hotel-deluxe-restaurant-card {
+  border: 1px solid rgba(244,235,220,0.08) !important;
+  border-radius: 16px !important;
+  background: rgba(247,243,236,0.03) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-card {
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  background: rgba(0,0,0,0.02) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-title {
+  color: #0f172a !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-subtitle {
+  color: rgba(15,23,42,0.6) !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-card-title {
+  color: #0f172a !important;
+}
+
+html.theme-light .hotel-deluxe-restaurant-card-desc {
+  color: rgba(15,23,42,0.55) !important;
+}
+
+/* Restaurant CTA wrapper */
+.hotel-deluxe-restaurant-cta-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: clamp(28px, 4vw, 48px) !important;
+}
+
+.hotel-deluxe-restaurant-cta-full {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 14px 32px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(184,115,51,0.3) !important;
+  background: rgba(184,115,51,0.08) !important;
+  color: #d4a574 !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.hotel-deluxe-restaurant-cta-full:hover {
+  background: rgba(184,115,51,0.18) !important;
+  border-color: rgba(184,115,51,0.5) !important;
+  transform: translateY(-1px) !important;
+  color: #d4a574 !important;
+}
+
+/* ── 9. PAYMENT METHODS: DARK TEXT ON LIGHT BG, NO GRAY CARD ── */
+.hotel-payment-methods-section {
+  width: 100% !important;
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 48px) !important;
+  background: transparent !important;
+}
+
+.hotel-payment-method-card {
+  padding: clamp(24px, 3vw, 40px) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.hotel-payment-method-body {
+  text-align: left !important;
+}
+
+.hotel-payment-methods-heading h2 {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.hotel-payment-methods-heading .scene-chip {
+  color: #b87333 !important;
+}
+
+.hotel-payment-method-body p,
+.hotel-payment-method-body strong {
+  color: #0f172a !important;
+}
+
+.hotel-payment-method-body strong {
+  font-weight: 800 !important;
+}
+
+.hotel-payment-method-brand {
+  justify-content: flex-start !important;
+  margin-bottom: 20px !important;
+}
+
+.hotel-payment-brand-logo {
+  width: clamp(120px, 16vw, 160px) !important;
+}
+
+html.theme-dark .hotel-payment-methods-heading h2 {
+  color: #f7f5ef !important;
+}
+
+html.theme-dark .hotel-payment-method-body p,
+html.theme-dark .hotel-payment-method-body strong {
+  color: #f7f5ef !important;
+}
+
+/* ── 10. LOCATION BLOCK: FULL BLEED, NO CARDS ── */
+.page-shell.mode-reference-clone-hotel .scene-location {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 48px) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.page-shell.mode-reference-clone-hotel .location-heading h2 {
+  color: #f7f5ef !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .location-heading h2 {
+  color: #0f172a !important;
+}
+
+.page-shell.mode-reference-clone-hotel .location-heading p,
+.page-shell.mode-reference-clone-hotel .location-row p,
+.page-shell.mode-reference-clone-hotel .location-row a {
+  color: rgba(247,245,239,0.7) !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .location-heading p,
+html.theme-light .page-shell.mode-reference-clone-hotel .location-row p,
+html.theme-light .page-shell.mode-reference-clone-hotel .location-row a {
+  color: rgba(15,23,42,0.65) !important;
+}
+
+.page-shell.mode-reference-clone-hotel .location-row strong,
+.page-shell.mode-reference-clone-hotel .location-photo-copy strong {
+  color: #f7f5ef !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .location-row strong,
+html.theme-light .page-shell.mode-reference-clone-hotel .location-photo-copy strong {
+  color: #0f172a !important;
+}
+
+/* ── 11. FLOATING RESERVATION WIDGET: NO OVERLAP ON DESKTOP ── */
+.hotel-reference-mobile-float {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  z-index: 999 !important;
+  transform: none !important;
+}
+
+.hotel-reference-mobile-float-trigger {
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #b87333, #8B5E28) !important;
+  box-shadow: 0 8px 32px rgba(184,115,51,0.35) !important;
+  border: none !important;
+}
+
+.hotel-reference-mobile-float-panel {
+  position: fixed !important;
+  bottom: 80px !important;
+  right: 20px !important;
+  left: auto !important;
+  width: min(420px, calc(100vw - 40px)) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: rgba(10,22,40,0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4) !important;
+}
+
+/* ── 12. SOCIAL LINKS: FULL BLEED ── */
+.hotel-social-section,
+.hotel-social-links-wrap {
+  width: 100% !important;
+  padding: clamp(32px, 4vw, 60px) clamp(20px, 4vw, 48px) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+/* ── 13. FOOTER: FULL BLEED ── */
+.hotel-deluxe-footer {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: clamp(32px, 4vw, 60px) clamp(20px, 4vw, 48px) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.06) !important;
+  background: transparent !important;
+}
+
+html.theme-light .hotel-deluxe-footer {
+  border-top-color: rgba(0,0,0,0.06) !important;
+}
+
+.hotel-deluxe-footer p,
+.hotel-deluxe-footer a,
+.hotel-deluxe-footer span {
+  color: rgba(247,245,239,0.6) !important;
+}
+
+html.theme-light .hotel-deluxe-footer p,
+html.theme-light .hotel-deluxe-footer a,
+html.theme-light .hotel-deluxe-footer span {
+  color: rgba(15,23,42,0.55) !important;
+}
+
+/* ── 14. TOUR PACKAGES: FLOATING, NO CARDS ── */
+.page-shell.mode-reference-clone-hotel .hotel-tour-card,
+.page-shell.mode-reference-clone-hotel .hotel-reference-tour-card {
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 16px !important;
+  background: rgba(255,255,255,0.03) !important;
+  box-shadow: none !important;
+}
+
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-tour-card,
+html.theme-light .page-shell.mode-reference-clone-hotel .hotel-reference-tour-card {
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  background: rgba(0,0,0,0.02) !important;
+}
+
+/* ── 15. EXPERIENCE GALLERY: FULL WIDTH ── */
+.hotel-experience-gallery-section {
+  width: 100% !important;
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 48px) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+/* ── 16. BODY BACKGROUND CONTINUOUS ── */
+html.theme-dark {
+  background: #07090d !important;
+}
+
+html.theme-light {
+  background: #FDFBF7 !important;
+}
+
+/* ── 17. KILL ALL ATMOSPHERIC ELEMENTS ── */
+.page-shell.mode-reference-clone-hotel .atmo,
+.page-shell.mode-reference-clone-hotel .atmo-a,
+.page-shell.mode-reference-clone-hotel .atmo-b,
+.page-shell.mode-reference-clone-hotel .atmo-grid {
+  display: none !important;
+}
+
+/* ── 18. BOOKING BAR STABILIZATION ── */
+.hero-booking-float {
+  position: absolute !important;
+  bottom: clamp(20px, 3vw, 36px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 20 !important;
+  width: min(96%, 1100px) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: rgba(2,10,23,0.4) !important;
+  backdrop-filter: blur(20px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3) !important;
+  overflow: visible !important;
+  padding: 6px !important;
+}
+
+/* ── 19. RESPONSIVE: MOBILE ── */
+@media (max-width: 860px) {
+  .hero-booking-float {
+    width: min(96%, 100%) !important;
+    bottom: 16px !important;
+  }
+  
+  .hotel-reference-mobile-float {
+    bottom: 14px !important;
+    right: 14px !important;
+  }
+  
+  .hotel-reference-mobile-float-panel {
+    bottom: 70px !important;
+    right: 14px !important;
+    width: min(380px, calc(100vw - 28px)) !important;
+  }
+  
+  .hotel-deluxe-restaurant-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-booking-float {
+    width: calc(100% - 24px) !important;
+    bottom: 12px !important;
+    border-radius: 14px !important;
+  }
+}

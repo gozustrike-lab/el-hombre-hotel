@@ -242,7 +242,6 @@ export function ReferenceCloneHotelEngine({
   return (
     <>
       <LightboxProvider>
-      <div className="hotel-deluxe-shell">
         <HotelPremiumHeader
           bookingCtaLabel={bookingCtaLabel}
           brandName={displayBrandName}
@@ -336,8 +335,6 @@ export function ReferenceCloneHotelEngine({
           email={localizedContent.contact.email}
           phone={contactPhone}
         />
-      </div>
-
       <HotelFloatingCta
         bookingWidget={bookingWidget}
         brandName={displayBrandName}
@@ -353,7 +350,6 @@ export function ReferenceCloneHotelEngine({
       </LightboxProvider>
     </>
   );
-}
 
 function buildAmenities(content: SiteContent) {
   const baseItems = [
