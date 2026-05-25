@@ -8,6 +8,10 @@ const nextConfig = {
       },
     ],
   },
+  // Silence turbopack root warning in monorepo
+  turbopack: {
+    root: '..',
+  },
 };
 
 export default nextConfig;
