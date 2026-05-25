@@ -66,10 +66,7 @@ export function HotelPaymentMethodsSection({ locale }: HotelPaymentMethodsSectio
 
       <style jsx global>{`
         .hotel-payment-methods-section {
-          width: min(100%, 1320px);
-          margin-inline: auto;
-          padding-inline: clamp(16px, 3vw, 24px);
-          padding-block: clamp(16px, 3vw, 28px) clamp(28px, 4vw, 40px);
+          padding-block: clamp(40px, 6vw, 80px);
         }
 
         .hotel-payment-methods-heading {
@@ -77,17 +74,14 @@ export function HotelPaymentMethodsSection({ locale }: HotelPaymentMethodsSectio
         }
 
         .hotel-payment-method-card {
-          margin: 0;
-          padding: clamp(18px, 2.4vw, 24px);
-          border-radius: 24px;
-          background: #ececec;
-          box-shadow: 0 18px 34px rgba(15, 23, 42, 0.08);
+          padding: clamp(24px, 3vw, 40px);
+          border-radius: 16px;
         }
 
         .hotel-payment-method-brand {
           display: flex;
           justify-content: center;
-          margin-bottom: 12px;
+          margin-bottom: 16px;
         }
 
         .hotel-payment-brand-logo {
@@ -97,9 +91,8 @@ export function HotelPaymentMethodsSection({ locale }: HotelPaymentMethodsSectio
 
         .hotel-payment-method-body {
           display: grid;
-          gap: 10px;
+          gap: 12px;
           text-align: center;
-          color: #111827;
         }
 
         .hotel-payment-method-body p {
@@ -117,7 +110,7 @@ export function HotelPaymentMethodsSection({ locale }: HotelPaymentMethodsSectio
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 8px auto 10px;
+          margin: 12px auto;
           width: 100%;
         }
 
