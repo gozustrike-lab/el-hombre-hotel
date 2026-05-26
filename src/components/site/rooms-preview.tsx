@@ -64,6 +64,13 @@ function RoomLightbox({
                 src={room.image.replace('w=600', 'w=1200')}
                 alt={room.name}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.retried) {
+                    target.dataset.retried = '1';
+                    target.src = `https://placehold.co/1200x600/0f172a/F97316?text=${encodeURIComponent(room.name)}`;
+                  }
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="absolute bottom-4 left-5 right-5">
@@ -175,6 +182,13 @@ export function RoomsPreview() {
                 src={room.image}
                 alt={room.name}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.retried) {
+                    target.dataset.retried = '1';
+                    target.src = `https://placehold.co/800x600/0f172a/F97316?text=${encodeURIComponent(room.name)}`;
+                  }
+                }}
               />
 
               {/* Gradient overlay */}

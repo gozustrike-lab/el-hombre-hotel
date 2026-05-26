@@ -55,32 +55,33 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             }}
             className="fixed top-0 right-0 bottom-0 z-[70] w-[85vw] max-w-[360px] md:hidden
               flex flex-col justify-between
-              bg-[#0f172a] dark:bg-[#1e293b] border-l border-white/[0.12]
-              shadow-[-8px_0_40px_rgba(0,0,0,0.5)]"
+              bg-[#FDFBF7] dark:bg-slate-950/95 backdrop-blur-2xl
+              border-l border-gray-200 dark:border-white/10
+              shadow-[-8px_0_40px_rgba(0,0,0,0.12)] dark:shadow-[-8px_0_40px_rgba(0,0,0,0.5)]"
           >
             {/* ═══ BLOQUE SUPERIOR — Header ═══ */}
             <div className="shrink-0">
               <div className="flex items-center justify-between px-6 pt-7 pb-5">
                 <div>
-                  <p className="text-white/35 text-[10px] uppercase tracking-[0.3em] font-medium">
+                  <p className="text-slate-400 dark:text-white/35 text-[10px] uppercase tracking-[0.3em] font-medium">
                     Menú
                   </p>
-                  <p className="text-white font-serif text-xl tracking-wide mt-1">
+                  <p className="text-slate-900 dark:text-white font-serif text-xl tracking-wide mt-1">
                     El Hombre
                   </p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="w-10 h-10 rounded-full bg-white/[0.06] border border-white/[0.08]
+                  className="w-10 h-10 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-gray-200 dark:border-white/[0.08]
                     flex items-center justify-center
-                    text-white/60 hover:text-white hover:bg-white/[0.1] hover:border-white/[0.15]
+                    text-slate-500 dark:text-white/60 hover:text-slate-900 dark:hover:text-white hover:bg-black/[0.08] dark:hover:bg-white/[0.1] hover:border-gray-300 dark:hover:border-white/[0.15]
                     transition-all duration-300 active:scale-90"
                   aria-label="Cerrar menú"
                 >
                   <X className="h-[18px] w-[18px]" />
                 </button>
               </div>
-              <div className="mx-6 h-px bg-white/[0.1]" />
+              <div className="mx-6 h-px bg-gray-200 dark:bg-white/[0.08]" />
             </div>
 
             {/* ═══ BLOQUE CENTRAL — Nav Links ═══ */}
@@ -100,13 +101,14 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                     href={link.href}
                     onClick={onClose}
                     className="flex items-center justify-between py-3.5 px-3 -mx-3 rounded-xl
-                      text-white/90 text-[17px] font-medium tracking-wide
-                      hover:text-white hover:bg-white/[0.06]
-                      active:bg-white/[0.09]
+                      text-slate-800 dark:text-white/90 text-[17px] font-medium tracking-wide
+                      hover:text-orange-600 dark:hover:text-orange-400
+                      hover:bg-orange-50 dark:hover:bg-white/[0.06]
+                      active:bg-orange-100 dark:active:bg-white/[0.09]
                       transition-all duration-200"
                   >
                     {link.label}
-                    <span className="text-white/0 group-hover:text-orange-400 text-sm transition-colors duration-200">
+                    <span className="text-transparent group-hover:text-orange-500 dark:group-hover:text-orange-400 text-sm transition-colors duration-200">
                       →
                     </span>
                   </Link>
@@ -117,28 +119,28 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             {/* ═══ BLOQUE INFERIOR — Contact + CTA ═══ */}
             <div className="shrink-0 px-6 pb-8">
               {/* Divider */}
-              <div className="mb-6 h-px bg-white/[0.1]" />
+              <div className="mb-6 h-px bg-gray-200 dark:bg-white/[0.08]" />
 
               {/* Contact info */}
               <div className="flex flex-col gap-3 mb-6">
                 <div className="flex items-start gap-3">
-                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-orange-400" />
-                  <span className="text-white/50 text-xs leading-relaxed">
+                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-orange-500" />
+                  <span className="text-slate-500 dark:text-white/50 text-xs leading-relaxed">
                     {HOTEL_LOCATION.address}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone className="h-4 w-4 shrink-0 text-orange-400" />
+                  <Phone className="h-4 w-4 shrink-0 text-orange-500" />
                   <a
                     href={`tel:${HOTEL_LOCATION.phone}`}
-                    className="text-white/50 text-xs hover:text-white/80 transition-colors"
+                    className="text-slate-500 dark:text-white/50 text-xs hover:text-orange-500 dark:hover:text-white/80 transition-colors"
                   >
                     {HOTEL_LOCATION.phone}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 shrink-0 text-orange-400" />
-                  <span className="text-white/50 text-xs">
+                  <Mail className="h-4 w-4 shrink-0 text-orange-500" />
+                  <span className="text-slate-500 dark:text-white/50 text-xs">
                     {HOTEL_LOCATION.email}
                   </span>
                 </div>

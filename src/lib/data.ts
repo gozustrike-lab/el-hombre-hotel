@@ -393,7 +393,7 @@ export const experiences: Experience[] = [
     description:
       "Clases de surf en la ola izquierda más larga del mundo (2.2 km). Instructores locales experimentados, todo el año. Todas las niveles.",
     image:
-      "https://images.unsplash.com/photo-1502680390548-bdbac40a5751?w=800&q=80",
+      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
     tag: "Todo el año",
   },
   {

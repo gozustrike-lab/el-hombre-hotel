@@ -45,6 +45,13 @@ export function Experiences() {
               src={exp.image}
               alt={exp.title}
               className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.dataset.retried) {
+                  target.dataset.retried = '1';
+                  target.src = `https://placehold.co/800x1067/0f172a/F97316?text=${encodeURIComponent(exp.title)}`;
+                }
+              }}
             />
 
             {/* Tag */}

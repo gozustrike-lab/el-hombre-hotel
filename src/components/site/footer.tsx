@@ -113,8 +113,19 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="mt-16 pt-6 border-t border-black/5 dark:border-white/10">
-          <p className="text-slate-500 dark:text-slate-600 text-xs text-center">
+          <p className="text-slate-500 dark:text-slate-600 text-xs text-center mb-2">
             © {new Date().getFullYear()} Hospedaje Restaurante El Hombre — Puerto Chicama, La Libertad, Perú. Todos los derechos reservados.
+          </p>
+          <p className="text-center text-xs">
+            <a
+              href="https://fastpagepro.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-400 transition-colors duration-300"
+            >
+              Diseño & Desarrollo por{' '}
+              <span className="text-orange-500 font-semibold">fastpagepro.com</span>
+            </a>
           </p>
         </div>
       </div>

@@ -56,6 +56,13 @@ export function RestaurantPreview() {
                     src={dish.image}
                     alt={dish.name}
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.dataset.retried) {
+                        target.dataset.retried = '1';
+                        target.src = `https://placehold.co/800x600/0f172a/F97316?text=${encodeURIComponent(dish.name)}`;
+                      }
+                    }}
                   />
                 </div>
               </div>
