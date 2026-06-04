@@ -74,6 +74,9 @@ function RoomLightbox({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="absolute bottom-4 left-5 right-5">
+                <Badge className="bg-orange-500/90 text-white border-none backdrop-blur-sm text-xs mb-2">
+                  {room.badge}
+                </Badge>
                 <h3 className="text-white text-xl md:text-2xl font-serif font-medium drop-shadow-lg">
                   {room.name}
                 </h3>
@@ -84,10 +87,15 @@ function RoomLightbox({
             <div className="p-5 md:p-8">
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <p className="text-orange-500 text-2xl md:text-3xl font-semibold">
-                    {room.price}
-                    <span className="text-slate-400 dark:text-slate-500 text-sm font-normal"> /noche</span>
-                  </p>
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="text-orange-500 text-2xl md:text-3xl font-semibold">
+                      {room.price}
+                      <span className="text-slate-400 dark:text-slate-500 text-sm font-normal"> /noche</span>
+                    </p>
+                    <Badge className="bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20 text-xs">
+                      {room.badge}
+                    </Badge>
+                  </div>
                   <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">
                     Pago en el alojamiento · Cancelación gratuita
                   </p>
@@ -194,6 +202,13 @@ export function RoomsPreview() {
 
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500" />
+
+              {/* Badge tag — same pattern as Experiences */}
+              <div className="absolute top-4 left-4 z-10">
+                <Badge className="bg-orange-500/90 text-white border-none backdrop-blur-sm text-xs">
+                  {room.badge}
+                </Badge>
+              </div>
 
               {/* Content */}
               <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 md:p-5">

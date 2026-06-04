@@ -35,6 +35,7 @@ export interface Room {
   description: string;
   price: string;
   image: string;
+  badge: string;
   features: string[];
 }
 
@@ -430,6 +431,7 @@ export const rooms: Room[] = [
     description: "Habitación individual con 1 cama individual, baño compartido equipado con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Ideal para viajeros en solitario con vistas al mar.",
     price: "S/. 68",
     image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80",
+    badge: "Económica",
     features: ["1 Cama Individual", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido", "Vistas al Mar"],
   },
   {
@@ -437,6 +439,7 @@ export const rooms: Room[] = [
     description: "Dos camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: 1 persona.",
     price: "S/. 72",
     image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80",
+    badge: "Económica",
     features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
   },
   {
@@ -444,6 +447,7 @@ export const rooms: Room[] = [
     description: "1 cama doble grande, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: 1 persona.",
     price: "S/. 84",
     image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80",
+    badge: "Popular",
     features: ["1 Cama Doble Grande", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
   },
   {
@@ -451,6 +455,7 @@ export const rooms: Room[] = [
     description: "1 cama doble grande, baño privado con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Las mejores vistas al mar de Puerto Chicama.",
     price: "S/. 103",
     image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80",
+    badge: "Vista al Mar",
     features: ["1 Cama Doble Grande", "Baño Privado", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido", "Vistas al Mar"],
   },
   {
@@ -458,6 +463,7 @@ export const rooms: Room[] = [
     description: "1 cama doble grande, baño privado con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: 1 persona.",
     price: "S/. 103",
     image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80",
+    badge: "Baño Privado",
     features: ["1 Cama Doble Grande", "Baño Privado", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
   },
   {
@@ -465,6 +471,7 @@ export const rooms: Room[] = [
     description: "1 cama doble extragrande, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Máximo espacio y confort.",
     price: "S/. 120",
     image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80",
+    badge: "Premium",
     features: ["1 Cama Doble Extragrande", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
   },
   {
@@ -472,6 +479,7 @@ export const rooms: Room[] = [
     description: "3 camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional y papel higiénico. Cancelación gratuita y pago en el alojamiento. Perfecta para grupos pequeños.",
     price: "S/. 151",
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80",
+    badge: "Grupo",
     features: ["3 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
   },
   {
@@ -479,6 +487,7 @@ export const rooms: Room[] = [
     description: "Dos camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional y papel higiénico. Cancelación gratuita, pago en el alojamiento. Descuento Genius disponible. Capacidad: hasta 2 personas.",
     price: "S/. 103",
     image: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=600&q=80",
+    badge: "Genius",
     features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido", "Genius"],
   },
   {
@@ -486,6 +495,7 @@ export const rooms: Room[] = [
     description: "Dos camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: hasta 2 personas.",
     price: "S/. 120",
     image: "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=600&q=80",
+    badge: "Económica",
     features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
   },
   {
@@ -493,6 +503,7 @@ export const rooms: Room[] = [
     description: "Dos camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: hasta 2 personas.",
     price: "S/. 120",
     image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80",
+    badge: "Económica",
     features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
   },
 ];
