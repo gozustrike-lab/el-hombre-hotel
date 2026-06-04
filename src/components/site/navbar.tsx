@@ -73,7 +73,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               mass: 0.85,
             }}
             className="fixed top-0 right-0 bottom-0 z-[70] w-[85vw] max-w-[380px] md:hidden
-              flex flex-col overflow-hidden"
+              flex flex-col overflow-y-auto"
             style={{
               backgroundColor: panelBg,
               borderLeft: `1px solid ${borderColor}`,
@@ -144,7 +144,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             </div>
 
             {/* ═══ BLOQUE CENTRAL — Nav Links ═══ */}
-            <nav className="flex-1 flex flex-col justify-center px-5 py-4 gap-0.5">
+            <nav className="flex-1 flex flex-col justify-start px-5 pt-4 pb-6 gap-0.5">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -188,7 +188,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="shrink-0 px-6 pb-8"
+              className="shrink-0 px-6 pb-8 pb-[env(safe-area-inset-bottom)]"
             >
               {/* Divider */}
               <div className="mb-5 h-px" style={{ backgroundColor: dividerColor }} />

@@ -7,12 +7,16 @@ import { sendBookingWA } from '@/lib/whatsapp';
 
 const roomOptions = [
   { value: '', label: 'Tipo de habitación', name: '', pricePerNight: 0 },
-  { value: 'individual-vista', label: 'Individual Vista al Mar — S/. 68/noche', name: 'Habitación Individual con Vista al Mar', pricePerNight: 68 },
-  { value: 'twin', label: 'Twin — S/. 120/noche', name: 'Habitación Twin', pricePerNight: 120 },
-  { value: 'twin-compartido', label: 'Twin Baño Compartido — S/. 100/noche', name: 'Habitación Twin con Baño Compartido', pricePerNight: 100 },
-  { value: 'queen-vista', label: 'Queen Vista al Mar — S/. 140/noche', name: 'Habitación Queen con Vista al Mar', pricePerNight: 140 },
-  { value: 'deluxe-queen', label: 'Deluxe Queen — S/. 150/noche', name: 'Habitación Deluxe Queen', pricePerNight: 150 },
-  { value: 'triple', label: 'Triple Básica — S/. 150/noche', name: 'Habitación Triple Básica', pricePerNight: 150 },
+  { value: 'individual-vista', label: 'Individual vistas al mar — S/. 68/noche', name: 'Habitación Individual con vistas al mar', pricePerNight: 68 },
+  { value: 'doble-2-camas', label: 'Doble - 2 camas — S/. 72/noche', name: 'Habitación Doble - 2 camas', pricePerNight: 72 },
+  { value: 'deluxe-cama-grande', label: 'Deluxe 1 cama grande — S/. 84/noche', name: 'Habitación Deluxe - 1 cama grande', pricePerNight: 84 },
+  { value: 'cama-grande-vista', label: 'Cama grande y vistas al mar — S/. 103/noche', name: 'Habitación con cama grande y vistas al mar', pricePerNight: 103 },
+  { value: 'deluxe-cama-grande-priv', label: 'Deluxe 1 cama grande (Baño Privado) — S/. 103/noche', name: 'Habitación Deluxe - 1 cama grande (Baño Privado)', pricePerNight: 103 },
+  { value: 'deluxe-extragrande', label: 'Deluxe (cama extragrande) — S/. 120/noche', name: 'Habitación Deluxe', pricePerNight: 120 },
+  { value: 'triple-basica', label: 'Triple Básica — S/. 151/noche', name: 'Habitación Triple Básica con baño compartido', pricePerNight: 151 },
+  { value: 'doble-2-camas-2p', label: 'Doble - 2 camas (2 personas) — S/. 103/noche', name: 'Habitación Doble - 2 camas (2 personas)', pricePerNight: 103 },
+  { value: 'doble-aseo-compartido', label: 'Doble aseo compartido - 2 camas — S/. 120/noche', name: 'Habitación Doble con aseo compartido - 2 camas', pricePerNight: 120 },
+  { value: 'doble-2-camas-dobles', label: 'Doble - 2 camas dobles — S/. 120/noche', name: 'Habitación Doble - 2 camas dobles', pricePerNight: 120 },
 ];
 
 export function BookingBar() {

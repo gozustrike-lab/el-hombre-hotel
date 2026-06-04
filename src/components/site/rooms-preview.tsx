@@ -89,7 +89,7 @@ function RoomLightbox({
                     <span className="text-slate-400 dark:text-slate-500 text-sm font-normal"> /noche</span>
                   </p>
                   <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">
-                    Impuestos incluidos · Pago en el alojamiento
+                    Pago en el alojamiento · Cancelación gratuita
                   </p>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export function RoomsPreview() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-slate-500 dark:text-slate-400 text-base mt-4 max-w-2xl leading-relaxed"
             >
-              Todas incluyen WiFi gratis y desayuno. Precios con impuestos incluidos. Cancelación gratuita disponible.
+              Todas incluyen WiFi gratis y desayuno excepcional. Cancelación gratuita disponible. Pago en el alojamiento.
             </motion.p>
           </div>
         </div>
