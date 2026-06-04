@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { services, type ServiceCategory } from '@/lib/data';
+import { Badge } from '@/components/ui/badge';
 import {
   Star,
   Plane,
@@ -79,15 +80,20 @@ export function Services() {
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8">
         {/* Section heading — centered on desktop */}
         <div className="mb-14 md:text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-orange-500 text-sm uppercase tracking-[0.2em] mb-3"
-          >
-            Servicios
-          </motion.p>
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <Badge className="bg-orange-500/10 text-orange-500 border-orange-500/20 text-xs uppercase tracking-wider">
+              servicios
+            </Badge>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-orange-500 text-sm uppercase tracking-[0.2em]"
+            >
+              Servicios
+            </motion.p>
+          </div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

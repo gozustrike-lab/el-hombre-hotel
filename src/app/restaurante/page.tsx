@@ -10,6 +10,7 @@ import { RestaurantMenu } from '@/components/site/restaurant-menu';
 import { CartFloat, type CartItem } from '@/components/site/cart-float';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { fullMenu, type MenuItem } from '@/lib/data';
+import { Badge } from '@/components/ui/badge';
 
 export default function RestaurantePage() {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -67,14 +68,19 @@ export default function RestaurantePage() {
             Inicio
           </Link>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-orange-400 text-sm uppercase tracking-[0.2em] mb-2"
-          >
-            Gastronomía Costera
-          </motion.p>
+          <div className="flex items-center gap-3 mb-2">
+            <Badge className="bg-orange-500/90 text-white border-none backdrop-blur-sm text-xs uppercase tracking-wider">
+              carta
+            </Badge>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-orange-400 text-sm uppercase tracking-[0.2em]"
+            >
+              Gastronomía Costera
+            </motion.p>
+          </div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

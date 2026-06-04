@@ -3,21 +3,27 @@
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { testimonials } from '@/lib/data';
+import { Badge } from '@/components/ui/badge';
 
 export function Testimonials() {
   return (
-    <section className="w-full py-24 md:py-32">
+    <section id="testimonios" className="w-full py-24 md:py-32">
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8">
         {/* Section heading */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-orange-500 text-sm uppercase tracking-[0.2em] mb-3"
-        >
-          Testimonios
-        </motion.p>
+        <div className="flex items-center gap-3 mb-3">
+          <Badge className="bg-orange-500/10 text-orange-500 border-orange-500/20 text-xs uppercase tracking-wider">
+            testimonios
+          </Badge>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-orange-500 text-sm uppercase tracking-[0.2em]"
+          >
+            Testimonios
+          </motion.p>
+        </div>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
