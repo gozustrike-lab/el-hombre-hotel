@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { rooms } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
-import { X, Phone } from 'lucide-react';
+import { X, Phone, ExternalLink } from 'lucide-react';
 import { sendRoomDirectWA } from '@/lib/whatsapp';
 
 function RoomLightbox({
@@ -181,15 +182,18 @@ export function RoomsPreview() {
         {/* Rooms grid — full-bleed images on mobile, centered on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 md:gap-5 lg:gap-6 max-w-6xl mx-auto">
           {rooms.map((room, index) => (
-            <motion.div
+            <Link
               key={room.name}
-              initial={{ opacity: 0, y: 50, scale: 0.97 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.7, delay: index * 0.08, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
-              whileHover={{ y: -4 }}
-              className="relative group rounded-none md:rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer"
-              onClick={() => setLightboxRoom(room)}
+              href={`/habitaciones/${room.slug}`}
+              className="block"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.7, delay: index * 0.08, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
+                whileHover={{ y: -4 }}
+                className="relative group rounded-none md:rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer"
             >
               {/* Image */}
               <img
@@ -245,11 +249,12 @@ export function RoomsPreview() {
 
               {/* Hover hint */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-white/20 backdrop-blur-md rounded-full px-4 py-2 text-white text-xs font-medium tracking-wider uppercase">
-                  Ver detalles
+                <div className="bg-white/20 backdrop-blur-md rounded-full px-4 py-2 text-white text-xs font-medium tracking-wider uppercase flex items-center gap-2">
+                  Ver detalles <ExternalLink className="h-3 w-3" />
                 </div>
               </div>
             </motion.div>
+            </Link>
           ))}
         </div>
       </section>

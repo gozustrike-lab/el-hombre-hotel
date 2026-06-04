@@ -12,9 +12,10 @@ import { useTheme } from 'next-themes';
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
-  { href: '/#habitaciones', label: 'Habitaciones' },
+  { href: '/habitaciones', label: 'Habitaciones' },
   { href: '/restaurante', label: 'Restaurante' },
-  { href: '/#experiencias', label: 'Experiencias' },
+  { href: '/experiencias', label: 'Experiencias' },
+  { href: '/servicios', label: 'Servicios' },
   { href: '/#contacto', label: 'Contacto' },
 ];
 

@@ -48,9 +48,10 @@ export function Footer() {
             <div className="flex flex-col gap-2.5">
               {[
                 { href: '/', label: 'Inicio' },
-                { href: '/#habitaciones', label: 'Habitaciones' },
+                { href: '/habitaciones', label: 'Habitaciones' },
                 { href: '/restaurante', label: 'Restaurante' },
-                { href: '/#experiencias', label: 'Experiencias' },
+                { href: '/experiencias', label: 'Experiencias' },
+                { href: '/servicios', label: 'Servicios' },
                 { href: '/#contacto', label: 'Contacto' },
               ].map((link) => (
                 <Link
