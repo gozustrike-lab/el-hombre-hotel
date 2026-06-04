@@ -19,7 +19,7 @@ const navLinks = [
   { href: '/#contacto', label: 'Contacto' },
 ];
 
-/* ─── Premium Mobile Menu — Theme-safe with useTheme() ────────── */
+/* ─── Mobile Menu — Left-side drawer inspired by reference design ────────── */
 
 function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { resolvedTheme } = useTheme();
@@ -31,24 +31,21 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
   };
 
   /* Inline style tokens — guaranteed to work on fixed elements */
-  const panelBg = isDark ? '#0f172a' : '#FDFBF7';
-  const textPrimary = isDark ? '#f8fafc' : '#0f172a';
-  const textSecondary = isDark ? 'rgba(255,255,255,0.45)' : '#64748b';
-  const textLink = isDark ? 'rgba(255,255,255,0.85)' : '#1e293b';
-  const textLinkHover = isDark ? '#ffffff' : '#0f172a';
-  const borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
-  const dividerColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
-  const iconColor = isDark ? 'rgba(255,255,255,0.4)' : '#94a3b8';
-  const hoverBg = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(249,115,22,0.06)';
-  const closeBtnBg = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
-  const closeBtnBorder = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
-  const closeBtnText = isDark ? 'rgba(255,255,255,0.5)' : '#64748b';
+  const panelBg = isDark ? '#0f172a' : '#FFFFFF';
+  const textPrimary = isDark ? '#f8fafc' : '#1a1a1a';
+  const textSecondary = isDark ? 'rgba(255,255,255,0.4)' : '#888888';
+  const textLink = isDark ? 'rgba(255,255,255,0.9)' : '#1a1a1a';
+  const textLinkHover = isDark ? '#ffffff' : '#F97316';
+  const dividerColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+  const hoverBg = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(249,115,22,0.06)';
+  const closeBtnBorder = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)';
+  const closeBtnText = isDark ? 'rgba(255,255,255,0.6)' : '#555555';
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* ── BACKDROP ── */}
+          {/* ── BACKDROP — dark overlay on the right ── */}
           <motion.div
             key="mob-backdrop"
             initial={{ opacity: 0 }}
@@ -56,112 +53,100 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
             className="fixed inset-0 z-[60] md:hidden"
-            style={{ backgroundColor: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
+            style={{ backgroundColor: 'rgba(0,0,0,0.35)' }}
             onClick={onClose}
             aria-hidden="true"
           />
 
-          {/* ── PANEL ── */}
+          {/* ── PANEL — Left-side drawer ── */}
           <motion.div
             key="mob-panel"
-            initial={{ x: '100%', opacity: 0.8 }}
+            initial={{ x: '-100%', opacity: 0.9 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: '100%', opacity: 0.6 }}
+            exit={{ x: '-100%', opacity: 0.8 }}
             transition={{
               type: 'spring',
-              damping: 28,
-              stiffness: 300,
-              mass: 0.85,
+              damping: 30,
+              stiffness: 320,
+              mass: 0.8,
             }}
-            className="fixed top-0 right-0 bottom-0 z-[70] w-[85vw] max-w-[380px] md:hidden
+            className="fixed top-0 left-0 bottom-0 z-[70] w-[75vw] max-w-[320px] md:hidden
               flex flex-col overflow-y-auto"
             style={{
               backgroundColor: panelBg,
-              borderLeft: `1px solid ${borderColor}`,
               boxShadow: isDark
-                ? '-12px 0 48px rgba(0,0,0,0.6), -2px 0 12px rgba(0,0,0,0.3)'
-                : '-12px 0 48px rgba(0,0,0,0.1), -2px 0 8px rgba(0,0,0,0.04)',
-              backdropFilter: 'blur(40px)',
-              WebkitBackdropFilter: 'blur(40px)',
+                ? '8px 0 40px rgba(0,0,0,0.5), 2px 0 12px rgba(0,0,0,0.3)'
+                : '8px 0 40px rgba(0,0,0,0.12), 2px 0 8px rgba(0,0,0,0.04)',
             }}
           >
-            {/* ═══ ACCENT LINE — premium brand touch ═══ */}
+            {/* ═══ HEADER — "MENÚ" + "El Hombre" ═══ */}
+            <div className="shrink-0 pt-6 pb-4 px-6 flex items-start justify-between">
+              <div>
+                <motion.p
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.12, duration: 0.35 }}
+                  className="text-[11px] uppercase tracking-[0.25em] font-medium"
+                  style={{ color: textSecondary }}
+                >
+                  Menú
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.18, duration: 0.35 }}
+                  className="text-[22px] font-bold tracking-wide mt-0.5"
+                  style={{ color: textPrimary }}
+                >
+                  El Hombre
+                </motion.p>
+              </div>
+
+              {/* Circular X close button */}
+              <motion.button
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.08, duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                onClick={onClose}
+                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 active:scale-90 shrink-0 mt-0.5"
+                style={{
+                  backgroundColor: panelBg,
+                  border: `1.5px solid ${closeBtnBorder}`,
+                  color: closeBtnText,
+                }}
+                aria-label="Cerrar menú"
+              >
+                <X className="h-4 w-4" strokeWidth={2} />
+              </motion.button>
+            </div>
+
+            {/* Divider line */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute top-0 left-0 right-0 h-[2px] origin-left"
-              style={{
-                background: 'linear-gradient(90deg, #F97316 0%, #EA580C 40%, #F97316 70%, transparent 100%)',
-              }}
+              transition={{ delay: 0.22, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="mx-6 h-px origin-left"
+              style={{ backgroundColor: dividerColor }}
             />
 
-            {/* ═══ BLOQUE SUPERIOR — Header ═══ */}
-            <div className="shrink-0 pt-8 pb-5 px-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <motion.p
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15, duration: 0.4 }}
-                    className="text-[10px] uppercase tracking-[0.35em] font-medium"
-                    style={{ color: textSecondary }}
-                  >
-                    Menú
-                  </motion.p>
-                  <motion.p
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.4 }}
-                    className="font-serif text-xl tracking-wide mt-1"
-                    style={{ color: textPrimary }}
-                  >
-                    El Hombre
-                  </motion.p>
-                </div>
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8, rotate: -90 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.1, duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
-                  onClick={onClose}
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 active:scale-90"
-                  style={{
-                    backgroundColor: closeBtnBg,
-                    border: `1px solid ${closeBtnBorder}`,
-                    color: closeBtnText,
-                  }}
-                  aria-label="Cerrar menú"
-                >
-                  <X className="h-[18px] w-[18px]" />
-                </motion.button>
-              </div>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.25, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-4 h-px origin-left"
-                style={{ backgroundColor: dividerColor }}
-              />
-            </div>
-
-            {/* ═══ BLOQUE CENTRAL — Nav Links ═══ */}
-            <nav className="flex-1 flex flex-col justify-start px-5 pt-4 pb-6 gap-0.5">
+            {/* ═══ NAV LINKS ═══ */}
+            <nav className="flex-1 flex flex-col px-4 pt-3 pb-4">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, x: 28, filter: 'blur(4px)' }}
-                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, x: 20, filter: 'blur(2px)' }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -16 }}
                   transition={{
-                    delay: 0.18 + i * 0.065,
-                    duration: 0.45,
+                    delay: 0.2 + i * 0.055,
+                    duration: 0.4,
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
                 >
                   <Link
                     href={link.href}
                     onClick={onClose}
-                    className="group relative flex items-center justify-between py-3.5 px-4 -mx-1 rounded-xl transition-all duration-250 active:scale-[0.98]"
+                    className="group relative flex items-center justify-between py-3 px-3 -mx-1 rounded-lg transition-all duration-200 active:scale-[0.98]"
                     style={{ color: textLink }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.backgroundColor = hoverBg;
@@ -172,11 +157,11 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                       (e.currentTarget as HTMLElement).style.color = textLink;
                     }}
                   >
-                    <span className="text-[17px] font-medium tracking-wide">
+                    <span className="text-[16px] font-medium tracking-[0.02em]">
                       {link.label}
                     </span>
                     <ChevronRight
-                      className="h-4 w-4 transition-all duration-300 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                      className="h-4 w-4 transition-all duration-250 opacity-0 -translate-x-1.5 group-hover:opacity-100 group-hover:translate-x-0"
                       style={{ color: '#F97316' }}
                     />
                   </Link>
@@ -184,29 +169,30 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               ))}
             </nav>
 
-            {/* ═══ BLOQUE INFERIOR — Contact + CTA ═══ */}
+            {/* ═══ BOTTOM — Contact + CTA ═══ */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.55, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="shrink-0 px-6 pb-8 pb-[env(safe-area-inset-bottom)]"
+              transition={{ delay: 0.5, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="shrink-0 px-6 pb-6"
+              style={{ paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}
             >
               {/* Divider */}
-              <div className="mb-5 h-px" style={{ backgroundColor: dividerColor }} />
+              <div className="mb-4 h-px" style={{ backgroundColor: dividerColor }} />
 
               {/* Contact info */}
-              <div className="flex flex-col gap-3.5 mb-6">
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-4 w-4 shrink-0 mt-0.5" style={{ color: '#F97316' }} />
-                  <span className="text-xs leading-relaxed" style={{ color: textSecondary }}>
+              <div className="flex flex-col gap-2.5 mb-5">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="h-3.5 w-3.5 shrink-0 mt-0.5" style={{ color: '#F97316' }} />
+                  <span className="text-[11px] leading-relaxed" style={{ color: textSecondary }}>
                     {HOTEL_LOCATION.address}
                   </span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="h-4 w-4 shrink-0" style={{ color: '#F97316' }} />
+                <div className="flex items-center gap-2.5">
+                  <Phone className="h-3.5 w-3.5 shrink-0" style={{ color: '#F97316' }} />
                   <a
                     href={`tel:${HOTEL_LOCATION.phone}`}
-                    className="text-xs transition-colors duration-200"
+                    className="text-[11px] transition-colors duration-200"
                     style={{ color: textSecondary }}
                     onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#F97316'; }}
                     onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = textSecondary; }}
@@ -214,40 +200,28 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                     {HOTEL_LOCATION.phone}
                   </a>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 shrink-0" style={{ color: '#F97316' }} />
-                  <span className="text-xs" style={{ color: textSecondary }}>
+                <div className="flex items-center gap-2.5">
+                  <Mail className="h-3.5 w-3.5 shrink-0" style={{ color: '#F97316' }} />
+                  <span className="text-[11px]" style={{ color: textSecondary }}>
                     {HOTEL_LOCATION.email}
                   </span>
                 </div>
               </div>
 
               {/* CTA Button */}
-              <motion.button
+              <button
                 onClick={handleReserve}
-                whileHover={{ scale: 1.025, y: -1 }}
-                whileTap={{ scale: 0.975 }}
-                className="relative flex items-center justify-center gap-2.5 w-full h-12 rounded-xl
-                  text-white font-semibold text-[15px] tracking-wide overflow-hidden"
+                className="relative flex items-center justify-center gap-2 w-full h-11 rounded-xl
+                  text-white font-semibold text-[14px] tracking-wide overflow-hidden cursor-pointer
+                  transition-transform duration-200 active:scale-[0.97]"
                 style={{
                   background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
-                  boxShadow: '0 4px 24px -4px rgba(249, 115, 22, 0.45), 0 0 0 0 rgba(249, 115, 22, 0)',
+                  boxShadow: '0 4px 20px -4px rgba(249, 115, 22, 0.4)',
                 }}
               >
-                {/* Shimmer effect */}
-                <motion.div
-                  className="absolute inset-0"
-                  initial={{ x: '-100%' }}
-                  animate={{ x: '200%' }}
-                  transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1.5, ease: 'linear' }}
-                  style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)',
-                    width: '50%',
-                  }}
-                />
-                <Phone className="h-4 w-4 relative z-10" />
-                <span className="relative z-10">Reservar Ahora</span>
-              </motion.button>
+                <Phone className="h-3.5 w-3.5" />
+                <span>Reservar Ahora</span>
+              </button>
             </motion.div>
           </motion.div>
         </>
