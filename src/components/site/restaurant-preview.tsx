@@ -36,10 +36,10 @@ export function RestaurantPreview() {
         return (
           <motion.div
             key={dish.id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            initial={{ opacity: 0, x: isEven ? 60 : -60, y: 30 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
             className={`w-full max-w-6xl mx-auto px-5 md:px-8 py-12 lg:py-20 ${
               index > 0 ? 'border-t border-black/5 dark:border-white/5' : ''
             }`}
@@ -50,7 +50,11 @@ export function RestaurantPreview() {
               } gap-8 lg:gap-16 items-center`}
             >
               {/* Image */}
-              <div className="w-full lg:w-1/2 relative">
+              <motion.div
+                className="w-full lg:w-1/2 relative"
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+              >
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                   <img
                     src={dish.image}
@@ -65,7 +69,7 @@ export function RestaurantPreview() {
                     }}
                   />
                 </div>
-              </div>
+              </motion.div>
 
               {/* Text content */}
               <div className="w-full lg:w-1/2">

@@ -422,61 +422,61 @@ export const experiences: Experience[] = [
   },
 ];
 
-/* ─── ROOMS (Booking.com verified — Dec 2026 prices) ────────────── */
+/* ─── ROOMS (Booking.com verified — official room types & prices) ── */
 
 export const rooms: Room[] = [
   {
-    name: "Habitación Individual",
+    name: "Habitación Individual con Vista al Mar",
     description:
-      "Cama individual con vistas al mar, baño compartido con ducha, WC, toallas y papel higiénico. WiFi gratis y desayuno incluido. Ideal para viajeros en solitario.",
+      "Habitación individual con vistas al mar, baño compartido equipado con bañera y ducha. Incluye 1 cama, WiFi gratis y desayuno. Ideal para viajeros en solitario que buscan despertar frente al Pacífico.",
     price: "S/. 68",
     image:
       "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80",
-    features: ["WiFi Gratis", "Desayuno Incluido", "Vista al Mar", "Baño Compartido"],
+    features: ["WiFi Gratis", "Desayuno Incluido", "Vista al Mar", "Baño Compartido", "Bañera", "Ducha"],
   },
   {
-    name: "Habitación Doble — 2 Camas",
+    name: "Habitación Twin",
     description:
-      "Dos camas individuales, baño privado con bañera, WiFi gratis y desayuno incluido. Cancelación gratuita y pago en el alojamiento.",
+      "Dos camas individuales, baño privado con bañera y ducha, WiFi gratis y desayuno incluido. Cancelación gratuita y pago en el alojamiento. Perfecta para amigos o compañeros de viaje.",
     price: "S/. 120",
     image:
       "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80",
-    features: ["WiFi Gratis", "Desayuno", "Baño Privado", "2 Camas Individuales"],
+    features: ["WiFi Gratis", "Desayuno Incluido", "Baño Privado", "2 Camas Individuales"],
   },
   {
-    name: "Habitación Doble con Aseo Compartido",
+    name: "Habitación Twin con Baño Compartido",
     description:
-      "Dos camas individuales, baño compartido con bañera, ducha y WC. WiFi gratis, desayuno incluido y papel higiénico. Cancelación gratuita.",
-    price: "S/. 140",
+      "Dos camas individuales con baño compartido que incluye bañera, ducha y WC. WiFi gratis, desayuno incluido, toallas y papel higiénico. Cancelación gratuita disponible.",
+    price: "S/. 100",
     image:
       "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80",
-    features: ["WiFi Gratis", "Desayuno", "Baño Compartido", "2 Camas Individuales"],
+    features: ["WiFi Gratis", "Desayuno Incluido", "Baño Compartido", "2 Camas Individuales", "Bañera"],
   },
   {
-    name: "Habitación Doble — 2 Camas Dobles",
+    name: "Habitación Queen con Vista al Mar",
     description:
-      "Dos camas individuales grandes, baño privado con bañera, WiFi gratis y desayuno incluido. Cancelación gratuita y pago en el alojamiento.",
+      "Cama queen size con vistas al mar, baño privado equipado con bañera y ducha. WiFi gratis, desayuno incluido y toallas. La experiencia premium frente a Puerto Chicama.",
     price: "S/. 140",
     image:
       "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80",
-    features: ["WiFi Gratis", "Desayuno", "Baño Privado", "Camas Dobles"],
+    features: ["WiFi Gratis", "Desayuno Incluido", "Vista al Mar", "Baño Privado", "Cama Queen"],
   },
   {
-    name: "Habitación Deluxe — Vista al Mar",
+    name: "Habitación Deluxe Queen",
     description:
-      "Cama doble grande con vistas al mar, baño privado, WiFi gratis y desayuno incluido. La mejor experiencia frente a Puerto Chicama.",
-    price: "S/. 119",
+      "Cama queen size en habitación deluxe, baño privado con bañera y ducha, WiFi gratis y desayuno incluido. Máximo confort y espacio amplio para una estancia premium.",
+    price: "S/. 150",
     image:
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80",
-    features: ["WiFi Gratis", "Desayuno", "Vista al Mar", "Cama Doble Grande"],
+    features: ["WiFi Gratis", "Desayuno Incluido", "Baño Privado", "Cama Queen", "Deluxe"],
   },
   {
     name: "Habitación Triple Básica",
     description:
-      "Tres camas individuales, baño compartido, WiFi gratis y desayuno incluido. Perfecta para grupos o familias pequeñas.",
+      "Tres camas individuales, baño compartido con ducha y WC, WiFi gratis y desayuno incluido. Perfecta para grupos de surfistas o familias pequeñas que buscan presupuesto accesible.",
     price: "S/. 150",
     image:
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80",
-    features: ["WiFi Gratis", "Desayuno", "3 Camas", "Baño Compartido"],
+    features: ["WiFi Gratis", "Desayuno Incluido", "3 Camas Individuales", "Baño Compartido"],
   },
 ];

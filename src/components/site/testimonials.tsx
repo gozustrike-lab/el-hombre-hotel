@@ -85,9 +85,13 @@ export function Testimonials() {
       {/* Mobile horizontal scroll */}
       <div className="md:hidden overflow-x-auto pb-4 px-5">
         <div className="flex gap-6" style={{ minWidth: 'min-content' }}>
-          {testimonials.map((t) => (
-            <div
+          {testimonials.map((t, idx) => (
+            <motion.div
               key={t.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
               className="relative w-[300px] shrink-0"
             >
               <span className="absolute -top-6 -left-2 text-orange-500/10 text-[100px] leading-none font-serif select-none pointer-events-none">
@@ -124,7 +128,7 @@ export function Testimonials() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

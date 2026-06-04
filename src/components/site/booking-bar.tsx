@@ -2,15 +2,16 @@
 
 import { useState, useMemo } from 'react';
 import { Search, Phone } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { sendBookingWA } from '@/lib/whatsapp';
 
 const roomOptions = [
   { value: '', label: 'Tipo de habitación', name: '', pricePerNight: 0 },
-  { value: 'individual', label: 'Individual — S/. 68/noche', name: 'Habitación Individual', pricePerNight: 68 },
-  { value: 'doble', label: 'Doble 2 Camas — S/. 120/noche', name: 'Habitación Doble — 2 Camas', pricePerNight: 120 },
-  { value: 'doble-aseo', label: 'Doble Aseo Compartido — S/. 140/noche', name: 'Habitación Doble con Aseo Compartido', pricePerNight: 140 },
-  { value: 'doble-dobles', label: 'Doble Camas Dobles — S/. 140/noche', name: 'Habitación Doble — 2 Camas Dobles', pricePerNight: 140 },
-  { value: 'deluxe', label: 'Deluxe Vista al Mar — S/. 119/noche', name: 'Habitación Deluxe — Vista al Mar', pricePerNight: 119 },
+  { value: 'individual-vista', label: 'Individual Vista al Mar — S/. 68/noche', name: 'Habitación Individual con Vista al Mar', pricePerNight: 68 },
+  { value: 'twin', label: 'Twin — S/. 120/noche', name: 'Habitación Twin', pricePerNight: 120 },
+  { value: 'twin-compartido', label: 'Twin Baño Compartido — S/. 100/noche', name: 'Habitación Twin con Baño Compartido', pricePerNight: 100 },
+  { value: 'queen-vista', label: 'Queen Vista al Mar — S/. 140/noche', name: 'Habitación Queen con Vista al Mar', pricePerNight: 140 },
+  { value: 'deluxe-queen', label: 'Deluxe Queen — S/. 150/noche', name: 'Habitación Deluxe Queen', pricePerNight: 150 },
   { value: 'triple', label: 'Triple Básica — S/. 150/noche', name: 'Habitación Triple Básica', pricePerNight: 150 },
 ];
 
@@ -60,7 +61,12 @@ export function BookingBar() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto">
+    <motion.div
+      className="w-full max-w-5xl mx-auto"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
       <div className="backdrop-blur-2xl bg-white/15 dark:bg-slate-900/40 rounded-2xl border border-white/10 p-3 md:p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] shadow-white/[0.03] ring-1 ring-inset ring-white/[0.08]">
         {/* Desktop layout */}
         <div className="hidden md:flex items-center gap-0">
@@ -215,6 +221,6 @@ export function BookingBar() {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

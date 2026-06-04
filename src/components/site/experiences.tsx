@@ -34,10 +34,11 @@ export function Experiences() {
         {experiences.map((exp, index) => (
           <motion.div
             key={exp.title}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, delay: index * 0.12, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
+            whileHover={{ y: -6, scale: 1.02 }}
             className="relative group rounded-2xl overflow-hidden aspect-[3/4]"
           >
             {/* Image */}

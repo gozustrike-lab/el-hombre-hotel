@@ -2,8 +2,18 @@
 
 import Link from 'next/link';
 import { Instagram, Facebook, Music, MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { HOTEL_LOCATION, HOTEL_DESCRIPTION } from '@/lib/data';
 import { sendGeneralWA } from '@/lib/whatsapp';
+
+const footerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+  },
+};
 
 export function Footer() {
   return (
@@ -11,17 +21,27 @@ export function Footer() {
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
           {/* About */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <h3 className="text-slate-900 dark:text-white text-lg font-serif font-medium mb-4">
               Hospedaje Restaurante El Hombre
             </h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-sm">
               {HOTEL_DESCRIPTION}
             </p>
-          </div>
+          </motion.div>
 
           {/* Links */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             <h3 className="text-slate-900 dark:text-white text-lg font-serif font-medium mb-4">
               Enlaces
             </h3>
@@ -43,10 +63,15 @@ export function Footer() {
                 </Link>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <h3 className="text-slate-900 dark:text-white text-lg font-serif font-medium mb-4">
               Contacto
             </h3>
@@ -108,11 +133,17 @@ export function Footer() {
                 <Music className="h-4 w-4" />
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Copyright */}
-        <div className="mt-16 pt-6 border-t border-black/5 dark:border-white/10">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-16 pt-6 border-t border-black/5 dark:border-white/10"
+        >
           <p className="text-slate-500 dark:text-slate-600 text-xs text-center mb-2">
             © {new Date().getFullYear()} Hospedaje Restaurante El Hombre — Puerto Chicama, La Libertad, Perú. Todos los derechos reservados.
           </p>
@@ -127,7 +158,7 @@ export function Footer() {
               <span className="text-orange-500 font-semibold">fastpagepro.com</span>
             </a>
           </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
