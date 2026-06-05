@@ -9,35 +9,80 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HOTEL_LOCATION } from '@/lib/data';
 import { sendGeneralWA } from '@/lib/whatsapp';
 import { useTheme } from 'next-themes';
+import { useScrollSpy, scrollToSection, SECTION_IDS, type SectionId } from '@/lib/use-scroll-spy';
+import { usePathname } from 'next/navigation';
 
-const navLinks = [
-  { href: '/', label: 'Inicio' },
-  { href: '/habitaciones', label: 'Habitaciones' },
-  { href: '/restaurante', label: 'Restaurante' },
-  { href: '/experiencias', label: 'Experiencias' },
-  { href: '/servicios', label: 'Servicios' },
-  { href: '/#contacto', label: 'Contacto' },
+/* ─── Nav links config ────────────────────────────────────────────
+ *  On homepage: hash links (#inicio, #habitaciones, etc.)
+ *  On subpages: full routes (/habitaciones, /restaurante, etc.)
+ *  Editable: add { hash, label } to extend deep linking.
+ * ────────────────────────────────────────────────────────────────── */
+
+interface NavLink {
+  href: string;
+  hash: string;
+  label: string;
+  sectionId?: SectionId;
+}
+
+const homeNavLinks: NavLink[] = [
+  { href: '/#inicio', hash: 'inicio', label: 'Inicio', sectionId: 'inicio' },
+  { href: '/#habitaciones', hash: 'habitaciones', label: 'Habitaciones', sectionId: 'habitaciones' },
+  { href: '/#servicios', hash: 'servicios', label: 'Servicios', sectionId: 'servicios' },
+  { href: '/#restaurante', hash: 'restaurante', label: 'Restaurante', sectionId: 'restaurante' },
+  { href: '/#experiencias', hash: 'experiencias', label: 'Experiencias', sectionId: 'experiencias' },
+  { href: '/#contacto', hash: 'contacto', label: 'Contacto', sectionId: 'contacto' },
 ];
 
-/* ─── Mobile Menu — Left-side drawer inspired by reference design ────────── */
+const subpageNavLinks: NavLink[] = [
+  { href: '/', hash: 'inicio', label: 'Inicio' },
+  { href: '/habitaciones', hash: 'habitaciones', label: 'Habitaciones' },
+  { href: '/restaurante', hash: 'restaurante', label: 'Restaurante' },
+  { href: '/experiencias', hash: 'experiencias', label: 'Experiencias' },
+  { href: '/servicios', hash: 'servicios', label: 'Servicios' },
+  { href: '/#contacto', hash: 'contacto', label: 'Contacto' },
+];
 
-function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+/* ─── Mobile Menu — Left-side drawer ───────────────────────────── */
+
+function MobileMenu({
+  isOpen,
+  onClose,
+  activeId,
+  isHomePage,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  activeId: SectionId;
+  isHomePage: boolean;
+}) {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
+  const navLinks = isHomePage ? homeNavLinks : subpageNavLinks;
 
   const handleReserve = () => {
     onClose();
     sendGeneralWA();
   };
 
-  /* Inline style tokens — guaranteed to work on fixed elements */
+  const handleNavClick = (link: NavLink) => {
+    onClose();
+    // If on homepage and has sectionId, smooth scroll
+    if (isHomePage && link.sectionId) {
+      setTimeout(() => scrollToSection(link.sectionId!), 150);
+    }
+  };
+
+  /* Inline style tokens */
   const panelBg = isDark ? '#0f172a' : '#FFFFFF';
   const textPrimary = isDark ? '#f8fafc' : '#1a1a1a';
   const textSecondary = isDark ? 'rgba(255,255,255,0.4)' : '#888888';
   const textLink = isDark ? 'rgba(255,255,255,0.9)' : '#1a1a1a';
+  const textLinkActive = '#F97316';
   const textLinkHover = isDark ? '#ffffff' : '#F97316';
   const dividerColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
   const hoverBg = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(249,115,22,0.06)';
+  const activeBg = isDark ? 'rgba(249,115,22,0.1)' : 'rgba(249,115,22,0.08)';
   const closeBtnBorder = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)';
   const closeBtnText = isDark ? 'rgba(255,255,255,0.6)' : '#555555';
 
@@ -45,7 +90,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* ── BACKDROP — dark overlay on the right ── */}
+          {/* ── BACKDROP ── */}
           <motion.div
             key="mob-backdrop"
             initial={{ opacity: 0 }}
@@ -58,7 +103,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             aria-hidden="true"
           />
 
-          {/* ── PANEL — Left-side drawer ── */}
+          {/* ── PANEL ── */}
           <motion.div
             key="mob-panel"
             initial={{ x: '-100%', opacity: 0.9 }}
@@ -79,7 +124,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                 : '8px 0 40px rgba(0,0,0,0.12), 2px 0 8px rgba(0,0,0,0.04)',
             }}
           >
-            {/* ═══ HEADER — "MENÚ" + "El Hombre" ═══ */}
+            {/* ═══ HEADER ═══ */}
             <div className="shrink-0 pt-6 pb-4 px-6 flex items-start justify-between">
               <div>
                 <motion.p
@@ -102,7 +147,6 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                 </motion.p>
               </div>
 
-              {/* Circular X close button */}
               <motion.button
                 initial={{ opacity: 0, scale: 0.7 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -120,7 +164,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               </motion.button>
             </div>
 
-            {/* Divider line */}
+            {/* Divider */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -131,42 +175,52 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
             {/* ═══ NAV LINKS ═══ */}
             <nav className="flex-1 flex flex-col px-4 pt-3 pb-4">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -16 }}
-                  transition={{
-                    delay: 0.2 + i * 0.055,
-                    duration: 0.4,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={onClose}
-                    className="group relative flex items-center justify-between py-3 px-3 -mx-1 rounded-lg transition-all duration-200 active:scale-[0.98]"
-                    style={{ color: textLink }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.backgroundColor = hoverBg;
-                      (e.currentTarget as HTMLElement).style.color = textLinkHover;
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
-                      (e.currentTarget as HTMLElement).style.color = textLink;
+              {navLinks.map((link, i) => {
+                const isActive = isHomePage && link.sectionId === activeId;
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -16 }}
+                    transition={{
+                      delay: 0.2 + i * 0.055,
+                      duration: 0.4,
+                      ease: [0.25, 0.46, 0.45, 0.94],
                     }}
                   >
-                    <span className="text-[16px] font-medium tracking-[0.02em]">
-                      {link.label}
-                    </span>
-                    <ChevronRight
-                      className="h-4 w-4 transition-all duration-250 opacity-0 -translate-x-1.5 group-hover:opacity-100 group-hover:translate-x-0"
-                      style={{ color: '#F97316' }}
-                    />
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.href}
+                      onClick={() => handleNavClick(link)}
+                      className="group relative flex items-center justify-between py-3 px-3 -mx-1 rounded-lg transition-all duration-200 active:scale-[0.98]"
+                      style={{
+                        color: isActive ? textLinkActive : textLink,
+                        backgroundColor: isActive ? activeBg : 'transparent',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isActive) {
+                          (e.currentTarget as HTMLElement).style.backgroundColor = hoverBg;
+                          (e.currentTarget as HTMLElement).style.color = textLinkHover;
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isActive) {
+                          (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
+                          (e.currentTarget as HTMLElement).style.color = textLink;
+                        }
+                      }}
+                    >
+                      <span className="text-[16px] font-medium tracking-[0.02em]">
+                        {link.label}
+                      </span>
+                      <ChevronRight
+                        className="h-4 w-4 transition-all duration-250 opacity-0 -translate-x-1.5 group-hover:opacity-100 group-hover:translate-x-0"
+                        style={{ color: '#F97316' }}
+                      />
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </nav>
 
             {/* ═══ BOTTOM — Contact + CTA ═══ */}
@@ -177,10 +231,8 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               className="shrink-0 px-6 pb-6"
               style={{ paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}
             >
-              {/* Divider */}
               <div className="mb-4 h-px" style={{ backgroundColor: dividerColor }} />
 
-              {/* Contact info */}
               <div className="flex flex-col gap-2.5 mb-5">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="h-3.5 w-3.5 shrink-0 mt-0.5" style={{ color: '#F97316' }} />
@@ -208,7 +260,6 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                 </div>
               </div>
 
-              {/* CTA Button */}
               <button
                 onClick={handleReserve}
                 className="relative flex items-center justify-center gap-2 w-full h-11 rounded-xl
@@ -235,6 +286,9 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+  const activeId = useScrollSpy(isHomePage);
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
@@ -256,10 +310,30 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
+  // Handle hash navigation on page load
+  useEffect(() => {
+    if (isHomePage && window.location.hash) {
+      const hash = window.location.hash.replace('#', '');
+      if (SECTION_IDS.includes(hash as typeof SECTION_IDS[number])) {
+        setTimeout(() => scrollToSection(hash, 80), 200);
+      }
+    }
+  }, [isHomePage]);
+
   const handleDesktopReserve = (e: React.MouseEvent) => {
     e.preventDefault();
     sendGeneralWA();
   };
+
+  const handleDesktopNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: NavLink) => {
+    // If on homepage and has sectionId, prevent default and smooth scroll
+    if (isHomePage && link.sectionId) {
+      e.preventDefault();
+      scrollToSection(link.sectionId, 80);
+    }
+  };
+
+  const currentNavLinks = isHomePage ? homeNavLinks : subpageNavLinks;
 
   return (
     <header
@@ -290,21 +364,32 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                'text-sm font-medium transition-all duration-300 hover:text-orange-500 relative group',
-                scrolled
-                  ? 'text-slate-900 dark:text-white'
-                  : 'text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]'
-              )}
-            >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-orange-500 transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
+          {currentNavLinks.map((link) => {
+            const isActive = isHomePage && link.sectionId === activeId;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleDesktopNavClick(e, link)}
+                className={cn(
+                  'text-sm font-medium transition-all duration-300 relative group',
+                  isActive
+                    ? 'text-orange-500'
+                    : scrolled
+                      ? 'text-slate-900 dark:text-white hover:text-orange-500'
+                      : 'text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)] hover:text-orange-500',
+                )}
+              >
+                {link.label}
+                <span
+                  className={cn(
+                    'absolute -bottom-1 left-0 h-px transition-all duration-300',
+                    isActive ? 'w-full bg-orange-500' : 'w-0 group-hover:w-full bg-orange-500',
+                  )}
+                />
+              </Link>
+            );
+          })}
         </div>
 
         {/* Right side */}
@@ -349,7 +434,12 @@ export function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      <MobileMenu isOpen={mobileOpen} onClose={closeMobile} />
+      <MobileMenu
+        isOpen={mobileOpen}
+        onClose={closeMobile}
+        activeId={activeId}
+        isHomePage={isHomePage}
+      />
     </header>
   );
 }

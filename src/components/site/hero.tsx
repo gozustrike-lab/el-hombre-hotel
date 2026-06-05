@@ -7,7 +7,7 @@ import { ChevronDown, Waves, Sparkles } from 'lucide-react';
 
 export function Hero() {
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
+    <section id="inicio" className="relative w-full h-screen min-h-[600px] overflow-hidden">
       {/* Background Image — Puerto Chicama beach */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
