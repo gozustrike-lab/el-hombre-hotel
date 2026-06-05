@@ -38,6 +38,7 @@ export interface Room {
   image: string;
   badge: string;
   features: string[];
+  gallery?: string[];
 }
 
 export interface ServiceItem {
@@ -435,6 +436,13 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80",
     badge: "Económica",
     features: ["1 Cama Individual", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido", "Vistas al Mar"],
+    gallery: [
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    ],
   },
   {
     name: "Habitación Doble - 2 camas",
@@ -444,6 +452,12 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80",
     badge: "Económica",
     features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    gallery: [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80",
+      "https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=800&q=80",
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80",
+    ],
   },
   {
     name: "Habitación Deluxe - 1 cama grande",
@@ -453,6 +467,13 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80",
     badge: "Popular",
     features: ["1 Cama Doble Grande", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    gallery: [
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    ],
   },
   {
     name: "Habitación con cama grande y vistas al mar",
@@ -462,6 +483,14 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80",
     badge: "Vista al Mar",
     features: ["1 Cama Doble Grande", "Baño Privado", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido", "Vistas al Mar"],
+    gallery: [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80",
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+      "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=800&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    ],
   },
   {
     name: "Habitación Deluxe - 1 cama grande (Baño Privado)",
@@ -471,6 +500,12 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80",
     badge: "Baño Privado",
     features: ["1 Cama Doble Grande", "Baño Privado", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    gallery: [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+    ],
   },
   {
     name: "Habitación Deluxe",
@@ -480,6 +515,13 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80",
     badge: "Premium",
     features: ["1 Cama Doble Extragrande", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    gallery: [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    ],
   },
   {
     name: "Habitación Triple Básica con baño compartido",
@@ -489,6 +531,13 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80",
     badge: "Grupo",
     features: ["3 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    gallery: [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+    ],
   },
   {
     name: "Habitación Doble - 2 camas (2 personas)",
@@ -498,6 +547,12 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=600&q=80",
     badge: "Genius",
     features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido", "Genius"],
+    gallery: [
+      "https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=800&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80",
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+    ],
   },
   {
     name: "Habitación Doble con aseo compartido - 2 camas",
@@ -507,6 +562,12 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=600&q=80",
     badge: "Económica",
     features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    gallery: [
+      "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=800&q=80",
+      "https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=800&q=80",
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
+    ],
   },
   {
     name: "Habitación Doble - 2 camas dobles",
@@ -516,5 +577,11 @@ export const rooms: Room[] = [
     image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80",
     badge: "Económica",
     features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    gallery: [
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80",
+      "https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=800&q=80",
+      "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=800&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
+    ],
   },
 ];
