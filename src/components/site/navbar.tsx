@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { X, Phone, MapPin, Mail, ChevronRight } from 'lucide-react';
 import { ThemeToggle } from '@/components/site/theme-toggle';
@@ -12,11 +12,7 @@ import { useTheme } from 'next-themes';
 import { useScrollSpy, scrollToSection, SECTION_IDS, type SectionId } from '@/lib/use-scroll-spy';
 import { usePathname } from 'next/navigation';
 
-/* ─── Nav links config ────────────────────────────────────────────
- *  On homepage: hash links (#inicio, #habitaciones, etc.)
- *  On subpages: full routes (/habitaciones, /restaurante, etc.)
- *  Editable: add { hash, label } to extend deep linking.
- * ────────────────────────────────────────────────────────────────── */
+/* ─── Nav links config ──────────────────────────────────────────── */
 
 interface NavLink {
   href: string;
@@ -67,13 +63,11 @@ function MobileMenu({
 
   const handleNavClick = (link: NavLink) => {
     onClose();
-    // If on homepage and has sectionId, smooth scroll
     if (isHomePage && link.sectionId) {
       setTimeout(() => scrollToSection(link.sectionId!), 150);
     }
   };
 
-  /* Inline style tokens */
   const panelBg = isDark ? '#0f172a' : '#FFFFFF';
   const textPrimary = isDark ? '#f8fafc' : '#1a1a1a';
   const textSecondary = isDark ? 'rgba(255,255,255,0.4)' : '#888888';
@@ -90,7 +84,6 @@ function MobileMenu({
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* ── BACKDROP ── */}
           <motion.div
             key="mob-backdrop"
             initial={{ opacity: 0 }}
@@ -103,18 +96,12 @@ function MobileMenu({
             aria-hidden="true"
           />
 
-          {/* ── PANEL ── */}
           <motion.div
             key="mob-panel"
             initial={{ x: '-100%', opacity: 0.9 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: '-100%', opacity: 0.8 }}
-            transition={{
-              type: 'spring',
-              damping: 30,
-              stiffness: 320,
-              mass: 0.8,
-            }}
+            transition={{ type: 'spring', damping: 30, stiffness: 320, mass: 0.8 }}
             className="fixed top-0 left-0 bottom-0 z-[70] w-[75vw] max-w-[320px] md:hidden
               flex flex-col overflow-y-auto"
             style={{
@@ -124,7 +111,6 @@ function MobileMenu({
                 : '8px 0 40px rgba(0,0,0,0.12), 2px 0 8px rgba(0,0,0,0.04)',
             }}
           >
-            {/* ═══ HEADER ═══ */}
             <div className="shrink-0 pt-6 pb-4 px-6 flex items-start justify-between">
               <div>
                 <motion.p
@@ -164,7 +150,6 @@ function MobileMenu({
               </motion.button>
             </div>
 
-            {/* Divider */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -173,7 +158,6 @@ function MobileMenu({
               style={{ backgroundColor: dividerColor }}
             />
 
-            {/* ═══ NAV LINKS ═══ */}
             <nav className="flex-1 flex flex-col px-4 pt-3 pb-4">
               {navLinks.map((link, i) => {
                 const isActive = isHomePage && link.sectionId === activeId;
@@ -183,11 +167,7 @@ function MobileMenu({
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -16 }}
-                    transition={{
-                      delay: 0.2 + i * 0.055,
-                      duration: 0.4,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    }}
+                    transition={{ delay: 0.2 + i * 0.055, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                   >
                     <Link
                       href={link.href}
@@ -210,20 +190,14 @@ function MobileMenu({
                         }
                       }}
                     >
-                      <span className="text-[16px] font-medium tracking-[0.02em]">
-                        {link.label}
-                      </span>
-                      <ChevronRight
-                        className="h-4 w-4 transition-all duration-250 opacity-0 -translate-x-1.5 group-hover:opacity-100 group-hover:translate-x-0"
-                        style={{ color: '#F97316' }}
-                      />
+                      <span className="text-[16px] font-medium tracking-[0.02em]">{link.label}</span>
+                      <ChevronRight className="h-4 w-4 transition-all duration-250 opacity-0 -translate-x-1.5 group-hover:opacity-100 group-hover:translate-x-0" style={{ color: '#F97316' }} />
                     </Link>
                   </motion.div>
                 );
               })}
             </nav>
 
-            {/* ═══ BOTTOM — Contact + CTA ═══ */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -232,43 +206,29 @@ function MobileMenu({
               style={{ paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}
             >
               <div className="mb-4 h-px" style={{ backgroundColor: dividerColor }} />
-
               <div className="flex flex-col gap-2.5 mb-5">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="h-3.5 w-3.5 shrink-0 mt-0.5" style={{ color: '#F97316' }} />
-                  <span className="text-[11px] leading-relaxed" style={{ color: textSecondary }}>
-                    {HOTEL_LOCATION.address}
-                  </span>
+                  <span className="text-[11px] leading-relaxed" style={{ color: textSecondary }}>{HOTEL_LOCATION.address}</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Phone className="h-3.5 w-3.5 shrink-0" style={{ color: '#F97316' }} />
-                  <a
-                    href={`tel:${HOTEL_LOCATION.phone}`}
-                    className="text-[11px] transition-colors duration-200"
-                    style={{ color: textSecondary }}
+                  <a href={`tel:${HOTEL_LOCATION.phone}`} className="text-[11px] transition-colors duration-200" style={{ color: textSecondary }}
                     onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#F97316'; }}
                     onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = textSecondary; }}
-                  >
-                    {HOTEL_LOCATION.phone}
-                  </a>
+                  >{HOTEL_LOCATION.phone}</a>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Mail className="h-3.5 w-3.5 shrink-0" style={{ color: '#F97316' }} />
-                  <span className="text-[11px]" style={{ color: textSecondary }}>
-                    {HOTEL_LOCATION.email}
-                  </span>
+                  <span className="text-[11px]" style={{ color: textSecondary }}>{HOTEL_LOCATION.email}</span>
                 </div>
               </div>
-
               <button
                 onClick={handleReserve}
                 className="relative flex items-center justify-center gap-2 w-full h-11 rounded-xl
                   text-white font-semibold text-[14px] tracking-wide overflow-hidden cursor-pointer
                   transition-transform duration-200 active:scale-[0.97]"
-                style={{
-                  background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
-                  boxShadow: '0 4px 20px -4px rgba(249, 115, 22, 0.4)',
-                }}
+                style={{ background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)', boxShadow: '0 4px 20px -4px rgba(249, 115, 22, 0.4)' }}
               >
                 <Phone className="h-3.5 w-3.5" />
                 <span>Reservar Ahora</span>
@@ -287,6 +247,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+
+  // Only homepage uses transparent → solid transition
+  // All internal pages always start with solid background
   const isHomePage = pathname === '/';
   const activeId = useScrollSpy(isHomePage);
 
@@ -298,19 +261,15 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
+    return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  // Handle hash navigation on page load
   useEffect(() => {
     if (isHomePage && window.location.hash) {
       const hash = window.location.hash.replace('#', '');
@@ -326,7 +285,6 @@ export function Navbar() {
   };
 
   const handleDesktopNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: NavLink) => {
-    // If on homepage and has sectionId, prevent default and smooth scroll
     if (isHomePage && link.sectionId) {
       e.preventDefault();
       scrollToSection(link.sectionId, 80);
@@ -335,13 +293,22 @@ export function Navbar() {
 
   const currentNavLinks = isHomePage ? homeNavLinks : subpageNavLinks;
 
+  /*
+   * NAVBAR VISIBILITY LOGIC:
+   * ──────────────────────────────────────────────────────────────
+   * isHomePage + !scrolled → TRANSPARENT bg, WHITE text (over hero)
+   * isHomePage + scrolled  → SOLID bg, DARK text
+   * !isHomePage (any)      → ALWAYS SOLID bg, DARK text
+   */
+  const isTransparent = isHomePage && !scrolled;
+
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 h-[72px] md:h-16 transition-all duration-500',
-        scrolled
-          ? 'backdrop-blur-xl bg-[#FDFBF7]/80 dark:bg-slate-950/80 border-b border-black/5 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.35)]'
-          : 'bg-transparent'
+        isTransparent
+          ? 'bg-transparent'
+          : 'backdrop-blur-xl bg-[#FDFBF7]/90 dark:bg-slate-950/90 border-b border-black/5 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]',
       )}
     >
       <nav className="w-full h-full px-5 md:px-8 flex items-center justify-between">
@@ -352,10 +319,10 @@ export function Navbar() {
             alt="El Hombre"
             className={cn(
               'h-12 md:h-11 w-auto max-w-[200px] md:max-w-[240px] object-contain transition-all duration-500',
-              scrolled ? 'opacity-100' : 'brightness-0 invert dark:brightness-0 dark:invert'
+              isTransparent ? 'brightness-0 invert dark:brightness-0 dark:invert' : 'opacity-100',
             )}
           />
-          {!scrolled && (
+          {isTransparent && (
             <span className="hidden md:block text-white font-serif text-xl tracking-wide drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
               El Hombre
             </span>
@@ -375,9 +342,9 @@ export function Navbar() {
                   'text-sm font-medium transition-all duration-300 relative group',
                   isActive
                     ? 'text-orange-500'
-                    : scrolled
-                      ? 'text-slate-900 dark:text-white hover:text-orange-500'
-                      : 'text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)] hover:text-orange-500',
+                    : isTransparent
+                      ? 'text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)] hover:text-orange-400'
+                      : 'text-slate-900 dark:text-white hover:text-orange-500',
                 )}
               >
                 {link.label}
@@ -400,9 +367,9 @@ export function Navbar() {
             onClick={handleDesktopReserve}
             className={cn(
               'hidden md:inline-flex items-center gap-2 text-white rounded-xl px-5 h-10 text-sm font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] cursor-pointer',
-              scrolled
-                ? 'bg-orange-500 hover:bg-orange-600 shadow-md shadow-orange-500/20'
-                : 'bg-orange-500/90 hover:bg-orange-500 backdrop-blur-md shadow-lg shadow-orange-500/30'
+              isTransparent
+                ? 'bg-orange-500/90 hover:bg-orange-500 backdrop-blur-md shadow-lg shadow-orange-500/30'
+                : 'bg-orange-500 hover:bg-orange-600 shadow-md shadow-orange-500/20',
             )}
           >
             Reservar
@@ -413,27 +380,26 @@ export function Navbar() {
             onClick={() => setMobileOpen(true)}
             className={cn(
               'md:hidden w-11 h-11 flex items-center justify-center rounded-lg transition-all duration-300 active:scale-90',
-              scrolled
-                ? 'text-slate-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/5'
-                : 'text-white hover:bg-white/10'
+              isTransparent
+                ? 'text-white hover:bg-white/10'
+                : 'text-slate-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/5',
             )}
             aria-label="Abrir menú"
           >
             <div className="flex flex-col gap-[5px]">
               <span className={cn(
                 'block h-[2px] w-5 rounded-full transition-all duration-300',
-                scrolled ? 'bg-current' : 'bg-white'
+                isTransparent ? 'bg-white' : 'bg-current',
               )} />
               <span className={cn(
                 'block h-[2px] w-4 rounded-full transition-all duration-300',
-                scrolled ? 'bg-current' : 'bg-white'
+                isTransparent ? 'bg-white' : 'bg-current',
               )} />
             </div>
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       <MobileMenu
         isOpen={mobileOpen}
         onClose={closeMobile}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { rooms } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
@@ -18,6 +19,7 @@ import {
   Bath,
   Users,
   Clock,
+  ExternalLink,
 } from 'lucide-react';
 import { sendRoomDirectWA } from '@/lib/whatsapp';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -303,6 +305,16 @@ function RoomLightbox({
                 <Phone className="h-4 w-4" />
                 Reservar por WhatsApp
               </button>
+
+              {/* Ver detalles link */}
+              <Link
+                href={`/habitaciones/${room.slug}`}
+                onClick={onClose}
+                className="flex items-center justify-center gap-2 text-orange-500 hover:text-orange-600 text-sm font-medium mt-2 transition-colors"
+              >
+                Ver detalles completos
+                <ExternalLink className="h-3.5 w-3.5" />
+              </Link>
             </div>
           </motion.div>
         </motion.div>
