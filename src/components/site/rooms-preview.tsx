@@ -47,6 +47,17 @@ function RoomLightbox({
   const galleryImages = room.gallery || [room.image, ...Array(4).fill(room.image)];
   const totalImages = galleryImages.length;
 
+  // Update URL when lightbox opens/closes
+  useEffect(() => {
+    if (open) {
+      const newUrl = `/habitaciones/${room.slug}`;
+      window.history.replaceState(null, '', newUrl);
+    } else {
+      // Restore previous URL
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, [open, room.slug]);
+
   // Lock body scroll + ESC to close
   useEffect(() => {
     if (!open) return;
@@ -309,10 +320,9 @@ function RoomLightbox({
               {/* Ver detalles link */}
               <Link
                 href={`/habitaciones/${room.slug}`}
-                onClick={onClose}
                 className="flex items-center justify-center gap-2 text-orange-500 hover:text-orange-600 text-sm font-medium mt-2 transition-colors"
               >
-                Ver detalles completos
+                Ver página completa
                 <ExternalLink className="h-3.5 w-3.5" />
               </Link>
             </div>
