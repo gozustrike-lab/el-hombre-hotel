@@ -455,6 +455,7 @@ export const rooms: Room[] = [
       "/images/rooms/doble-2-camas/foto1.webp",
       "/images/rooms/doble-2-camas/foto2.webp",
       "/images/rooms/doble-2-camas/foto3.webp",
+      "/images/rooms/doble-2-camas/foto4.webp",
     ],
   },
   {
@@ -556,13 +557,15 @@ export const rooms: Room[] = [
     slug: "doble-aseo-compartido-2-camas",
     description: "Dos camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: hasta 2 personas.",
     price: "S/. 120",
-    image: "/images/rooms/doble-2-camas/foto3.webp",
+    image: "/images/rooms/doble-aseo-compartido-2-camas/foto1.webp",
     badge: "Económica",
     features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
     gallery: [
-      "/images/rooms/doble-2-camas/foto3.webp",
-      "/images/rooms/doble-2-camas/foto1.webp",
-      "/images/rooms/doble-2-camas/foto2.webp",
+      "/images/rooms/doble-aseo-compartido-2-camas/foto1.webp",
+      "/images/rooms/doble-aseo-compartido-2-camas/foto2.webp",
+      "/images/rooms/doble-aseo-compartido-2-camas/foto3.webp",
+      "/images/rooms/doble-aseo-compartido-2-camas/foto4.webp",
+      "/images/rooms/doble-aseo-compartido-2-camas/foto5.webp",
     ],
   },
   {
@@ -577,6 +580,7 @@ export const rooms: Room[] = [
       "/images/rooms/doble-2-camas/foto1.webp",
       "/images/rooms/doble-2-camas/foto2.webp",
       "/images/rooms/doble-2-camas/foto3.webp",
+      "/images/rooms/doble-2-camas/foto4.webp",
     ],
   },
 ];
