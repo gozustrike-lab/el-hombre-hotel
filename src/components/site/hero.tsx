@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { BookingBar } from '@/components/site/booking-bar';
 import { HOTEL_SCORE } from '@/lib/data';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronDown, Waves, Sparkles } from 'lucide-react';
 
 /* ─── Hero Background Slider Images ──────────────────────────── */
@@ -15,50 +15,70 @@ const HERO_SLIDES = [
 ] as const;
 
 const SLIDE_INTERVAL = 5500; // 5.5 seconds per slide
+const CROSSFADE_MS = 500; // fast 500ms crossfade — no gray flash
 
 /* ─── Hero Component ──────────────────────────────────────────── */
 
 export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [prevSlide, setPrevSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const goToSlide = useCallback((next: number) => {
+    if (next === currentSlide) return;
+    setIsTransitioning(true);
+    setPrevSlide(currentSlide);
+    setCurrentSlide(next);
+    // Transition ends after CROSSFADE_MS
+    setTimeout(() => setIsTransitioning(false), CROSSFADE_MS);
+  }, [currentSlide]);
 
   const advanceSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-  }, []);
+    goToSlide((currentSlide + 1) % HERO_SLIDES.length);
+  }, [currentSlide, goToSlide]);
 
   useEffect(() => {
-    const timer = setInterval(advanceSlide, SLIDE_INTERVAL);
-    return () => clearInterval(timer);
+    timerRef.current = setInterval(advanceSlide, SLIDE_INTERVAL);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, [advanceSlide]);
 
   return (
-    <section id="inicio" className="relative w-full h-screen min-h-[600px] overflow-hidden">
-      {/* ═══ BACKGROUND SLIDER ═══ */}
-      <div className="absolute inset-0 z-0">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url(${HERO_SLIDES[currentSlide]})`,
-            }}
-          />
-        </AnimatePresence>
+    <section id="inicio" className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#0a0a0a]">
+      {/* ═══ BACKGROUND SLIDER — True Crossfade ═══ */}
+      {/* Base layer: always visible as fallback, never gray */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${HERO_SLIDES[prevSlide]})` }}
+      />
 
-        {/* Dark overlay for text readability — always on top of slider */}
-        <div className="absolute inset-0 bg-black/25" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70" />
-      </div>
+      {/* Current slide layer: fades in ON TOP of base — no gray gap */}
+      <div
+        key={currentSlide}
+        className="absolute inset-0 z-[1] bg-cover bg-center bg-no-repeat will-change-[opacity]"
+        style={{
+          backgroundImage: `url(${HERO_SLIDES[currentSlide]})`,
+          opacity: isTransitioning ? 0 : 1,
+          transition: `opacity ${CROSSFADE_MS}ms ease-in-out`,
+        }}
+      />
+
+      {/* Dark overlay for text readability — always on top of slider */}
+      <div className="absolute inset-0 z-[2] bg-black/25" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-black/50 via-black/20 to-black/70" />
 
       {/* ═══ SLIDE INDICATORS ═══ */}
       <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
         {HERO_SLIDES.map((_, i) => (
           <button
             key={i}
-            onClick={() => setCurrentSlide(i)}
+            onClick={() => {
+              if (timerRef.current) clearInterval(timerRef.current);
+              goToSlide(i);
+              timerRef.current = setInterval(advanceSlide, SLIDE_INTERVAL);
+            }}
             className="transition-all duration-500 rounded-full"
             style={{
               width: i === currentSlide ? 24 : 8,

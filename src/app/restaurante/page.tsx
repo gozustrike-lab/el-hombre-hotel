@@ -3,18 +3,28 @@
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, X } from 'lucide-react';
 import { Navbar } from '@/components/site/navbar';
 import { Footer } from '@/components/site/footer';
 import { RestaurantMenu } from '@/components/site/restaurant-menu';
 import { CartFloat, type CartItem } from '@/components/site/cart-float';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { fullMenu, type MenuItem } from '@/lib/data';
-import { Badge } from '@/components/ui/badge';
+
+/* ─── Restaurant gallery photos ──────────────────────────────── */
+
+const RESTAURANT_PHOTOS = [
+  '/images/restaurant/foto1.webp',
+  '/images/restaurant/foto2.webp',
+  '/images/restaurant/foto3.webp',
+  '/images/restaurant/foto4.webp',
+  '/images/restaurant/foto5.webp',
+];
 
 export default function RestaurantePage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
 
   const handleAdd = useCallback((item: MenuItem) => {
     setCart((prev) => {
@@ -54,7 +64,7 @@ export default function RestaurantePage() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage:
-              'url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80)',
+              'url(/images/restaurant/foto2.webp)',
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
@@ -68,19 +78,19 @@ export default function RestaurantePage() {
             Inicio
           </Link>
 
-          <div className="flex items-center gap-3 mb-2">
-            <Badge className="bg-orange-500/90 text-white border-none backdrop-blur-sm text-xs uppercase tracking-wider">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-3 mb-2"
+          >
+            <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-orange-400 bg-orange-500/20 px-3 py-1 rounded-[2px]">
               carta
-            </Badge>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-orange-400 text-sm uppercase tracking-[0.2em]"
-            >
+            </span>
+            <span className="text-orange-400 text-sm uppercase tracking-[0.2em]">
               Gastronomía Costera
-            </motion.p>
-          </div>
+            </span>
+          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -102,42 +112,136 @@ export default function RestaurantePage() {
         </div>
       </section>
 
+      {/* ═══ RESTAURANT GALLERY ═══ */}
+      <section className="w-full py-12 md:py-16 px-6 md:px-12 lg:px-20">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-2xl md:text-3xl font-serif font-light text-slate-900 dark:text-white mb-8"
+          >
+            Nuestro Restaurante
+          </motion.h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+            {RESTAURANT_PHOTOS.map((photo, i) => (
+              <motion.button
+                key={photo}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                onClick={() => setLightboxIdx(i)}
+                className="relative aspect-square md:aspect-[4/3] overflow-hidden rounded-xl border border-gray-100/50 dark:border-white/5 shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer"
+              >
+                <img
+                  src={photo}
+                  alt={`Restaurante El Hombre - foto ${i + 1}`}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Menu content */}
       <section className="flex-1 px-6 md:px-12 lg:px-20 py-12 md:py-16">
-        <Tabs defaultValue={categories[0]} className="w-full">
-          <TabsList className="mb-10 bg-slate-100 dark:bg-slate-900 rounded-xl p-1 flex-wrap h-auto gap-1">
-            {categories.map((category) => (
-              <TabsTrigger
-                key={category}
-                value={category}
-                className="text-sm px-4 py-2 rounded-lg data-[state=active]:bg-orange-500 data-[state=active]:text-white data-[state=active]:shadow-sm"
-              >
-                {category}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+        <div className="max-w-6xl mx-auto">
+          <Tabs defaultValue={categories[0]} className="w-full">
+            <TabsList className="mb-10 bg-slate-100 dark:bg-slate-900 rounded-xl p-1 flex-wrap h-auto gap-1">
+              {categories.map((category) => (
+                <TabsTrigger
+                  key={category}
+                  value={category}
+                  className="text-sm px-4 py-2 rounded-lg data-[state=active]:bg-orange-500 data-[state=active]:text-white data-[state=active]:shadow-sm"
+                >
+                  {category}
+                </TabsTrigger>
+              ))}
+            </TabsList>
 
-          {categories.map((category) => (
-            <TabsContent key={category} value={category}>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-3xl"
-              >
-                <RestaurantMenu
-                  items={fullMenu[category]}
-                  onAdd={handleAdd}
-                  addedItems={addedItems}
-                />
-              </motion.div>
-            </TabsContent>
-          ))}
-        </Tabs>
+            {categories.map((category) => (
+              <TabsContent key={category} value={category}>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="max-w-3xl"
+                >
+                  <RestaurantMenu
+                    items={fullMenu[category]}
+                    onAdd={handleAdd}
+                    addedItems={addedItems}
+                  />
+                </motion.div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        </div>
       </section>
 
       <Footer />
       <CartFloat items={cart} onUpdate={setCart} />
+
+      {/* ═══ LIGHTBOX ═══ */}
+      {lightboxIdx !== null && (
+        <div
+          className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={() => setLightboxIdx(null)}
+        >
+          {/* Close */}
+          <button
+            onClick={() => setLightboxIdx(null)}
+            className="absolute top-4 right-4 z-[210] w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            aria-label="Cerrar"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          {/* Prev / Next */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIdx((lightboxIdx - 1 + RESTAURANT_PHOTOS.length) % RESTAURANT_PHOTOS.length);
+            }}
+            className="absolute left-3 md:left-6 z-[210] w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            aria-label="Anterior"
+          >
+            <span className="text-xl">&larr;</span>
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIdx((lightboxIdx + 1) % RESTAURANT_PHOTOS.length);
+            }}
+            className="absolute right-3 md:right-6 z-[210] w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            aria-label="Siguiente"
+          >
+            <span className="text-xl">&rarr;</span>
+          </button>
+
+          {/* Image */}
+          <motion.img
+            key={lightboxIdx}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            src={RESTAURANT_PHOTOS[lightboxIdx]}
+            alt={`Foto ${lightboxIdx + 1}`}
+            className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          {/* Counter */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-xs tracking-wider">
+            {lightboxIdx + 1} / {RESTAURANT_PHOTOS.length}
+          </div>
+        </div>
+      )}
     </main>
   );
 }

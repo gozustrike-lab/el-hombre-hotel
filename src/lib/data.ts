@@ -182,8 +182,7 @@ export const featuredDishes: FeaturedDish[] = [
     description:
       "Ceviche de pescado fresco del Pacífico con camarón, limón de Chulucanas, cebolla morada y cilantro. Receta tradicional de la costa norte peruana.",
     price: "S/. 35",
-    image:
-      "https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=400&q=80",
+    image: "/images/restaurant/foto1.webp",
     category: "Mariscos",
   },
   {
@@ -192,8 +191,7 @@ export const featuredDishes: FeaturedDish[] = [
     description:
       "Fritura de pescado, camarones, calamar y chita acompañada de yuca sancochada, salsa criolla y ají limo.",
     price: "S/. 45",
-    image:
-      "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80",
+    image: "/images/restaurant/foto3.webp",
     category: "Mariscos",
   },
   {
@@ -202,8 +200,7 @@ export const featuredDishes: FeaturedDish[] = [
     description:
       "Sopa del día, plato principal entre tres opciones, jugo de fruta natural y postre. La mejor opción para recargar energía después del surf.",
     price: "S/. 15",
-    image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80",
+    image: "/images/restaurant/foto5.webp",
     category: "Ejecutivo",
   },
 ];
