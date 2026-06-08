@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { use } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Navbar } from '@/components/site/navbar';
 import { Footer } from '@/components/site/footer';
 import { rooms } from '@/lib/data';

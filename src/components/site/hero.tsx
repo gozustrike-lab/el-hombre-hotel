@@ -13,7 +13,7 @@ export function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            'url(/assets/rooms/2.jpg)',
+            'url(/images/rooms/individual-vistas-al-mar/foto1.webp)',
         }}
       />
 
