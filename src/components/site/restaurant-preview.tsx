@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { featuredDishes } from '@/lib/data';
-import { Badge } from '@/components/ui/badge';
 
 export function RestaurantPreview() {
   return (
@@ -11,9 +10,9 @@ export function RestaurantPreview() {
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8">
         {/* Section heading */}
         <div className="flex items-center gap-3 mb-3">
-          <Badge className="bg-orange-500/10 text-orange-500 border-orange-500/20 text-xs uppercase tracking-wider">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange-500 bg-orange-500/10 px-3 py-1 rounded-[2px]">
             restaurante
-          </Badge>
+          </span>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,40 +54,42 @@ export function RestaurantPreview() {
                 isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'
               } gap-8 lg:gap-16 items-center`}
             >
-              {/* Image */}
+              {/* Image — premium card style */}
               <motion.div
                 className="w-full lg:w-1/2 relative"
-                whileHover={{ scale: 1.01 }}
+                whileHover={{ y: -2 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
               >
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                  <img
-                    src={dish.image}
-                    alt={dish.name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      if (!target.dataset.retried) {
-                        target.dataset.retried = '1';
-                        target.src = `https://placehold.co/800x600/0f172a/F97316?text=${encodeURIComponent(dish.name)}`;
-                      }
-                    }}
-                  />
+                <div className="relative overflow-hidden rounded-xl border border-gray-100/50 dark:border-white/5 shadow-sm transition-all duration-500 hover:shadow-xl">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={dish.image}
+                      alt={dish.name}
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (!target.dataset.retried) {
+                          target.dataset.retried = '1';
+                          target.src = `https://placehold.co/800x600/0f172a/F97316?text=${encodeURIComponent(dish.name)}`;
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
               </motion.div>
 
               {/* Text content */}
               <div className="w-full lg:w-1/2">
-                <span className="text-orange-500 text-sm uppercase tracking-wider">
+                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-orange-500 bg-orange-500/10 px-3 py-1 rounded-[2px]">
                   {dish.category}
                 </span>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-slate-900 dark:text-white mt-2 mb-4">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-slate-900 dark:text-white mt-3 mb-4 tracking-tight">
                   {dish.name}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed mb-6 max-w-lg">
+                <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg font-light leading-relaxed mb-6 max-w-lg opacity-90">
                   {dish.description}
                 </p>
-                <span className="text-orange-500 text-3xl font-semibold">
+                <span className="text-orange-500 text-3xl font-semibold tracking-tight">
                   {dish.price}
                 </span>
               </div>
