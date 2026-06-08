@@ -1,0 +1,36 @@
+{
+  "Habitaci\u00f3n Deluxe": [
+    "/images/rooms/deluxe-1-cama-grande/foto1.webp",
+    "/images/rooms/deluxe-1-cama-grande/foto2.webp",
+    "/images/rooms/deluxe-1-cama-grande/foto3.webp",
+    "/images/rooms/deluxe-1-cama-grande/foto4.webp"
+  ],
+  "Habitaci\u00f3n Doble - 2 camas": [
+    "/images/rooms/doble-2-camas/foto1.webp",
+    "/images/rooms/doble-2-camas/foto2.webp",
+    "/images/rooms/doble-2-camas/foto3.webp"
+  ],
+  "Habitaci\u00f3n Individual con vistas al mar": [
+    "/images/rooms/individual-vistas-al-mar/foto1.webp",
+    "/images/rooms/individual-vistas-al-mar/foto2.webp",
+    "/images/rooms/individual-vistas-al-mar/foto3.webp",
+    "/images/rooms/individual-vistas-al-mar/foto4.webp"
+  ],
+  "Habitaci\u00f3n Triple B\u00e1sica con ba\u00f1o compartido": [
+    "/images/rooms/triple-basica-bano-compartido/foto1.webp",
+    "/images/rooms/triple-basica-bano-compartido/foto2.webp",
+    "/images/rooms/triple-basica-bano-compartido/foto3.webp",
+    "/images/rooms/triple-basica-bano-compartido/foto4.webp",
+    "/images/rooms/triple-basica-bano-compartido/foto5.webp",
+    "/images/rooms/triple-basica-bano-compartido/foto6.webp"
+  ],
+  "Habitaci\u00f3n con cama grande y vistas al mar": [
+    "/images/rooms/cama-grande-vistas-al-mar/foto1.webp",
+    "/images/rooms/cama-grande-vistas-al-mar/foto2.webp",
+    "/images/rooms/cama-grande-vistas-al-mar/foto3.webp",
+    "/images/rooms/cama-grande-vistas-al-mar/foto4.webp",
+    "/images/rooms/cama-grande-vistas-al-mar/foto5.webp",
+    "/images/rooms/cama-grande-vistas-al-mar/foto6.webp",
+    "/images/rooms/cama-grande-vistas-al-mar/foto7.webp"
+  ]
+}

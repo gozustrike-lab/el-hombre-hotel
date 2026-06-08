@@ -115,3 +115,24 @@ Stage Summary:
 - Room data updated from Booking.com
 - 6 new Framer Motion animation enhancements added
 - Build passes successfully, deployed to Vercel
+---
+Task ID: 1
+Agent: Main Agent
+Task: Replace all room images with real photos from ZIP files
+
+Work Log:
+- Extracted 5 ZIP files containing real room photos
+- ZIP names: Habitación Deluxe, Habitación Doble - 2 camas, Habitación Individual con vistas al mar, Habitación Triple Básica con baño compartido, Habitación con cama grande y vistas al mar
+- Converted all images to WebP format (quality 80%, max width 1200px)
+- Organized in public/images/rooms/{slug}/ folder structure
+- Updated all 10 rooms in data.ts with local WebP image paths
+- Rooms without dedicated ZIP share images from similar room types
+- Updated hero background image to use optimized WebP
+- Removed all Unsplash placeholder URLs from room data
+- Build successful, pushed to GitHub
+
+Stage Summary:
+- 24 optimized WebP images created (24-105 KB each)
+- 5 room folders created under public/images/rooms/
+- All 10 rooms now use real photos
+- Deployed to Vercel via automatic deployment
