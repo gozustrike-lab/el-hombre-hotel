@@ -26,6 +26,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import { sendRoomDirectWA } from '@/lib/whatsapp';
+import { useLang } from '@/lib/i18n-context';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /* ─── Fullscreen Gallery Lightbox ────────────────────────────── */
@@ -160,24 +161,34 @@ export default function RoomDetailPage({
     notFound();
   }
 
+  const { t, lang } = useLang();
+  const hasDynamicPricing = !!room.pricing?.price2;
+  const [guests, setGuests] = useState(1);
+  const displayPrice = hasDynamicPricing
+    ? (guests === 1 ? room.pricing!.price1 : room.pricing!.price2!)
+    : room.price;
+
   const galleryImages = room.gallery || [room.image];
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxStart, setLightboxStart] = useState(0);
 
   const handleReserve = useCallback(() => {
+    const guestText = hasDynamicPricing
+      ? ` para ${guests} ${guests === 1 ? (lang === 'es' ? 'persona' : 'guest') : (lang === 'es' ? 'personas' : 'guests')}`
+      : '';
     sendRoomDirectWA({
-      roomName: room.name,
-      price: room.price.replace('S/. ', ''),
+      roomName: t(room.name.es, room.name.en),
+      price: displayPrice.replace('S/. ', ''),
     });
-  }, [room.name, room.price]);
+  }, [room.name, displayPrice, guests, hasDynamicPricing, lang, t]);
 
   const openLightbox = (index: number) => {
     setLightboxStart(index);
     setLightboxOpen(true);
   };
 
-  const getAmenityIcon = (feature: string) => {
-    const f = feature.toLowerCase();
+  const getAmenityIcon = (feature: { es: string; en: string }) => {
+    const f = `${feature.es} ${feature.en}`.toLowerCase();
     if (f.includes('wifi')) return <Wifi className="h-4 w-4" />;
     if (f.includes('desayuno')) return <Coffee className="h-4 w-4" />;
     if (f.includes('vista') || f.includes('mar')) return <Waves className="h-4 w-4" />;
@@ -207,7 +218,7 @@ export default function RoomDetailPage({
               className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-orange-500 text-sm transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
-              Volver a habitaciones
+              {t('Volver a habitaciones', 'Back to rooms')}
             </Link>
           </motion.div>
 
@@ -227,14 +238,14 @@ export default function RoomDetailPage({
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={galleryImages[0]}
-                alt={room.name}
+                alt={t(room.name.es, room.name.en)}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 loading="eager"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-3 left-3 bg-black/40 backdrop-blur-md rounded-full px-3 py-1.5 text-white text-xs font-medium flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
-                Ver {galleryImages.length} fotos
+                {t('Ver', 'View')} {galleryImages.length} {t('fotos', 'photos')}
               </div>
             </div>
 
@@ -248,7 +259,7 @@ export default function RoomDetailPage({
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={img}
-                  alt={`${room.name} - Foto ${i + 2}`}
+                  alt={`${t(room.name.es, room.name.en)} - ${t('Foto', 'Photo')} ${i + 2}`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
                   loading={i < 2 ? 'eager' : 'lazy'}
                 />
@@ -288,7 +299,7 @@ export default function RoomDetailPage({
             >
               <div className="flex items-center gap-3 mb-3">
                 <Badge className="bg-orange-500/10 text-orange-500 border-orange-500/20 text-xs uppercase tracking-wider">
-                  {room.badge}
+                  {t(room.badge.es, room.badge.en)}
                 </Badge>
                 <div className="flex items-center gap-1 text-yellow-500">
                   <Star className="h-3.5 w-3.5 fill-current" />
@@ -297,17 +308,34 @@ export default function RoomDetailPage({
               </div>
 
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-slate-900 dark:text-white leading-tight mb-3">
-                {room.name}
+                {t(room.name.es, room.name.en)}
               </h1>
 
               <div className="flex items-center gap-4 flex-wrap">
+                {hasDynamicPricing && (
+                  <div className="flex items-center gap-2">
+                    <div className="inline-flex rounded-md border border-orange-300 overflow-hidden">
+                      {[1, 2].map((g) => (
+                        <button
+                          key={g}
+                          onClick={() => setGuests(g)}
+                          className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-all ${
+                            guests === g ? 'bg-orange-500 text-white' : 'text-orange-400 hover:text-orange-600'
+                          }`}
+                        >
+                          {g} {g === 1 ? t('Persona', 'Guest') : t('Personas', 'Guests')}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <p className="text-orange-500 text-2xl md:text-3xl font-semibold">
-                  {room.price}
-                  <span className="text-slate-400 dark:text-slate-500 text-sm font-normal"> /noche</span>
+                  {displayPrice}
+                  <span className="text-slate-400 dark:text-slate-500 text-sm font-normal"> /{t('noche', 'night')}</span>
                 </p>
                 <span className="text-slate-300 dark:text-slate-600">|</span>
                 <span className="text-slate-500 dark:text-slate-400 text-sm">
-                  Pago en el alojamiento · Cancelación gratuita
+                  {t('Pago en el alojamiento', 'Pay at the property')} · {t('Cancelación gratuita', 'Free cancellation')}
                 </span>
               </div>
             </motion.div>
@@ -323,10 +351,10 @@ export default function RoomDetailPage({
             >
               <h2 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
                 <div className="w-1 h-4 bg-orange-500 rounded-full" />
-                Descripción
+                {t('Descripción', 'Description')}
               </h2>
               <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-                {room.description}
+                {t(room.description.es, room.description.en)}
               </p>
             </motion.div>
 
@@ -338,19 +366,19 @@ export default function RoomDetailPage({
             >
               <h2 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
                 <div className="w-1 h-4 bg-orange-500 rounded-full" />
-                Servicios incluidos
+                {t('Servicios incluidos', 'Included Services')}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {room.features.map((feature) => (
                   <div
-                    key={feature}
+                    key={feature.es}
                     className="flex items-center gap-3 py-3 px-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 hover:border-orange-200 dark:hover:border-orange-500/20 transition-colors"
                   >
                     <div className="w-8 h-8 rounded-lg bg-orange-50 dark:bg-orange-500/10 flex items-center justify-center shrink-0">
                       <span className="text-orange-500">{getAmenityIcon(feature)}</span>
                     </div>
                     <span className="text-sm text-slate-700 dark:text-slate-300 font-medium">
-                      {feature}
+                      {t(feature.es, feature.en)}
                     </span>
                   </div>
                 ))}
@@ -365,7 +393,7 @@ export default function RoomDetailPage({
             >
               <h2 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
                 <div className="w-1 h-4 bg-orange-500 rounded-full" />
-                Políticas del alojamiento
+                {t('Políticas del alojamiento', 'Property Policies')}
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
@@ -402,11 +430,28 @@ export default function RoomDetailPage({
               {/* Price header */}
               <div className="bg-gradient-to-br from-orange-500 to-orange-600 px-6 py-5">
                 <p className="text-orange-100 text-xs uppercase tracking-wider mb-1">
-                  Precio por noche
+                  {t('Precio por noche', 'Price per night')}
                 </p>
-                <p className="text-white text-3xl md:text-4xl font-bold">{room.price}</p>
+                {hasDynamicPricing && (
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="inline-flex rounded-md border border-white/20 overflow-hidden">
+                      {[1, 2].map((g) => (
+                        <button
+                          key={g}
+                          onClick={() => setGuests(g)}
+                          className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-all ${
+                            guests === g ? 'bg-white text-orange-600' : 'text-white/70 hover:text-white'
+                          }`}
+                        >
+                          {g} {g === 1 ? t('Persona', 'Guest') : t('Personas', 'Guests')}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <p className="text-white text-3xl md:text-4xl font-bold">{displayPrice}</p>
                 <p className="text-orange-200 text-xs mt-1">
-                  Impuestos incluidos · Pago en el alojamiento
+                  {t('Impuestos incluidos · Pago en el alojamiento', 'Taxes included · Pay at the property')}
                 </p>
               </div>
 
@@ -419,7 +464,7 @@ export default function RoomDetailPage({
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                   </svg>
-                  Reservar por WhatsApp
+                  {t('Reservar por WhatsApp', 'Book via WhatsApp')}
                 </button>
 
                 {/* Trust signals */}
@@ -428,25 +473,25 @@ export default function RoomDetailPage({
                     <div className="w-5 h-5 rounded-full bg-green-50 dark:bg-green-500/10 flex items-center justify-center shrink-0">
                       <Check className="h-3 w-3 text-green-500" />
                     </div>
-                    <span className="text-slate-600 dark:text-slate-400">Cancelación gratuita</span>
+                    <span className="text-slate-600 dark:text-slate-400">{t('Cancelación gratuita', 'Free cancellation')}</span>
                   </div>
                   <div className="flex items-center gap-2.5 text-sm">
                     <div className="w-5 h-5 rounded-full bg-green-50 dark:bg-green-500/10 flex items-center justify-center shrink-0">
                       <Check className="h-3 w-3 text-green-500" />
                     </div>
-                    <span className="text-slate-600 dark:text-slate-400">Sin pago por adelantado</span>
+                    <span className="text-slate-600 dark:text-slate-400">{t('Sin pago por adelantado', 'No prepayment needed')}</span>
                   </div>
                   <div className="flex items-center gap-2.5 text-sm">
                     <div className="w-5 h-5 rounded-full bg-green-50 dark:bg-green-500/10 flex items-center justify-center shrink-0">
                       <Check className="h-3 w-3 text-green-500" />
                     </div>
-                    <span className="text-slate-600 dark:text-slate-400">Desayuno incluido</span>
+                    <span className="text-slate-600 dark:text-slate-400">{t('Desayuno incluido', 'Breakfast included')}</span>
                   </div>
                   <div className="flex items-center gap-2.5 text-sm">
                     <div className="w-5 h-5 rounded-full bg-green-50 dark:bg-green-500/10 flex items-center justify-center shrink-0">
                       <Check className="h-3 w-3 text-green-500" />
                     </div>
-                    <span className="text-slate-600 dark:text-slate-400">WiFi gratis</span>
+                    <span className="text-slate-600 dark:text-slate-400">{t('WiFi gratis', 'Free Wi-Fi')}</span>
                   </div>
                 </div>
 
@@ -478,7 +523,7 @@ export default function RoomDetailPage({
         open={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
         startIndex={lightboxStart}
-        roomName={room.name}
+        roomName={t(room.name.es, room.name.en)}
       />
     </main>
   );

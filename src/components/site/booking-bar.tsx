@@ -7,16 +7,13 @@ import { sendBookingWA } from '@/lib/whatsapp';
 
 const roomOptions = [
   { value: '', label: 'Tipo de habitación', name: '', pricePerNight: 0 },
-  { value: 'individual-vista', label: 'Individual vistas al mar — S/. 68/noche', name: 'Habitación Individual con vistas al mar', pricePerNight: 68 },
-  { value: 'doble-2-camas', label: 'Doble - 2 camas — S/. 72/noche', name: 'Habitación Doble - 2 camas', pricePerNight: 72 },
-  { value: 'deluxe-cama-grande', label: 'Deluxe 1 cama grande — S/. 84/noche', name: 'Habitación Deluxe - 1 cama grande', pricePerNight: 84 },
-  { value: 'cama-grande-vista', label: 'Cama grande y vistas al mar — S/. 103/noche', name: 'Habitación con cama grande y vistas al mar', pricePerNight: 103 },
-  { value: 'deluxe-cama-grande-priv', label: 'Deluxe 1 cama grande (Baño Privado) — S/. 103/noche', name: 'Habitación Deluxe - 1 cama grande (Baño Privado)', pricePerNight: 103 },
-  { value: 'deluxe-extragrande', label: 'Deluxe (cama extragrande) — S/. 120/noche', name: 'Habitación Deluxe', pricePerNight: 120 },
-  { value: 'triple-basica', label: 'Triple Básica — S/. 151/noche', name: 'Habitación Triple Básica con baño compartido', pricePerNight: 151 },
-  { value: 'doble-2-camas-2p', label: 'Doble - 2 camas (2 personas) — S/. 103/noche', name: 'Habitación Doble - 2 camas (2 personas)', pricePerNight: 103 },
-  { value: 'doble-aseo-compartido', label: 'Doble aseo compartido - 2 camas — S/. 120/noche', name: 'Habitación Doble con aseo compartido - 2 camas', pricePerNight: 120 },
-  { value: 'doble-2-camas-dobles', label: 'Doble - 2 camas dobles — S/. 120/noche', name: 'Habitación Doble - 2 camas dobles', pricePerNight: 120 },
+  { value: 'numero-6', label: 'Nº 6 Individual — S/. 55/noche', name: 'NÚMERO 6 — Habitación Individual', pricePerNight: 55 },
+  { value: 'numero-3', label: 'Nº 3 Doble — S/. 110/noche', name: 'NÚMERO 3 — Habitación Doble', pricePerNight: 110 },
+  { value: 'king-vista-al-mar', label: 'King Vista al Mar — S/. 80–160/noche', name: 'Habitación Cama King con Vista al Mar', pricePerNight: 80 },
+  { value: 'queen-privada-vista-al-mar', label: 'Queen Privada Vista al Mar — S/. 80–160/noche', name: 'Habitación Cama Queen con Vista al Mar (Privada)', pricePerNight: 80 },
+  { value: 'privada-camas-dobles', label: 'Privada Camas Dobles — Consultar', name: 'Habitación Privada Camas Dobles', pricePerNight: 0 },
+  { value: 'triple', label: 'Triple — S/. 170/noche', name: 'Habitación Triple', pricePerNight: 170 },
+  { value: 'queen-vista-al-mar', label: 'Queen Vista al Mar — S/. 60–120/noche', name: 'Habitación Queen con Vista al Mar', pricePerNight: 60 },
 ];
 
 export function BookingBar() {

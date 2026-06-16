@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { HOTEL_LOCATION } from '@/lib/data';
 import { sendGeneralWA } from '@/lib/whatsapp';
 import { useTheme } from 'next-themes';
+import { useLang } from '@/lib/i18n-context';
 import { useScrollSpy, scrollToSection, SECTION_IDS, type SectionId } from '@/lib/use-scroll-spy';
 import { usePathname } from 'next/navigation';
 import {
@@ -157,6 +158,7 @@ export function Navbar() {
 
         {/* Right side */}
         <div className="flex items-center gap-3">
+          <LangSwitcher isTransparent={isTransparent} />
           <ThemeToggle />
 
           <button
@@ -304,5 +306,41 @@ export function Navbar() {
         </SheetContent>
       </Sheet>
     </header>
+  );
+}
+
+/* ─── Language Switcher ─────────────────────────────────────────── */
+
+function LangSwitcher({ isTransparent }: { isTransparent: boolean }) {
+  const { lang, toggleLang } = useLang();
+
+  return (
+    <button
+      onClick={toggleLang}
+      className={cn(
+        'inline-flex items-center rounded-md px-1 py-0.5 text-[11px] font-bold tracking-wider transition-all duration-200 active:scale-90 border',
+        isTransparent
+          ? 'text-white/80 border-white/20 hover:border-white/40 hover:text-white'
+          : 'text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-orange-300 dark:hover:border-orange-500/40 hover:text-orange-500',
+      )}
+    >
+      <span
+        className={cn(
+          'px-1.5 py-0.5 rounded-[3px] transition-all duration-200',
+          lang === 'es' && (isTransparent ? 'bg-white/20 text-white' : 'bg-orange-500 text-white'),
+        )}
+      >
+        ES
+      </span>
+      <span className="mx-0.5 opacity-30">|</span>
+      <span
+        className={cn(
+          'px-1.5 py-0.5 rounded-[3px] transition-all duration-200',
+          lang === 'en' && (isTransparent ? 'bg-white/20 text-white' : 'bg-orange-500 text-white'),
+        )}
+      >
+        EN
+      </span>
+    </button>
   );
 }

@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { experiences } from '@/lib/data';
 import { sendExperienceWA } from '@/lib/whatsapp';
 import { Phone } from 'lucide-react';
+import { useLang } from '@/lib/i18n-context';
 
 export function Experiences() {
+  const { t } = useLang();
   return (
     <section id="experiencias" className="w-full py-24 md:py-32">
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8 mb-16">
@@ -20,7 +22,7 @@ export function Experiences() {
             transition={{ duration: 0.6 }}
             className="text-orange-500 text-sm uppercase tracking-[0.2em]"
           >
-            Aventuras
+            {t('Aventuras', 'Adventures')}
           </motion.p>
         </div>
         <motion.h2
@@ -30,14 +32,14 @@ export function Experiences() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-slate-900 dark:text-white"
         >
-          Experiencias
+          {t('Experiencias', 'Experiences')}
         </motion.h2>
       </div>
 
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
         {experiences.map((exp, index) => (
           <motion.div
-            key={exp.title}
+            key={exp.title.es}
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -49,13 +51,13 @@ export function Experiences() {
             <div className="relative h-[400px] overflow-hidden">
               <img
                 src={exp.image}
-                alt={exp.title}
+                alt={t(exp.title.es, exp.title.en)}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (!target.dataset.retried) {
                     target.dataset.retried = '1';
-                    target.src = `https://placehold.co/800x1067/0f172a/F97316?text=${encodeURIComponent(exp.title)}`;
+                    target.src = `https://placehold.co/800x1067/0f172a/F97316?text=${encodeURIComponent(t(exp.title.es, exp.title.en))}`;
                   }
                 }}
               />
@@ -75,21 +77,21 @@ export function Experiences() {
             <div className="absolute bottom-0 left-0 w-full p-7 flex flex-col gap-3.5">
               {/* Title with high contrast */}
               <h3 className="text-xl font-semibold text-white tracking-tight leading-snug">
-                {exp.title}
+                {t(exp.title.es, exp.title.en)}
               </h3>
 
               {/* Light, readable description */}
               <p className="text-sm text-gray-200/90 font-light leading-relaxed max-w-[95%] line-clamp-2">
-                {exp.description}
+                {t(exp.description.es, exp.description.en)}
               </p>
 
               {/* Deluxe action button — semi-straight borders */}
               <button
-                onClick={() => sendExperienceWA(exp.title)}
+                onClick={() => sendExperienceWA(t(exp.title.es, exp.title.en))}
                 className="mt-2 flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-500 px-5 py-3 rounded-md text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 w-max shadow-sm hover:shadow-md active:scale-[0.98]"
               >
                 <Phone className="h-4 w-4" />
-                Consultar
+                {t('Consultar', 'Inquire')}
               </button>
             </div>
           </motion.div>

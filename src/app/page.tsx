@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/site/navbar';
 import { Hero } from '@/components/site/hero';
+import { IntroSection } from '@/components/site/intro-section';
 import { RoomsPreview } from '@/components/site/rooms-preview';
 import { Services } from '@/components/site/services';
 import { RestaurantPreview } from '@/components/site/restaurant-preview';
@@ -12,6 +13,7 @@ export default function HomePage() {
     <main className="w-full m-0 p-0 overflow-x-hidden">
       <Navbar />
       <Hero />
+      <IntroSection />
       <RoomsPreview />
       <Services />
       <RestaurantPreview />

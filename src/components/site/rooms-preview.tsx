@@ -1,22 +1,32 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { rooms } from '@/lib/data';
-import { Users } from 'lucide-react';
+import { Users, ChevronRight } from 'lucide-react';
+import { useLang } from '@/lib/i18n-context';
 
-import { ChevronRight } from 'lucide-react';
 /* ─── Room Card — Premium Deluxe ────────────────────────────── */
 
 function RoomCard({
   room,
   index,
+  guests,
+  setGuests,
 }: {
   room: (typeof rooms)[number];
   index: number;
+  guests: number;
+  setGuests: (g: number) => void;
 }) {
+  const { t } = useLang();
   const galleryCount = room.gallery?.length || 0;
-  const hasDynamicPricing = 'pricing' in room;
+  const hasDynamicPricing = !!room.pricing;
+
+  const displayName = t(room.name.es, room.name.en);
+  const displayBadge = t(room.badge.es, room.badge.en);
+  const displayFeatures = room.features.map((f) => t(f.es, f.en));
 
   return (
     <motion.div
@@ -39,7 +49,7 @@ function RoomCard({
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
             src={room.image}
-            alt={room.name}
+            alt={displayName}
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             loading="lazy"
             draggable={false}
@@ -51,21 +61,23 @@ function RoomCard({
           {/* Badge */}
           <div className="absolute top-3 left-3">
             <span className="bg-orange-600 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white rounded-[2px]">
-              {room.badge}
+              {displayBadge}
             </span>
           </div>
 
           {/* Photo count */}
           {galleryCount > 1 && (
             <div className="absolute top-3 right-3 bg-black/40 backdrop-blur-md rounded-full px-2 py-1 text-white text-[10px] font-medium">
-              {galleryCount} fotos
+              {galleryCount} {t('fotos', 'photos')}
             </div>
           )}
 
           {/* Hover overlay CTA */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-md px-5 py-2.5 shadow-lg flex items-center gap-2 translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
-              <span className="text-slate-900 dark:text-white text-sm font-semibold">Ver detalles</span>
+              <span className="text-slate-900 dark:text-white text-sm font-semibold">
+                {t('Ver detalles', 'View details')}
+              </span>
               <ChevronRight className="h-4 w-4 text-orange-500" />
             </div>
           </div>
@@ -74,38 +86,98 @@ function RoomCard({
         {/* Info — premium padding */}
         <div className="p-6">
           <h3 className="text-slate-900 dark:text-white text-sm md:text-base font-serif font-medium leading-tight mb-2 truncate">
-            {room.name}
+            {displayName}
           </h3>
 
           {/* Price row */}
           <div className="flex items-center gap-3 flex-wrap">
             {hasDynamicPricing ? (
               <div className="flex items-center gap-3 flex-wrap">
-                <p className="text-orange-500 text-lg font-semibold">
-                  {room.pricing!.price1}
-                  <span className="text-slate-400 dark:text-slate-500 text-xs font-normal"> /noche</span>
-                </p>
-                <span className="text-slate-300 dark:text-slate-600 text-xs">|</span>
-                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
-                  <Users className="h-3 w-3" />
-                  <span>2 pers: {room.pricing!.price2}/noche</span>
+                <div className="flex items-center gap-2">
+                  <p className="text-orange-500 text-lg font-semibold">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={guests}
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {guests === 1
+                          ? room.pricing!.price1
+                          : room.pricing!.price2}
+                      </motion.span>
+                    </AnimatePresence>
+                    <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">
+                      {' '}
+                      /{t('noche', 'night')}
+                    </span>
+                  </p>
+                </div>
+
+                {/* Guest toggle */}
+                <div className="inline-flex rounded-md border border-orange-200 dark:border-orange-500/20 overflow-hidden">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setGuests(1);
+                    }}
+                    className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider transition-all ${
+                      guests === 1
+                        ? 'bg-orange-500 text-white'
+                        : 'text-slate-500'
+                    }`}
+                  >
+                    1 {t('Persona', 'Guest')}
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setGuests(2);
+                    }}
+                    className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider transition-all ${
+                      guests === 2
+                        ? 'bg-orange-500 text-white'
+                        : 'text-slate-500'
+                    }`}
+                  >
+                    2 {t('Personas', 'Guests')}
+                  </button>
                 </div>
               </div>
+            ) : room.maxGuests === 3 ? (
+              <p className="text-orange-500 text-lg font-semibold">
+                {room.price}
+                <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">
+                  {' '}
+                  /3 {t('noches', 'nights')}
+                </span>
+                <span className="text-slate-400 dark:text-slate-500 text-xs font-normal ml-1">
+                  ({t('3 pers.', '3 guests')})
+                </span>
+              </p>
             ) : (
               <p className="text-orange-500 text-lg font-semibold">
-                {room.price === 'Consultar' ? 'Consultar tarifa' : (
-                  <>
-                    {room.price}
-                    <span className="text-slate-400 dark:text-slate-500 text-xs font-normal"> /noche</span>
-                  </>
-                )}
+                {room.price === 'Consultar'
+                  ? t('Consultar tarifa', 'Ask for rates')
+                  : (
+                    <>
+                      {room.price}
+                      <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">
+                        {' '}
+                        /{t('noche', 'night')}
+                      </span>
+                    </>
+                  )}
               </p>
             )}
           </div>
 
           {/* Key amenities — max 3 */}
           <div className="flex items-center gap-1.5 mt-4 flex-wrap">
-            {room.features.slice(0, 3).map((feature) => (
+            {displayFeatures.slice(0, 3).map((feature) => (
               <span
                 key={feature}
                 className="text-[10px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 rounded-[2px] px-2 py-0.5 tracking-wide"
@@ -123,6 +195,9 @@ function RoomCard({
 /* ─── Rooms Preview Section ─────────────────────────────────── */
 
 export function RoomsPreview() {
+  const { t } = useLang();
+  const [guests, setGuests] = useState(1);
+
   return (
     <section id="habitaciones" className="w-full py-24 md:py-32">
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8">
@@ -139,7 +214,7 @@ export function RoomsPreview() {
               transition={{ duration: 0.6 }}
               className="text-orange-500 text-sm uppercase tracking-[0.2em]"
             >
-              Hospedaje
+              {t('Hospedaje', 'Lodging')}
             </motion.p>
           </div>
           <motion.h2
@@ -149,7 +224,7 @@ export function RoomsPreview() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-slate-900 dark:text-white"
           >
-            Nuestras Habitaciones
+            {t('Nuestras Habitaciones', 'Our Rooms')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -158,7 +233,10 @@ export function RoomsPreview() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-slate-500 dark:text-slate-400 text-base mt-4 max-w-2xl leading-relaxed font-light"
           >
-            Todas incluyen WiFi gratis y desayuno americano. Cancelación gratuita disponible. Pago en el alojamiento.
+            {t(
+              'Todas incluyen WiFi gratis y desayuno americano. Cancelación gratuita disponible. Pago en el alojamiento.',
+              'All include free Wi-Fi and American breakfast. Free cancellation available. Pay at the property.',
+            )}
           </motion.p>
         </div>
 
@@ -169,6 +247,8 @@ export function RoomsPreview() {
               key={room.slug}
               room={room}
               index={index}
+              guests={guests}
+              setGuests={setGuests}
             />
           ))}
         </div>

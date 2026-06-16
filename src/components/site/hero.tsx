@@ -5,6 +5,7 @@ import { BookingBar } from '@/components/site/booking-bar';
 import { HOTEL_SCORE } from '@/lib/data';
 import { motion } from 'framer-motion';
 import { ChevronDown, Waves, Sparkles } from 'lucide-react';
+import { useLang } from '@/lib/i18n-context';
 
 /* ─── Hero Background Slider Images ──────────────────────────── */
 
@@ -19,7 +20,10 @@ const CROSSFADE_MS = 500; // fast 500ms crossfade — no gray flash
 
 /* ─── Hero Component ──────────────────────────────────────────── */
 
+const vibrancyFilter = 'contrast(1.05) brightness(1.05) saturate(1.1)';
+
 export function Hero() {
+  const { t } = useLang();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [prevSlide, setPrevSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -51,7 +55,7 @@ export function Hero() {
       {/* Base layer: always visible as fallback, never gray */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${HERO_SLIDES[prevSlide]})` }}
+        style={{ backgroundImage: `url(${HERO_SLIDES[prevSlide]})`, filter: vibrancyFilter }}
       />
 
       {/* Current slide layer: fades in ON TOP of base — no gray gap */}
@@ -62,6 +66,7 @@ export function Hero() {
           backgroundImage: `url(${HERO_SLIDES[currentSlide]})`,
           opacity: isTransitioning ? 0 : 1,
           transition: `opacity ${CROSSFADE_MS}ms ease-in-out`,
+          filter: vibrancyFilter,
         }}
       />
 
@@ -111,7 +116,7 @@ export function Hero() {
               {HOTEL_SCORE.label}
             </span>
             <span className="inline-flex text-white/40 text-[10px] drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
-              · {HOTEL_SCORE.reviews} opiniones
+              · {HOTEL_SCORE.reviews} {t('opiniones', 'reviews')}
             </span>
           </div>
         </motion.div>
@@ -148,9 +153,9 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="text-white/90 text-sm sm:text-base md:text-lg max-w-xl mt-5 leading-relaxed drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]"
         >
-          Frente a la ola izquierda más larga del mundo.
+          {t('Frente a la ola izquierda más larga del mundo.', 'Right in front of the longest left-breaking wave in the world.')}
           <br />
-          Gastronomía peruana. Experiencias inolvidables.
+          {t('Gastronomía peruana. Experiencias inolvidables.', 'Peruvian cuisine. Unforgettable experiences.')}
         </motion.p>
 
         {/* CTA */}
@@ -161,7 +166,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.9 }}
           className="mt-10 inline-flex items-center gap-2 text-white/90 hover:text-white text-sm uppercase tracking-widest transition-colors drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]"
         >
-          Explorar
+          {t('Explorar', 'Explore')}
           <ChevronDown className="h-4 w-4 animate-bounce" />
         </motion.a>
       </div>

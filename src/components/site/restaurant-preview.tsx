@@ -2,9 +2,12 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useLang } from '@/lib/i18n-context';
 import { featuredDishes } from '@/lib/data';
 
 export function RestaurantPreview() {
+  const { t } = useLang();
+
   return (
     <section id="restaurante" className="w-full py-24 md:py-32">
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8">
@@ -20,7 +23,7 @@ export function RestaurantPreview() {
             transition={{ duration: 0.6 }}
             className="text-orange-500 text-sm uppercase tracking-[0.2em]"
           >
-            Gastronomía
+            {t('Gastronomía', 'Cuisine')}
           </motion.p>
         </div>
         <motion.h2
@@ -30,7 +33,7 @@ export function RestaurantPreview() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-slate-900 dark:text-white mb-20"
         >
-          Sabores del Mar
+          {t('Sabores del Mar', 'Flavors of the Sea')}
         </motion.h2>
       </div>
 
@@ -64,13 +67,13 @@ export function RestaurantPreview() {
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={dish.image}
-                      alt={dish.name}
+                      alt={typeof dish.name === 'string' ? dish.name : t(dish.name.es, dish.name.en)}
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
                       onError={(e) => {
                         const target = e.currentTarget;
                         if (!target.dataset.retried) {
                           target.dataset.retried = '1';
-                          target.src = `https://placehold.co/800x600/0f172a/F97316?text=${encodeURIComponent(dish.name)}`;
+                          target.src = `https://placehold.co/800x600/0f172a/F97316?text=${encodeURIComponent(typeof dish.name === 'string' ? dish.name : t(dish.name.es, dish.name.en))}`;
                         }
                       }}
                     />
@@ -81,13 +84,13 @@ export function RestaurantPreview() {
               {/* Text content */}
               <div className="w-full lg:w-1/2">
                 <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-orange-500 bg-orange-500/10 px-3 py-1 rounded-[2px]">
-                  {dish.category}
+                  {typeof dish.category === 'string' ? dish.category : t(dish.category.es, dish.category.en)}
                 </span>
                 <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-slate-900 dark:text-white mt-3 mb-4 tracking-tight">
-                  {dish.name}
+                  {typeof dish.name === 'string' ? dish.name : t(dish.name.es, dish.name.en)}
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg font-light leading-relaxed mb-6 max-w-lg opacity-90">
-                  {dish.description}
+                  {typeof dish.description === 'string' ? dish.description : t(dish.description.es, dish.description.en)}
                 </p>
                 <span className="text-orange-500 text-3xl font-semibold tracking-tight">
                   {dish.price}
@@ -104,7 +107,7 @@ export function RestaurantPreview() {
           href="/restaurante"
           className="inline-flex items-center gap-2 text-slate-900 dark:text-white text-lg font-medium group hover:text-orange-500 dark:hover:text-orange-500 transition-colors duration-300"
         >
-          Ver Carta Completa
+          {t('Ver Carta Completa', 'View Full Menu')}
           <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
             →
           </span>

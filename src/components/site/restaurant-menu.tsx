@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Plus, Check } from 'lucide-react';
+import { useLang } from '@/lib/i18n-context';
 import type { MenuItem } from '@/lib/data';
 
 interface RestaurantMenuProps {
@@ -11,13 +12,16 @@ interface RestaurantMenuProps {
 }
 
 export function RestaurantMenu({ items, onAdd, addedItems }: RestaurantMenuProps) {
+  const { t } = useLang();
+
   return (
     <div className="flex flex-col">
       {items.map((item, index) => {
-        const isAdded = addedItems.has(item.name);
+        const nameStr = typeof item.name === 'string' ? item.name : item.name.es;
+        const isAdded = addedItems.has(nameStr);
         return (
           <motion.div
-            key={item.name}
+            key={nameStr}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -26,14 +30,14 @@ export function RestaurantMenu({ items, onAdd, addedItems }: RestaurantMenuProps
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-4">
                 <h3 className="text-slate-900 dark:text-white text-base md:text-lg font-medium">
-                  {item.name}
+                  {typeof item.name === 'string' ? item.name : t(item.name.es, item.name.en)}
                 </h3>
                 <span className="text-orange-500 text-base md:text-lg font-semibold shrink-0">
                   {item.price}
                 </span>
               </div>
               <p className="text-slate-500 dark:text-slate-400 text-sm mt-1 leading-relaxed">
-                {item.description}
+                {item.description && (typeof item.description === 'string' ? item.description : t(item.description.es, item.description.en))}
               </p>
             </div>
 

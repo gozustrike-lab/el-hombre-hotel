@@ -1,17 +1,35 @@
+/* ═══════════════════════════════════════════════════════════════════
+   DATA LAYER — Hospedaje Restaurante El Hombre
+   i18n-ready: every text field has { es, en }
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Bilingual Text Helper ─────────────────────────────────────── */
+
+export interface Bilingual {
+  es: string;
+  en: string;
+}
+
+/* ─── Menu Item ─────────────────────────────────────────────────── */
+
 export interface MenuItem {
-  name: string;
-  description: string;
+  name: Bilingual;
+  description?: Bilingual;
   price: string;
 }
 
+/* ─── Featured Dish (homepage) ──────────────────────────────────── */
+
 export interface FeaturedDish {
   id: number;
-  name: string;
-  description: string;
+  name: Bilingual;
+  description: Bilingual;
   price: string;
   image: string;
-  category: string;
+  category: Bilingual;
 }
+
+/* ─── Testimonial ───────────────────────────────────────────────── */
 
 export interface Testimonial {
   id: number;
@@ -23,29 +41,38 @@ export interface Testimonial {
   platform: string;
 }
 
+/* ─── Experience ────────────────────────────────────────────────── */
+
 export interface Experience {
-  title: string;
-  description: string;
+  title: Bilingual;
+  description: Bilingual;
   image: string;
   tag: string;
 }
 
+/* ─── Room Pricing (dynamic occupancy) ──────────────────────────── */
+
 export interface RoomPricing {
-  price1: string;
-  price2?: string;
+  price1: string;  // 1 person
+  price2?: string; // 2 persons (optional)
 }
 
+/* ─── Room ──────────────────────────────────────────────────────── */
+
 export interface Room {
-  name: string;
+  name: Bilingual;
   slug: string;
-  description: string;
-  price: string;
-  pricing?: RoomPricing;
+  description: Bilingual;
+  price: string; // fallback single price display
+  pricing?: RoomPricing; // dynamic occupancy pricing
   image: string;
-  badge: string;
-  features: string[];
-  gallery?: string[];
+  badge: Bilingual;
+  features: Bilingual[];
+  gallery: string[];
+  maxGuests?: number; // for triple room etc.
 }
+
+/* ─── Service Items ─────────────────────────────────────────────── */
 
 export interface ServiceItem {
   icon: string;
@@ -59,7 +86,7 @@ export interface ServiceCategory {
   items: ServiceItem[];
 }
 
-/* ─── HOTEL IDENTITY ─────────────────────────────────────────── */
+/* ═══ HOTEL IDENTITY ══════════════════════════════════════════════ */
 
 export const HOTEL_NAME = "Hospedaje Restaurante El Hombre";
 
@@ -76,24 +103,35 @@ export const HOTEL_LOCATION = {
 export const HOTEL_SCORE = {
   value: 9.2,
   label: "Fantástico",
+  labelEn: "Fantastic",
   reviews: 74,
   subLabel: "Basado en opiniones reales",
+  subLabelEn: "Based on real reviews",
   beachRating: 9.2,
   beachLabel: "Playa",
+  beachLabelEn: "Beach",
 };
 
-export const HOTEL_DESCRIPTION =
-  "Ofrece zona de playa privada, salón de uso común, terraza panorámica frente al mar y restaurante en Malabrigo. Dispone de bar, cocina compartida, mostrador de información turística y cambio de moneda. A pocos pasos de la Playa de Puerto Chicama.";
+export const HOTEL_DESCRIPTION: Bilingual = {
+  es: "Ofrece zona de playa privada, salón de uso común, terraza panorámica frente al mar y restaurante en Malabrigo. Dispone de bar, cocina compartida, mostrador de información turística y cambio de moneda. A pocos pasos de la Playa de Puerto Chicama.",
+  en: "Features a private beach area, shared lounge, panoramic terrace overlooking the sea, and a restaurant in Malabrigo. Includes a bar, shared kitchen, tourist information desk, and currency exchange. Just steps from Puerto Chicama Beach.",
+};
 
 export const HOTEL_POLICIES = {
   checkIn: "14:00",
   checkOut: "12:00",
   languages: ["Español"],
   smoking: "Prohibido fumar en todo el alojamiento",
-  parking: "No hay parking — aparcamiento público gratuito en las cercanías",
 };
 
-/* ─── SERVICES & AMENITIES (Booking.com verified) ──────────────── */
+/* ─── INTRO SECTION ─────────────────────────────────────────────── */
+
+export const INTRO_TEXT: Bilingual = {
+  es: "Hospedaje Restaurante El Hombre ofrece una atención cálida, cómoda y memorable. Fomenta un ambiente de confianza que invita al descanso y hace que los visitantes se sientan como en su propia casa.",
+  en: "Hospedaje Restaurante El Hombre offers a warm, comfortable, and memorable hospitality. We foster an environment of trust that invites you to rest, making our guests feel right at home.",
+};
+
+/* ─── SERVICES & AMENITIES ════════════════════════════════════════ */
 
 export const services: ServiceCategory[] = [
   {
@@ -164,7 +202,7 @@ export const services: ServiceCategory[] = [
   },
 ];
 
-/* ─── ROOM AMENITIES (Booking.com verified) ───────────────────── */
+/* ─── ROOM AMENITIES ═════════════════════════════════════════════ */
 
 export const roomAmenities = [
   "Vistas al mar",
@@ -179,160 +217,189 @@ export const roomAmenities = [
   "Mosquitera",
 ];
 
-/* ─── FEATURED DISHES ──────────────────────────────────────────── */
+/* ═══ FEATURED DISHES (Homepage) ══════════════════════════════════ */
 
 export const featuredDishes: FeaturedDish[] = [
   {
     id: 1,
-    name: "Ceviche Especial",
-    description:
-      "Ceviche de pescado fresco del Pacífico con camarón, limón de Chulucanas, cebolla morada y cilantro. Receta tradicional de la costa norte peruana.",
-    price: "S/. 35",
+    name: { es: "Ceviche Simple Chicamero", en: "Classic Chicama Ceviche" },
+    description: {
+      es: "Ceviche de pescado fresco del Pacífico con limón de Chulucanas, cebolla morada y cilantro. Receta tradicional de la costa norte peruana.",
+      en: "Fresh Pacific fish ceviche with Chulucanas lime, red onion, and cilantro. Traditional recipe from Peru's north coast.",
+    },
+    price: "S/. 25",
     image: "/images/restaurant/foto1.webp",
-    category: "Mariscos",
+    category: { es: "Pescados y Mariscos", en: "Seafood" },
   },
   {
     id: 2,
-    name: "Jalea Marina",
-    description:
-      "Fritura de pescado, camarones, calamar y chita acompañada de yuca sancochada, salsa criolla y ají limo.",
-    price: "S/. 45",
+    name: { es: "Chicharrón de Pescado", en: "Fried Fish Chunks" },
+    description: {
+      es: "Pescado fresco frito en tiras doradas acompañado de yuca sancochada, salsa criolla y limón.",
+      en: "Fresh fried fish strips served with boiled yuca, criolla sauce, and lime.",
+    },
+    price: "S/. 28",
     image: "/images/restaurant/foto3.webp",
-    category: "Mariscos",
+    category: { es: "Pescados y Mariscos", en: "Seafood" },
   },
   {
     id: 3,
-    name: "Menú Ejecutivo Diario",
-    description:
-      "Sopa del día, plato principal entre tres opciones, jugo de fruta natural y postre. La mejor opción para recargar energía después del surf.",
-    price: "S/. 15",
+    name: { es: "Lomo Saltado", en: "Traditional Stir-fried Beef Lomo" },
+    description: {
+      es: "El clásico plato peruano: beef salteado con cebolla, tomate, ají amarillo, arroz y papas fritas.",
+      en: "The classic Peruvian dish: stir-fried beef with onion, tomato, yellow chili, rice, and french fries.",
+    },
+    price: "S/. 25",
     image: "/images/restaurant/foto5.webp",
-    category: "Ejecutivo",
+    category: { es: "Platos Criollos", en: "Traditional Local Dishes" },
   },
 ];
 
-/* ─── FULL MENU ────────────────────────────────────────────────── */
+/* ═══ FULL MENU (2 Categories, 16 Dishes) ════════════════════════ */
 
 export const fullMenu: Record<string, MenuItem[]> = {
-  Entradas: [
+  "Pescados y Mariscos": [
     {
-      name: "Ceviche de Camarón",
-      description:
-        "Camarones frescos del puerto marinados en limón con tomate, cebolla y ají limo.",
-      price: "S/. 28",
-    },
-    {
-      name: "Ceviche de Pescado",
-      description:
-        "Pescado fresco del día marinado en limón con cebolla morada, cilantro y camote.",
+      name: { es: "Ceviche Simple Chicamero", en: "Classic Chicama Ceviche" },
+      description: {
+        es: "Pescado fresco del día marinado en limón con cebolla morada, cilantro y camote.",
+        en: "Fresh daily fish marinated in lime with red onion, cilantro, and sweet potato.",
+      },
       price: "S/. 25",
     },
     {
-      name: "Salpicón de Mariscos",
-      description: "Mezcla de mariscos frescos con limón, cebolla y especias peruanas.",
-      price: "S/. 30",
-    },
-    {
-      name: "Tiradito Clásico",
-      description: "Pescado en láminas finas con salsa de ají amarillo y leche de tigre.",
-      price: "S/. 30",
-    },
-    {
-      name: "Chicharrón de Calamar",
-      description: "Aros de calamar dorados acompañados de salsa tartara y limón.",
-      price: "S/. 22",
-    },
-  ],
-  "Platos Principales": [
-    {
-      name: "Jalea Marina",
-      description:
-        "Fritura de pescado, camarones, calamar y chita con yuca y salsa criolla.",
-      price: "S/. 45",
-    },
-    {
-      name: "Ceviche Especial",
-      description:
-        "Ceviche de pescado y camarón con todos los aderezos de la casa.",
-      price: "S/. 35",
-    },
-    {
-      name: "Arroz con Mariscos",
-      description: "Arroz cocinado con camarones, calamar, langostino y verduras.",
-      price: "S/. 38",
-    },
-    {
-      name: "Pescado Frito Entero",
-      description:
-        "Pescado frito acompañado de arroz, yuca, ensalada y salsa criolla.",
-      price: "S/. 30",
-    },
-    {
-      name: "Sudado de Pescado",
-      description:
-        "Pescado en salsa de tomate, cebolla, ají amarillo y culantro. Tradición costera.",
+      name: { es: "Chicharrón de Pescado", en: "Fried Fish Chunks" },
+      description: {
+        es: "Pescado fresco dorado acompañado de yuca sancochada y salsa criolla.",
+        en: "Golden fried fish served with boiled yuca and criolla sauce.",
+      },
       price: "S/. 28",
     },
     {
-      name: "Parihuela",
-      description:
-        "Sopa espesa de mariscos con pescado, camarones, conchas y langostinos.",
-      price: "S/. 35",
+      name: { es: "Pescado Apanado", en: "Breaded Fish Fillet" },
+      description: {
+        es: "Filete de pescado empanizado y frito, acompañado de arroz y ensalada.",
+        en: "Breaded and fried fish fillet, served with rice and salad.",
+      },
+      price: "S/. 22",
+    },
+    {
+      name: { es: "Pescado a la Plancha", en: "Grilled Fish Fillet" },
+      description: {
+        es: "Filete de pescado a la plancha con limón, arroz y ensalada fresca.",
+        en: "Grilled fish fillet with lime, rice, and fresh salad.",
+      },
+      price: "S/. 25",
+    },
+    {
+      name: { es: "Sudado de Cabrilla", en: "Steamed Cabrilla Fish Stew" },
+      description: {
+        es: "Cabrilla en salsa de tomate, cebolla, ají amarillo y culantro. Tradición costera.",
+        en: "Cabrilla fish in tomato, onion, yellow chili, and cilantro broth. Coastal tradition.",
+      },
+      price: "S/. 30",
+    },
+    {
+      name: { es: "Arroz con Mariscos", en: "Seafood Rice" },
+      description: {
+        es: "Arroz cocinado con camarones, calamar, langostino y verduras de temporada.",
+        en: "Rice cooked with shrimp, squid, langoustine, and seasonal vegetables.",
+      },
+      price: "S/. 30",
+    },
+    {
+      name: { es: "Pescado Frito", en: "Pan-Fried Whole Fish" },
+      description: {
+        es: "Pescado entero frito acompañado de arroz, yuca, ensalada y salsa criolla.",
+        en: "Whole pan-fried fish served with rice, yuca, salad, and criolla sauce.",
+      },
+      price: "S/. 25",
     },
   ],
-  Bebidas: [
+  "Platos Criollos": [
     {
-      name: "Jugo de Frutas Natural",
-      description: "Jugo fresco de frutas de temporada (papaya, maracuyá, piña).",
-      price: "S/. 8",
-    },
-    {
-      name: "Cerveza Artesanal",
-      description: "Cerveza artesanal peruana — Franca, Pilsen Callao o Cusqueña.",
-      price: "S/. 10",
-    },
-    {
-      name: "Agua Mineral",
-      description: "Agua natural o con gas San Luis.",
-      price: "S/. 5",
-    },
-    {
-      name: "Pisco Sour",
-      description:
-        "El cóctil bandera del Perú. Pisco quebranta, limón, jarabe de goma y clara de huevo.",
+      name: { es: "Arroz Chaufa de Pollo", en: "Peruvian Chicken Fried Rice" },
+      description: {
+        es: "Arroz salteado al wok con pollo, huevo, cebollín, sillao y kión.",
+        en: "Wok-fried rice with chicken, egg, scallion, soy sauce, and ginger.",
+      },
       price: "S/. 18",
     },
     {
-      name: "Chicha de Jora",
-      description: "Bebida ancestral andina de maíz fermentado. Tradición peruana.",
-      price: "S/. 8",
-    },
-  ],
-  Postres: [
-    {
-      name: "Tres Leches",
-      description: "Bizcocho bañado en leche evaporada, condensada y crema.",
-      price: "S/. 15",
+      name: { es: "Pollo Saltado", en: "Stir-fried Chicken" },
+      description: {
+        es: "Pollo salteado con cebolla, tomate, ají amarillo, acompañado de arroz y papas fritas.",
+        en: "Stir-fried chicken with onion, tomato, yellow chili, served with rice and french fries.",
+      },
+      price: "S/. 18",
     },
     {
-      name: "Suspiro a la Limeña",
-      description: "Merengue sobre manjarblanco y canela. Clásico peruano.",
-      price: "S/. 15",
+      name: { es: "Pollo a la Plancha", en: "Grilled Chicken Breast" },
+      description: {
+        es: "Pechuga de pollo a la plancha con arroz, ensalada y papas fritas.",
+        en: "Grilled chicken breast with rice, salad, and french fries.",
+      },
+      price: "S/. 18",
     },
     {
-      name: "Picarones",
-      description: "Rosquitas de masa de camote y zapallo bañadas en miel de chancaca.",
-      price: "S/. 12",
+      name: { es: "Milanesa de Pollo", en: "Chicken Milanesa" },
+      description: {
+        es: "Pollo empanizado y frito, acompañado de arroz y ensalada fresca.",
+        en: "Breaded and fried chicken, served with rice and fresh salad.",
+      },
+      price: "S/. 18",
     },
     {
-      name: "Fruta de Temporada",
-      description: "Frutas frescas de la región norte: mango, chirimoya, lúcuma.",
-      price: "S/. 10",
+      name: { es: "Arroz a la Cubana", en: "Cuban-style Rice" },
+      description: {
+        es: "Arroz con huevo frito, plátano maduro y carne. Un clásico peruano.",
+        en: "Rice with fried egg, ripe plantain, and beef. A Peruvian classic.",
+      },
+      price: "S/. 18",
+    },
+    {
+      name: { es: "Chicharrón de Pollo", en: "Deep-fried Chicken Chunks" },
+      description: {
+        es: "Trozos de pollo crujientes fritos a la perfección, con yuca y salsa criolla.",
+        en: "Crispy deep-fried chicken chunks, served with yuca and criolla sauce.",
+      },
+      price: "S/. 18",
+    },
+    {
+      name: { es: "Lomo Saltado", en: "Traditional Stir-fried Beef Lomo" },
+      description: {
+        es: "Lomo de res salteado con cebolla, tomate, ají amarillo, arroz y papas fritas.",
+        en: "Stir-fried beef tenderloin with onion, tomato, yellow chili, rice, and french fries.",
+      },
+      price: "S/. 25",
+    },
+    {
+      name: { es: "Tallarín Saltado de Pollo", en: "Stir-fried Chicken Noodles" },
+      description: {
+        es: "Tallarines saltados con pollo, verduras y salsa de soja al wok.",
+        en: "Wok-stir-fried noodles with chicken, vegetables, and soy sauce.",
+      },
+      price: "S/. 18",
+    },
+    {
+      name: { es: "Tallarín Saltado de Carne", en: "Stir-fried Beef Noodles" },
+      description: {
+        es: "Tallarines saltados con lomo de res, verduras y salsa de soja al wok.",
+        en: "Wok-stir-fried noodles with beef, vegetables, and soy sauce.",
+      },
+      price: "S/. 22",
     },
   ],
 };
 
-/* ─── TESTIMONIALS ─────────────────────────────────────────────── */
+/* ─── Menu category i18n labels ─────────────────────────────────── */
+
+export const menuCategoryLabels: Record<string, Bilingual> = {
+  "Pescados y Mariscos": { es: "Pescados y Mariscos", en: "Seafood" },
+  "Platos Criollos": { es: "Platos Criollos", en: "Traditional Local Dishes" },
+};
+
+/* ═══ TESTIMONIALS ═══════════════════════════════════════════════ */
 
 export const testimonials: Testimonial[] = [
   {
@@ -391,54 +458,73 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-/* ─── EXPERIENCES ──────────────────────────────────────────────── */
+/* ═══ EXPERIENCES ═════════════════════════════════════════════════ */
 
 export const experiences: Experience[] = [
   {
-    title: "Surf en Puerto Chicama",
-    description:
-      "Clases de surf en la ola izquierda más larga del mundo (2.2 km). Instructores locales experimentados, todo el año. Todas las niveles.",
+    title: { es: "Surf en Puerto Chicama", en: "Surfing in Puerto Chicama" },
+    description: {
+      es: "Hospedaje Restaurante El Hombre, ubicado frente a la ola izquierda más larga del mundo. Contamos con el equipo completo de tablas y trajes de surf, con instructores certificados para una buena sesión de surf y así tengas una tarde mágica sobre las olas.",
+      en: "Hospedaje Restaurante El Hombre, located right in front of the longest left-breaking wave in the world. We offer complete gear rental (surfboards and wetsuits) along with certified instructors for an outstanding surf session, ensuring a magical afternoon riding the waves.",
+    },
     image:
       "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
     tag: "Todo el año",
   },
   {
-    title: "Tours Culinarios Marinos",
-    description:
-      "Descubre los sabores de la costa norte peruana. Tour por mercados de pescadores, clase de ceviche y degustación de platos típicos.",
+    title: { es: "Tours Culinarios Marinos", en: "Coastal Culinary Tours" },
+    description: {
+      es: "Descubre los sabores de la costa norte peruana. Tour por mercados de pescadores, clase de ceviche y degustación de platos típicos.",
+      en: "Discover the flavors of Peru's north coast. Fisherman's market tour, ceviche class, and tasting of typical dishes.",
+    },
     image:
       "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
     tag: "Gastronómico",
   },
   {
-    title: "Sunset en Malecón",
-    description:
-      "Paseo al atardecer por el malecón de Puerto Chicama con vista a las olas y la cordillera. Foto profesional incluida.",
+    title: { es: "Sunset en Malecón", en: "Sunset at the Boardwalk" },
+    description: {
+      es: "Paseo al atardecer por el malecón de Puerto Chicama con vista a las olas y la cordillera. Foto profesional incluida.",
+      en: "Sunset stroll along the Puerto Chicama boardwalk with views of the waves and the mountain range. Professional photo included.",
+    },
     image:
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
     tag: "Experiencia",
   },
   {
-    title: "Avistamiento de Fauna",
-    description:
-      "Excursión a los humedales y ecosistemas costeros de La Libertad. Flamencos, pelícanos y lobos marinos en su hábitat natural.",
+    title: { es: "Avistamiento de Fauna", en: "Wildlife Watching" },
+    description: {
+      es: "Excursión a los humedales y ecosistemas costeros de La Libertad. Flamencos, pelícanos y lobos marinos en su hábitat natural.",
+      en: "Excursion to the wetlands and coastal ecosystems of La Libertad. Flamingos, pelicans, and sea lions in their natural habitat.",
+    },
     image:
       "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&q=80",
     tag: "Naturaleza",
   },
 ];
 
-/* ─── ROOMS (Booking.com verified — official room types & prices) ── */
+/* ═══ ROOMS (7 Official Rooms — Booking.com Verified) ════════════ */
 
 export const rooms: Room[] = [
+  /* ── Room 1: NÚMERO 6 ── Individual ── */
   {
-    name: "Habitación Individual con vistas al mar",
-    slug: "individual-vistas-al-mar",
-    description: "Habitación individual con 1 cama individual, baño compartido equipado con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Ideal para viajeros en solitario con vistas al mar.",
-    price: "S/. 68",
+    name: { es: "NÚMERO 6 — Habitación Individual", en: "No. 6 — Single Room" },
+    slug: "numero-6",
+    description: {
+      es: "1 cama individual de plaza y media con baño compartido, ducha y WC. Incluye wifi gratis, toalla y desayuno americano.",
+      en: "1 twin bed (1.5 pl.) with shared bathroom, shower, and WC. Free Wi-Fi, towel, and American breakfast included.",
+    },
+    price: "S/. 55",
     image: "/images/rooms/individual-vistas-al-mar/foto1.webp",
-    badge: "Económica",
-    features: ["1 Cama Individual", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido", "Vistas al Mar"],
+    badge: { es: "Individual", en: "Single" },
+    features: [
+      { es: "1 Cama Individual", en: "1 Twin Bed" },
+      { es: "Baño Compartido", en: "Shared Bathroom" },
+      { es: "Ducha", en: "Shower" },
+      { es: "WiFi Gratis", en: "Free Wi-Fi" },
+      { es: "Toalla", en: "Towel" },
+      { es: "Desayuno Americano", en: "American Breakfast" },
+    ],
     gallery: [
       "/images/rooms/individual-vistas-al-mar/foto1.webp",
       "/images/rooms/individual-vistas-al-mar/foto2.webp",
@@ -446,14 +532,25 @@ export const rooms: Room[] = [
       "/images/rooms/individual-vistas-al-mar/foto4.webp",
     ],
   },
+
+  /* ── Room 2: NÚMERO 3 ── Doble ── */
   {
-    name: "Habitación Doble - 2 camas",
-    slug: "doble-2-camas",
-    description: "Dos camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: 1 persona.",
-    price: "S/. 72",
+    name: { es: "NÚMERO 3 — Habitación Doble", en: "No. 3 — Double Room" },
+    slug: "numero-3",
+    description: {
+      es: "Dos camas individuales de plaza y media, baño compartido, ducha y WC. Incluye wifi gratis y desayuno americano.",
+      en: "Two twin beds (1.5 pl.) with shared bathroom, shower, and WC. Free Wi-Fi and American breakfast included.",
+    },
+    price: "S/. 110",
     image: "/images/rooms/doble-2-camas/foto1.webp",
-    badge: "Económica",
-    features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    badge: { es: "Doble", en: "Double" },
+    features: [
+      { es: "2 Camas Individuales", en: "2 Twin Beds" },
+      { es: "Baño Compartido", en: "Shared Bathroom" },
+      { es: "Ducha", en: "Shower" },
+      { es: "WiFi Gratis", en: "Free Wi-Fi" },
+      { es: "Desayuno Americano", en: "American Breakfast" },
+    ],
     gallery: [
       "/images/rooms/doble-2-camas/foto1.webp",
       "/images/rooms/doble-2-camas/foto2.webp",
@@ -461,29 +558,31 @@ export const rooms: Room[] = [
       "/images/rooms/doble-2-camas/foto4.webp",
     ],
   },
+
+  /* ── Room 3: KING VISTA AL MAR ── Dynamic Pricing ── */
   {
-    name: "Habitación Deluxe - 1 cama grande",
-    slug: "deluxe-1-cama-grande",
-    description: "1 cama doble grande, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: 1 persona.",
-    price: "S/. 84",
-    image: "/images/rooms/deluxe-1-cama-grande/foto1.webp",
-    badge: "Popular",
-    features: ["1 Cama Doble Grande", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
-    gallery: [
-      "/images/rooms/deluxe-1-cama-grande/foto1.webp",
-      "/images/rooms/deluxe-1-cama-grande/foto2.webp",
-      "/images/rooms/deluxe-1-cama-grande/foto3.webp",
-      "/images/rooms/deluxe-1-cama-grande/foto4.webp",
-    ],
-  },
-  {
-    name: "Habitación con cama grande y vistas al mar",
-    slug: "cama-grande-vistas-al-mar",
-    description: "1 cama doble grande, baño privado con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Las mejores vistas al mar de Puerto Chicama.",
-    price: "S/. 103",
+    name: { es: "Habitación Cama King con Vista al Mar", en: "King Bed Room with Ocean View" },
+    slug: "king-vista-al-mar",
+    description: {
+      es: "1 cama grande con baño compartido, ducha y WC. Incluye wifi gratis, toalla y desayuno americano.",
+      en: "1 king-size bed with shared bathroom, shower, and WC. Free Wi-Fi, towel, and American breakfast included.",
+    },
+    price: "S/. 80",
+    pricing: {
+      price1: "S/. 80",
+      price2: "S/. 160",
+    },
     image: "/images/rooms/cama-grande-vistas-al-mar/foto1.webp",
-    badge: "Vista al Mar",
-    features: ["1 Cama Doble Grande", "Baño Privado", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido", "Vistas al Mar"],
+    badge: { es: "Vista al Mar", en: "Ocean View" },
+    features: [
+      { es: "1 Cama King", en: "1 King Bed" },
+      { es: "Vista al Mar", en: "Ocean View" },
+      { es: "Baño Compartido", en: "Shared Bathroom" },
+      { es: "Ducha", en: "Shower" },
+      { es: "WiFi Gratis", en: "Free Wi-Fi" },
+      { es: "Toalla", en: "Towel" },
+      { es: "Desayuno Americano", en: "American Breakfast" },
+    ],
     gallery: [
       "/images/rooms/cama-grande-vistas-al-mar/foto1.webp",
       "/images/rooms/cama-grande-vistas-al-mar/foto2.webp",
@@ -494,44 +593,89 @@ export const rooms: Room[] = [
       "/images/rooms/cama-grande-vistas-al-mar/foto7.webp",
     ],
   },
+
+  /* ── Room 4: QUEEN PRIVADA VISTA AL MAR ── Dynamic Pricing ── */
   {
-    name: "Habitación Deluxe - 1 cama grande (Baño Privado)",
-    slug: "deluxe-1-cama-grande-bano-privado",
-    description: "1 cama doble grande, baño privado con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: 1 persona.",
-    price: "S/. 103",
-    image: "/images/rooms/deluxe-1-cama-grande/foto1.webp",
-    badge: "Baño Privado",
-    features: ["1 Cama Doble Grande", "Baño Privado", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    name: { es: "Habitación Cama Queen con Vista al Mar (Privada)", en: "Private Queen Bed Room with Ocean View" },
+    slug: "queen-privada-vista-al-mar",
+    description: {
+      es: "1 cama grande Queen con baño privado, ducha y WC. Incluye wifi gratis, desayuno, toalla, jabón y papel higiénico.",
+      en: "1 queen-size bed with private bathroom, shower, and WC. Free Wi-Fi, breakfast, towel, soap, and amenities included.",
+    },
+    price: "S/. 80",
+    pricing: {
+      price1: "S/. 80",
+      price2: "S/. 160",
+    },
+    image: "/images/rooms/cama-grande-vistas-al-mar/foto2.webp",
+    badge: { es: "Baño Privado", en: "Private Bath" },
+    features: [
+      { es: "1 Cama Queen", en: "1 Queen Bed" },
+      { es: "Vista al Mar", en: "Ocean View" },
+      { es: "Baño Privado", en: "Private Bathroom" },
+      { es: "Ducha", en: "Shower" },
+      { es: "WiFi Gratis", en: "Free Wi-Fi" },
+      { es: "Toalla", en: "Towel" },
+      { es: "Jabón", en: "Soap" },
+      { es: "Desayuno Incluido", en: "Breakfast Included" },
+    ],
     gallery: [
+      "/images/rooms/cama-grande-vistas-al-mar/foto3.webp",
+      "/images/rooms/cama-grande-vistas-al-mar/foto4.webp",
+      "/images/rooms/cama-grande-vistas-al-mar/foto5.webp",
+      "/images/rooms/cama-grande-vistas-al-mar/foto6.webp",
+      "/images/rooms/cama-grande-vistas-al-mar/foto7.webp",
+    ],
+  },
+
+  /* ── Room 5: PRIVADA CAMAS DOBLES ── Consultar ── */
+  {
+    name: { es: "Habitación Privada Camas Dobles", en: "Private Double Bed Room" },
+    slug: "privada-camas-dobles",
+    description: {
+      es: "1 cama grande y una de plaza y media, baño privado, ducha, WC, jabón y toalla. Wifi gratis y desayuno incluido.",
+      en: "1 full bed and 1 twin bed, private bathroom, shower, WC, soap, and towel. Free Wi-Fi and breakfast included.",
+    },
+    price: "Consultar",
+    image: "/images/rooms/deluxe-1-cama-grande/foto1.webp",
+    badge: { es: "Privada", en: "Private" },
+    features: [
+      { es: "1 Cama Grande + 1 Individual", en: "1 Full Bed + 1 Twin Bed" },
+      { es: "Baño Privado", en: "Private Bathroom" },
+      { es: "Ducha", en: "Shower" },
+      { es: "Jabón y Toalla", en: "Soap & Towel" },
+      { es: "WiFi Gratis", en: "Free Wi-Fi" },
+      { es: "Desayuno Incluido", en: "Breakfast Included" },
+    ],
+    gallery: [
+      "/images/rooms/deluxe-1-cama-grande/foto1.webp",
       "/images/rooms/deluxe-1-cama-grande/foto2.webp",
       "/images/rooms/deluxe-1-cama-grande/foto3.webp",
       "/images/rooms/deluxe-1-cama-grande/foto4.webp",
-      "/images/rooms/deluxe-1-cama-grande/foto1.webp",
     ],
   },
+
+  /* ── Room 6: TRIPLE ── */
   {
-    name: "Habitación Deluxe",
-    slug: "deluxe-extragrande",
-    description: "1 cama doble extragrande, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Máximo espacio y confort.",
-    price: "S/. 120",
-    image: "/images/rooms/deluxe-1-cama-grande/foto1.webp",
-    badge: "Premium",
-    features: ["1 Cama Doble Extragrande", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
-    gallery: [
-      "/images/rooms/deluxe-1-cama-grande/foto1.webp",
-      "/images/rooms/deluxe-1-cama-grande/foto2.webp",
-      "/images/rooms/deluxe-1-cama-grande/foto3.webp",
-      "/images/rooms/deluxe-1-cama-grande/foto4.webp",
-    ],
-  },
-  {
-    name: "Habitación Triple Básica con baño compartido",
-    slug: "triple-basica-bano-compartido",
-    description: "3 camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional y papel higiénico. Cancelación gratuita y pago en el alojamiento. Perfecta para grupos pequeños.",
-    price: "S/. 151",
+    name: { es: "Habitación Triple", en: "Triple Room" },
+    slug: "triple",
+    description: {
+      es: "3 camas individuales con baño compartido, bañera, ducha, WC, toallas. Incluye wifi gratis y desayuno incluido.",
+      en: "3 twin beds with shared bathroom, bathtub, shower, WC, and towels. Free Wi-Fi and breakfast included.",
+    },
+    price: "S/. 170",
     image: "/images/rooms/triple-basica-bano-compartido/foto1.webp",
-    badge: "Grupo",
-    features: ["3 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    badge: { es: "Triple", en: "Triple" },
+    maxGuests: 3,
+    features: [
+      { es: "3 Camas Individuales", en: "3 Twin Beds" },
+      { es: "Baño Compartido", en: "Shared Bathroom" },
+      { es: "Bañera", en: "Bathtub" },
+      { es: "Ducha", en: "Shower" },
+      { es: "Toallas", en: "Towels" },
+      { es: "WiFi Gratis", en: "Free Wi-Fi" },
+      { es: "Desayuno Incluido", en: "Breakfast Included" },
+    ],
     gallery: [
       "/images/rooms/triple-basica-bano-compartido/foto1.webp",
       "/images/rooms/triple-basica-bano-compartido/foto2.webp",
@@ -541,49 +685,38 @@ export const rooms: Room[] = [
       "/images/rooms/triple-basica-bano-compartido/foto6.webp",
     ],
   },
+
+  /* ── Room 7: QUEEN VISTA AL MAR (COMPARTIDA) ── Dynamic Pricing ── */
   {
-    name: "Habitación Doble - 2 camas (2 personas)",
-    slug: "doble-2-camas-2-personas",
-    description: "Dos camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional y papel higiénico. Cancelación gratuita, pago en el alojamiento. Descuento Genius disponible. Capacidad: hasta 2 personas.",
-    price: "S/. 103",
-    image: "/images/rooms/doble-2-camas/foto1.webp",
-    badge: "Genius",
-    features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido", "Genius"],
-    gallery: [
-      "/images/rooms/doble-2-camas/foto2.webp",
-      "/images/rooms/doble-2-camas/foto3.webp",
-      "/images/rooms/doble-2-camas/foto1.webp",
-    ],
-  },
-  {
-    name: "Habitación Doble con aseo compartido - 2 camas",
-    slug: "doble-aseo-compartido-2-camas",
-    description: "Dos camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: hasta 2 personas.",
-    price: "S/. 120",
+    name: { es: "Habitación Queen con Vista al Mar", en: "Queen Bed Room with Ocean View" },
+    slug: "queen-vista-al-mar",
+    description: {
+      es: "1 cama Queen individual grande con baño compartido, bañera, WC, toalla y papel higiénico. Incluye wifi gratis, TV y desayuno.",
+      en: "1 large queen bed with shared bathroom, bathtub, WC, towel, and amenities. Free Wi-Fi, TV, and breakfast included.",
+    },
+    price: "S/. 60",
+    pricing: {
+      price1: "S/. 60",
+      price2: "S/. 120",
+    },
     image: "/images/rooms/doble-aseo-compartido-2-camas/foto1.webp",
-    badge: "Económica",
-    features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
+    badge: { es: "Vista al Mar", en: "Ocean View" },
+    features: [
+      { es: "1 Cama Queen Grande", en: "1 Large Queen Bed" },
+      { es: "Vista al Mar", en: "Ocean View" },
+      { es: "Baño Compartido", en: "Shared Bathroom" },
+      { es: "Bañera", en: "Bathtub" },
+      { es: "WiFi Gratis", en: "Free Wi-Fi" },
+      { es: "TV", en: "TV" },
+      { es: "Toalla", en: "Towel" },
+      { es: "Desayuno Incluido", en: "Breakfast Included" },
+    ],
     gallery: [
       "/images/rooms/doble-aseo-compartido-2-camas/foto1.webp",
       "/images/rooms/doble-aseo-compartido-2-camas/foto2.webp",
       "/images/rooms/doble-aseo-compartido-2-camas/foto3.webp",
       "/images/rooms/doble-aseo-compartido-2-camas/foto4.webp",
       "/images/rooms/doble-aseo-compartido-2-camas/foto5.webp",
-    ],
-  },
-  {
-    name: "Habitación Doble - 2 camas dobles",
-    slug: "doble-2-camas-dobles",
-    description: "Dos camas individuales, baño compartido con bañera, ducha y WC. Incluye WiFi gratis, desayuno excepcional, toallas y papel higiénico. Cancelación gratuita y pago en el alojamiento. Capacidad: hasta 2 personas.",
-    price: "S/. 120",
-    image: "/images/rooms/doble-2-camas/foto2.webp",
-    badge: "Económica",
-    features: ["2 Camas Individuales", "Baño Compartido", "Bañera", "Ducha", "WiFi Gratis", "Desayuno Incluido"],
-    gallery: [
-      "/images/rooms/doble-2-camas/foto1.webp",
-      "/images/rooms/doble-2-camas/foto2.webp",
-      "/images/rooms/doble-2-camas/foto3.webp",
-      "/images/rooms/doble-2-camas/foto4.webp",
     ],
   },
 ];

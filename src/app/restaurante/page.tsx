@@ -9,7 +9,8 @@ import { Footer } from '@/components/site/footer';
 import { RestaurantMenu } from '@/components/site/restaurant-menu';
 import { CartFloat, type CartItem } from '@/components/site/cart-float';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { fullMenu, type MenuItem } from '@/lib/data';
+import { fullMenu, menuCategoryLabels, type MenuItem } from '@/lib/data';
+import { useLang } from '@/lib/i18n-context';
 
 /* ─── Restaurant gallery photos ──────────────────────────────── */
 
@@ -22,31 +23,33 @@ const RESTAURANT_PHOTOS = [
 ];
 
 export default function RestaurantePage() {
+  const { t } = useLang();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
 
   const handleAdd = useCallback((item: MenuItem) => {
+    const nameStr = typeof item.name === 'string' ? item.name : item.name.es;
     setCart((prev) => {
-      const existing = prev.find((c) => c.name === item.name);
+      const existing = prev.find((c) => c.name === nameStr);
       if (existing) {
         return prev.map((c) =>
-          c.name === item.name ? { ...c, quantity: c.quantity + 1 } : c
+          c.name === nameStr ? { ...c, quantity: c.quantity + 1 } : c
         );
       }
-      return [...prev, { name: item.name, price: item.price, quantity: 1 }];
+      return [...prev, { name: nameStr, price: item.price, quantity: 1 }];
     });
 
     setAddedItems((prev) => {
       const next = new Set(prev);
-      next.add(item.name);
+      next.add(nameStr);
       return next;
     });
 
     setTimeout(() => {
       setAddedItems((prev) => {
         const next = new Set(prev);
-        next.delete(item.name);
+        next.delete(nameStr);
         return next;
       });
     }, 1500);
@@ -75,7 +78,7 @@ export default function RestaurantePage() {
             className="absolute top-20 left-4 md:left-8 text-white/80 hover:text-white flex items-center gap-2 text-sm transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            Inicio
+            {t('Inicio', 'Home')}
           </Link>
 
           <motion.div
@@ -85,7 +88,7 @@ export default function RestaurantePage() {
             className="flex items-center gap-3 mb-2"
           >
             <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-orange-400 bg-orange-500/20 px-3 py-1 rounded-[2px]">
-              carta
+              {t('carta', 'menu')}
             </span>
             <span className="text-orange-400 text-sm uppercase tracking-[0.2em]">
               Gastronomía Costera
@@ -98,7 +101,7 @@ export default function RestaurantePage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-white text-3xl md:text-5xl font-serif font-light"
           >
-            Nuestra Carta
+            {t('Nuestra Carta', 'Our Menu')}
           </motion.h1>
 
           <motion.p
@@ -107,7 +110,7 @@ export default function RestaurantePage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/70 text-sm md:text-base mt-3 max-w-md"
           >
-            Ingredientes frescos del Pacífico peruano, preparados con tradición y pasión.
+            {t('Ingredientes frescos del Pacífico peruano, preparados con tradición y pasión.', 'Fresh ingredients from the Peruvian Pacific, prepared with tradition and passion.')}
           </motion.p>
         </div>
       </section>
@@ -122,7 +125,7 @@ export default function RestaurantePage() {
             transition={{ duration: 0.6 }}
             className="text-2xl md:text-3xl font-serif font-light text-slate-900 dark:text-white mb-8"
           >
-            Nuestro Restaurante
+            {t('Nuestro Restaurante', 'Our Restaurant')}
           </motion.h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
@@ -159,7 +162,7 @@ export default function RestaurantePage() {
                   value={category}
                   className="text-sm px-4 py-2 rounded-lg data-[state=active]:bg-orange-500 data-[state=active]:text-white data-[state=active]:shadow-sm"
                 >
-                  {category}
+                  {menuCategoryLabels[category] ? t(menuCategoryLabels[category].es, menuCategoryLabels[category].en) : category}
                 </TabsTrigger>
               ))}
             </TabsList>

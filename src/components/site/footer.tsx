@@ -5,6 +5,7 @@ import { Instagram, Facebook, Music, MapPin, Phone, Mail, MessageCircle } from '
 import { motion } from 'framer-motion';
 import { HOTEL_LOCATION, HOTEL_DESCRIPTION } from '@/lib/data';
 import { sendGeneralWA } from '@/lib/whatsapp';
+import { useLang } from '@/lib/i18n-context';
 
 const footerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -16,6 +17,7 @@ const footerVariants = {
 };
 
 export function Footer() {
+  const { t } = useLang();
   return (
     <footer id="contacto" className="w-full border-t border-black/5 dark:border-white/10">
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-20">
@@ -31,7 +33,7 @@ export function Footer() {
               Hospedaje Restaurante El Hombre
             </h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-sm">
-              {HOTEL_DESCRIPTION}
+              {t(HOTEL_DESCRIPTION.es, HOTEL_DESCRIPTION.en)}
             </p>
           </motion.div>
 
