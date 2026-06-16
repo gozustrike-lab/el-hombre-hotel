@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { rooms } from '@/lib/data';
 import { Users } from 'lucide-react';
 
-/import { Users }/import { ChevronRight } from/lucide-react'
+import { ChevronRight } from 'lucide-react';
 /* ─── Room Card — Premium Deluxe ────────────────────────────── */
 
 function RoomCard({
