@@ -30,11 +30,17 @@ export interface Experience {
   tag: string;
 }
 
+export interface RoomPricing {
+  price1: string;
+  price2?: string;
+}
+
 export interface Room {
   name: string;
   slug: string;
   description: string;
   price: string;
+  pricing?: RoomPricing;
   image: string;
   badge: string;
   features: string[];
