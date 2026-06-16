@@ -25,7 +25,7 @@ import {
   Star,
   MapPin,
 } from 'lucide-react';
-import { sendRoomDirectWA } from '@/lib/whatsapp';
+import { sendRoomDetailWA } from '@/lib/whatsapp';
 import { useLang } from '@/lib/i18n-context';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -173,14 +173,18 @@ export default function RoomDetailPage({
   const [lightboxStart, setLightboxStart] = useState(0);
 
   const handleReserve = useCallback(() => {
-    const guestText = hasDynamicPricing
-      ? ` para ${guests} ${guests === 1 ? (lang === 'es' ? 'persona' : 'guest') : (lang === 'es' ? 'personas' : 'guests')}`
-      : '';
-    sendRoomDirectWA({
+    sendRoomDetailWA({
       roomName: t(room.name.es, room.name.en),
-      price: displayPrice.replace('S/. ', ''),
+      badge: t(room.badge.es, room.badge.en),
+      description: t(room.description.es, room.description.en),
+      price: `${displayPrice}/${t('noche', 'night')}`,
+      priceNote: hasDynamicPricing
+        ? `${guests} ${guests === 1 ? (lang === 'es' ? 'persona' : 'guest') : (lang === 'es' ? 'personas' : 'guests')}`
+        : undefined,
+      features: room.features.map((f) => t(f.es, f.en)),
+      guests,
     });
-  }, [room.name, displayPrice, guests, hasDynamicPricing, lang, t]);
+  }, [room, lang, guests, displayPrice, hasDynamicPricing, t]);
 
   const openLightbox = (index: number) => {
     setLightboxStart(index);

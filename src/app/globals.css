@@ -163,3 +163,8 @@ html {
 .dark input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+
+/* Bottom nav spacing — prevent content from hiding behind fixed bar */
+footer {
+  padding-bottom: 5rem;
+}

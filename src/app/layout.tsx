@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { I18nProvider } from "@/lib/i18n-context";
+import { BottomNav } from "@/components/site/bottom-nav";
 import "./globals.css";
 
 const inter = Inter({
@@ -43,6 +44,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <I18nProvider>
             {children}
+            <BottomNav />
           </I18nProvider>
         </ThemeProvider>
       </body>
