@@ -46,7 +46,7 @@ export function RestaurantMenu({ items, onAdd, addedItems }: RestaurantMenuProps
               className={`mt-1 w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
                 isAdded
                   ? 'bg-green-500 text-white scale-100'
-                  : 'bg-orange-500/10 text-orange-500 hover:bg-orange-500 hover:text-white group-hover:scale-110'
+                  : 'bg-orange-500/10 dark:bg-orange-500/15 text-orange-500 hover:bg-orange-500 hover:text-white group-hover:scale-110 ring-1 ring-orange-500/20 dark:ring-orange-500/30'
               }`}
             >
               {isAdded ? (

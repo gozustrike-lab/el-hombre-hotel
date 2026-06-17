@@ -252,17 +252,18 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
             )}
           </AnimatePresence>
 
-          {/* CTA Button */}
+          {/* CTA Button — refined premium */}
           <button
             onClick={handleReserve}
             disabled={!canReserve}
-            className="w-full flex items-center justify-center gap-2.5 rounded-xl h-13 text-base font-semibold transition-all duration-300 active:scale-[0.97] py-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2.5 rounded-xl h-13 text-base font-semibold transition-all duration-300 active:scale-[0.97] py-3.5 disabled:opacity-40 disabled:cursor-not-allowed border-2 border-[#25D366]/30"
             style={{
               background: canReserve
-                ? 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)'
-                : '#94a3b8',
-              boxShadow: canReserve ? '0 6px 24px -4px rgba(37, 211, 102, 0.5)' : 'none',
-              color: 'white',
+                ? 'linear-gradient(135deg, #25D366 0%, #1da851 100%)'
+                : undefined,
+              borderColor: canReserve ? 'transparent' : undefined,
+              color: canReserve ? 'white' : undefined,
+              boxShadow: canReserve ? '0 4px 20px -2px rgba(37, 211, 102, 0.35)' : 'none',
             }}
           >
             <WhatsAppIcon className="h-5 w-5" />
@@ -351,14 +352,10 @@ export function BottomNav() {
             </span>
           </Link>
 
-          {/* Reservar — prominent green button */}
+          {/* Reservar — refined pill button */}
           <button
             onClick={() => setBookingOpen(true)}
-            className="flex items-center justify-center gap-2 w-auto px-6 py-2.5 rounded-full text-white font-bold text-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.95] shadow-lg"
-            style={{
-              background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
-              boxShadow: '0 4px 20px -2px rgba(37, 211, 102, 0.5)',
-            }}
+            className="flex items-center justify-center gap-1.5 px-5 py-2 rounded-full text-[#128C7E] dark:text-[#25D366] font-bold text-[13px] tracking-wide transition-all duration-300 active:scale-[0.95] border border-[#25D366]/25 dark:border-[#25D366]/15 bg-[#25D366]/8 dark:bg-[#25D366]/5"
           >
             <WhatsAppIcon className="h-4 w-4" />
             <span>{t('Reservar', 'Book')}</span>
