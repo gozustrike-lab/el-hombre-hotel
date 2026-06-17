@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "8/10 - Necesita arreglos: Inconsistencia en el botón de reserva (dos botones \"Reservar\" con estilos diferentes) y etiquetas de precio sin formato uniforme.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656662,
+  "id": "2026061708373763997f29f8324f7e",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026061708373763997f29f8324f7e",
+  "usage": {
+    "completion_tokens": 47,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 3910,
+    "prompt_tokens_details": {
+      "cached_tokens": 7
+    },
+    "total_tokens": 3957
+  }
+}

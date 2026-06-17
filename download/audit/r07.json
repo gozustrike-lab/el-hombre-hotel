@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Espaciado inconsistente en los botones de personas y precio. Desalineación en el grid de imágenes secundarias. Botón \"Reservar\" con contraste insuficiente en el fondo verde.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656303,
+  "id": "202606170831385d4fa15b89894771",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606170831385d4fa15b89894771",
+  "usage": {
+    "completion_tokens": 47,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4016,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 4063
+  }
+}

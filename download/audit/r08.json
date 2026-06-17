@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Espaciado inconsistente entre los bloques de información (ej. check-in vs cancelación). Botón \"Reservar\" en la barra inferior con color y estilo menos premium que el principal. Texto \"S/. 80\" con kerning irregular.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656307,
+  "id": "20260617083143b101ebfc62514035",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260617083143b101ebfc62514035",
+  "usage": {
+    "completion_tokens": 57,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4016,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 4073
+  }
+}

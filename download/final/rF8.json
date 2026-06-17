@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "8/10 - NIVEL PREMIUM. Problemas: Imágenes con calidad desigual (la vista al mar es borrosa, las interiores están mejor), falta de responsividad visible (diseño para desktop).",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656684,
+  "id": "20260617083802aa20db61c9e6482f",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260617083802aa20db61c9e6482f",
+  "usage": {
+    "completion_tokens": 52,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1720,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1772
+  }
+}

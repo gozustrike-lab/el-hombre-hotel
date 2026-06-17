@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "7/10 - Necesita arreglos. Problemas: Texto \"Nuestro Restaurante\" con bajo contraste en fondo oscuro, imágenes de surf con recortes irregulares, botón de menú sin icono claro.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656679,
+  "id": "202606170837513fdf79bd38cf442f",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606170837513fdf79bd38cf442f",
+  "usage": {
+    "completion_tokens": 56,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 3910,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 3966
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Todo OK",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656325,
+  "id": "202606170832037b2c6b2d6eaf41bf",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606170832037b2c6b2d6eaf41bf",
+  "usage": {
+    "completion_tokens": 5,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1826,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1831
+  }
+}

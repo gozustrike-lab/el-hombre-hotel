@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Botón \"Reservar\" en la barra inferior con sombra inconsistente. Imagen de \"Vista al Mar\" con borde irregular. Texto \"Habitación Cama King con Vista al Mar\" desalineado con la imagen superior.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656286,
+  "id": "20260617083121867d0af0a4d14122",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260617083121867d0af0a4d14122",
+  "usage": {
+    "completion_tokens": 56,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4016,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 4072
+  }
+}

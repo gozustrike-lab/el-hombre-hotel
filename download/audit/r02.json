@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Botón \"Reservar por WhatsApp\" cortado. Texto \"1 huésped\" con bajo contraste en fondo oscuro. Botón \"Reservar\" verde con icono de WhatsApp, pero el diseño no es premium.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656280,
+  "id": "20260617083115e882cb2728974d27",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260617083115e882cb2728974d27",
+  "usage": {
+    "completion_tokens": 54,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4016,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 4070
+  }
+}

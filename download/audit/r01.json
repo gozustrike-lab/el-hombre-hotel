@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Botón \"Reservar por WhatsApp\" cortado en la parte inferior. El campo de entrada de fechas (mm/dd/yyyy) podría tener mejor contraste con el fondo oscuro.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656275,
+  "id": "20260617083110513d10ccd541423c",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260617083110513d10ccd541423c",
+  "usage": {
+    "completion_tokens": 42,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4016,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 4058
+  }
+}

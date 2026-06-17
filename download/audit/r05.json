@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Espaciado inconsistente entre la imagen y el texto inferior; botón \"Reservar\" con color verde vibrante que desentona con la paleta premium; tipografía de \"GASTRONOMÍA\" con kerning irregular.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656294,
+  "id": "20260617083126a3d2a66280c244a3",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260617083126a3d2a66280c244a3",
+  "usage": {
+    "completion_tokens": 53,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4016,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 4069
+  }
+}

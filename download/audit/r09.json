@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Espaciado inconsistente en la sección de imágenes del restaurante. Botón de reserva con icono de carrito que no se ve clickeable. Texto \"Nuestra Carta\" con tipografía que no contrasta bien con el fondo.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656312,
+  "id": "2026061708314769e4d53024c34d50",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026061708314769e4d53024c34d50",
+  "usage": {
+    "completion_tokens": 54,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4016,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 4070
+  }
+}

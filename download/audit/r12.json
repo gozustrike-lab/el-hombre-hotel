@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Botones de reserva con color verde vibrante que no armoniza con la paleta premium. Títulos de habitaciones con tipografía inconsistente en tamaño y peso. Espaciado irregular entre secciones de habitaciones.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656322,
+  "id": "20260617083159896e504e97fb437f",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260617083159896e504e97fb437f",
+  "usage": {
+    "completion_tokens": 47,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1826,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1873
+  }
+}

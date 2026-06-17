@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Espaciado inconsistente entre imágenes y texto; borde redondeado de la galería con sombra irregular; botón \"Reservar\" con color naranja que contrasta bruscamente con el fondo oscuro.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656329,
+  "id": "202606170832066df4530590c64c81",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606170832066df4530590c64c81",
+  "usage": {
+    "completion_tokens": 50,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1826,
+    "prompt_tokens_details": {
+      "cached_tokens": 187
+    },
+    "total_tokens": 1876
+  }
+}

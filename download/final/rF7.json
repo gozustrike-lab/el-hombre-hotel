@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "NIVEL PREMIUM - 10/10. No se observan problemas que afecten la calidad.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1781656681,
+  "id": "20260617083759bbf5e321c0e54a1a",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260617083759bbf5e321c0e54a1a",
+  "usage": {
+    "completion_tokens": 26,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1720,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1746
+  }
+}
