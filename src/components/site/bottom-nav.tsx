@@ -98,16 +98,24 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
     <Sheet open={open} onOpenChange={handleClose}>
       <SheetContent
         side="bottom"
-        className="rounded-t-2xl max-h-[90vh] overflow-y-auto p-0
+        className="rounded-t-2xl max-h-[90vh] overflow-y-auto p-0 relative
           bg-white dark:bg-slate-950 border-t border-black/5 dark:border-white/10
           [&>button]:hidden"
       >
-        {/* Drag handle */}
-        <div className="flex justify-center pt-3 pb-2">
-          <div className="w-10 h-1 rounded-full bg-slate-200 dark:bg-slate-700" />
+        {/* Top bar: drag handle + close button */}
+        <div className="flex items-center justify-between px-4 pt-3 pb-1">
+          <div className="flex-1 flex justify-center">
+            <div className="w-10 h-1 rounded-full bg-slate-200 dark:bg-slate-700" />
+          </div>
+          <button
+            onClick={() => onOpenChange(false)}
+            className="absolute right-4 top-3 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all active:scale-90"
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+          </button>
         </div>
 
-        <SheetHeader className="px-6 pb-2 pt-0 space-y-2">
+        <SheetHeader className="px-6 pb-2 pt-1 space-y-2">
           <SheetTitle className="text-lg font-serif text-slate-900 dark:text-white text-left flex items-center gap-2">
             <WhatsAppIcon className="h-5 w-5 text-green-500" />
             {t('Reservar Habitación', 'Book a Room')}
@@ -146,9 +154,12 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
             </select>
           </div>
 
-          {/* Guests */}
+          {/* Guests — icon + number style */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+            <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5">
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              </svg>
               {t('Huéspedes', 'Guests')}
             </label>
             <div className="inline-flex rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
@@ -156,13 +167,16 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
                 <button
                   key={n}
                   onClick={() => setGuests(String(n))}
-                  className={`px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
+                  className={`flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-semibold transition-all duration-200 min-w-[44px] ${
                     guests === String(n)
                       ? 'bg-orange-500 text-white'
                       : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                   }`}
                 >
-                  {n} {n === 1 ? t('persona', 'guest') : t('personas', 'guests')}
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" opacity={guests === String(n) ? 1 : 0.5}>
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                  {n === 4 ? '4+' : n}
                 </button>
               ))}
             </div>
