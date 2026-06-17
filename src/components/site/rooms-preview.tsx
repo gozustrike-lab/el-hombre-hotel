@@ -1,13 +1,12 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { rooms } from '@/lib/data';
-import { Users, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { useLang } from '@/lib/i18n-context';
 import { sendRoomCardWA } from '@/lib/whatsapp';
-import type { Lang } from '@/lib/i18n-context';
 
 /* ─── WhatsApp SVG ───────────────────────────────────────────── */
 
@@ -24,44 +23,34 @@ function WAIcon({ className = 'h-4 w-4' }: { className?: string }) {
 function RoomCard({
   room,
   index,
-  guests,
-  setGuests,
 }: {
   room: (typeof rooms)[number];
   index: number;
-  guests: number;
-  setGuests: (g: number) => void;
 }) {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const galleryCount = room.gallery?.length || 0;
-  const hasDynamicPricing = !!room.pricing;
 
   const displayName = t(room.name.es, room.name.en);
   const displayBadge = t(room.badge.es, room.badge.en);
   const displayFeatures = room.features.map((f) => t(f.es, f.en));
+
+  /* All rooms are for 2 guests — use price2 if available */
+  const displayPrice = room.pricing?.price2 || room.price;
 
   const handleWhatsApp = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
 
-      const price = hasDynamicPricing
-        ? (guests === 1 ? room.pricing!.price1 : room.pricing!.price2!)
-        : room.price;
-      const priceNote = hasDynamicPricing
-        ? `${guests} ${guests === 1 ? (lang === 'es' ? 'persona' : 'guest') : (lang === 'es' ? 'personas' : 'guests')}`
-        : undefined;
-
       sendRoomCardWA({
         roomName: displayName,
         badge: displayBadge,
-        price: `${price}/${t('noche', 'night')}`,
-        priceNote,
+        price: `${displayPrice}/${t('noche', 'night')}`,
         features: displayFeatures,
         description: t(room.description.es, room.description.en),
       });
     },
-    [room, lang, guests, displayName, displayBadge, displayFeatures, t, hasDynamicPricing],
+    [room, displayName, displayBadge, displayFeatures, t, displayPrice],
   );
 
   return (
@@ -127,63 +116,7 @@ function RoomCard({
 
           {/* Price row */}
           <div className="flex items-center gap-3 flex-wrap">
-            {hasDynamicPricing ? (
-              <div className="flex items-center gap-3 flex-wrap">
-                <div className="flex items-center gap-2">
-                  <p className="text-orange-500 text-lg font-semibold">
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={guests}
-                        initial={{ opacity: 0, y: -5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 5 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {guests === 1
-                          ? room.pricing!.price1
-                          : room.pricing!.price2}
-                      </motion.span>
-                    </AnimatePresence>
-                    <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">
-                      {' '}
-                      /{t('noche', 'night')}
-                    </span>
-                  </p>
-                </div>
-
-                {/* Guest toggle */}
-                <div className="inline-flex rounded-md border border-orange-200 dark:border-orange-500/20 overflow-hidden">
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setGuests(1);
-                    }}
-                    className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider transition-all ${
-                      guests === 1
-                        ? 'bg-orange-500 text-white'
-                        : 'text-slate-500'
-                    }`}
-                  >
-                    1 {t('Persona', 'Guest')}
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setGuests(2);
-                    }}
-                    className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider transition-all ${
-                      guests === 2
-                        ? 'bg-orange-500 text-white'
-                        : 'text-slate-500'
-                    }`}
-                  >
-                    2 {t('Personas', 'Guests')}
-                  </button>
-                </div>
-              </div>
-            ) : room.maxGuests === 3 ? (
+            {room.maxGuests === 3 ? (
               <p className="text-orange-500 text-lg font-semibold">
                 {room.price}
                 <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">
@@ -194,19 +127,17 @@ function RoomCard({
                   ({t('3 pers.', '3 guests')})
                 </span>
               </p>
+            ) : displayPrice === 'Consultar' ? (
+              <p className="text-orange-500 text-lg font-semibold">
+                {t('Consultar tarifa', 'Ask for rates')}
+              </p>
             ) : (
               <p className="text-orange-500 text-lg font-semibold">
-                {room.price === 'Consultar'
-                  ? t('Consultar tarifa', 'Ask for rates')
-                  : (
-                    <>
-                      {room.price}
-                      <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">
-                        {' '}
-                        /{t('noche', 'night')}
-                      </span>
-                    </>
-                  )}
+                {displayPrice}
+                <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">
+                  {' '}
+                  /{t('noche', 'night')}
+                </span>
               </p>
             )}
           </div>
@@ -256,7 +187,6 @@ function RoomCard({
 
 export function RoomsPreview() {
   const { t } = useLang();
-  const [guests, setGuests] = useState(1);
 
   return (
     <section id="habitaciones" className="w-full py-24 md:py-32">
@@ -307,8 +237,6 @@ export function RoomsPreview() {
               key={room.slug}
               room={room}
               index={index}
-              guests={guests}
-              setGuests={setGuests}
             />
           ))}
         </div>

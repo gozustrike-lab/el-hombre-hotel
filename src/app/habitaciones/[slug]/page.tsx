@@ -161,12 +161,8 @@ export default function RoomDetailPage({
     notFound();
   }
 
-  const { t, lang } = useLang();
-  const hasDynamicPricing = !!room.pricing?.price2;
-  const [guests, setGuests] = useState(1);
-  const displayPrice = hasDynamicPricing
-    ? (guests === 1 ? room.pricing!.price1 : room.pricing!.price2!)
-    : room.price;
+  const { t } = useLang();
+  const displayPrice = room.pricing?.price2 || room.price;
 
   const galleryImages = room.gallery || [room.image];
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -178,13 +174,10 @@ export default function RoomDetailPage({
       badge: t(room.badge.es, room.badge.en),
       description: t(room.description.es, room.description.en),
       price: `${displayPrice}/${t('noche', 'night')}`,
-      priceNote: hasDynamicPricing
-        ? `${guests} ${guests === 1 ? (lang === 'es' ? 'persona' : 'guest') : (lang === 'es' ? 'personas' : 'guests')}`
-        : undefined,
       features: room.features.map((f) => t(f.es, f.en)),
-      guests,
+      guests: 2,
     });
-  }, [room, lang, guests, displayPrice, hasDynamicPricing, t]);
+  }, [room, t, displayPrice]);
 
   const openLightbox = (index: number) => {
     setLightboxStart(index);
@@ -316,21 +309,6 @@ export default function RoomDetailPage({
               </h1>
 
               <div className="flex items-center gap-3 flex-wrap">
-                {hasDynamicPricing && (
-                  <div className="inline-flex rounded-lg border border-orange-300 dark:border-orange-500/30 overflow-hidden">
-                    {[1, 2].map((g) => (
-                      <button
-                        key={g}
-                        onClick={() => setGuests(g)}
-                        className={`px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
-                          guests === g ? 'bg-orange-500 text-white' : 'text-orange-400 dark:text-orange-500/70 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-500/10'
-                        }`}
-                      >
-                        {g} {g === 1 ? t('Persona', 'Guest') : t('Personas', 'Guests')}
-                      </button>
-                    ))}
-                  </div>
-                )}
                 <p className="text-orange-500 text-2xl md:text-3xl font-semibold tabular-nums">
                   {displayPrice}
                   <span className="text-slate-400 dark:text-slate-500 text-sm font-normal ml-0.5">/{t('noche', 'night')}</span>
@@ -433,23 +411,6 @@ export default function RoomDetailPage({
                 <p className="text-orange-100 text-xs uppercase tracking-wider mb-1">
                   {t('Precio por noche', 'Price per night')}
                 </p>
-                {hasDynamicPricing && (
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="inline-flex rounded-md border border-white/20 overflow-hidden">
-                      {[1, 2].map((g) => (
-                        <button
-                          key={g}
-                          onClick={() => setGuests(g)}
-                          className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-all ${
-                            guests === g ? 'bg-white text-orange-600' : 'text-white/70 hover:text-white'
-                          }`}
-                        >
-                          {g} {g === 1 ? t('Persona', 'Guest') : t('Personas', 'Guests')}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
                 <p className="text-white text-3xl md:text-4xl font-bold">{displayPrice}</p>
                 <p className="text-orange-200 text-xs mt-1">
                   {t('Impuestos incluidos · Pago en el alojamiento', 'Taxes included · Pay at the property')}

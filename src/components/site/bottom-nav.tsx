@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BedDouble, UtensilsCrossed, ChevronDown, X } from 'lucide-react';
+import { BedDouble, UtensilsCrossed } from 'lucide-react';
 import { useLang } from '@/lib/i18n-context';
-import { rooms, HOTEL_LOCATION } from '@/lib/data';
+import { rooms } from '@/lib/data';
 import { sendBookingWA } from '@/lib/whatsapp';
 import { useTheme } from 'next-themes';
 import {
@@ -37,13 +37,10 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
   const [selectedRoom, setSelectedRoom] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
-  const [guests, setGuests] = useState('1');
+  const [guests, setGuests] = useState('2');
 
   /* Reset form when sheet closes */
   const handleClose = (v: boolean) => {
-    if (!v) {
-      // Keep state so user can re-open and see their selection
-    }
     onOpenChange(v);
   };
 
@@ -61,10 +58,8 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
 
     if (diffDays <= 0) return { nights: 0, total: 0, pricePerNight: 0 };
 
-    /* Extract numeric price */
-    const priceStr = roomData.pricing
-      ? roomData.pricing.price1
-      : roomData.price;
+    /* Extract numeric price — use price2 (2 guests) for dynamic pricing */
+    const priceStr = roomData.pricing?.price2 || roomData.price;
     const priceNum = parseInt(priceStr.replace(/[^0-9]/g, ''), 10) || 0;
 
     return {
@@ -141,9 +136,7 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
               </option>
               {rooms.map((room) => {
                 const name = lang === 'es' ? room.name.es : room.name.en;
-                const price = room.pricing
-                  ? `${room.pricing.price1} - ${room.pricing.price2}`
-                  : room.price;
+                const price = room.pricing?.price2 || room.price;
                 return (
                   <option key={room.slug} value={room.slug}>
                     {name} — {price}/{t('noche', 'night')}
@@ -288,6 +281,8 @@ export function BottomNav() {
   const { t, lang } = useLang();
   const { resolvedTheme } = useTheme();
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const rafRef = useRef(false);
 
   const isDark = resolvedTheme === 'dark';
 
@@ -295,25 +290,53 @@ export function BottomNav() {
   const isRoomsActive = pathname === '/' || pathname.startsWith('/habitaciones');
   const isCartaActive = pathname === '/restaurante';
 
+  /* Show nav only after scrolling past the hero (homepage) or 200px (other pages) */
+  const handleScroll = useCallback(() => {
+    if (rafRef.current) return;
+    rafRef.current = true;
+    requestAnimationFrame(() => {
+      rafRef.current = false;
+      const scrollY = window.scrollY;
+      const threshold = pathname === '/' ? window.innerHeight * 0.75 : 200;
+      setVisible(scrollY > threshold);
+    });
+  }, [pathname]);
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
   return (
     <>
-      {/* ═══ FIXED BOTTOM BAR — mobile only ═══ */}
-      <nav
-        className="md:hidden fixed bottom-0 left-0 right-0 z-40 transition-all duration-300"
+      {/* ═══ FIXED BOTTOM BAR — mobile only, scroll-aware ═══ */}
+      <motion.nav
+        animate={{
+          y: visible ? 0 : 120,
+          opacity: visible ? 1 : 0,
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 260,
+          damping: 28,
+          mass: 0.8,
+        }}
+        className="md:hidden fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
         style={{
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         }}
       >
         {/* Glass background */}
         <div
-          className="absolute inset-0 backdrop-blur-2xl border-t"
+          className="absolute inset-0 backdrop-blur-2xl border-t pointer-events-auto"
           style={{
             backgroundColor: isDark ? 'rgba(2, 6, 23, 0.88)' : 'rgba(253, 251, 247, 0.88)',
             borderTopColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
           }}
         />
 
-        <div className="relative max-w-lg mx-auto flex items-center justify-around h-16 px-2">
+        <div className="relative max-w-lg mx-auto flex items-center justify-around h-16 px-2 pointer-events-auto">
           {/* Habitaciones */}
           <Link
             href="/#habitaciones"
@@ -361,7 +384,7 @@ export function BottomNav() {
             <span>{t('Reservar', 'Book')}</span>
           </button>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* ═══ BOOKING SHEET ═══ */}
       <BookingSheetContent open={bookingOpen} onOpenChange={setBookingOpen} />
