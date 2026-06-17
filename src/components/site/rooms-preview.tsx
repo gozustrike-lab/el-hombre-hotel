@@ -228,17 +228,20 @@ function RoomCard({
       {/* ═══ WHATSAPP RESERVE BUTTON — premium refined ═══ */}
       <button
         onClick={handleWhatsApp}
-        className="w-full mt-2.5 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 hover:scale-[1.01] active:scale-[0.97] border border-[#25D366]/30 dark:border-[#25D366]/20 text-[#128C7E] dark:text-[#25D366] hover:text-white hover:border-transparent"
+        className="w-full mt-2.5 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 hover:scale-[1.01] active:scale-[0.97] border border-[#25D366]/30 dark:border-[#25D366]/20 text-[#128C7E] dark:text-[#25D366]"
         style={{
           background: 'transparent',
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)';
           e.currentTarget.style.color = 'white';
+          e.currentTarget.style.borderColor = 'transparent';
           e.currentTarget.style.boxShadow = '0 4px 16px -2px rgba(37, 211, 102, 0.4)';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.background = 'transparent';
+          e.currentTarget.style.color = '';
+          e.currentTarget.style.borderColor = '';
           e.currentTarget.style.boxShadow = 'none';
         }}
       >
