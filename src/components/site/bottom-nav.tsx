@@ -8,13 +8,6 @@ import { useLang } from '@/lib/i18n-context';
 import { rooms } from '@/lib/data';
 import { sendBookingWA } from '@/lib/whatsapp';
 import { useTheme } from 'next-themes';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-} from '@/components/ui/sheet';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /* ─── WhatsApp SVG Icon ──────────────────────────────────────── */
@@ -27,22 +20,28 @@ function WhatsAppIcon({ className = 'h-5 w-5' }: { className?: string }) {
   );
 }
 
-/* ─── Booking Sheet Content ──────────────────────────────────── */
+/* ─── Booking Bottom Sheet — Framer Motion (no Radix/tailwindcss-animate) ── */
 
-function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
+function BookingSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t, lang } = useLang();
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const [selectedRoom, setSelectedRoom] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState('2');
 
-  /* Reset form when sheet closes */
-  const handleClose = (v: boolean) => {
-    onOpenChange(v);
-  };
+  /* Lock body scroll when open */
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
 
   /* Get room data */
   const roomData = rooms.find((r) => r.slug === selectedRoom);
@@ -58,15 +57,10 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
 
     if (diffDays <= 0) return { nights: 0, total: 0, pricePerNight: 0 };
 
-    /* Extract numeric price — use price2 (2 guests) for dynamic pricing */
     const priceStr = roomData.pricing?.price2 || roomData.price;
     const priceNum = parseInt(priceStr.replace(/[^0-9]/g, ''), 10) || 0;
 
-    return {
-      nights: diffDays,
-      total: diffDays * priceNum,
-      pricePerNight: priceNum,
-    };
+    return { nights: diffDays, total: diffDays * priceNum, pricePerNight: priceNum };
   }, [roomData, checkIn, checkOut]);
 
   const formatForDisplay = (dateStr: string) => {
@@ -78,9 +72,7 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
 
   const handleReserve = () => {
     if (!roomData || !checkIn || !checkOut || nights <= 0) return;
-
     const roomName = lang === 'es' ? roomData.name.es : roomData.name.en;
-
     sendBookingWA({
       roomName,
       checkIn: formatForDisplay(checkIn),
@@ -95,196 +87,250 @@ function BookingSheetContent({ open, onOpenChange }: { open: boolean; onOpenChan
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <Sheet open={open} onOpenChange={handleClose}>
-      <SheetContent
-        side="bottom"
-        className="rounded-t-2xl max-h-[90vh] overflow-y-auto p-0 relative
-          bg-white dark:bg-slate-950 border-t border-black/5 dark:border-white/10
-          [&>button]:hidden"
-      >
-        {/* Top bar: drag handle + close button */}
-        <div className="flex items-center justify-between px-4 pt-3 pb-1">
-          <div className="flex-1 flex justify-center">
-            <div className="w-10 h-1 rounded-full bg-slate-200 dark:bg-slate-700" />
-          </div>
-          <button
-            onClick={() => onOpenChange(false)}
-            className="absolute right-4 top-3 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all active:scale-90"
-          >
-            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
-          </button>
-        </div>
+    <AnimatePresence>
+      {open && (
+        <>
+          {/* Overlay */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={onClose}
+            className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm"
+          />
 
-        <SheetHeader className="px-6 pb-2 pt-1 space-y-2">
-          <SheetTitle className="text-lg font-serif text-slate-900 dark:text-white text-left flex items-center gap-2">
-            <WhatsAppIcon className="h-5 w-5 text-green-500" />
-            {t('Reservar Habitación', 'Book a Room')}
-          </SheetTitle>
-          <SheetDescription className="text-slate-500 dark:text-slate-400 text-sm text-left">
-            {t(
-              'Completa los datos y reserva directamente por WhatsApp.',
-              'Fill in the details and book directly via WhatsApp.'
-            )}
-          </SheetDescription>
-        </SheetHeader>
-
-        <div className="px-6 py-5 space-y-5">
-          {/* Room selector */}
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-              {t('Habitación', 'Room')}
-            </label>
-            <select
-              value={selectedRoom}
-              onChange={(e) => setSelectedRoom(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition-all"
-            >
-              <option value="">
-                {t('Selecciona una habitación', 'Select a room')}
-              </option>
-              {rooms.map((room) => {
-                const name = lang === 'es' ? room.name.es : room.name.en;
-                const price = room.pricing?.price2 || room.price;
-                return (
-                  <option key={room.slug} value={room.slug}>
-                    {name} — {price}/{t('noche', 'night')}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-
-          {/* Guests — icon + number style */}
-          <div>
-            <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5">
-              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-              </svg>
-              {t('Huéspedes', 'Guests')}
-            </label>
-            <div className="inline-flex rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
-              {[1, 2, 3, 4].map((n) => (
-                <button
-                  key={n}
-                  onClick={() => setGuests(String(n))}
-                  className={`flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-semibold transition-all duration-200 min-w-[44px] ${
-                    guests === String(n)
-                      ? 'bg-orange-500 text-white'
-                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
-                  }`}
-                >
-                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" opacity={guests === String(n) ? 1 : 0.5}>
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                  </svg>
-                  {n === 4 ? '4+' : n}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Date inputs */}
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-                {t('Entrada', 'Check-in')}
-              </label>
-              <input
-                type="date"
-                value={checkIn}
-                min={today}
-                onChange={(e) => {
-                  setCheckIn(e.target.value);
-                  if (checkOut && e.target.value >= checkOut) setCheckOut('');
-                }}
-                className={`w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition-all ${
-                  isDark
-                    ? 'bg-slate-900 border-slate-800 text-white [color-scheme:dark]'
-                    : 'bg-slate-50 border-slate-200 text-slate-900'
-                }`}
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-                {t('Salida', 'Check-out')}
-              </label>
-              <input
-                type="date"
-                value={checkOut}
-                min={checkIn || today}
-                onChange={(e) => setCheckOut(e.target.value)}
-                className={`w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition-all ${
-                  isDark
-                    ? 'bg-slate-900 border-slate-800 text-white [color-scheme:dark]'
-                    : 'bg-slate-50 border-slate-200 text-slate-900'
-                }`}
-              />
-            </div>
-          </div>
-
-          {/* Summary */}
-          <AnimatePresence>
-            {canReserve && (
-              <motion.div
-                initial={{ opacity: 0, y: 10, height: 0 }}
-                animate={{ opacity: 1, y: 0, height: 'auto' }}
-                exit={{ opacity: 0, y: -10, height: 0 }}
-                className="bg-orange-50 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 rounded-xl p-4 space-y-2"
-              >
-                <div className="flex justify-between text-sm">
-                  <span className="text-slate-600 dark:text-slate-400">
-                    {t('Precio por noche', 'Price per night')}
-                  </span>
-                  <span className="font-semibold text-slate-900 dark:text-white">
-                    S/. {pricePerNight}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-slate-600 dark:text-slate-400">
-                    {t('Noches', 'Nights')}
-                  </span>
-                  <span className="font-semibold text-slate-900 dark:text-white">
-                    {nights}
-                  </span>
-                </div>
-                <div className="h-px bg-orange-200 dark:bg-orange-500/20 my-1" />
-                <div className="flex justify-between">
-                  <span className="font-bold text-slate-900 dark:text-white">
-                    {t('Total estimado', 'Estimated total')}
-                  </span>
-                  <span className="text-xl font-bold text-orange-500">
-                    S/. {total.toFixed(0)}
-                  </span>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* CTA Button — refined premium */}
-          <button
-            onClick={handleReserve}
-            disabled={!canReserve}
-            className="w-full flex items-center justify-center gap-2.5 rounded-xl h-13 text-base font-semibold transition-all duration-300 active:scale-[0.97] py-3.5 disabled:opacity-40 disabled:cursor-not-allowed border-2 border-[#25D366]/30"
+          {/* Panel */}
+          <motion.div
+            ref={panelRef}
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30, mass: 0.8 }}
+            className="fixed inset-x-0 bottom-0 z-[101] max-h-[92vh] overflow-y-auto rounded-t-2xl"
             style={{
-              background: canReserve
-                ? 'linear-gradient(135deg, #25D366 0%, #1da851 100%)'
-                : undefined,
-              borderColor: canReserve ? 'transparent' : undefined,
-              color: canReserve ? 'white' : undefined,
-              boxShadow: canReserve ? '0 4px 20px -2px rgba(37, 211, 102, 0.35)' : 'none',
+              paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+              backgroundColor: isDark ? '#020617' : '#ffffff',
+              borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}`,
             }}
           >
-            <WhatsAppIcon className="h-5 w-5" />
-            {nights > 0
-              ? `${t('Reservar', 'Book')} \u00B7 S/. ${total.toFixed(0)}`
-              : t('Reservar por WhatsApp', 'Book via WhatsApp')}
-          </button>
+            {/* Drag handle + close */}
+            <div className="sticky top-0 z-10 flex items-center justify-between px-4 pt-3 pb-1"
+              style={{ backgroundColor: isDark ? '#020617' : '#ffffff' }}
+            >
+              <div className="flex-1 flex justify-center">
+                <div className="w-10 h-1 rounded-full"
+                  style={{ backgroundColor: isDark ? '#334155' : '#e2e8f0' }}
+                />
+              </div>
+              <button
+                onClick={onClose}
+                className="absolute right-4 top-3 w-9 h-9 rounded-full flex items-center justify-center transition-all active:scale-90"
+                style={{
+                  backgroundColor: isDark ? '#1e293b' : '#f1f5f9',
+                  color: isDark ? '#94a3b8' : '#64748b',
+                }}
+              >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
 
-          <p className="text-[11px] text-center text-slate-400 dark:text-slate-500">
-            {t('Pago en el alojamiento \u00B7 Cancelación gratuita', 'Pay at the property \u00B7 Free cancellation')}
-          </p>
-        </div>
-      </SheetContent>
-    </Sheet>
+            {/* Header */}
+            <div className="px-6 pb-3 pt-1 space-y-1.5">
+              <h2 className={`text-lg font-serif text-left flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                <WhatsAppIcon className="h-5 w-5 text-green-500" />
+                {t('Reservar Habitación', 'Book a Room')}
+              </h2>
+              <p className={`text-sm text-left ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                {t(
+                  'Completa los datos y reserva directamente por WhatsApp.',
+                  'Fill in the details and book directly via WhatsApp.'
+                )}
+              </p>
+            </div>
+
+            {/* Form */}
+            <div className="px-6 pb-6 space-y-5">
+              {/* Room selector */}
+              <div>
+                <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  {t('Habitación', 'Room')}
+                </label>
+                <select
+                  value={selectedRoom}
+                  onChange={(e) => setSelectedRoom(e.target.value)}
+                  className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition-all border"
+                  style={{
+                    backgroundColor: isDark ? '#0f172a' : '#f8fafc',
+                    borderColor: isDark ? '#1e293b' : '#e2e8f0',
+                    color: isDark ? '#ffffff' : '#0f172a',
+                  }}
+                >
+                  <option value="">{t('Selecciona una habitación', 'Select a room')}</option>
+                  {rooms.map((room) => {
+                    const name = lang === 'es' ? room.name.es : room.name.en;
+                    const price = room.pricing?.price2 || room.price;
+                    return (
+                      <option key={room.slug} value={room.slug}>
+                        {name} — {price}/{t('noche', 'night')}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+
+              {/* Guests */}
+              <div>
+                <label className={`flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider mb-2.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                  </svg>
+                  {t('Huéspedes', 'Guests')}
+                </label>
+                <div className="inline-flex rounded-xl border overflow-hidden"
+                  style={{ borderColor: isDark ? '#1e293b' : '#e2e8f0' }}
+                >
+                  {[1, 2, 3, 4].map((n) => (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => setGuests(String(n))}
+                      className="flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-semibold transition-all duration-200 min-w-[44px]"
+                      style={{
+                        backgroundColor: guests === String(n)
+                          ? '#f97316'
+                          : isDark ? '#020617' : '#ffffff',
+                        color: guests === String(n)
+                          ? '#ffffff'
+                          : isDark ? '#94a3b8' : '#475569',
+                      }}
+                    >
+                      <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" style={{ opacity: guests === String(n) ? 1 : 0.4 }}>
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                      </svg>
+                      {n === 4 ? '4+' : n}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Date inputs */}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    {t('Entrada', 'Check-in')}
+                  </label>
+                  <input
+                    type="date"
+                    value={checkIn}
+                    min={today}
+                    onChange={(e) => {
+                      setCheckIn(e.target.value);
+                      if (checkOut && e.target.value >= checkOut) setCheckOut('');
+                    }}
+                    className="w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition-all"
+                    style={{
+                      backgroundColor: isDark ? '#0f172a' : '#f8fafc',
+                      borderColor: isDark ? '#1e293b' : '#e2e8f0',
+                      color: isDark ? '#ffffff' : '#0f172a',
+                      colorScheme: isDark ? 'dark' : 'light',
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    {t('Salida', 'Check-out')}
+                  </label>
+                  <input
+                    type="date"
+                    value={checkOut}
+                    min={checkIn || today}
+                    onChange={(e) => setCheckOut(e.target.value)}
+                    className="w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 transition-all"
+                    style={{
+                      backgroundColor: isDark ? '#0f172a' : '#f8fafc',
+                      borderColor: isDark ? '#1e293b' : '#e2e8f0',
+                      color: isDark ? '#ffffff' : '#0f172a',
+                      colorScheme: isDark ? 'dark' : 'light',
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Summary */}
+              <AnimatePresence>
+                {canReserve && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, height: 0 }}
+                    animate={{ opacity: 1, y: 0, height: 'auto' }}
+                    exit={{ opacity: 0, y: -10, height: 0 }}
+                    className="rounded-xl p-4 space-y-2 border"
+                    style={{
+                      backgroundColor: isDark ? 'rgba(249, 115, 22, 0.1)' : '#fff7ed',
+                      borderColor: isDark ? 'rgba(249, 115, 22, 0.2)' : '#fed7aa',
+                    }}
+                  >
+                    <div className="flex justify-between text-sm">
+                      <span className={isDark ? 'text-slate-400' : 'text-slate-600'}>
+                        {t('Precio por noche', 'Price per night')}
+                      </span>
+                      <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                        S/. {pricePerNight}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className={isDark ? 'text-slate-400' : 'text-slate-600'}>
+                        {t('Noches', 'Nights')}
+                      </span>
+                      <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                        {nights}
+                      </span>
+                    </div>
+                    <div className="h-px my-1" style={{ backgroundColor: isDark ? 'rgba(249,115,22,0.2)' : '#fed7aa' }} />
+                    <div className="flex justify-between">
+                      <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                        {t('Total estimado', 'Estimated total')}
+                      </span>
+                      <span className="text-xl font-bold text-orange-500">
+                        S/. {total.toFixed(0)}
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* CTA Button */}
+              <button
+                type="button"
+                onClick={handleReserve}
+                disabled={!canReserve}
+                className="w-full flex items-center justify-center gap-2.5 rounded-xl text-base font-semibold transition-all duration-300 active:scale-[0.97] py-3.5 disabled:cursor-not-allowed"
+                style={{
+                  background: canReserve
+                    ? 'linear-gradient(135deg, #25D366 0%, #1da851 100%)'
+                    : isDark ? '#1e293b' : '#f1f5f9',
+                  color: canReserve ? 'white' : isDark ? '#475569' : '#94a3b8',
+                  boxShadow: canReserve ? '0 4px 20px -2px rgba(37, 211, 102, 0.35)' : 'none',
+                  opacity: canReserve ? 1 : 0.6,
+                  border: canReserve ? 'none' : `1px solid ${isDark ? '#334155' : '#e2e8f0'}`,
+                }}
+              >
+                <WhatsAppIcon className="h-5 w-5" />
+                {nights > 0
+                  ? `${t('Reservar', 'Book')} \u00B7 S/. ${total.toFixed(0)}`
+                  : t('Reservar por WhatsApp', 'Book via WhatsApp')}
+              </button>
+
+              <p className={`text-[11px] text-center ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                {t('Pago en el alojamiento \u00B7 Cancelación gratuita', 'Pay at the property \u00B7 Free cancellation')}
+              </p>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -389,7 +435,7 @@ export function BottomNav() {
             </span>
           </Link>
 
-          {/* Reservar — refined pill button */}
+          {/* Reservar — pill button */}
           <button
             onClick={() => setBookingOpen(true)}
             className="flex items-center justify-center gap-1.5 px-5 py-2 rounded-full text-[#128C7E] dark:text-[#25D366] font-bold text-[13px] tracking-wide transition-all duration-300 active:scale-[0.95] border border-[#25D366]/25 dark:border-[#25D366]/15 bg-[#25D366]/8 dark:bg-[#25D366]/5"
@@ -401,7 +447,7 @@ export function BottomNav() {
       </motion.nav>
 
       {/* ═══ BOOKING SHEET ═══ */}
-      <BookingSheetContent open={bookingOpen} onOpenChange={setBookingOpen} />
+      <BookingSheet open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </>
   );
 }
