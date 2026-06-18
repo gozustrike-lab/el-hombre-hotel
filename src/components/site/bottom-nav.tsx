@@ -336,21 +336,21 @@ export function BottomNav() {
           damping: 28,
           mass: 0.8,
         }}
-        className="md:hidden fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-40"
         style={{
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         }}
       >
         {/* Glass background */}
         <div
-          className="absolute inset-0 backdrop-blur-2xl border-t pointer-events-auto"
+          className="absolute inset-0 backdrop-blur-2xl border-t"
           style={{
             backgroundColor: isDark ? 'rgba(2, 6, 23, 0.88)' : 'rgba(253, 251, 247, 0.88)',
             borderTopColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
           }}
         />
 
-        <div className="relative max-w-lg mx-auto flex items-center justify-around h-16 px-2 pointer-events-auto">
+        <div className="relative max-w-lg mx-auto flex items-center justify-around h-16 px-2">
           {/* Habitaciones */}
           <Link
             href="/#habitaciones"
