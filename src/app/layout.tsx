@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { I18nProvider } from "@/lib/i18n-context";
+import { BookingProvider } from "@/lib/booking-context";
 import { BottomNav } from "@/components/site/bottom-nav";
+import { BookingSheet } from "@/components/site/booking-sheet";
 import "./globals.css";
 
 const inter = Inter({
@@ -43,8 +45,11 @@ export default function RootLayout({
       <body className="font-sans antialiased w-full min-h-screen m-0 p-0 overflow-x-hidden bg-background text-foreground transition-colors duration-500">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <I18nProvider>
-            {children}
-            <BottomNav />
+            <BookingProvider>
+              {children}
+              <BottomNav />
+              <BookingSheet />
+            </BookingProvider>
           </I18nProvider>
         </ThemeProvider>
       </body>
